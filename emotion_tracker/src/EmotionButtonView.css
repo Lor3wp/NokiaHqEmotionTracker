@@ -1,0 +1,14 @@
+.howOthersFeltButton {
+        border-style: none;
+        background-color: transparent;
+        color: #7794f5
+}
+.howOthersFeltButton:hover {
+    color:  #3a497b;
+    cursor: pointer
+}
+.emotions {
+    display: "flex";
+    flex-direction: "column";
+    align-items: "center";
+}
