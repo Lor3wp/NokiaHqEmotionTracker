@@ -1,6 +1,7 @@
 import EmotionButton from "./EmotionButtons";
 import "./EmotionButtonView.css";
 import TestView from "./TestView";
+import StatWindow from "./StatWindow";
 import { useState } from "react";
 
 function clickHandler(viewCondition, setViewCondition) {
@@ -36,7 +37,7 @@ function EmotionButtonView() {
       </div>
     );
   } else {
-    return <TestView backButtonClicked={backButtonClicked}></TestView>;
+    return <StatWindow backButtonClicked={backButtonClicked}></StatWindow>;
   }
 }
 export default EmotionButtonView;
