@@ -31,4 +31,5 @@ jobs:
         cache: 'npm'
         cache-dependency-path: emotion_tracker/package-lock.json
     - name: Unit tests
+      working-directory: src/
       run: npm test
