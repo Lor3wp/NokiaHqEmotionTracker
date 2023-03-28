@@ -1,13 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
-import EmotionButton from './EmotionButtons';
+import EmotionButton from "./EmotionButtons";
 import EmotionButtonView from "./EmotionButtonView";
 import TestView from "./TestView";
 
+import EmotionStats from "./EmotionStats";
 
 function App() {
-  
   return (
     <div className="App">
       <link
@@ -16,6 +16,18 @@ function App() {
       />
       <header className="App-header">
         <EmotionButtonView />
+
+        <h1>How are you today?</h1>
+        <div
+          className="emotions"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <EmotionButton />
+        </div>
       </header>
     </div>
   );
