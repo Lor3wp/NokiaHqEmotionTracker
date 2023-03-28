@@ -13,8 +13,9 @@ const getStatsById = async (id) => {
   }
 };
 
-function EmotionStats({ setLoading }, { loading }) {
+function EmotionStats() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {

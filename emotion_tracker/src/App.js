@@ -5,8 +5,6 @@ import EmotionButton from './EmotionButtons';
 import EmotionStats from "./EmotionStats";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <div className="App">
       <link
@@ -23,8 +21,7 @@ function App() {
             alignItems: "center",
           }}
         >
-          <EmotionButton setIsLoading={setLoading} />
-          <EmotionStats setIsLoading={setLoading} isLoading={loading} />
+          <EmotionButton />
         </div>
       </header>
     </div>

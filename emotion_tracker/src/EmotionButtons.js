@@ -1,4 +1,6 @@
 import EmotionStats from "./EmotionStats";
+import React, { useState, useEffect } from "react";
+
 const buttonData = [
   {
     label: "Happy",
@@ -43,9 +45,9 @@ const buttonData = [
     color: "#4B9F3E",
   },
 ];
-function buttonClicked(id, setLoading) {
+function buttonClicked(id) {
   // button clicked
-  setLoading(true);
+
   console.log("button clicked " + id);
   addEmotion(id);
 }
@@ -67,7 +69,7 @@ const addEmotion = async (id) => {
   }
 };
 
-function EmotionButton({ setLoading }) {
+function EmotionButton() {
   return (
     <div>
       {buttonData.map((button) => (
@@ -83,7 +85,7 @@ function EmotionButton({ setLoading }) {
             width: "90px",
             height: "80px",
           }}
-          onClick={() => buttonClicked(button.id, setLoading)}
+          onClick={() => buttonClicked(button.id)}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span className="material-symbols-outlined">{button.icon}</span>
@@ -91,6 +93,7 @@ function EmotionButton({ setLoading }) {
           </div>
         </button>
       ))}
+      <EmotionStats />
     </div>
   );
 }
