@@ -19,7 +19,9 @@ function EmotionStats() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`http://localhost:3001/getall/getallstats`);
+      const response = await fetch(
+        `http://localhost:3001/get/getstatsbyid/${1}`
+      );
       const jsonData = await response.json();
       setData(jsonData);
       console.log(jsonData);
