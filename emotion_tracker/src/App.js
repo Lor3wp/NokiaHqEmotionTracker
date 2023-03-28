@@ -17,17 +17,7 @@ function App() {
       <header className="App-header">
         <EmotionButtonView />
 
-        <h1>How are you today?</h1>
-        <div
-          className="emotions"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <EmotionButton />
-        </div>
+
       </header>
     </div>
   );
