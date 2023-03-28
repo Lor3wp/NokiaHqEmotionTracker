@@ -27,5 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: emotion_tracker/package-lock.json
-    - run: npm init
+
     - run: npm test
