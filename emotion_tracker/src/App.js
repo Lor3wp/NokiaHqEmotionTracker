@@ -16,8 +16,6 @@ function App() {
       />
       <header className="App-header">
         <EmotionButtonView />
-
-
       </header>
     </div>
   );
