@@ -13,26 +13,27 @@ const getStatsById = async (id) => {
   }
 };
 
-function EmotionStats() {
-  const [data, setData] = useState(null);
+function EmotionStats({ statsData, setStatsData }) {
+  // const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(`http://localhost:3001/getall/getallstats`);
       const jsonData = await response.json();
-      setData(jsonData);
+      setStatsData(jsonData);
       console.log(jsonData);
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [statsData]);
+  
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  return <div>{data.count}</div>;
+  return <div>{statsData.count}</div>;
 }
 
 export default EmotionStats;

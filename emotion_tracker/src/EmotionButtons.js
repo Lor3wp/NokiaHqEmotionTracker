@@ -2,6 +2,8 @@ import EmotionStats from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import './EmotionButtons.css';
 
+
+
 const buttonData = [
   {
     label: "Happy",
@@ -47,18 +49,17 @@ const buttonData = [
     // color: "rgb(255, 129, 13)",
   },
 ];
-function buttonClicked(id) {
-  // button clicked
 
-  console.log("button clicked " + id);
-  addEmotion(id);
-}
+
+
+
 const getButtonClassName = (label) => {
   // Generate a unique class name based on the button's label
   return `${label}`;
 };
 
 const addEmotion = async (id) => {
+  
   try {
     const response = await fetch("http://localhost:3001/add/addemotion", {
       method: "POST",
@@ -71,12 +72,25 @@ const addEmotion = async (id) => {
       throw new Error("Error adding emotion");
     }
     // handle success response here
+    
   } catch (error) {
     // handle error here
   }
 };
 
-function EmotionButton() {
+function EmotionButton({ updateStats }) {
+
+  const buttonClicked = async (id) => {
+    // button clicked
+  
+    console.log("button clicked " + id);
+    addEmotion(id);
+    updateStats()
+  }
+
+  const [statsData, setStatsData] = useState();
+
+
   return (
     <div className="content">
     <div className="emotion-buttons">
@@ -94,7 +108,7 @@ function EmotionButton() {
         </button>
       ))}
     </div>
-    <EmotionStats />
+    <EmotionStats statsData={statsData} setStatsData={setStatsData}/>
     </div>
   );
 }
