@@ -12,6 +12,6 @@ test("renders the count of emotion data", async () => {
   const loadingElement = screen.getByText("Loading...");
   expect(loadingElement).toBeInTheDocument();
 
-  const countElement = await screen.findByText("10");
+  const countElement = await screen.findByText("todays feelings: 10");
   expect(countElement).toBeInTheDocument();
 });
