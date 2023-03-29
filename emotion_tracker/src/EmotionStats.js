@@ -15,7 +15,9 @@ const getStatsById = async (id) => {
 
 function EmotionStats() {
   const [data, setData] = useState(null);
+  const [dayData, setDayData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [dayLoading, setDayLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,12 +31,30 @@ function EmotionStats() {
     }
     fetchData();
   }, []);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `http://localhost:3001/getall/gettodayemotions`
+      );
+      const jsonData = await response.json();
+      setDayData(jsonData);
+      console.log(jsonData);
+      setDayLoading(false);
+    }
+    fetchData();
+  }, []);
 
-  if (loading) {
+  if (dayLoading || loading) {
     return <div>Loading...</div>;
   }
 
-  return <div>{data.count}</div>;
+  return (
+    <div>
+      <div>todays feelings: {dayData.count}</div>
+      <div>all feelings: {data.count}</div>
+    </div>
+  );
 }
+
 
 export default EmotionStats;
