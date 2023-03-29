@@ -6,45 +6,46 @@ const buttonData = [
     label: "Happy",
     id: "1",
     icon: "sentiment_satisfied",
-    backgroundColor: "#CCF6EF",
-    color: "#21BCA0",
+    backgroundColor: "rgb(206 255 195)",
+    color: "rgb(61 148 42)"
   },
   {
     label: "Angry",
     id: "2",
     icon: "sentiment_extremely_dissatisfied",
-    backgroundColor: "#F8D8D8",
-    color: "#E15555",
+    backgroundColor: "rgb(255 190 190)",
+    color: "rgb(225, 85, 85)",
   },
   {
     label: "Scared",
     id: "3",
     icon: "mood_bad",
-    backgroundColor: "#FFE3CA",
-    color: "#FF810D",
+    backgroundColor: "rgb(243, 189, 255)",
+    color: "rgb(127 62 159)",
+  },
+
+  {
+    label: "Excited",
+    id: "5",
+    icon: "sentiment_very_satisfied",
+    backgroundColor: "rgb(255, 239, 153)",
+    color: "rgb(176, 148, 0)",
   },
   {
     label: "Sad",
     id: "4",
     icon: "sentiment_dissatisfied",
-    backgroundColor: "#B8CCF4",
-    color: "#5585E1",
-  },
-  {
-    label: "Excited",
-    id: "5",
-    icon: "sentiment_very_satisfied",
-    backgroundColor: "#FFEF99",
-    color: "#B09400",
+    backgroundColor: "rgb(184, 204, 244)",
+    color: "rgb(63 103 179)",
   },
   {
     label: "Neutral",
     id: "6",
     icon: "sentiment_neutral",
-    backgroundColor: "#D2ECCE",
-    color: "#4B9F3E",
+    backgroundColor: "rgb(255, 227, 202)",
+    color: "rgb(255, 129, 13)",
   },
-];
+]; 
 function buttonClicked(id) {
   // button clicked
 
