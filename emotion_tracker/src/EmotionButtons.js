@@ -4,50 +4,37 @@ import React, { useState, useEffect } from "react";
 import './EmotionButtons.css';
 
 
-
 const buttonData = [
   {
     label: "Happy",
     id: "1",
     icon: "sentiment_satisfied",
-    // backgroundColor: "rgb(206 255 195)",
-    // color: "rgb(61 148 42)"
   },
   {
     label: "Angry",
     id: "2",
     icon: "sentiment_extremely_dissatisfied",
-    // backgroundColor: "rgb(255 190 190)",
-    // color: "rgb(225, 85, 85)",
   },
   {
     label: "Scared",
     id: "3",
     icon: "mood_bad",
-    // backgroundColor: "rgb(243, 189, 255)",
-    // color: "rgb(127 62 159)",
   },
 
   {
     label: "Excited",
     id: "5",
     icon: "sentiment_very_satisfied",
-    // backgroundColor: "rgb(255, 239, 153)",
-    // color: "rgb(176, 148, 0)",
   },
   {
     label: "Sad",
     id: "4",
     icon: "sentiment_dissatisfied",
-    // backgroundColor: "rgb(184, 204, 244)",
-    // color: "rgb(63 103 179)",
   },
   {
     label: "Neutral",
     id: "6",
     icon: "sentiment_neutral",
-    // backgroundColor: "rgb(255, 227, 202)",
-    // color: "rgb(255, 129, 13)",
   },
 ];
 
