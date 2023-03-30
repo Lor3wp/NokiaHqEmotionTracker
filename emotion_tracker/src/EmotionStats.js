@@ -13,6 +13,7 @@ const getStatsById = async (id) => {
   }
 };
 
+
 function EmotionStats() {
   const [data, setData] = useState(null);
   const [dayData, setDayData] = useState(null);
@@ -25,12 +26,13 @@ function EmotionStats() {
         `http://localhost:3001/getall/getallemotions`
       );
       const jsonData = await response.json();
-      setData(jsonData);
+      setStatsData(jsonData);
       console.log(jsonData);
       setLoading(false);
     }
     fetchData();
-  }, []);
+
+  }, [statsData]);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
@@ -51,7 +53,7 @@ function EmotionStats() {
   return (
     <div>
       <div>todays feelings: {dayData.count}</div>
-      <div>all feelings: {data.count}</div>
+      <div>all feelings: {statsData.count}</div>
     </div>
   );
 }

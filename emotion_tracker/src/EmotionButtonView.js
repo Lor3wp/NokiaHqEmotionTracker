@@ -9,7 +9,7 @@ function clickHandler(viewCondition, setViewCondition) {
   console.log("clicked how others feel");
 }
 
-function EmotionButtonView() {
+function EmotionButtonView({ setStatsData }) {
   const [viewCondition, setViewCondition] = useState(false);
 
   const backButtonClicked = () => {
@@ -32,7 +32,7 @@ function EmotionButtonView() {
           </button>
         </div>
         <div className="emotions">
-          <EmotionButton />
+        <EmotionButton updateStats={() => setStatsData(null)} />
         </div>
       </div>
     );
