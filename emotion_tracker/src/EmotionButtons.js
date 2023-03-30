@@ -90,26 +90,30 @@ function EmotionButton({ updateStats }) {
   }
 
   const [statsData, setStatsData] = useState();
-
+  const [statsTodayData, setStatsTodayData] = useState();
 
   return (
     <div className="content">
-    <div className="emotion-buttons">
-      {buttonData.map((button) => (
-        <button
-          key={button.label}
-          className={getButtonClassName(button.label)}
-          onClick={() => buttonClicked(button.id)}
-        >
-        
+      <div className="emotion-buttons">
+        {buttonData.map((button) => (
+          <button
+            key={button.label}
+            className={getButtonClassName(button.label)}
+            onClick={() => buttonClicked(button.id)}
+          >
             <div className="EmotionButton-button-label">
-            <span className="material-symbols-outlined">{button.icon}</span>
-            {button.label}
-          </div>
-        </button>
-      ))}
-    </div>
-    <EmotionStats statsData={statsData} setStatsData={setStatsData}/>
+              <span className="material-symbols-outlined">{button.icon}</span>
+              {button.label}
+            </div>
+          </button>
+        ))}
+      </div>
+      <EmotionStats
+        statsData={statsData}
+        setStatsData={setStatsData}
+        statsTodayData={statsTodayData}
+        setStatsTodayData={setStatsTodayData}
+      />
     </div>
   );
 }
