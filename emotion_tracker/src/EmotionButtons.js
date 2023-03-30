@@ -1,4 +1,5 @@
 import EmotionStats from "./EmotionStats";
+import EmotionStatsDay from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import './EmotionButtons.css';
 
