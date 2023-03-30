@@ -59,38 +59,46 @@ const getButtonClassName = (label) => {
   return `${label}`;
 };
 
-const addEmotion = async (id) => {
-  
-  try {
-    const response = await fetch("http://localhost:3001/add/addemotion", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ emotion: id }),
-    });
-    if (!response.ok) {
-      throw new Error("Error adding emotion");
-    }
-    // handle success response here
-    
-  } catch (error) {
-    // handle error here
-  }
-};
+
 
 function EmotionButton({ updateStats }) {
+  const [statsData, setStatsData] = useState();
+  const [statsTodayData, setStatsTodayData] = useState();
+  const [update, setUpdate] = useState(false);
+
+
+  const addEmotion = async (id) => {
+  
+    try {
+      const response = await fetch("http://localhost:3001/add/addemotion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emotion: id }),
+      });
+      if (!response.ok) {
+        throw new Error("Error adding emotion");
+      }
+      // handle success response here
+      setUpdate(!update)
+      // setStatsData()
+      // setStatsTodayData("kku")
+    } catch (error) {
+      // handle error here
+    }
+  };
+
 
   const buttonClicked = async (id) => {
     // button clicked
   
     console.log("button clicked " + id);
     addEmotion(id);
-    updateStats()
+    // updateStats()
   }
 
-  const [statsData, setStatsData] = useState();
-  const [statsTodayData, setStatsTodayData] = useState();
+
 
   return (
     <div className="content">
@@ -109,10 +117,9 @@ function EmotionButton({ updateStats }) {
         ))}
       </div>
       <EmotionStats
-        statsData={statsData}
-        setStatsData={setStatsData}
-        statsTodayData={statsTodayData}
-        setStatsTodayData={setStatsTodayData}
+        // statsData={statsData}
+        // statsTodayData={statsTodayData}
+        update={update}
       />
     </div>
   );
