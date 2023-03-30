@@ -13,8 +13,8 @@ const getStatsById = async (id) => {
   }
 };
 
-function EmotionStats() {
-  const [data, setData] = useState(null);
+function EmotionStats({ statsData, setStatsData }) {
+  // const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,18 +23,19 @@ function EmotionStats() {
         `http://localhost:3001/getall/getallemotions`
       );
       const jsonData = await response.json();
-      setData(jsonData);
+      setStatsData(jsonData);
       console.log(jsonData);
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [statsData]);
+  
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  return <div>{data.count}</div>;
+  return <div>{statsData.count}</div>;
 }
 
 export default EmotionStats;
