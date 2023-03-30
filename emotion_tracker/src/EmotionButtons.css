@@ -1,0 +1,98 @@
+
+
+.Angry {
+    background-color: rgb(255 190 190);
+    color: rgb(225, 85, 85);
+  }
+
+  .Happy {
+    background-color: rgb(206 255 195);
+    color: rgb(61 148 42);
+  }
+  
+  .Sad {
+    background-color: rgb(184, 204, 244);
+    color: rgb(63 103 179);
+  }
+  
+  .Excited {
+    background-color: rgb(255, 239, 153);
+    color: rgb(176, 148, 0);
+  }
+  .Scared {
+    background-color: rgb(243, 189, 255);
+    color: rgb(127 62 159);
+ }
+  .Neutral {
+    background-color: rgb(255, 227, 202);
+    color: rgb(255, 129, 13);
+}
+
+
+
+.Angry:hover {
+    background-color: rgb(236, 135, 135);
+    
+  }
+
+  .Happy:hover {
+    background-color: rgb(152, 190, 143);
+  }
+  
+  .Sad:hover {
+    background-color: rgb(128, 143, 173);
+  }
+  
+  .Excited:hover {
+    background-color: rgb(251, 229, 104);
+  }
+  .Scared:hover {
+    background-color: rgb(195, 130, 212);
+  }
+  .Neutral:hover {
+    background-color: rgb(240, 189, 144);
+  }
+
+.emotion-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.emotion-buttons button {
+    padding: 8px;
+    margin: 8px;
+    border-style: none;
+    border-radius: 8px;
+    width: 90px;
+    height: 80px;
+    transition: width 100ms, height 100ms;
+}
+.emotion-buttons button:active {
+    width: 95px;
+    height: 85px;
+}
+
+.EmotionButton-button {
+    padding: 8px;
+    margin: 8px;
+    border-style: none;
+    border-radius: 8px;
+    width: 90px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  .EmotionButton-button-label {
+    display: flex;
+    flex-direction: column;
+  }
+.content {
+    display: flex;
+    flex-direction: column;
+}
