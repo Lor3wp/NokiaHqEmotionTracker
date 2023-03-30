@@ -9,32 +9,38 @@ const buttonData = [
     label: "Happy",
     id: "1",
     icon: "sentiment_satisfied",
+    disabled: false
   },
   {
     label: "Angry",
     id: "2",
     icon: "sentiment_extremely_dissatisfied",
+    disabled: false
   },
   {
     label: "Scared",
     id: "3",
     icon: "mood_bad",
+    disabled: false
   },
 
   {
     label: "Excited",
     id: "5",
     icon: "sentiment_very_satisfied",
+    disabled: false
   },
   {
     label: "Sad",
     id: "4",
     icon: "sentiment_dissatisfied",
+    disabled: false
   },
   {
     label: "Neutral",
     id: "6",
     icon: "sentiment_neutral",
+    disabled: false
   },
 ];
 
@@ -77,15 +83,18 @@ function EmotionButton({ updateStats }) {
   };
 
 
-  const buttonClicked = async (id) => {
+  const buttonClicked = async (id, label) => {
     // button clicked
   
     console.log("button clicked " + id);
     addEmotion(id);
-    // updateStats()
+    // make condition which switches disable value to true after one hour
+    setDisable(!disable)
+    setClicked(id)
   }
 
-
+  const [disable, setDisable] = useState(false)
+  const [clicked, setClicked] = useState(0)
 
   return (
     <div className="content">
@@ -93,7 +102,9 @@ function EmotionButton({ updateStats }) {
         {buttonData.map((button) => (
           <button
             key={button.label}
-            className={getButtonClassName(button.label)}
+            className={clicked !== button.id && disable ? getButtonClassName(button.label + "-disabled") : getButtonClassName(button.label)}
+            id = {clicked === button.id ? getButtonClassName(button.label + "-clicked") : getButtonClassName(button.label)}
+            disabled={disable}
             onClick={() => buttonClicked(button.id)}
           >
             <div className="EmotionButton-button-label">

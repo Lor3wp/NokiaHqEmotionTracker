@@ -30,6 +30,66 @@
 
 
 
+
+.Angry-disabled {
+    background-color: rgb(255 190 190);
+    color: rgb(166 166 166);
+  }
+
+  .Happy-disabled {
+    background-color: rgb(206 255 195);
+    color: rgb(166 166 166);
+  }
+  
+  .Sad-disabled {
+    background-color: rgb(184, 204, 244);
+    color: rgb(166 166 166);
+  }
+  
+  .Excited-disabled {
+    background-color: rgb(255, 239, 153);
+    color: rgb(166 166 166);
+  }
+  .Scared-disabled {
+    background-color: rgb(243, 189, 255);
+    color: rgb(166 166 166);
+ }
+  .Neutral-disabled {
+    background-color: rgb(255, 227, 202);
+    color: rgb(166 166 166);
+}
+
+
+#Angry-clicked {
+    background-color: rgb(254, 103, 103);
+    color: rgb(255, 255, 255);
+  }
+
+  #Happy-clicked {
+    background-color: rgb(82 196 56);
+    color: rgb(255, 255, 255);
+  }
+  
+  #Sad-clicked {
+    background-color: rgb(91, 146, 255);
+    color: rgb(255, 255, 255);
+  }
+  
+  #Excited-clicked {
+    background-color: rgb(255, 225, 57);
+    color: rgb(255, 255, 255);
+  }
+  #Scared-clicked {
+    background-color: rgb(229, 112, 255);
+    color: rgb(255, 255, 255);
+ }
+  #Neutral-clicked {
+    background-color: rgb(255, 171, 97);
+    color: rgb(255, 255, 255);
+}
+
+
+
 .Angry:hover {
     background-color: rgb(236, 135, 135);
     
