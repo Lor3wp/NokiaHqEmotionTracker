@@ -75,11 +75,11 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
   };
 
   const timerTick = () => {
-    console.log("timerTick ~ ");
+    // console.log("timerTick ~ ");
     if (localStorage.getItem('timer')){
       let res = Date.now() - localStorage.getItem('timer');
       setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
-      console.log(res);
+      // console.log(res);
 
       if (res > timerTimeMs){
         setButtonActive(true);
