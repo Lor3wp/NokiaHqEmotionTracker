@@ -40,7 +40,7 @@ jobs:
       run: npm install --save gh-pages
     - name: set username
       working-directory: emotion_tracker/src/
-      run:   git config --global user.name "Pavel on Best"
+      run:   git config --global user.name "Lor3wp"
     - name: set user email
       working-directory: emotion_tracker/src/
       run:   git config --global user.email "pavel19k@gmail.com"
