@@ -38,6 +38,12 @@ jobs:
     - name: install ghpages
       working-directory: emotion_tracker/src/
       run: npm install --save gh-pages
+    - name: set username
+      working-directory: emotion_tracker/src/
+      run:   git config --global user.name "Pavel on Best"
+    - name: set user email
+      working-directory: emotion_tracker/src/
+      run:   git config --global user.email "pavel19k@gmail.com"
     - name: deploy
       working-directory: emotion_tracker/src/
       run: npm run deploy
