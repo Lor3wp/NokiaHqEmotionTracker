@@ -41,3 +41,5 @@ jobs:
     - name: deploy
       working-directory: emotion_tracker/src/
       run: npm run deploy
+      env:
+        CI: false
