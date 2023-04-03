@@ -39,6 +39,7 @@ function EmotionButtonView({ setStatsData }) {
         setViewCondition = {setViewCondition}
         viewCondition = {viewCondition}
          />
+
         </div>
       </div>
     );
