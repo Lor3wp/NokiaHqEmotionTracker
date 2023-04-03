@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: |
-          npm ci
+          npm install
           npm install react-scripts --save-dev
       - name: Build the app
         working-directory: emotion_tracker # specify the working directory for the build step
