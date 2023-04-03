@@ -32,7 +32,7 @@ function EmotionButtonView({ setStatsData }) {
           </button>
         </div>
         <div className="emotions">
-          {/* <EmotionButton updateStats={() => setStatsData(null)} /> */}
+           <EmotionButton updateStats={() => setStatsData(null)} />
         </div>
       </div>
     );
