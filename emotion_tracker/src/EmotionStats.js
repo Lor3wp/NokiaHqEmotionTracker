@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import EmotionButtons from './EmotionButtons.css';
 
 const getStatsById = async (id) => {
   try {
@@ -57,8 +58,8 @@ function EmotionStats({
 
   return (
     <div>
-      <div>todays feelings: {dayData.count}</div>
-      <div>all feelings: {data.count}</div>
+      <div class="infoText">Feelings were shared {dayData.count} times today and {data.count} times in total.</div>
+      {/* <div class="infoText"></div> */}
     </div>
   );
 }

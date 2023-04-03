@@ -3,6 +3,7 @@ import "./EmotionButtonView.css";
 import TestView from "./TestView";
 import StatWindow from "./StatWindow";
 import { useState } from "react";
+import Timer from "./Timer";
 
 function clickHandler(viewCondition, setViewCondition) {
   setViewCondition(!viewCondition);
@@ -23,16 +24,22 @@ function EmotionButtonView({ setStatsData }) {
           className="titleAndOthers"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <h1>How are you today?</h1>
+          <h1>How are you feeling?</h1>
           <button
             className="howOthersFeltButton"
-            onClick={() => clickHandler(viewCondition, setViewCondition)}
+            onClick={() => clickHandler(viewCondition, setViewCondition)
+            }
           >
             See how other people felt today
           </button>
         </div>
         <div className="emotions">
-           <EmotionButton updateStats={() => setStatsData(null)} />
+        <EmotionButton 
+        updateStats={() => setStatsData(null)}
+        setViewCondition = {setViewCondition}
+        viewCondition = {viewCondition}
+         />
+
         </div>
       </div>
     );
