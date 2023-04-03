@@ -34,10 +34,7 @@ jobs:
       working-directory: emotion_tracker/src/
       run: npm test
     - name: Deploy
-      uses: Lor3wp/NokiaHqEmotionTracker@v3
-     # If you're changing the branch from main,
-     # also change the `main` in `refs/heads/main`  
-     # below accordingly.
+    - uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
