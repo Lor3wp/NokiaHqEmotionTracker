@@ -1,24 +1,30 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          npm install
-          npm install react-scripts --save-dev
-      - name: Build the app
-        working-directory: emotion_tracker # specify the working directory for the build step
-        run: npm run build
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.2
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v2
         with:
-          branch: gh-pages
-          folder: emotion_tracker/build
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACTIONS_DEPLOY_KEY}}
+          publish_dir: ./build
