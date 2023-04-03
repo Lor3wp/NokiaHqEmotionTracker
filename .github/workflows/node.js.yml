@@ -35,3 +35,9 @@ jobs:
     - name: Unit tests
       working-directory: emotion_tracker/src/
       run: npm test
+    - name: install ghpages
+      working-directory: emotion_tracker/src/
+      run: npm install --save gh-pages
+    - name: deploy
+      working-directory: emotion_tracker/src/
+      run: npm run deploy
