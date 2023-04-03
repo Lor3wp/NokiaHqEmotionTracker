@@ -16,6 +16,8 @@ function StatWindow({backButtonClicked}) {
           arrow_back
         </span>
       </button>
+      <h1>Statistics</h1>
+
         <div>
           <Piechart />
         </div>
