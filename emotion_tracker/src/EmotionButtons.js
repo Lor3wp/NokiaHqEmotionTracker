@@ -112,18 +112,5 @@ function EmotionButton({ updateStats }) {
   );
 }
 export default EmotionButton;
+// build test
 
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
-//  mmoi
