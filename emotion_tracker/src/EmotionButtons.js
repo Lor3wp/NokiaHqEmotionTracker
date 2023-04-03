@@ -61,7 +61,9 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
   const [timerText, setTimerText] = useState("")
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 30000;
+  const timerTimeMs = 15000;
+  const [startAnimation, setStartAnimation] = useState(false);
+  const [clicked, setClicked] = useState(0)
 
   // TIMER
   const timerStart = (e) => {
@@ -71,14 +73,17 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
       const nyt = Date.now()
       localStorage.setItem('timer', nyt);
   };
+
   const timerTick = () => {
     console.log("timerTick ~ ");
     if (localStorage.getItem('timer')){
       let res = Date.now() - localStorage.getItem('timer');
       setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
       console.log(res);
+
       if (res > timerTimeMs){
         setButtonActive(true);
+        setClicked(0)
       } else {
         setButtonActive(false);
       }
@@ -129,13 +134,13 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
       }
 
   // const [disable, setDisable] = useState(false)
-  const [clicked, setClicked] = useState(0)
-
+      
   return (
     <div className="content">
       <div className="emotion-buttons">
         {buttonData.map((button) => (
           <button
+            style={{animation: startAnimation ? "fadeIn 3s, forwards" : "none"}}
             key={button.label}
             className={clicked !== button.id && !buttonActive ? getButtonClassName(button.label + "-disabled") : getButtonClassName(button.label)}
             id = {clicked === button.id ? getButtonClassName(button.label + "-clicked") : getButtonClassName(button.label)}
