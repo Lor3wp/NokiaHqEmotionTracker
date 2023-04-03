@@ -33,17 +33,12 @@ jobs:
     - name: Unit tests
       working-directory: emotion_tracker/src/
       run: npm test
-    - name: install ghpages
-      working-directory: emotion_tracker/src/
-      run: npm install --save gh-pages
-    - name: set username
-      working-directory: emotion_tracker/src/
-      run:   git config --global user.name "Lor3wp"
-    - name: set user email
-      working-directory: emotion_tracker/src/
-      run:   git config --global user.email "pavel19k@gmail.com"
-    - name: deploy
-      working-directory: emotion_tracker/src/
-      run: npm run deploy
-      env:
-        CI: false
+    - name: Deploy
+      uses: Lor3wp/NokiaHqEmotionTracker@v3
+     # If you're changing the branch from main,
+     # also change the `main` in `refs/heads/main`  
+     # below accordingly.
+      if: ${{ github.ref == 'refs/heads/main' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
