@@ -1,8 +1,7 @@
-
-import './App.css';
 import React, { useState, useEffect } from 'react';
+import EmotionButton from './EmotionButtons';
 
-const App = () => {
+const Timer = () => {
   const [buttonActive, setBA] = useState(true);
   const [aika, setAika] = useState(0);
   const timerTimeMs = 3600000;
@@ -41,12 +40,13 @@ const App = () => {
         <p>
           {Math.floor(aika/1000/60)} mins, {Math.floor((aika/1000)%60)} secs
         </p>
-        <button disabled={!buttonActive} onClick={(e) => {timerStart(e)}}>
+        <EmotionButton onClick={(e) => {timerStart(e)}}/>
+        {/* <button disabled={!buttonActive} onClick={(e) => {timerStart(e)}}>
           click me
-        </button>
+        </button> */}
       </header>
     </div>
   );
 }
 
-export default App;
+export default Timer;

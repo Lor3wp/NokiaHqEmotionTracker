@@ -58,6 +58,41 @@ function EmotionButton({ updateStats }) {
   const [statsData, setStatsData] = useState();
   const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
+  const [buttonActive, setBA] = useState(true);
+  const [aika, setAika] = useState(0);
+  const timerTimeMs = 3600000;
+  const [timerText, setTimerText] = useState("")
+
+//   // TIMER
+//   const timerStart = (e) => {
+//     console.log("timerStart ");
+//     e.preventDefault();
+//       setBA(false);
+//       const nyt = Date.now()
+//       localStorage.setItem('timer', nyt);
+//   };
+//   const timerTick = () => {
+//     console.log("timerTick ~ ");
+//     if (localStorage.getItem('timer')){
+//       let res = Date.now() - localStorage.getItem('timer');
+//       setAika((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
+//       console.log(res);
+//       if (res > timerTimeMs){
+//         setBA(true);
+//       } else {
+//         setBA(false);
+//       }
+//     }
+//   };
+
+//   useEffect(() => {
+//     let timer = setInterval(() => {
+//       timerTick();
+//     }, 1000);
+//     return () => clearInterval(timer);
+//   }, []);
+
+// // END OF TIMER
 
 
   const addEmotion = async (id) => {
@@ -91,7 +126,10 @@ function EmotionButton({ updateStats }) {
     // make condition which switches disable value to true after one hour
     setDisable(!disable)
     setClicked(id)
-  }
+//     setTimerText(<p>
+// {Math.floor(aika/1000/60)} mins, {Math.floor((aika/1000)%60)} secs
+//     </p>)
+      }
 
   const [disable, setDisable] = useState(false)
   const [clicked, setClicked] = useState(0)
@@ -113,6 +151,7 @@ function EmotionButton({ updateStats }) {
             </div>
           </button>
         ))}
+        {/* <div>{timerText}</div> */}
       </div>
       <EmotionStats
         // statsData={statsData}

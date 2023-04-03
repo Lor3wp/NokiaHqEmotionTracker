@@ -3,6 +3,7 @@ import "./EmotionButtonView.css";
 import TestView from "./TestView";
 import StatWindow from "./StatWindow";
 import { useState } from "react";
+import Timer from "./Timer";
 
 function clickHandler(viewCondition, setViewCondition) {
   setViewCondition(!viewCondition);
