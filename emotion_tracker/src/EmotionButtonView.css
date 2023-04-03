@@ -1,7 +1,12 @@
 .howOthersFeltButton {
-        border-style: none;
+        border-style:solid;
+        border-width: 1px;
+        border-color: rgb(128, 143, 173);
         background-color: transparent;
-        color: #7794f5
+        color: #ffffff;
+        margin: 0px 46px 24px 46px;
+        padding: 8px;
+        border-radius: 8px;
 }
 .howOthersFeltButton:hover {
     color:  #3a497b;

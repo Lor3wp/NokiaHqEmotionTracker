@@ -3,21 +3,21 @@ import EmotionButton from './EmotionButtons';
 
 const Timer = () => {
   const [buttonActive, setBA] = useState(true);
-  const [aika, setAika] = useState(0);
+  const [time, setTime] = useState(0);
   const timerTimeMs = 3600000;
 
   const timerStart = (e) => {
     console.log("timerStart ");
     e.preventDefault();
       setBA(false);
-      const nyt = Date.now()
-      localStorage.setItem('timer', nyt);
+      const dateNow = Date.now()
+      localStorage.setItem('timer', dateNow);
   };
   const timerTick = () => {
     console.log("timerTick ~ ");
     if (localStorage.getItem('timer')){
       let res = Date.now() - localStorage.getItem('timer');
-      setAika((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
+      setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
       console.log(res);
       if (res > timerTimeMs){
         setBA(true);
@@ -38,12 +38,11 @@ const Timer = () => {
     <div className="App">
       <header className="App-header">
         <p>
-          {Math.floor(aika/1000/60)} mins, {Math.floor((aika/1000)%60)} secs
+          {Math.floor(time/1000/60)} mins, {Math.floor((time/1000)%60)} secs
         </p>
-        <EmotionButton onClick={(e) => {timerStart(e)}}/>
-        {/* <button disabled={!buttonActive} onClick={(e) => {timerStart(e)}}>
+        <button disabled={!buttonActive} onClick={(e) => {timerStart(e)}}>
           click me
-        </button> */}
+        </button>
       </header>
     </div>
   );

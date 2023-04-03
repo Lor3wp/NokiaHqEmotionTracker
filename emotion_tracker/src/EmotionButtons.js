@@ -54,45 +54,45 @@ const getButtonClassName = (label) => {
 
 
 
-function EmotionButton({ updateStats }) {
+function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
   const [statsData, setStatsData] = useState();
   const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
-  const [buttonActive, setBA] = useState(true);
-  const [aika, setAika] = useState(0);
-  const timerTimeMs = 3600000;
   const [timerText, setTimerText] = useState("")
+  const [buttonActive, setButtonActive] = useState(true);
+  const [time, setTime] = useState(0);
+  const timerTimeMs = 30000;
 
-//   // TIMER
-//   const timerStart = (e) => {
-//     console.log("timerStart ");
-//     e.preventDefault();
-//       setBA(false);
-//       const nyt = Date.now()
-//       localStorage.setItem('timer', nyt);
-//   };
-//   const timerTick = () => {
-//     console.log("timerTick ~ ");
-//     if (localStorage.getItem('timer')){
-//       let res = Date.now() - localStorage.getItem('timer');
-//       setAika((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
-//       console.log(res);
-//       if (res > timerTimeMs){
-//         setBA(true);
-//       } else {
-//         setBA(false);
-//       }
-//     }
-//   };
+  // TIMER
+  const timerStart = (e) => {
+    console.log("timerStart ");
+    e.preventDefault();
+      setButtonActive(false);
+      const nyt = Date.now()
+      localStorage.setItem('timer', nyt);
+  };
+  const timerTick = () => {
+    console.log("timerTick ~ ");
+    if (localStorage.getItem('timer')){
+      let res = Date.now() - localStorage.getItem('timer');
+      setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
+      console.log(res);
+      if (res > timerTimeMs){
+        setButtonActive(true);
+      } else {
+        setButtonActive(false);
+      }
+    }
+  };
 
-//   useEffect(() => {
-//     let timer = setInterval(() => {
-//       timerTick();
-//     }, 1000);
-//     return () => clearInterval(timer);
-//   }, []);
+  useEffect(() => {
+    let timer = setInterval(() => {
+      timerTick();
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-// // END OF TIMER
+// END OF TIMER
 
 
   const addEmotion = async (id) => {
@@ -118,20 +118,17 @@ function EmotionButton({ updateStats }) {
   };
 
 
-  const buttonClicked = async (id, label) => {
+  const buttonClicked = async (id, e) => {
     // button clicked
   
     console.log("button clicked " + id);
     addEmotion(id);
-    // make condition which switches disable value to true after one hour
-    setDisable(!disable)
-    setClicked(id)
-//     setTimerText(<p>
-// {Math.floor(aika/1000/60)} mins, {Math.floor((aika/1000)%60)} secs
-//     </p>)
+    setClicked(id);
+    timerStart(e);
+
       }
 
-  const [disable, setDisable] = useState(false)
+  // const [disable, setDisable] = useState(false)
   const [clicked, setClicked] = useState(0)
 
   return (
@@ -140,10 +137,10 @@ function EmotionButton({ updateStats }) {
         {buttonData.map((button) => (
           <button
             key={button.label}
-            className={clicked !== button.id && disable ? getButtonClassName(button.label + "-disabled") : getButtonClassName(button.label)}
+            className={clicked !== button.id && !buttonActive ? getButtonClassName(button.label + "-disabled") : getButtonClassName(button.label)}
             id = {clicked === button.id ? getButtonClassName(button.label + "-clicked") : getButtonClassName(button.label)}
-            disabled={disable}
-            onClick={() => buttonClicked(button.id)}
+            disabled={!buttonActive}
+            onClick={(e) => buttonClicked(button.id, e)}
           >
             <div className="EmotionButton-button-label">
               <span className="material-symbols-outlined">{button.icon}</span>
@@ -151,8 +148,12 @@ function EmotionButton({ updateStats }) {
             </div>
           </button>
         ))}
-        {/* <div>{timerText}</div> */}
-      </div>
+            </div>
+            <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
+          <p class="infoText">
+          Share your feelings again in {Math.floor(time/1000/60)} mins, {Math.floor((time/1000)%60)} secs
+          </p>
+          </div>
       <EmotionStats
         // statsData={statsData}
         // statsTodayData={statsTodayData}
