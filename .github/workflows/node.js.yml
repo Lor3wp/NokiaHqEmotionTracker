@@ -30,16 +30,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: emotion_tracker/package-lock.json
-    - name: install dependencies
-      run: npm i
-    - name: Unit tests
+    - name: npm ci, build and test
       working-directory: emotion_tracker/src/
-      run: npm test
-    - name: install ghpages
-      working-directory: emotion_tracker/src/
-      run: npm install --save gh-pages
-
-    - name: deploy to gh-pages
+      run: |
+        npm ci
+        npm install --save gh-pages
+        npm run build --if-present
+        npm test      
+    - name: Deploy
     - uses: peaceiris/actions-gh-pages@v3
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
