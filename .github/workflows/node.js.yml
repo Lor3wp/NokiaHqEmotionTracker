@@ -1,5 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Node.js CI
 
@@ -30,15 +28,22 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: emotion_tracker/package-lock.json
-    - name: npm ci, build and test
+    - name: install dependencies
+      run: npm i
+    - name: Unit tests
       working-directory: emotion_tracker/src/
-      run: |
-        npm ci
-        npm install --save gh-pages
-        npm run build --if-present
-        npm test      
-    - name: Deploy
-    - uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_dir: ./build
+      run: npm test
+    - name: install ghpages
+      working-directory: emotion_tracker/src/
+      run: npm install --save gh-pages
+    - name: set username
+      working-directory: emotion_tracker/src/
+      run:   git config --global user.name "Lor3wp"
+    - name: set user email
+      working-directory: emotion_tracker/src/
+      run:   git config --global user.email "pavel19k@gmail.com"
+    - name: deploy
+      working-directory: emotion_tracker/src/
+      run: npm run deploy
+      env:
+        CI: false
