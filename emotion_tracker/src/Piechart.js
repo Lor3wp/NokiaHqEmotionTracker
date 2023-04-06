@@ -1,57 +1,78 @@
 import React, { useState, useEffect } from "react";
 import {Chart, ArcElement} from 'chart.js'
 import { Pie } from 'react-chartjs-2';
+import emotionData from "./data/emotionData";
 
 Chart.register(ArcElement);
-
-function EmootionStatsi() {
-  const [emotionData, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `http://localhost:3001/getstats/getallstats/`
-      );
-      const jsonData = await response.json();
-      setData(jsonData.feelings);
-      console.log(jsonData.feelings);
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
-
-
-const data = {
-  labels: ['Happy', 'Angry', 'Scared', 'Sad', 'Excited', 'Neutral'],
-  datasets: [
-    {
-      label: 'Total emotions in piechart',
-      data: emotionData.slice(0, 6),
-      backgroundColor: [
-        "rgb(206 255 195)", 
-        "rgb(255 190 190)", 
-        "rgb(243, 189, 255)", 
-        "rgb(184, 204, 244)",
-        "rgb(255, 239, 153)",
-        "rgb(255, 227, 202)",],
-    },
-  ],
-};
-return data
-}
-
+// options for piechart
 const options = {
-    plugins: {
-        legend: {
-            display: false,
-        },
+  plugins: {
+    legend: {
+      display: false,
     },
+  },
   maintainAspectRatio: false,
 };
 
 function Piechart() {
-  return (<Pie data={EmootionStatsi()} options={options} style={{width:"300px", height:"300px"}}/>);
+  // data template for population
+  const [pieData, setPieData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Total emotions in piechart",
+        data: [],
+        backgroundColor: [],
+      },
+    ],
+  });
+
+  // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `http://localhost:3001/getstats/getemotions/`
+      );
+      const jsonData = await response.json();
+      // check if ammount of emotions is same as in emotionData.js
+      if (jsonData.length !== emotionData.length) {
+        console.error(
+          "emmount of emotions dose not match from database and emotionData.js"
+        );
+      }
+
+      processData(jsonData);
+    }
+    fetchData();
+  }, []);
+
+  // process response json and populate data into pieData template
+  function processData(json) {
+    const data = {
+      labels: [],
+      datasets: [
+        {
+          label: "Total emotions in piechart",
+          data: [],
+          backgroundColor: [],
+        },
+      ],
+    };
+    for (let i in json) {
+      data.labels.push(emotionData[i].label);
+      data.datasets[0].data.push(json[i].count);
+      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+    }
+    setPieData(data);
+  }
+
+  return (
+    <Pie
+      data={pieData}
+      options={options}
+      style={{ width: "300px", height: "300px" }}
+    />
+  );
 }
 
 export default Piechart;
