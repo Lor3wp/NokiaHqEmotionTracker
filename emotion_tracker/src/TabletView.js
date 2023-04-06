@@ -5,8 +5,14 @@ import { useState } from "react";
 
 function TabletView({ setStatsData }) {
   const [password, setPassword] = useState('')
+  const [update, setUpdate] = useState(false);
 
-  if(password === "Kissakoira"){
+  function handleClick() {
+    localStorage.setItem('passu', password)
+    setUpdate(!update)
+  }
+
+  if(localStorage.getItem("passu") === "Kissakoira"){
     return (
       <div className="emotionButtonView">
         <div
@@ -24,14 +30,20 @@ function TabletView({ setStatsData }) {
     );
 } else {
     return (
-    <div>
+    <div id="passwordScreen">
         <input
+            className="howOthersFeltButton"
+            id="passwordInput"
             type="password"
             value={password}
             onInput={e => setPassword(e.target.value)}
             placeholder="Password"
             label="Gimme Password"
         />
+        <button className="howOthersFeltButton" onClick={() =>  handleClick()}>
+            
+            Submit
+        </button>
     </div>
     )
 }
