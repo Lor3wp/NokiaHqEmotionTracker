@@ -54,6 +54,7 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
 
   // END OF TIMER
 
+  // post emotion to database
   const addEmotion = async (id) => {
     try {
       const response = await fetch("http://localhost:3001/add/addemotion", {
@@ -66,19 +67,14 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
       if (!response.ok) {
         throw new Error("Error adding emotion");
       }
-      // handle success response here
       setUpdate(!update);
-      // setStatsData()
-      // setStatsTodayData("kku")
     } catch (error) {
       // handle error here
+      console.error(error);
     }
   };
 
   const buttonClicked = async (id, e) => {
-    // button clicked
-
-    console.log("button clicked " + id);
     addEmotion(id);
     setClicked(id);
     timerStart(e);
