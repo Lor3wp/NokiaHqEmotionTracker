@@ -54,15 +54,19 @@ const App = () => {
         useGeolocated({
             positionOptions: {
                 enableHighAccuracy: false,
-                watchPosition: true
+                watchPosition: true,
+                timeout: Infinity
             },
-            userDecisionTimeout: 5000,
+            userDecisionTimeout: null,
+            geolocationProvider: navigator.geolocation,
+            isOptimisticGeolocationEnabled: true,
+
         });
         // if geolocation is not available show not supported text
     return !isGeolocationAvailable ? (
         <div>Your browser does not support Geolocation</div>
         // if location access is denied show Disabled location view
-    ) : !isGeolocationEnabled ? (
+   ) : !isGeolocationEnabled ? (
         <DisabledLocationView />
         // if geolocation is available and enabled and we have coordinates, show main screen
     ) : coords && calculateDistance(coords.latitude, coords.longitude) <= 1.5 ? (

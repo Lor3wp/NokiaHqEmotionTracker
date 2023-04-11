@@ -23,17 +23,18 @@ const emotionData = [
 
   {
     label: "Excited",
-    id: "5",
+    id: "4",
     icon: "sentiment_very_satisfied",
     disabled: false,
-    rgbColor: "rgb(184, 204, 244)",
+    rgbColor: "rgb(255, 239, 153)"
+    ,
   },
   {
     label: "Sad",
-    id: "4",
+    id: "5",
     icon: "sentiment_dissatisfied",
     disabled: false,
-    rgbColor: "rgb(255, 239, 153)",
+    rgbColor: "rgb(184, 204, 244)",
   },
   {
     label: "Neutral",
