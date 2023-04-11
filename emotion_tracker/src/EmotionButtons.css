@@ -3,35 +3,36 @@
 .Angry {
     background-color: rgb(255 190 190);
     color: rgb(225, 85, 85);
+    animation: fadeIn 1s forwards !important;
+
   }
 
   .Happy {
     background-color: rgb(206 255 195);
     color: rgb(61 148 42);
-    /* animation: fadeOut 1s forwards; */
+    animation: fadeIn 1s forwards !important;
   }
   
   .Sad {
     background-color: rgb(184, 204, 244);
     color: rgb(63 103 179);
-    /* animation: fadeOut 1s forwards; */
+    animation: fadeIn 1s forwards !important;
   }
   
   .Excited {
     background-color: rgb(255, 239, 153);
     color: rgb(176, 148, 0);
-    /* animation: fadeOut 1s forwards; */
+    animation: fadeIn 1s forwards !important;
   }
   .Scared {
     background-color: rgb(243, 189, 255);
     color: rgb(127 62 159);
-
-    /* animation: fadeOut 1s forwards; */
+    animation: fadeIn 1s forwards !important;
  }
   .Neutral {
     background-color: rgb(255, 227, 202);
     color: rgb(255, 129, 13);
-
+    animation: fadeIn 1s forwards !important;
 }
 
 
@@ -56,8 +57,8 @@
  }
 
  @keyframes fadeIn {
-    0% {background-color: transparent;}
-    100% {background-color: background-color;} 
+    100% {background-color: background-color;}
+    0% {background-color: transparent;} 
  }
 
  .Angry-disabled:disabled {
@@ -73,7 +74,7 @@
     color: rgb(61 148 42);
     animation: fadeOut 1s forwards !important;
   }
-  
+
   .Sad-disabled:disabled {
     cursor: not-allowed;
     background-color: rgb(184, 204, 244);
@@ -87,27 +88,25 @@
     color: rgb(176, 148, 0);
     animation: fadeOut 1s forwards !important;
   }
+
   .Scared-disabled:disabled {
     cursor: not-allowed;
     background-color: rgb(243, 189, 255);
     color: rgb(127 62 159);
     animation: fadeOut 1s forwards !important;
-
  }
+
   .Neutral-disabled:disabled {
     cursor: not-allowed;
     background-color: rgb(255, 227, 202);
     color: rgb(255, 129, 13);
     animation: fadeOut 1s forwards !important;
-
 }
 
 
 #Angry-clicked {
     background-color: rgb(254, 103, 103);
     color: rgb(255, 255, 255);
-
-
   }
 
   #Happy-clicked {
