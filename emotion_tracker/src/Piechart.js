@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {Chart, ArcElement} from 'chart.js'
 import { Pie } from 'react-chartjs-2';
 import emotionData from "./data/emotionData";
+import {MainContext} from "./context/MainContext";
 
 Chart.register(ArcElement);
 // options for piechart
@@ -16,17 +17,7 @@ const options = {
 
 function Piechart() {
   // data template for population
-  const [pieData, setPieData] = useState({
-    labels: [],
-    datasets: [
-      {
-        label: "Total emotions in piechart",
-        data: [],
-        backgroundColor: [],
-      },
-    ],
-  });
-
+  const {pieData, setPieData} = useContext(MainContext);
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
     async function fetchData() {
