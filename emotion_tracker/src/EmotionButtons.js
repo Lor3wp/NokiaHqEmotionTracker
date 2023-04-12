@@ -112,7 +112,7 @@ function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
         ))}
       </div>
       <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
-        <p class="infoText">
+        <p className="infoText">
           Share your feelings again in {Math.floor(time / 1000 / 60)} mins,{" "}
           {Math.floor((time / 1000) % 60)} secs
         </p>

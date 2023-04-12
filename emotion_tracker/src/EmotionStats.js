@@ -39,7 +39,7 @@ function EmotionStats({ update }) {
   // set text for user
   return (
     <div>
-      <div class="infoText">
+      <div className="infoText">
         Feelings were shared {dayData.count} times today and {data.count} times
         in total.
       </div>
