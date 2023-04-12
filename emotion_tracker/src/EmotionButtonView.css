@@ -17,3 +17,16 @@
     flex-direction: "column";
     align-items: "center";
 }
+
+
+/*TABLETVIEW PASSWORD INPUT SCREEN*/
+#passwordScreen {
+    display: flex;
+    flex-direction: column;
+}
+
+#passwordInput {
+    height: 30px;
+    width: 250px;
+    margin-bottom: 20px;
+}
