@@ -5,14 +5,6 @@ import EmotionButtonView from "./EmotionButtonView";
 import TestView from "./TestView";
 import { ReactDOM } from "react";
 import React from "react";
-import TabletEmotionButton from "./TabletEmotionButtons";
-import TabletView from "./TabletView";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-
 import EmotionStats from "./EmotionStats";
 import { useGeolocated } from "react-geolocated";
 import DisabledLocationView from "./DisabledLocationView";
@@ -40,7 +32,7 @@ function calculateDistance(lat, lon) {
   // the great circle distance between the two points in radians
   const distanceInRadians = 2 * Math.atan2(Math.sqrt(haversineCentralAngle), Math.sqrt(1 - haversineCentralAngle));
   const distance = radiusOfEarth * distanceInRadians; // Distance in km
-  console.log(`you're ${distance}km away from nokia`)
+  console.log(`you're ${distance}km away from nokia. Latitude: ${lat} Longitude: ${lon}`)
   return distance;
 }
 // degrees to radius
@@ -54,30 +46,21 @@ const App = () => {
         useGeolocated({
             positionOptions: {
                 enableHighAccuracy: false,
-                watchPosition: true,
-                timeout: Infinity
+                watchPosition: true
             },
-            userDecisionTimeout: null,
-            geolocationProvider: navigator.geolocation,
-            isOptimisticGeolocationEnabled: true,
-
+            userDecisionTimeout: 5000,
         });
         // if geolocation is not available show not supported text
     return !isGeolocationAvailable ? (
         <div>Your browser does not support Geolocation</div>
         // if location access is denied show Disabled location view
-   ) : !isGeolocationEnabled ? (
+    ) : !isGeolocationEnabled ? (
         <DisabledLocationView />
         // if geolocation is available and enabled and we have coordinates, show main screen
     ) : coords && calculateDistance(coords.latitude, coords.longitude) <= 1.5 ? (
       <div className="App">
       <header className="App-header">
-        <Router>
-          <Routes>
-            <Route exact path="/NokiaHqEmotionTracker" Component={EmotionButtonView} />
-            <Route exact path="/TabletView" Component={TabletView} />
-          </Routes>
-        </Router>
+        <EmotionButtonView />
       </header>
     </div>
     // if you are more than 1.5km away from Nokia
