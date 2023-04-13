@@ -6,14 +6,36 @@ const Timer = () => {
   const [time, setTime] = useState(0);
   const timerTimeMs = 3600000;
 
-  const timerStart = (e) => {
+  /*const timerStart = (e) => {
     console.log("timerStart ");
     e.preventDefault();
       setBA(false);
       const dateNow = Date.now()
       localStorage.setItem('timer', dateNow);
+  };*/
+
+  const timerStart = (e) => {
+     e.preventDefault();
+     setBA(false) 
+     const dateNow = Date.now() 
+     const timeRemaining = timerTimeMs - (dateNow - localStorage.getItem('timer'));
+     setTime(timeRemaining > 0 ? timeRemaining : 0); 
+     localStorage.setItem('timer', dateNow); 
+    };
+  
+  const timerTick = () => { 
+    if (localStorage.getItem('timer')){ 
+      let res = Date.now() - localStorage.getItem('timer'); 
+      setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
+      if (res > timerTimeMs){
+        setBA(true);
+      } else {
+        setBA(false)
+      }
+    } 
   };
-  const timerTick = () => {
+
+  /*const timerTick = () => {
     console.log("timerTick ~ ");
     if (localStorage.getItem('timer')){
       let res = Date.now() - localStorage.getItem('timer');
@@ -25,7 +47,7 @@ const Timer = () => {
         setBA(false);
       }
     }
-  };
+  };*/
 
   useEffect(() => {
     let timer = setInterval(() => {
