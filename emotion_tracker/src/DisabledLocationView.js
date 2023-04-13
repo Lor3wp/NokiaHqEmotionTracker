@@ -6,7 +6,7 @@ function DisabledLocationView(){
 return (
     <header className="App-header">
     <div class="page-content">
-        <h1>Location access denied</h1>
+        <h1>You need to give a permission to use your location</h1>
         <p>To use this application, we require access to your location as it only works within a 1.5km radius from Nokia HQ.</p>
     </div>
     </header>
