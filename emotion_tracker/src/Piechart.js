@@ -26,7 +26,7 @@ const data = {
   labels: ['Happy', 'Angry', 'Scared', 'Sad', 'Excited', 'Neutral'],
   datasets: [
     {
-      label: 'Total emotions in piechart',
+      label: 'Total emotions in doughnutchart',
       data: emotionData.slice(0, 6),
       backgroundColor: [
         "rgb(206 255 195)", 
@@ -50,11 +50,13 @@ const options = {
         },
     },
   maintainAspectRatio: false,
-  cutout: 123,
+  cutout: 110,
 };
 
 function Piechart() {
-  return (<Doughnut data={EmootionStatsi()} options={options} style={{width:"300px", height:"300px"}}/>);
+  return (
+    <Doughnut data={EmootionStatsi()} options={options} style={{width:"275px", height:"275px"}}/>
+  );
 }
 
 export default Piechart;
