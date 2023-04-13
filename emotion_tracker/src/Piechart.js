@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {Chart, ArcElement} from 'chart.js'
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import emotionData from "./data/emotionData";
 
 Chart.register(ArcElement);
@@ -12,6 +12,7 @@ const options = {
     },
   },
   maintainAspectRatio: false,
+  cutout: 110,
 };
 
 function Piechart() {
@@ -20,9 +21,11 @@ function Piechart() {
     labels: [],
     datasets: [
       {
-        label: "Total emotions in piechart",
+        label: "Total emotions in DoughnutChart",
         data: [],
         backgroundColor: [],
+        borderRadius: 15,
+        spacing: 20,
       },
     ],
   });
@@ -55,6 +58,8 @@ function Piechart() {
           label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
+          borderRadius: 15,
+          spacing: 20,
         },
       ],
     };
@@ -67,10 +72,10 @@ function Piechart() {
   }
 
   return (
-    <Pie
+    <Doughnut
       data={pieData}
       options={options}
-      style={{ width: "300px", height: "300px" }}
+      style={{ width: "275px", height: "275px" }}
     />
   );
 }

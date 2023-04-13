@@ -11,6 +11,12 @@ import DisabledLocationView from "./DisabledLocationView";
 import "material-symbols"
 import Loading from "./Loading";
 import TooFarAway from "./TooFarAwayView";
+import TabletView from "./TabletView";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 
 // Haversine formula
@@ -60,7 +66,12 @@ const App = () => {
     ) : coords && calculateDistance(coords.latitude, coords.longitude) <= 1.5 ? (
       <div className="App">
       <header className="App-header">
-        <EmotionButtonView />
+      <Router>
+          <Routes>
+            <Route exact path="/NokiaHqEmotionTracker" Component={EmotionButtonView} />
+            <Route exact path="/TabletView" Component={TabletView} />
+          </Routes>
+        </Router>
       </header>
     </div>
     // if you are more than 1.5km away from Nokia
