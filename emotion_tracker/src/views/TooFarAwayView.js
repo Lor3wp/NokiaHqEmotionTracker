@@ -1,4 +1,4 @@
-function TooFarAway({km}) {
+const TooFarAway = ({km}) => {
     return(
         <header className="App-header">
    <div style={{display:"flex", flexDirection:"column", margin: "36px"}}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EmotionButtons from '../EmotionButtons.css';
 
 
-function EmotionStats({ update }) {
+const EmotionStats = ({ update }) => {
   const [data, setData] = useState(null);
   const [dayData, setDayData] = useState(null);
   const [loading, setLoading] = useState(true);

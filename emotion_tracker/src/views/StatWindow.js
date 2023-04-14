@@ -5,9 +5,15 @@ import Barchart from '../components/charts/Barchart'
 import { useState } from "react";
 // import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
-function StatWindow({backButtonClicked}) {
+const StatWindow = ({backButtonClicked}) => {
   // TODO: charts and general view data here
   //   TODO: that includes navigation states within this view
+  const [chartType, setChartType] = useState("piechart");
+  const [hourRange, setHourRange] = useState(false);
+  const [minHour, setMinHour] = useState(0);
+  const [maxHour, setMaxHour] = useState(23);
+  const [chartDate, setChartDate] = useState([31, 52, 12, 2023]);
+  const [timeUnit, setTimeUnit] = useState("day");
 
   return (
     // TODO: redo the stats view layout

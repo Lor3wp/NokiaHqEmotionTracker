@@ -59,7 +59,7 @@ const options = {
     },
   };
 
-function Barchart() {
+const Barchart = () => {
     return (<Bar data={data} options={options} />);
   }
   

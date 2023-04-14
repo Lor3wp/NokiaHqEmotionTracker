@@ -1,7 +1,7 @@
 import React from "react";
 import '../DisabledLocationView.css'
 import '../EmotionButtons.css'
-function DisabledLocationView(){
+const DisabledLocationView = () => {
 
 return (
     <header className="App-header">

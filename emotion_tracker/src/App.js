@@ -21,7 +21,7 @@ import {
 
 // Haversine formula
 // takes latitude and longitude and calculates the distance from that point to Nokia HQ
-function calculateDistance(lat, lon) {
+const calculateDistance = (lat, lon) => {
   const radiusOfEarth = 6371; // Radius of the earth in km
   const nokiaLat = 60.221793
   const nokiaLon = 24.755882

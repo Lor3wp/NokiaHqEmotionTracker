@@ -5,12 +5,12 @@ import StatWindow from "./StatWindow";
 import { useState } from "react";
 import Timer from "../components/Timer";
 
-function clickHandler(viewCondition, setViewCondition) {
+const clickHandler = (viewCondition, setViewCondition) => {
   setViewCondition(!viewCondition);
   console.log("clicked how others feel");
-}
+};
 
-function EmotionButtonView({ setStatsData }) {
+const EmotionButtonView = ({ setStatsData }) => {
   const [viewCondition, setViewCondition] = useState(false);
 
   const backButtonClicked = () => {
@@ -39,7 +39,6 @@ function EmotionButtonView({ setStatsData }) {
         setViewCondition = {setViewCondition}
         viewCondition = {viewCondition}
          />
-
         </div>
       </div>
     );
