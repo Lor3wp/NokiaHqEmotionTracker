@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import EmotionStats from "../EmotionStats";
+import EmotionStats from "../components/EmotionStats";
 
 test("displays the emotion stats correctly", async () => {
   const statsData = { count: 100 };

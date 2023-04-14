@@ -1,5 +1,5 @@
-import TabletEmotionButton from "./TabletEmotionButtons";
-import "./EmotionButtonView.css";
+import TabletEmotionButton from "../components/TabletEmotionButtons";
+import "../EmotionButtonView.css";
 import { useState } from "react";
 
 
@@ -22,7 +22,7 @@ function TabletView({ setStatsData }) {
           <h1>How are you feeling?</h1>
         </div>
         <div className="emotions">
-        <TabletEmotionButton 
+        <TabletEmotionButton
         updateStats={() => setStatsData(null)}
          />
         </div>
@@ -41,7 +41,7 @@ function TabletView({ setStatsData }) {
             label="Gimme Password"
         />
         <button className="howOthersFeltButton" onClick={() =>  handleClick()}>
-            
+
             Submit
         </button>
     </div>

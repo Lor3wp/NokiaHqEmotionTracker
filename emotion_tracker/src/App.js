@@ -1,17 +1,17 @@
 import "./App.css";
 import { useState } from "react";
-import EmotionButton from "./EmotionButtons";
-import EmotionButtonView from "./EmotionButtonView";
+import EmotionButton from "./components/EmotionButtons";
+import EmotionButtonView from "./views/EmotionButtonView";
 import TestView from "./TestView";
 import { ReactDOM } from "react";
 import React from "react";
-import EmotionStats from "./EmotionStats";
+import EmotionStats from "./components/EmotionStats";
 import { useGeolocated } from "react-geolocated";
-import DisabledLocationView from "./DisabledLocationView";
+import DisabledLocationView from "./views/DisabledLocationView";
 import "material-symbols"
-import Loading from "./Loading";
-import TooFarAway from "./TooFarAwayView";
-import TabletView from "./TabletView";
+import Loading from "./views/Loading";
+import TooFarAway from "./views/TooFarAwayView";
+import TabletView from "./views/TabletView";
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,7 +28,7 @@ function calculateDistance(lat, lon) {
   // convert degrees to radius
   const dLat = deg2rad(lat - nokiaLat);
   const dLon = deg2rad(lon - nokiaLon);
-  
+
   // the square of the half of the great circle distance between the two points
   const haversineCentralAngle =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EmotionButtons from './EmotionButtons.css';
+import EmotionButtons from '../EmotionButtons.css';
 
 
 function EmotionStats({ update }) {

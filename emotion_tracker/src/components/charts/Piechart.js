@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Chart, ArcElement} from 'chart.js'
 import { Doughnut } from 'react-chartjs-2';
-import emotionData from "./data/emotionData";
+import emotionData from "../../data/emotionData";
 
 Chart.register(ArcElement);
 // options for piechart

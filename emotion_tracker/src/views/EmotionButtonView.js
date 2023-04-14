@@ -1,9 +1,9 @@
-import EmotionButton from "./EmotionButtons";
-import "./EmotionButtonView.css";
-import TestView from "./TestView";
+import EmotionButton from "../components/EmotionButtons";
+import "../EmotionButtonView.css";
+import TestView from "../TestView";
 import StatWindow from "./StatWindow";
 import { useState } from "react";
-import Timer from "./Timer";
+import Timer from "../components/Timer";
 
 function clickHandler(viewCondition, setViewCondition) {
   setViewCondition(!viewCondition);
@@ -34,7 +34,7 @@ function EmotionButtonView({ setStatsData }) {
           </button>
         </div>
         <div className="emotions">
-        <EmotionButton 
+        <EmotionButton
         updateStats={() => setStatsData(null)}
         setViewCondition = {setViewCondition}
         viewCondition = {viewCondition}
