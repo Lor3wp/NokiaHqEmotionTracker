@@ -1,0 +1,79 @@
+.StatWindow {
+    display: flex; 
+    flex-direction: column;
+    max-height: 100vh;
+    min-height: 100vh;
+    min-width: 45vh;
+}
+
+.Stats-header {
+    display: flex;
+    flex: 1;
+    border: 1px;
+    border-style: dashed;
+    border-color: hotpink;
+    margin: 5px;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+#ChartView {
+    display: flex;
+    flex: 10;
+    border: 1px;
+    border-style: dashed;
+    border-color: red;
+    margin: 5px;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+#SliderHourView {
+    display: flex;
+    flex: 0.7;
+    border: 1px;
+    border-style: dashed;
+    border-color: gold;
+    margin: 5px;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+#ChosenTimeUnitNavView {
+    display: flex;
+    flex: 0.5;
+    border: 1px;
+    border-style: dashed;
+    border-color: salmon;
+    margin: 5px;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+#TimeUnitSelectorView {
+    display: flex;
+    flex: 0.7;
+    border: 1px;
+    border-style: dashed;
+    border-color: honeydew;
+    margin: 5px;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+#VilisVelvetyElementView {
+    display: flex;
+    border: 1px;
+    border-style: dashed;
+    border-color: honeydew;
+    margin: 2px;
+    padding: 2px;
+    max-height: 3vh;
+    align-items: center;
+    justify-content: center;
+}
