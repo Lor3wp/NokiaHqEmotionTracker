@@ -1,8 +1,6 @@
 import '../App.css';
 import '../StatWindow.css';
 import React from 'react';
-import Piechart from '../components/charts/Piechart';
-import Barchart from '../components/charts/Barchart'
 import { useState } from "react";
 // import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
