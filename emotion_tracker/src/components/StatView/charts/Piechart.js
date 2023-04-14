@@ -15,7 +15,7 @@ const options = {
   cutout: 110,
 };
 
-function Piechart() {
+const Piechart = () => {
   // data template for population
   const [pieData, setPieData] = useState({
     labels: [],
@@ -50,7 +50,7 @@ function Piechart() {
   }, []);
 
   // process response json and populate data into pieData template
-  function processData(json) {
+  const processData = (json) => {
     const data = {
       labels: [],
       datasets: [

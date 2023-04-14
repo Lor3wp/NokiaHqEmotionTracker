@@ -8,7 +8,7 @@ const override: CSSProperties = {
     
   };
 
-function Loading() {
+const Loading = () => {
     return (
         <header className="App-header">
         <ScaleLoader	

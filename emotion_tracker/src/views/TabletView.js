@@ -3,11 +3,11 @@ import "../EmotionButtonView.css";
 import { useState } from "react";
 
 
-function TabletView({ setStatsData }) {
+const TabletView = ({ setStatsData }) => {
   const [password, setPassword] = useState('')
   const [update, setUpdate] = useState(false);
 
-  function handleClick() {
+  const handleClick = () => {
     localStorage.setItem('passu', password)
     setUpdate(!update)
   }

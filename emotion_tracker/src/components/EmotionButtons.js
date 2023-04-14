@@ -9,7 +9,7 @@ const getButtonClassName = (label) => {
   return `${label}`;
 };
 
-function EmotionButton({ updateStats, setViewCondition, viewCondition }) {
+const EmotionButton = ({ updateStats, setViewCondition, viewCondition }) => {
   const [statsData, setStatsData] = useState();
   const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
