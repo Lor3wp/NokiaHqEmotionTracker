@@ -15,6 +15,7 @@ const StatWindow = ({ backButtonClicked }) => {
   const [maxHour, setMaxHour] = useState(23);
   const [chartDate, setChartDate] = useState([31, 52, 12, 2023]);
   const [timeUnit, setTimeUnit] = useState("month");
+  // TODO: state for today in the same form as chartDate [d, w, m, y]
   // []: this is somethid
   return (
     // TODO: redo the stats view layout
