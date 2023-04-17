@@ -27,18 +27,17 @@ const EmotionButtonView = ({ setStatsData }) => {
           <h1>How are you feeling?</h1>
           <button
             className="howOthersFeltButton"
-            onClick={() => clickHandler(viewCondition, setViewCondition)
-            }
+            onClick={() => clickHandler(viewCondition, setViewCondition)}
           >
             See how other people felt today
           </button>
         </div>
         <div className="emotions">
-        <EmotionButton
-        updateStats={() => setStatsData(null)}
-        setViewCondition = {setViewCondition}
-        viewCondition = {viewCondition}
-         />
+          <EmotionButton
+            updateStats={() => setStatsData(null)}
+            setViewCondition={setViewCondition}
+            viewCondition={viewCondition}
+          />
         </div>
       </div>
     );

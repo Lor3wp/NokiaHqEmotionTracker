@@ -1,0 +1,40 @@
+.TimeView {
+    display: flex; 
+    flex-direction: row;
+}
+
+.TimeViewButtonGroup{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.SelectedTimeViewButtonGroup{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    height: 11vh;
+}
+.TimeViewButtonText{
+    display: flex;
+    flex: 1;
+    margin: 0;
+    align-self: center;
+    font-size: 2vh;
+}
+.TimeButton {
+    display: flex;
+    margin: 1.8vh;
+    width: 4.5vh;
+    height: 4.5vh;
+    border-radius: 50%;
+    margin-top: 1vh;
+}
+
+.SelectedTimeButton {
+    display: flex;
+    flex: 3;
+    margin: 1px;
+    width: 8vh;
+    height: 7vh;
+    border-radius: 50%;
+}
