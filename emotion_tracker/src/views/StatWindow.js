@@ -2,6 +2,7 @@ import '../App.css';
 import '../StatWindow.css';
 import React from 'react';
 import { useState } from "react";
+import DatePicker from "../components/StatView/DatePicker";
 // import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
 const StatWindow = ({backButtonClicked}) => {
@@ -36,8 +37,10 @@ const StatWindow = ({backButtonClicked}) => {
           {/*      TODO: Slider for hours*/}
         </div>
         <div id='ChosenTimeUnitNavView' >
-          <p>Navigation for chosen time unit here</p>
           {/*      TODO: Navigation for chosen time unit*/}
+            <div>
+                <DatePicker timeUnit={timeUnit} chartDate={chartDate} setChartDate={setChartDate}/>
+            </div>
         </div>
         <div id='TimeUnitSelectorView' >
           <p>Time Unit Selector here</p>
