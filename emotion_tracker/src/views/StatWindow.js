@@ -1,9 +1,11 @@
 import '../App.css';
 import '../StatWindow.css';
-import React from 'react';
+import React, { useEffect } from "react";
 import { useState } from "react";
 import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
+import { getWeek } from "date-fns";
+
 // import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
 const StatWindow = ({ backButtonClicked }) => {
@@ -15,7 +17,36 @@ const StatWindow = ({ backButtonClicked }) => {
   const [maxHour, setMaxHour] = useState(23);
   const [chartDate, setChartDate] = useState([31, 52, 12, 2023]);
   const [timeUnit, setTimeUnit] = useState("month");
-  // TODO: state for today in the same form as chartDate [d, w, m, y]
+  const [currentDate, setCurrentDate] = useState(null);
+  // values for data fetching
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (currentDate == null) {
+      createCurrentDay();
+    }
+    async function fetchData() {
+      const response = await fetch(`http://localhost:3001/`);
+      const jsonData = await response.json();
+      setData(jsonData);
+      setLoading(false);
+    }
+    fetchData();
+  }, [chartDate]);
+  const createCurrentDay = () => {
+    const options = { weekStartsOn: 1 };
+
+    const today = new Date();
+    let dateFormat = [];
+    dateFormat.push(today.getDate());
+    dateFormat.push(getWeek(today.getDate(), options));
+    dateFormat.push(today.getMonth() + 1);
+    dateFormat.push(today.getFullYear());
+    setCurrentDate(dateFormat);
+    setChartDate(dateFormat);
+  };
+
   // []: this is somethid
   return (
     // TODO: redo the stats view layout
@@ -37,7 +68,7 @@ const StatWindow = ({ backButtonClicked }) => {
         <p>Top navbar here</p>
       </div>
       <div id="ChartView">
-        <p>Chart here</p>
+        <p>chartti</p>
         {/*  TODO: chart view here */}
       </div>
       <div id="SliderHourView">
@@ -45,7 +76,13 @@ const StatWindow = ({ backButtonClicked }) => {
         {/*      TODO: Slider for hours*/}
       </div>
       <div id="ChosenTimeUnitNavView">
-        <DatePicker timeUnit={timeUnit} chartDate={chartDate} setChartDate={setChartDate}/>
+        <div>
+          <DatePicker
+            timeUnit={timeUnit}
+            chartDate={chartDate}
+            setChartDate={setChartDate}
+          />
+        </div>
       </div>
       <div id="TimeUnitSelectorView">
         <TimeNavigator timeUnit={timeUnit} setTimeUnit={setTimeUnit} />

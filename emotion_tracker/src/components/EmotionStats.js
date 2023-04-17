@@ -20,6 +20,7 @@ const EmotionStats = ({ update }) => {
     }
     fetchData();
   }, [update]);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(

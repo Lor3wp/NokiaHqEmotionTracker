@@ -16,7 +16,7 @@
 }
 .TimeViewButtonText{
     display: flex;
-    flex: 1;
+    flex: 0.5;
     margin: 0;
     align-self: center;
     font-size: 2vh;
@@ -27,14 +27,36 @@
     width: 4.5vh;
     height: 4.5vh;
     border-radius: 50%;
-    margin-top: 1vh;
+    border-style: none;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
 }
 
 .SelectedTimeButton {
+    display: flex;
+    margin: 1.8vh;
+    width: 4.5vh;
+    height: 4.5vh;
+    border-radius: 50%;
+    border-radius: 50%;
+    outline-style: solid;
+    outline-width: 0.5vh;
+    border-style: none;
+    outline-color: rgb(255, 255, 255);
+    outline-offset: 0.5vh;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+}
+.SelectedTimeButtonHalo {
     display: flex;
     flex: 3;
     margin: 1px;
     width: 8vh;
     height: 7vh;
     border-radius: 50%;
+    outline-style: solid;
+    outline-width: 1vh;
+    outline-color: blue;
+    outline-offset: 2vh;
+    background-color: rgb(255, 255, 255);
 }
