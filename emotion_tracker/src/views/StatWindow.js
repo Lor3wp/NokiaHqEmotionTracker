@@ -45,10 +45,7 @@ const StatWindow = ({ backButtonClicked }) => {
         {/*      TODO: Slider for hours*/}
       </div>
       <div id="ChosenTimeUnitNavView">
-          {/*      TODO: Navigation for chosen time unit*/}
-          <div>
-              <DatePicker timeUnit={timeUnit} chartDate={chartDate} setChartDate={setChartDate}/>
-          </div>
+        <DatePicker timeUnit={timeUnit} chartDate={chartDate} setChartDate={setChartDate}/>
       </div>
       <div id="TimeUnitSelectorView">
         <TimeNavigator timeUnit={timeUnit} setTimeUnit={setTimeUnit} />

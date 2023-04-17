@@ -44,15 +44,15 @@
 
 #ChosenTimeUnitNavView {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex: 0.5;
     border: 1px;
     border-style: dashed;
     border-color: salmon;
     margin: 5px;
     padding: 2px;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    width: inherit;
 }
 
 #TimeUnitSelectorView {
