@@ -15,8 +15,10 @@ const options = {
   cutout: 110,
 };
 
-const Piechart = () => {
+const Piechart = (props) => {
   // data template for population
+  console.log("piiraa", props.data)
+
   const [pieData, setPieData] = useState({
     labels: [],
     datasets: [
@@ -32,22 +34,26 @@ const Piechart = () => {
 
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
-    async function fetchData() {
+/*    async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/getstats/getemotions/`
+          `http://localhost:3001/getstats/getemotions/`
       );
       const jsonData = await response.json();
       // check if ammount of emotions is same as in emotionData.js
       if (jsonData.length !== emotionData.length) {
         console.error(
-          "emmount of emotions dose not match from database and emotionData.js"
+            "emmount of emotions dose not match from database and emotionData.js"
         );
       }
 
-      processData(jsonData);
+    }*/
+    if (props.data.length > 1) {
+      console.log("stringi")
+      processData(props.data);
     }
-    fetchData();
-  }, []);
+    // fetchData();
+  }, [props.data]);
+
 
   // process response json and populate data into pieData template
   const processData = (json) => {
@@ -72,11 +78,14 @@ const Piechart = () => {
   }
 
   return (
-    <Doughnut
-      data={pieData}
-      options={options}
-      style={{ width: "275px", height: "275px" }}
-    />
+      <div>
+        <Doughnut
+            data={pieData}
+            options={options}
+            style={{ width: "275px", height: "275px" }}
+        />
+      </div>
+
   );
 }
 

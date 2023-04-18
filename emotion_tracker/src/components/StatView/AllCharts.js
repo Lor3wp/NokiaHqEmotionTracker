@@ -13,7 +13,7 @@ const AllCharts = (props) => {
      * chartDate={chartDate}
      * timeUnit={timeUnit}
      * */
-    console.log(props.data)
+    console.log("apina", props.data)
 
     switch (props.chartType) {
 
@@ -31,14 +31,35 @@ const AllCharts = (props) => {
                     height: "100%"
                 }}>
                     <DoughnutChart
-
+                        chartType={props.chartType}
+                        hourRange={props.hourRange}
+                        minHour={props.minHour}
+                        maxHour={props.maxHour}
+                        chartDate={props.chartDate}
+                        timeUnit={props.timeUnit}
+                        data={props.data}
                     />
                 </div>
             )
-        case "barchart":
+        case "piechart":
             return (
-                <div>
-
+                <div style={{
+                    display: "flex",
+                    flexDirection:"column",
+                    flex: 1,
+                    // backgroundColor: "blue",
+                    width: "100%",
+                    height: "100%"
+                }}>
+                    <Piechart
+                        chartType={props.chartType}
+                        hourRange={props.hourRange}
+                        minHour={props.minHour}
+                        maxHour={props.maxHour}
+                        chartDate={props.chartDate}
+                        timeUnit={props.timeUnit}
+                        data={props.data}
+                    />
                 </div>
             )
         default:
