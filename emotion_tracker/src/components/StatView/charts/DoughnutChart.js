@@ -116,19 +116,19 @@ const DoughnutChart = () => {
   }
 
   return (
-    <div style={{position: "relative", width: "290px", height: "336px"}}>
+    <div style={{position: "relative", width: "290px", height: "290px", margin: "0px"}}>
       <div>
       <Doughnut
       data={doughnutData}
       options={options}
-      style={{ width: "275px", height: "275px", position: "absolute", top: "30px", left: "30px" }}
+      style={{width: "275px", height: "275px", position: "absolute"}}
     />
     </div>
     <div style={{top: "0px", left: "0px"}}>
       <Doughnut
       data={doughnut2Data}
       options={options2}
-      style={{maxWidth: "220px", maxHeight: "220px", position: "absolute", top: "65px", left: "65px"}}
+      style={{maxWidth: "220px", maxHeight: "220px", position: "absolute", top: "35px", left: "35px"}}
       />
     </div>
     </div>

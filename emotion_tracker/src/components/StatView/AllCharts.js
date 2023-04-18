@@ -24,7 +24,9 @@ const AllCharts = (props) => {
                     flex: 1,
                     // backgroundColor: "blue",
                     width: "100%",
-                    height: "100%"
+                    height: "100%",
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
                     <DoughnutChart />
                 </div>
