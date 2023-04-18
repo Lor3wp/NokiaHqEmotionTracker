@@ -24,7 +24,7 @@ const Piechart = () => {
         label: "Total emotions in DoughnutChart",
         data: [],
         backgroundColor: [],
-        borderRadius: 15,
+        borderRadius: 10,
         spacing: 20,
       },
     ],
