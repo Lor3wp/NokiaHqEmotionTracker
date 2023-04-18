@@ -62,7 +62,7 @@ const EmotionButton = ({ updateStats, setViewCondition, viewCondition }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ emotion: id }),
+        body: JSON.stringify({ emotion: id, subEmotion: 1 }),
       });
       if (!response.ok) {
         throw new Error("Error adding emotion");
