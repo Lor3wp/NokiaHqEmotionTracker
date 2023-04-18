@@ -1,5 +1,5 @@
 import EmotionButton from "../components/EmotionButtons";
-import "../EmotionButtonView.css";
+import "../css/EmotionButtonView.css";
 import TestView from "../TestView";
 import StatWindow from "./StatWindow";
 import { useState } from "react";

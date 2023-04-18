@@ -1,5 +1,5 @@
 import TabletEmotionButton from "../components/TabletEmotionButtons";
-import "../EmotionButtonView.css";
+import "../css/EmotionButtonView.css";
 import { useState } from "react";
 
 

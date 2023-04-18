@@ -1,6 +1,6 @@
 import React from "react";
-import '../DisabledLocationView.css'
-import '../EmotionButtons.css'
+import '../css/DisabledLocationView.css'
+import '../css/EmotionButtons.css'
 const DisabledLocationView = () => {
 
 return (
