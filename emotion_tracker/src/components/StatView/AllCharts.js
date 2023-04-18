@@ -16,6 +16,10 @@ const AllCharts = (props) => {
     console.log(props.data)
 
     switch (props.chartType) {
+
+
+
+
         case "doughnutchart":
             return (
                 <div style={{
@@ -26,7 +30,9 @@ const AllCharts = (props) => {
                     width: "100%",
                     height: "100%"
                 }}>
-                    <DoughnutChart />
+                    <DoughnutChart
+
+                    />
                 </div>
             )
         case "barchart":
