@@ -1,6 +1,8 @@
-import '../App.css';
-import '../StatWindow.css';
-import React, { useEffect } from "react";
+import HourRange from "../components/StatView/HourRange";
+import HourSlider from "../components/StatView/HourSlider";
+import "../css/App.css";
+import "../css/StatWindow.css"
+import React, {useEffect} from "react";
 import { useState } from "react";
 import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
@@ -24,9 +26,18 @@ const StatWindow = ({ backButtonClicked }) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
+  function handleToggleSwitch() {
+    console.log(`hourRange muutos ${hourRange}`);
+  }
+
+  function handleHourChange(values) {
+    console.log(values); // replace with your code to send the values to the database
+  }
+
   useEffect(() => {
     if (currentDate == null) {
       createCurrentDay();
+
     }
     async function fetchData() {
         switch (timeUnit) {
@@ -113,17 +124,20 @@ const StatWindow = ({ backButtonClicked }) => {
         {/*  TODO: chart view here */}
       </div>
       <div id="SliderHourView">
-        <p>Slider for hours here</p>
-        {/*      TODO: Slider for hours*/}
+        <HourSlider
+          minHour={minHour}
+          maxHour={maxHour}
+          setMaxHour={setMaxHour}
+          setMinHour={setMinHour}
+          onChange={handleHourChange}
+        ></HourSlider>
       </div>
       <div id="ChosenTimeUnitNavView">
-        <div>
-          <DatePicker
-            timeUnit={timeUnit}
-            chartDate={chartDate}
-            setChartDate={setChartDate}
-          />
-        </div>
+        <DatePicker
+          timeUnit={timeUnit}
+          chartDate={chartDate}
+          setChartDate={setChartDate}
+        />
       </div>
       <div id="TimeUnitSelectorView">
         <TimeNavigator timeUnit={timeUnit} setTimeUnit={setTimeUnit} />

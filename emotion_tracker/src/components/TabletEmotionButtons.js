@@ -1,7 +1,6 @@
 import EmotionStats from "./EmotionStats";
-import EmotionStatsDay from "./EmotionStats";
 import React, { useState, useEffect } from "react";
-import '../EmotionButtons.css';
+import '../css/EmotionButtons.css';
 
 
 const buttonData = [
@@ -108,7 +107,7 @@ function TabletEmotionButton({ updateStats, setViewCondition, viewCondition }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ emotion: id }),
+        body: JSON.stringify({ emotion: id, subEmotion: 1 }),
       });
       if (!response.ok) {
         throw new Error("Error adding emotion");
