@@ -2,6 +2,7 @@ import '../App.css';
 import '../StatWindow.css';
 import React from 'react';
 import { useState } from "react";
+import NavigationBar from '../components/StatView/NavigationBar';
 // import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
 const StatWindow = ({backButtonClicked}) => {
@@ -21,12 +22,13 @@ const StatWindow = ({backButtonClicked}) => {
         <div className="Stats-header" >
             <button style={{ borderStyle: "none", backgroundColor: "transparent", alignSelf: "start"}}
               onClick = {backButtonClicked}>
-            <span class="material-symbols-outlined" style={{ color: "white" }}>
+            <span className="material-symbols-outlined" style={{ color: "white" }}>
               arrow_back
             </span>
             </button>
-            <p>Top navbar here</p>
-          </div>
+            
+            <NavigationBar /*props={setChartType}*/ />
+        </div>
         <div id='ChartView'>
           <p>Chart here</p>
           {/*  TODO: chart view here */}

@@ -1,0 +1,28 @@
+nav {
+    position: sticky;
+    top: 0;
+    height: 3.2em;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.toggleable {
+    visibility: hidden;
+    
+}
+li button {
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 8px;
+    width: 4em;
+    height: 4em;
+    margin-bottom: 0.1em;
+    
+}
+@keyframes toggle {
+    0% {visibility: hidden; }
+    100% {visibility: visible; }
+}
