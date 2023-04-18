@@ -17,6 +17,7 @@ const SingleThumbSlider = ({onChange, maxHour }) => {
 
   return (
     <div>
+    <p className="hour-text">{value.slice("0")[1]}:00</p>
      <RangeSlider
         className="single-thumb"
         value={value}
@@ -25,7 +26,6 @@ const SingleThumbSlider = ({onChange, maxHour }) => {
         thumbsDisabled={[true, false]}
         rangeSlideDisabled={true}
       />
-      <p>{value.slice("0")[1]}:00</p>
     </div>
   );
 };
@@ -49,19 +49,46 @@ const HourSlider = ({
     }
   };
 
+  const [value, setValue] = useState([0,23]);
 
+  const onSingleThumbChange = (newValue) => {
+  
+      setValue(newValue);
+      if(onChange) {
+          onChange(value)
+      }
+    };
 
   return (
-    <div>
-      <HourRange
+    <div className="hourRange-Slider">
+    <div className="range-hour">
+
+    {useSingleThumb ? (
+        <p className="hour-text">{value.slice("0")[1]}:00</p>
+    ) : (
+        <p className="hour-text">
+            {minHour}:00-{maxHour}:00
+          </p>
+    )}
+    <HourRange
         useSingleThumb={useSingleThumb}
         setUseSingleThumb={setUseSingleThumb}
       />
+</div>
       {useSingleThumb ? (
-        <SingleThumbSlider
-        />
+        <div>
+       <RangeSlider
+      className="single-thumb"
+      value={value}
+      max={23}
+      onInput={onSingleThumbChange}
+      thumbsDisabled={[true, false]}
+      rangeSlideDisabled={true}
+    />
+  </div>
       ) : (
         <div className="margin-lg">
+     
           <RangeSlider
             min={0}
             max={23}
@@ -69,10 +96,7 @@ const HourSlider = ({
             value={[minHour, maxHour]}
             onInput={onHourChange}
           />
-          <p>
-            {minHour}:00-{maxHour}:00
-          </p>
-        </div>
+    </div>
       )}
     </div>
   );

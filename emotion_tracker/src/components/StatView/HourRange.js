@@ -12,13 +12,14 @@ const HourRange = ({ hourRange, setHourRange, onChange, useSingleThumb, setUseSi
 
   return (
     <div className="hourRange-singleHour"> 
-    <p className="range-text">Hour range</p>
+    {!useSingleThumb ? (
+      <p className="range-text">Hour range</p>
+    ) : <p className="range-text">Single hour</p>}
     <label class="switch">
     <input type="checkbox" checked={useSingleThumb} onChange={(e) => setUseSingleThumb(e.target.checked)}
  />
     <span class="slider round"></span>
     </label>
-  <p className="range-text">Single hour</p>
   </div>
   );
 };

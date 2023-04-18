@@ -12,7 +12,11 @@
   .range-slider.margin-lg {
     margin: 42px auto 0;
   }
+.margin-lg {
+    display: flex;
+    flex-direction: column;
 
+}
 .range-slider .range-slider__thumb {
     /* background: rgb(32, 33, 58) !important;
     box-shadow: inset 0px 3px 0px 0px #545577 !important; */
@@ -92,7 +96,20 @@
 } */
 .single-thumb .range-slider__thumb[data-lower] {
     width: 0;
+    /* border-radius: 0px !important; */
+    display: none;
   }
   .single-thumb .range-slider__range {
-    border-radius: 6px;
+    border-radius: 12px;
+  }
+  .hour-text {
+    font-size: 0.8em;
+    align-self:flex-start;
+    margin-bottom: 0;
+  }
+
+  .range-hour {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
