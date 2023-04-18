@@ -2,7 +2,7 @@ const charts = [
     {
         type: "donut",
         label: "donut chart button",
-        icon: "donut_small"
+        icon: "donut_large"
     },
     {
         type: "bar",
