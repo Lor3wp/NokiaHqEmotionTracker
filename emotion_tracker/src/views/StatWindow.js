@@ -6,6 +6,8 @@ import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
 import { getWeek } from "date-fns";
 
+import AllCharts from "../components/StatView/AllCharts";
+import backendAddress from "../data/apiHooks";
 // import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
 const StatWindow = ({ backButtonClicked }) => {
@@ -27,13 +29,44 @@ const StatWindow = ({ backButtonClicked }) => {
       createCurrentDay();
     }
     async function fetchData() {
-      const response = await fetch(`http://localhost:3001/`);
-      const jsonData = await response.json();
-      setData(jsonData);
-      setLoading(false);
+        switch (timeUnit) {
+            case "day":
+                const responseDay = await fetch(backendAddress + `emotions/getday/${chartDate[3]}/${chartDate[2]}/${chartDate[0]}`);
+                const jsonDataDay = await responseDay.json();
+                setData(jsonDataDay);
+                setLoading(false);
+                break;
+            case "week":
+                const responseWeek = await fetch(backendAddress + `emotions/getweek/${chartDate[3]}-${chartDate[2]}-${chartDate[0]}/${chartDate[3]}-${chartDate[2]}-${chartDate[0]}`);
+                const jsonDataWeek = await responseWeek.json();
+                setData(jsonDataWeek);
+                setLoading(false);
+                break;
+            case "month":
+                const responseMonth = await fetch(backendAddress + `emotions/getmonth/${chartDate[3]}/${chartDate[2]}`);
+                const jsonDataMonth = await responseMonth.json();
+                setData(jsonDataMonth);
+                setLoading(false);
+                break;
+            case "year":
+                const responseYear = await fetch(backendAddress + `emotions/getyear/${chartDate[3]}`);
+                const jsonDataYear = await responseYear.json();
+                setData(jsonDataYear);
+                setLoading(false);
+                break;
+            case "years":
+                const responseYears = await fetch(backendAddress + `emotions/getyears/${Math.floor(chartDate[3]/10)*10}/${Math.floor(chartDate[3]/10)*10+9}`);
+                const jsonDataYears = await responseYears.json();
+                setData(jsonDataYears);
+                setLoading(false);
+                break;
+            default:
+
+                break;
+        }
     }
     fetchData();
-  }, [chartDate]);
+  }, [chartDate, timeUnit]);
   const createCurrentDay = () => {
     const options = { weekStartsOn: 1 };
 
@@ -68,7 +101,15 @@ const StatWindow = ({ backButtonClicked }) => {
         <p>Top navbar here</p>
       </div>
       <div id="ChartView">
-        <p>chartti</p>
+        <AllCharts
+            chartType={chartType}
+            hourRange={hourRange}
+            minHour={minHour}
+            maxHour={maxHour}
+            chartDate={chartDate}
+            timeUnit={timeUnit}
+            data={data}
+        />
         {/*  TODO: chart view here */}
       </div>
       <div id="SliderHourView">

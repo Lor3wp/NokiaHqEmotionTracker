@@ -44,7 +44,7 @@
 
 #ChosenTimeUnitNavView {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 0.5;
     border: 1px;
     border-style: dashed;
