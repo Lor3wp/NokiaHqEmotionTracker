@@ -23,7 +23,7 @@ const StatWindow = ({ backButtonClicked }) => {
   const [timeUnit, setTimeUnit] = useState("month");
   const [currentDate, setCurrentDate] = useState(null);
   // values for data fetching
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   function handleToggleSwitch() {

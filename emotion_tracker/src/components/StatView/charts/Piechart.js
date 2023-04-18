@@ -17,8 +17,6 @@ const options = {
 
 const Piechart = (props) => {
   // data template for population
-  console.log("piiraa", props.data)
-
   const [pieData, setPieData] = useState({
     labels: [],
     datasets: [
@@ -34,7 +32,7 @@ const Piechart = (props) => {
 
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
-/*    async function fetchData() {
+    /*    async function fetchData() {
       const response = await fetch(
           `http://localhost:3001/getstats/getemotions/`
       );
@@ -47,13 +45,13 @@ const Piechart = (props) => {
       }
 
     }*/
-    if (props.data.length > 1) {
-      console.log("stringi")
+    // console.log("moi", props.data[2].emotion_id);
+    if (props.data != null && props.data.length > 1) {
+      // console.log("stringi");
       processData(props.data);
     }
     // fetchData();
   }, [props.data]);
-
 
   // process response json and populate data into pieData template
   const processData = (json) => {
@@ -69,23 +67,28 @@ const Piechart = (props) => {
         },
       ],
     };
+
     for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+      emotionData[json[i].emotion_id - 1].count = json[i].count;
     }
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
+      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    });
+
+    console.log(emotionData);
     setPieData(data);
-  }
+  };
 
   return (
-      <div>
-        <Doughnut
-            data={pieData}
-            options={options}
-            style={{ width: "275px", height: "275px" }}
-        />
-      </div>
-
+    <div>
+      <Doughnut
+        data={pieData}
+        options={options}
+        style={{ width: "275px", height: "275px" }}
+      />
+    </div>
   );
 }
 
