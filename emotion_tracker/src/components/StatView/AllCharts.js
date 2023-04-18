@@ -2,6 +2,7 @@
 // tekee valinnan mikä chartti näkyy sekä mitä chartissa näkyy.
 // maxHour when hourRange == false
 import Piechart from "./charts/Piechart";
+import DoughnutChart from "./charts/DoughnutChart";
 
 const AllCharts = (props) => {
     /** props
@@ -15,7 +16,7 @@ const AllCharts = (props) => {
     console.log(props.data)
 
     switch (props.chartType) {
-        case "piechart":
+        case "doughnutchart":
             return (
                 <div style={{
                     display: "flex",
@@ -25,7 +26,7 @@ const AllCharts = (props) => {
                     width: "100%",
                     height: "100%"
                 }}>
-
+                    <DoughnutChart />
                 </div>
             )
         case "barchart":

@@ -21,6 +21,8 @@
 #ChartView {
     display: flex;
     flex: 10;
+    min-height: 336px;
+    min-width: 290px;
     border: 1px;
     border-style: dashed;
     border-color: red;
