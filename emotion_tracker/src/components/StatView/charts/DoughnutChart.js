@@ -25,10 +25,10 @@ const options2 = {
   cutout: "90%",
 };
 
-const DoughnutChart = (params) => {
+const DoughnutChart = (props) => {
   // data template for population
-  console.log("did it go?", params.chartContainerDivHeight, params.chartContainerDivWidth)
-  const maxDivSize = params.chartContainerDivHeight > params.chartContainerDivWidth ? params.chartContainerDivWidth : params.chartContainerDivHeight;
+  console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
+  const maxDivSize = props.chartContainerDivHeight > props.chartContainerDivWidth ? props.chartContainerDivWidth : props.chartContainerDivHeight;
   console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
@@ -57,23 +57,25 @@ const DoughnutChart = (params) => {
 
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `http://localhost:3001/getstats/getemotions/`
-      );
-      const jsonData = await response.json();
-      // check if ammount of emotions is same as in emotionData.js
-      if (jsonData.length !== emotionData.length) {
-        console.error(
-          "emmount of emotions dose not match from database and emotionData.js"
-        );
-      }
+    // async function fetchData() {
+      // const response = await fetch(
+      //   `http://localhost:3001/getstats/getemotions/`
+      // );
+      // const jsonData = await response.json();
+      // // check if ammount of emotions is same as in emotionData.js
+      // if (jsonData.length !== emotionData.length) {
+      //   console.error(
+      //     "emmount of emotions dose not match from database and emotionData.js"
+      //   );
+      // }
 
-      processData(jsonData);
-      process2Data(jsonData)
+      if (props.data != null && props.data.length > 1) {
+        // console.log("stringi");
+        processData(props.data);
+        process2Data(props.data);
     }
-    fetchData();
-  }, []);
+    // fetchData();
+  }, [props.data]);
 
   // process response json and populate data into doughnutData template
   const processData = (json) => {
@@ -81,7 +83,7 @@ const DoughnutChart = (params) => {
       labels: [],
       datasets: [
         {
-          label: "Total emotions in doughnutchart",
+          label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
           borderRadius: 0,
@@ -89,11 +91,17 @@ const DoughnutChart = (params) => {
         },
       ],
     };
+
     for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+      emotionData[json[i].emotion_id - 1].count = json[i].count;
     }
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
+      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    });
+
+    console.log(emotionData);
     setDoughnutData(data);
   }
 
@@ -102,19 +110,25 @@ const DoughnutChart = (params) => {
       labels: [],
       datasets: [
         {
-          label: "Total emotions in doughnutchart",
-          data: [4, 2, 1, 2, 7, 2, 3, 2, 5, 2, 4, 2, 1, 2, 9, 2],
+          label: "Total emotions in piechart",
+          data: [],
           backgroundColor: [],
           borderRadius: 0,
           spacing: 0,
         },
       ],
     };
+
     for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+      emotionData[json[i].emotion_id - 1].count = json[i].count;
     }
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
+      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    });
+
+    console.log(emotionData);
     setDoughnut2Data(data);
   }
   // maxDivSize

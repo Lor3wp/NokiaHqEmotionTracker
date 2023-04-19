@@ -37,12 +37,52 @@ const AllCharts = (props) => {
                     <DoughnutChart
                         chartContainerDivHeight={chartContainerDiv.current.offsetHeight}
                         chartContainerDivWidth={chartContainerDiv.current.offsetWidth}
+                        chartType={props.chartType}
+                        hourRange={props.hourRange}
+                        minHour={props.minHour}
+                        maxHour={props.maxHour}
+                        chartDate={props.chartDate}
+                        timeUnit={props.timeUnit}
+                        data={props.data}
+                    />
+                </div>
+            )
+        case "piechart":
+            return (
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                        // backgroundColor: "blue",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
+                    {/* {console.log(props.data)} */}
+                    <Piechart
+                        chartType={props.chartType}
+                        hourRange={props.hourRange}
+                        minHour={props.minHour}
+                        maxHour={props.maxHour}
+                        chartDate={props.chartDate}
+                        timeUnit={props.timeUnit}
+                        data={props.data}
                     />
                 </div>
             )
         case "barchart":
             return (
-                <div>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                        // backgroundColor: "blue",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
 
                 </div>
             )
