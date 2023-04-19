@@ -76,7 +76,7 @@ const HourSlider = ({
       />
 </div>
       {useSingleThumb ? (
-        <div>
+        <div className="margin-lg">
        <RangeSlider
       className="single-thumb"
       value={value}
