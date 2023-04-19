@@ -12,7 +12,7 @@ const options = {
     },
   },
   maintainAspectRatio: true,
-  cutout: 110,
+  cutout: "90%",
 };
 
 const options2 = {
@@ -22,11 +22,14 @@ const options2 = {
     },
   },
   maintainAspectRatio: true,
-  cutout: 80,
+  cutout: "90%",
 };
 
-const DoughnutChart = () => {
+const DoughnutChart = (params) => {
   // data template for population
+  console.log("did it go?", params.chartContainerDivHeight, params.chartContainerDivWidth)
+  const maxDivSize = params.chartContainerDivHeight > params.chartContainerDivWidth ? params.chartContainerDivWidth : params.chartContainerDivHeight;
+  console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
     datasets: [
@@ -114,26 +117,26 @@ const DoughnutChart = () => {
     }
     setDoughnut2Data(data);
   }
-
+  // maxDivSize
   return (
-    <div style={{position: "relative", width: "290px", height: "290px", margin: "0px"}}>
-      <div>
-      <Doughnut
-      data={doughnutData}
-      options={options}
-      style={{width: "275px", height: "275px", position: "absolute"}}
-    />
+    <div style={{position: "relative", width: (maxDivSize/100*90), height: (maxDivSize/100*90), margin: "0px"}}>
+      <div style={{ }}>
+        <Doughnut
+          data={doughnutData}
+          options={options}
+          style={{width: "100%", height: "100%", position: "absolute", }}
+        />
+        <Doughnut
+            data={doughnut2Data}
+            options={options2}
+            style={{
+              width: (maxDivSize/100*80),
+              height: (maxDivSize/100*80),
+              position: "absolute",
+              padding: "5%"}}
+        />
+      </div>
     </div>
-    <div style={{top: "0px", left: "0px"}}>
-      <Doughnut
-      data={doughnut2Data}
-      options={options2}
-      style={{maxWidth: "220px", maxHeight: "220px", position: "absolute", top: "35px", left: "35px"}}
-      />
-    </div>
-    </div>
-    
-    
   );
 }
 

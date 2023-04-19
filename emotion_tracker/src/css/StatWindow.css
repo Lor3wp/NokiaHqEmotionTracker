@@ -20,6 +20,7 @@
 
 #ChartView {
     display: flex;
+    flex-direction: column;
     flex: 10;
     min-height: 336px;
     min-width: 290px;
