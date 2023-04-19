@@ -3,9 +3,22 @@ import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
 
+Chart.defaults.color = "#FFFFFF";
 
 const options = {
     type: 'line',
+    scales: {
+      x: {
+        ticks: {
+          color: "#FFFFFF"
+        }
+      },
+      y: {
+        ticks: {
+          color: "#FFFFFF"
+        }
+      }
+    },
     options: {
       responsive: true,
       plugins: {
