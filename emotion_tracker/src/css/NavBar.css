@@ -22,6 +22,9 @@ li button {
     margin-bottom: 0.1em;
     
 }
+#menu-button {
+    background-color: transparent;
+}
 @keyframes toggle {
     0% {visibility: hidden; }
     100% {visibility: visible; }
