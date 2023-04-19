@@ -2,7 +2,7 @@ import HourRange from "../components/StatView/HourRange";
 import HourSlider from "../components/StatView/HourSlider";
 import "../css/App.css";
 import "../css/StatWindow.css"
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import { useState } from "react";
 import NavigationBar from '../components/StatView/NavigationBar';
 import DatePicker from "../components/StatView/DatePicker";
@@ -26,6 +26,7 @@ const StatWindow = ({ backButtonClicked }) => {
   // values for data fetching
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const chartContainerDiv = useRef(null);
 
   function handleToggleSwitch() {
     console.log(`hourRange muutos ${hourRange}`);
@@ -110,9 +111,9 @@ const StatWindow = ({ backButtonClicked }) => {
             arrow_back
           </span>
         </button>
-        <NavigationBar /*props={setChartType}*/ />
+        <NavigationBar setChartType={setChartType} chartType={chartType} />
       </div>
-      <div id="ChartView">
+      <div ref={chartContainerDiv}id="ChartView">
         <AllCharts
             chartType={chartType}
             hourRange={hourRange}
@@ -121,6 +122,7 @@ const StatWindow = ({ backButtonClicked }) => {
             chartDate={chartDate}
             timeUnit={timeUnit}
             data={data}
+            chartContainerDiv={chartContainerDiv}
         />
         {/*  TODO: chart view here */}
       </div>

@@ -15,10 +15,10 @@ const AllCharts = (props) => {
      * timeUnit={timeUnit}
      * */
     console.log(props.data)
-    const chartContainerDiv = useRef(0);
+    const chartContainerDiv = useRef(null);
     useEffect(() => {
-        const divHeight = chartContainerDiv.current.offsetHeight;
-        const divWidth = chartContainerDiv.current.offsetWidth;
+        const divHeight = props.chartContainerDiv.current?.offsetHeight;
+        const divWidth = props.chartContainerDiv.current?.offsetWidth;
         console.log("the height", divHeight, divWidth);
     }, []);
 
@@ -35,8 +35,8 @@ const AllCharts = (props) => {
                     alignItems: "center"
                 }}>
                     <DoughnutChart
-                        chartContainerDivHeight={chartContainerDiv.current.offsetHeight}
-                        chartContainerDivWidth={chartContainerDiv.current.offsetWidth}
+                        chartContainerDivHeight={props.chartContainerDiv.current?.offsetHeight}
+                        chartContainerDivWidth={props.chartContainerDiv.current?.offsetWidth}
                         chartType={props.chartType}
                         hourRange={props.hourRange}
                         minHour={props.minHour}

@@ -75,7 +75,7 @@ const DoughnutChart = (props) => {
         process2Data(props.data);
     }
     // fetchData();
-  }, [props.data]);
+  }, [props.data, props.maxHour, props.minHour]);
 
   // process response json and populate data into doughnutData template
   const processData = (json) => {
@@ -92,9 +92,44 @@ const DoughnutChart = (props) => {
       ],
     };
 
-    for (let i in json) {
-      emotionData[json[i].emotion_id - 1].count = json[i].count;
+    switch (props.timeUnit) {
+      case "day":
+        for (let i in json) {
+          console.log(json[i].created_at, props.minHour, props.maxHour)
+          const parsedTime = parseInt(json[i].created_at)
+          if (props.maxHour >= parsedTime && props.minHour <= parsedTime) {
+            emotionData[json[i].emotion_id - 1].count = json[i].count;
+          }
+        }
+        break;
+      case "week":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      case "month":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      case "year":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      case "years":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      default:
+
+        break;
     }
+
+    // for (let i in json) {
+    //   emotionData[json[i].emotion_id - 1].count = json[i].count;
+    // }
     emotionData.map((emotion) => {
       data.labels.push(emotion.label);
       data.datasets[0].data.push(emotion.count);
