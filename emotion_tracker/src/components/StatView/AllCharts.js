@@ -29,7 +29,14 @@ const AllCharts = (props) => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <DoughnutChart />
+                    <DoughnutChart 
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
                 </div>
             )
         case "linechart":
@@ -44,7 +51,14 @@ const AllCharts = (props) => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <LineChart />
+                    <LineChart 
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
                 </div>
             )
         case "barchart":
@@ -58,7 +72,6 @@ const AllCharts = (props) => {
             <text>chartType not found</text>
         )
     }
-
 }
 
 export default AllCharts;

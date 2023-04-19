@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import { useState } from "react";
 import EmotionButton from "./components/EmotionButtons";
 import EmotionButtonView from "./views/EmotionButtonView";
@@ -17,6 +17,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import HourRange from "./components/StatView/HourRange";
+
 
 
 // Haversine formula

@@ -3,10 +3,6 @@ import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
 
-const DATA_COUNT = 7;
-
-const labels = ['Ma', 'Ti', 'Ke', 'To', 'Pe'];
-
 
 const options = {
     type: 'line',
@@ -17,14 +13,14 @@ const options = {
           position: 'top',
         },
         title: {
-          display: true,
+          display: false,
           text: 'Chart.js Line Chart'
         }
       }
     },
   };
 
-const LineChart = () => {
+const LineChart = (props) => {
     const [lineData, setLineData] = useState({
         labels: [],
         datasets: [
@@ -33,36 +29,12 @@ const LineChart = () => {
             data: [],
             borderColor: [],
             backgroundColor: [],
-          },
-          {
-              label: [],
-              data: [],
-              borderColor: [],
-              backgroundColor: [],
-            },
-            {
-              label: [],
-              data: [],
-              borderColor: [],
-              backgroundColor: [],
-            },
-            {
-              label: [],
-              data: [],
-              borderColor: [],
-              backgroundColor: [],
-            },
-            {
-              label: [],
-              data: [],
-              borderColor: [],
-              backgroundColor: [],
-            },
+          }
         ]
 });
 
 useEffect(() => {
-    async function fetchData() {
+    /*async function fetchData() {
       const response = await fetch(
         `http://localhost:3001/getstats/getemotions/`
       );
@@ -74,10 +46,12 @@ useEffect(() => {
         );
       }
 
-      processData(jsonData);
+    }*/
+    if(props.data != null && props.data.lenght > 1) {
+    processData(props.data);
     }
-    fetchData();
-  }, []);
+
+  }, [props.data]);
 
   // process response json and populate data into LineData template
   const processData = (json) => {
@@ -88,18 +62,21 @@ useEffect(() => {
           label: "Total emotions in doughnutchart",
           data: [],
           backgroundColor: [],
-          borderRadius: 0,
-          spacing: 0,
         },
       ],
     };
+
     for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
-    }
-    setLineData(data);
-  }
+        emotionData[json[i].emotion_id - 1].count = json[i].count;
+      }
+      emotionData.map((emotion) => {
+        data.labels.push(emotion.label);
+        data.datasets[0].data.push(emotion.count);
+        data.datasets[0].backgroundColor.push(emotion.rgbColor);
+      });
+
+      setLineData(data);
+    };
 
   return <Line data={lineData} options={options} />;
 };
