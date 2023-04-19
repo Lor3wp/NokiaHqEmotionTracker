@@ -1,21 +1,29 @@
 .StatWindow {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     max-height: 100vh;
     min-height: 100vh;
-    min-width: 45vh;
+    min-width: 100vw;
 }
 
 .Stats-header {
     display: flex;
-    flex: 1;
+    position: sticky;
+    top: 5px;
+    z-index: 5;
+    height: 3.3em;
     border: 1px;
     border-style: dashed;
     border-color: hotpink;
     margin: 5px;
-    padding: 2px;
+    justify-content: space-between;
+    align-content: center;
     align-items: center;
-    justify-content: center;
+}
+.Stats-header button {
+    width: 4em;
+    height: 4em;
 }
 
 #ChartView {
@@ -67,7 +75,7 @@
     margin: 5px;
     padding: 2px;
     align-items: center;
-    justify-content: center;
+justify-content: space-around;
 }
 
 #VilisVelvetyElementView {

@@ -4,6 +4,7 @@ import "../css/App.css";
 import "../css/StatWindow.css"
 import React, {useEffect} from "react";
 import { useState } from "react";
+import NavigationBar from '../components/StatView/NavigationBar';
 import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
 import { getWeek } from "date-fns";
@@ -105,11 +106,11 @@ const StatWindow = ({ backButtonClicked }) => {
           }}
           onClick={backButtonClicked}
         >
-          <span class="material-symbols-outlined" style={{ color: "white" }}>
+          <span className="material-symbols-outlined" style={{ color: "white" }}>
             arrow_back
           </span>
         </button>
-        <p>Top navbar here</p>
+        <NavigationBar /*props={setChartType}*/ />
       </div>
       <div id="ChartView">
         <AllCharts
