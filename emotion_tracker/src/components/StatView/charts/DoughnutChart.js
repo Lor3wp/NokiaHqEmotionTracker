@@ -97,8 +97,11 @@ const DoughnutChart = (props) => {
         for (let i in json) {
           // console.log(json[i].created_at, props.minHour, props.maxHour)
           const parsedTime = parseInt(json[i].created_at)
-          if (props.maxHour >= parsedTime && props.minHour <= parsedTime) {
-            emotionData[json[i].emotion_id - 1].count = json[i].count;
+          if (props.hourRange === false) {
+            console.log(typeof props.maxHour)
+            if (props.maxHour >= parsedTime && parseInt(props.minHour) <= parsedTime) {
+              emotionData[json[i].emotion_id - 1].count = json[i].count;
+            }
           }
         }
         break;
