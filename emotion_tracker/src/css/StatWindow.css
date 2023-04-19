@@ -11,6 +11,7 @@
     display: flex;
     position: sticky;
     top: 5px;
+    z-index: 5;
     height: 3.3em;
     border: 1px;
     border-style: dashed;
