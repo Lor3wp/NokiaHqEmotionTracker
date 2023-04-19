@@ -3,6 +3,7 @@
 // maxHour when hourRange == false
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
+import {useEffect, useRef} from "react";
 
 const AllCharts = (props) => {
     /** props
@@ -14,21 +15,29 @@ const AllCharts = (props) => {
      * timeUnit={timeUnit}
      * */
     console.log(props.data)
+    const chartContainerDiv = useRef(0);
+    useEffect(() => {
+        const divHeight = chartContainerDiv.current.offsetHeight;
+        const divWidth = chartContainerDiv.current.offsetWidth;
+        console.log("the height", divHeight, divWidth);
+    }, []);
 
     switch (props.chartType) {
         case "doughnutchart":
             return (
-                <div style={{
+                <div ref={chartContainerDiv} style={{
                     display: "flex",
                     flexDirection:"column",
                     flex: 1,
                     // backgroundColor: "blue",
                     width: "100%",
-                    height: "100%",
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <DoughnutChart />
+                    <DoughnutChart
+                        chartContainerDivHeight={chartContainerDiv.current.offsetHeight}
+                        chartContainerDivWidth={chartContainerDiv.current.offsetWidth}
+                    />
                 </div>
             )
         case "barchart":

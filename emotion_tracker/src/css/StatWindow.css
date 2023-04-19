@@ -28,6 +28,7 @@
 
 #ChartView {
     display: flex;
+    flex-direction: column;
     flex: 10;
     min-height: 336px;
     min-width: 290px;
@@ -74,7 +75,7 @@
     margin: 5px;
     padding: 2px;
     align-items: center;
-    justify-content: center;
+justify-content: space-around;
 }
 
 #VilisVelvetyElementView {
