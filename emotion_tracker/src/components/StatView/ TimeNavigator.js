@@ -20,30 +20,28 @@ const TimeNavigator = ({timeUnit, setTimeUnit}) => {
 
     return (
       <>
-        <div className="TimeView">
-          {/* <hr className="TimeViewButtonLine" /> */}
-          {/* <div className="TimeViewButtonLine"></div> */}
-          {timeNavigatorData.map((button) => (
-            <TimeNavigatorButton
-              buttonLabel={button.label}
-              buttonLabelLowerCase={button.label.toLowerCase()}
-              buttonClass={
-                timeUnit === button.label.toLowerCase()
-                  ? "SelectedTimeButton"
-                  : "TimeButton"
-              }
-              groupClass={
-                timeUnit === button.label.toLowerCase()
-                  ? "SelectedTimeViewButtonGroup"
-                  : "TimeViewButtonGroup"
-              }
-              setTimeUnit={setTimeUnit}
-              lineFactor={
-                button.id < timeNavigatorData.length ? "TimeViewButtonLine" : ""
-              }
-            />
-          ))}
-        </div>
+        {/* <hr className="TimeViewButtonLine" /> */}
+        {/* <div className="TimeViewButtonLine"></div> */}
+        {timeNavigatorData.map((button) => (
+          <TimeNavigatorButton
+            buttonLabel={button.label}
+            buttonLabelLowerCase={button.label.toLowerCase()}
+            buttonClass={
+              timeUnit === button.label.toLowerCase()
+                ? "SelectedTimeButton"
+                : "TimeButton"
+            }
+            groupClass={
+              timeUnit === button.label.toLowerCase()
+                ? "SelectedTimeViewButtonGroup"
+                : "TimeViewButtonGroup"
+            }
+            setTimeUnit={setTimeUnit}
+            lineFactor={
+              button.id < timeNavigatorData.length ? "TimeViewButtonLine" : ""
+            }
+          />
+        ))}
       </>
     );
 };
