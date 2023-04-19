@@ -50,7 +50,17 @@ const StatWindow = ({ backButtonClicked }) => {
                 setLoading(false);
                 break;
             case "week":
-                const responseWeek = await fetch(backendAddress + `emotions/getweek/${chartDate[3]}-${chartDate[2]}-${chartDate[0]}/${chartDate[3]}-${chartDate[2]}-${chartDate[0]}`);
+                const date = new Date(chartDate[3], chartDate[2] - 1, chartDate[0]);
+                const dayOfWeek = date.getDay();
+                const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+                const monday = new Date(date.setDate(diff));
+                const date1 = new Date(chartDate[3], chartDate[2] - 1, chartDate[0]); // April 22, 2022
+                const firstDayOfWeek = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() - date1.getDay() + 1);
+                const lastDayOfWeek = new Date(firstDayOfWeek);
+                lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+                // console.log(monday.getDate(), lastDayOfWeek.getDate())
+
+                const responseWeek = await fetch(backendAddress + `emotions/getweek/${chartDate[3]}-${chartDate[2]}-${monday.getDate()}/${chartDate[3]}-${chartDate[2]}-${lastDayOfWeek.getDate()}`);
                 const jsonDataWeek = await responseWeek.json();
                 setData(jsonDataWeek);
                 setLoading(false);
