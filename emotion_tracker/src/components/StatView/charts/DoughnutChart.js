@@ -86,8 +86,8 @@ const DoughnutChart = (props) => {
           label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
-          borderRadius: 15,
-          spacing: 20,
+          borderRadius: 0,
+          spacing: 0,
         },
       ],
     };
@@ -113,8 +113,8 @@ const DoughnutChart = (props) => {
           label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
-          borderRadius: 15,
-          spacing: 20,
+          borderRadius: 0,
+          spacing: 0,
         },
       ],
     };
