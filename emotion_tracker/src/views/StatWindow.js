@@ -131,6 +131,9 @@ const StatWindow = ({ backButtonClicked }) => {
           setMaxHour={setMaxHour}
           setMinHour={setMinHour}
           onChange={handleHourChange}
+          hourRange={hourRange}
+          setHourRange={setHourRange}
+          timeUnit={timeUnit}
         ></HourSlider>
       </div>
       <div id="ChosenTimeUnitNavView">
