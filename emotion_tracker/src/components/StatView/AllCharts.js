@@ -47,7 +47,7 @@ const AllCharts = (props) => {
                     />
                 </div>
             )
-        case "barchart":
+        case "piechart":
             return (
                 <div
                     style={{
@@ -69,6 +69,21 @@ const AllCharts = (props) => {
                         timeUnit={props.timeUnit}
                         data={props.data}
                     />
+                </div>
+            )
+        case "barchart":
+            return (
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                        // backgroundColor: "blue",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
+
                 </div>
             )
         default:
