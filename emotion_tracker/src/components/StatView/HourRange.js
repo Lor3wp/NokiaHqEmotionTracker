@@ -1,24 +1,18 @@
 import React from "react";
 import "../../css/HourRange.css";
 
-const HourRange = ({ hourRange, setHourRange, onChange, useSingleThumb, setUseSingleThumb }) => {
-    
-    const handleChange = () => {
-        setHourRange(!hourRange)
-        if (onChange) {
-            onChange(hourRange);
-          }
-    }
+const HourRange = ({ hourRange, setHourRange }) => {
 
   return (
     <div className="hourRange-singleHour"> 
-    <p className="range-text">Hour range</p>
+    {!hourRange ? (
+      <p className="range-text">Hour range</p>
+    ) : <p className="range-text">Single hour</p>}
     <label class="switch">
-    <input type="checkbox" checked={useSingleThumb} onChange={(e) => setUseSingleThumb(e.target.checked)}
+    <input type="checkbox" checked={hourRange} onChange={(e) => setHourRange(e.target.checked)}
  />
     <span class="slider round"></span>
     </label>
-  <p className="range-text">Single hour</p>
   </div>
   );
 };

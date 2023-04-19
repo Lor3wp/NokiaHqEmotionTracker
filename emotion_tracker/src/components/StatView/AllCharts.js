@@ -4,6 +4,7 @@
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
+import {useEffect, useRef} from "react";
 
 const AllCharts = (props) => {
     /** props
@@ -14,29 +15,37 @@ const AllCharts = (props) => {
      * chartDate={chartDate}
      * timeUnit={timeUnit}
      * */
-    console.log(props.data)
+    // console.log(props.data)
+    const chartContainerDiv = useRef(null);
+    useEffect(() => {
+        const divHeight = props.chartContainerDiv.current?.offsetHeight;
+        const divWidth = props.chartContainerDiv.current?.offsetWidth;
+        console.log("the height", divHeight, divWidth);
+    }, []);
 
     switch (props.chartType) {
         case "doughnutchart":
             return (
-                <div style={{
+                <div ref={chartContainerDiv} style={{
                     display: "flex",
                     flexDirection:"column",
                     flex: 1,
                     // backgroundColor: "blue",
                     width: "100%",
-                    height: "100%",
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <DoughnutChart 
-                    chartType={props.chartType}
-                    hourRange={props.hourRange}
-                    minHour={props.minHour}
-                    maxHour={props.maxHour}
-                    chartDate={props.chartDate}
-                    timeUnit={props.timeUnit}
-                    data={props.data}/>
+                    <DoughnutChart
+                        chartContainerDivHeight={props.chartContainerDiv.current?.offsetHeight}
+                        chartContainerDivWidth={props.chartContainerDiv.current?.offsetWidth}
+                        chartType={props.chartType}
+                        hourRange={props.hourRange}
+                        minHour={props.minHour}
+                        maxHour={props.maxHour}
+                        chartDate={props.chartDate}
+                        timeUnit={props.timeUnit}
+                        data={props.data}
+                    />
                 </div>
             )
         case "linechart":
@@ -59,6 +68,7 @@ const AllCharts = (props) => {
                     chartDate={props.chartDate}
                     timeUnit={props.timeUnit}
                     data={props.data}/>
+                
                 </div>
             )
         case "piechart":
@@ -85,7 +95,16 @@ const AllCharts = (props) => {
             )
         case "barchart":
             return (
-                <div>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                        // backgroundColor: "blue",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
 
                 </div>
             )
