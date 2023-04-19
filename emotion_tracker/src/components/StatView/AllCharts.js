@@ -4,6 +4,7 @@
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
+import BarChart from "./charts/Barchart";
 import {useEffect, useRef} from "react";
 
 const AllCharts = (props) => {
@@ -105,7 +106,14 @@ const AllCharts = (props) => {
                         height: "100%",
                     }}
                 >
-
+                    <BarChart
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
                 </div>
             )
         default:

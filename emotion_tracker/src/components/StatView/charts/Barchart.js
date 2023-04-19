@@ -59,8 +59,8 @@ const options = {
     },
   };
 
-const Barchart = () => {
+const BarChart = () => {
     return (<Bar data={data} options={options} />);
   }
   
-  export default Barchart;
+  export default BarChart;
