@@ -10,7 +10,7 @@
 .Stats-header {
     display: flex;
     position: sticky;
-    top: 0;
+    top: 5px;
     height: 3.3em;
     border: 1px;
     border-style: dashed;
