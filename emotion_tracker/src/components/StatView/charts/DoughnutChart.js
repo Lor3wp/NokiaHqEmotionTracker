@@ -27,9 +27,9 @@ const options2 = {
 
 const DoughnutChart = (props) => {
   // data template for population
-  console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
+  // console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
   const maxDivSize = props.chartContainerDivHeight > props.chartContainerDivWidth ? props.chartContainerDivWidth : props.chartContainerDivHeight;
-  console.log("90%", maxDivSize/100*90)
+  // console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
     datasets: [
@@ -95,7 +95,7 @@ const DoughnutChart = (props) => {
     switch (props.timeUnit) {
       case "day":
         for (let i in json) {
-          console.log(json[i].created_at, props.minHour, props.maxHour)
+          // console.log(json[i].created_at, props.minHour, props.maxHour)
           const parsedTime = parseInt(json[i].created_at)
           if (props.maxHour >= parsedTime && props.minHour <= parsedTime) {
             emotionData[json[i].emotion_id - 1].count = json[i].count;
@@ -136,7 +136,7 @@ const DoughnutChart = (props) => {
       data.datasets[0].backgroundColor.push(emotion.rgbColor);
     });
 
-    console.log(emotionData);
+    // console.log(emotionData);
     setDoughnutData(data);
   }
 
@@ -163,7 +163,7 @@ const DoughnutChart = (props) => {
       data.datasets[0].backgroundColor.push(emotion.rgbColor);
     });
 
-    console.log(emotionData);
+    // console.log(emotionData);
     setDoughnut2Data(data);
   }
   // maxDivSize

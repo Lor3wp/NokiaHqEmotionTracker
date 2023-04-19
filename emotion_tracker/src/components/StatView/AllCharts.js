@@ -14,7 +14,7 @@ const AllCharts = (props) => {
      * chartDate={chartDate}
      * timeUnit={timeUnit}
      * */
-    console.log(props.data)
+    // console.log(props.data)
     const chartContainerDiv = useRef(null);
     useEffect(() => {
         const divHeight = props.chartContainerDiv.current?.offsetHeight;
