@@ -28,6 +28,8 @@
 #ChartView {
     display: flex;
     flex: 10;
+    min-height: 336px;
+    min-width: 290px;
     border: 1px;
     border-style: dashed;
     border-color: red;
@@ -51,7 +53,7 @@
 
 #ChosenTimeUnitNavView {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 0.5;
     border: 1px;
     border-style: dashed;
