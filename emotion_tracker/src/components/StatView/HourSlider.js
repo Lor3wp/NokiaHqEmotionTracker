@@ -30,10 +30,9 @@ const HourSlider = ({
     setValue(newValue);
     setMaxHour(newValue);
     if (onChange) {
-      onChange(value);
+      onChange(newValue);
     }
   };
-
   if (timeUnit === "day") {
     return (
       <div className="hourRange-Slider">
