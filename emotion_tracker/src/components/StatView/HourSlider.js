@@ -4,31 +4,6 @@ import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import HourRange from "./HourRange";
 
-const SingleThumbSlider = ({onChange, maxHour }) => {
-    const [value, setValue] = useState([0,23]);
-
-    const onSingleThumbChange = (newValue) => {
-    
-        setValue(newValue);
-        if(onChange) {
-            onChange(value)
-        }
-      };
-
-  return (
-    <div>
-    <p className="hour-text">{value.slice("0")[1]}:00</p>
-     <RangeSlider
-        className="single-thumb"
-        value={value}
-        max={23}
-        onInput={onSingleThumbChange}
-        thumbsDisabled={[true, false]}
-        rangeSlideDisabled={true}
-      />
-    </div>
-  );
-};
 
 const HourSlider = ({
   minHour,
@@ -76,7 +51,7 @@ const HourSlider = ({
       />
 </div>
       {useSingleThumb ? (
-        <div>
+        <div className="margin-lg">
        <RangeSlider
       className="single-thumb"
       value={value}

@@ -2,13 +2,6 @@ import React from "react";
 import "../../css/HourRange.css";
 
 const HourRange = ({ hourRange, setHourRange, onChange, useSingleThumb, setUseSingleThumb }) => {
-    
-    const handleChange = () => {
-        setHourRange(!hourRange)
-        if (onChange) {
-            onChange(hourRange);
-          }
-    }
 
   return (
     <div className="hourRange-singleHour"> 
