@@ -14,7 +14,7 @@
     z-index: 5;
     height: 3.3em;
     border: 1px;
-    border-style: dashed;
+    /*border-style: dashed;*/
     border-color: hotpink;
     margin: 5px;
     justify-content: space-between;
@@ -33,7 +33,7 @@
     min-height: 336px;
     min-width: 290px;
     border: 1px;
-    border-style: dashed;
+    /*border-style: dashed;*/
     border-color: red;
     margin: 5px;
     padding: 2px;
@@ -45,7 +45,7 @@
     display: flex;
     flex: 0.7;
     border: 1px;
-    border-style: dashed;
+    /*border-style: dashed;*/
     border-color: gold;
     margin: 5px;
     padding: 2px;
@@ -58,7 +58,7 @@
     flex-direction: column;
     flex: 0.5;
     border: 1px;
-    border-style: dashed;
+    /*border-style: dashed;*/
     border-color: salmon;
     margin: 5px;
     padding: 2px;
@@ -70,7 +70,7 @@
     display: flex;
     flex: 0.7;
     border: 1px;
-    border-style: dashed;
+    /*border-style: dashed;*/
     border-color: honeydew;
     margin: 5px;
     padding: 2px;
@@ -81,7 +81,7 @@ justify-content: space-around;
 #VilisVelvetyElementView {
     display: flex;
     border: 1px;
-    border-style: dashed;
+    /*border-style: dashed;*/
     border-color: honeydew;
     margin: 2px;
     padding: 2px;
