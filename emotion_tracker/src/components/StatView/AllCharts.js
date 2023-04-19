@@ -3,6 +3,7 @@
 // maxHour when hourRange == false
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
+import LineChart from "./charts/Linechart";
 import {useEffect, useRef} from "react";
 
 const AllCharts = (props) => {
@@ -47,28 +48,49 @@ const AllCharts = (props) => {
                     />
                 </div>
             )
+        case "linechart":
+            return (
+                <div style={{
+                    display: "flex",
+                    flexDirection:"column",
+                    flex: 1,
+                    // backgroundColor: "blue",
+                    width: "100%",
+                    height: "100%",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <LineChart 
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
+                
+                </div>
+            )
         case "piechart":
             return (
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        flex: 1,
-                        // backgroundColor: "blue",
-                        width: "100%",
-                        height: "100%",
-                    }}
-                >
-                    {/* {console.log(props.data)} */}
-                    <Piechart
-                        chartType={props.chartType}
-                        hourRange={props.hourRange}
-                        minHour={props.minHour}
-                        maxHour={props.maxHour}
-                        chartDate={props.chartDate}
-                        timeUnit={props.timeUnit}
-                        data={props.data}
-                    />
+                <div style={{
+                     display: "flex",
+                     flexDirection:"column",
+                     flex: 1,
+                     // backgroundColor: "blue",
+                     width: "100%",
+                     height: "100%",
+                     justifyContent: "center",
+                     alignItems: "center"
+                }}>
+                    <Piechart 
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
                 </div>
             )
         case "barchart":
@@ -91,7 +113,6 @@ const AllCharts = (props) => {
             <text>chartType not found</text>
         )
     }
-
 }
 
 export default AllCharts;
