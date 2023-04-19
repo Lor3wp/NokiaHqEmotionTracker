@@ -3,6 +3,7 @@
 // maxHour when hourRange == false
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
+import LineChart from "./charts/Linechart";
 
 const AllCharts = (props) => {
     /** props
@@ -29,6 +30,21 @@ const AllCharts = (props) => {
                     alignItems: "center"
                 }}>
                     <DoughnutChart />
+                </div>
+            )
+        case "linechart":
+            return (
+                <div style={{
+                    display: "flex",
+                    flexDirection:"column",
+                    flex: 1,
+                    // backgroundColor: "blue",
+                    width: "100%",
+                    height: "100%",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <LineChart />
                 </div>
             )
         case "barchart":
