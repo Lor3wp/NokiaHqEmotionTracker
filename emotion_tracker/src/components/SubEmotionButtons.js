@@ -101,6 +101,8 @@ const SubEmotionButtons = ({ showMore, setShowMore }) => {
         {emotionData.map((button) => (
           <div key={button.label}>
             <button
+            style={{backgroundColor: button.rgbColor,
+            color: button.textColor}}
               className={
                 subClicked !== button.label && !buttonActive
                   ? getButtonClassName(button.label + "-disabled")

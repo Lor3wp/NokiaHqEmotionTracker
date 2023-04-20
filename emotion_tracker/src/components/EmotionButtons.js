@@ -87,7 +87,8 @@ const EmotionButton = ({ showMore, setShowMore }) => {
         {emotionData.map((button) => (
           <button
             style={{
-              animation: startAnimation ? "fadeIn 3s, forwards" : "none",
+              backgroundColor: button.rgbColor,
+              color: button.textColor,
             }}
             key={button.label}
             className={
