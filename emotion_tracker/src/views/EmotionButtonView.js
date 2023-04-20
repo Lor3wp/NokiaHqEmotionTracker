@@ -4,6 +4,8 @@ import TestView from "../TestView";
 import StatWindow from "./StatWindow";
 import { useState } from "react";
 import Timer from "../components/Timer";
+import ShowMoreButton from "../components/ShowMoreButton";
+import SubEmotionButtons from "../components/SubEmotionButtons";
 
 const clickHandler = (viewCondition, setViewCondition) => {
   setViewCondition(!viewCondition);
@@ -12,12 +14,17 @@ const clickHandler = (viewCondition, setViewCondition) => {
 
 const EmotionButtonView = ({ setStatsData }) => {
   const [viewCondition, setViewCondition] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
   const backButtonClicked = () => {
     setViewCondition(!viewCondition);
   };
-
-  if (!viewCondition) {
+  if(showMore) {
+    return(
+      <SubEmotionButtons showMore={showMore} setShowMore={setShowMore}></SubEmotionButtons>
+    );
+  }
+  else if (!viewCondition) {
     return (
       <div className="emotionButtonView">
         <div
@@ -37,12 +44,16 @@ const EmotionButtonView = ({ setStatsData }) => {
             updateStats={() => setStatsData(null)}
             setViewCondition={setViewCondition}
             viewCondition={viewCondition}
+            showMore={showMore}
+            setShowMore={setShowMore}
           />
         </div>
+        <ShowMoreButton showMore={showMore} setShowMore={setShowMore}></ShowMoreButton>
       </div>
     );
-  } else {
+  } else if (viewCondition) {
     return <StatWindow backButtonClicked={backButtonClicked}></StatWindow>;
   }
+
 }
 export default EmotionButtonView;
