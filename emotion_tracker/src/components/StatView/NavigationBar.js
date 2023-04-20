@@ -11,6 +11,7 @@ const NavigationBar = (props) => {
     const switchChart = (type) => {
         // console.log(type)
         props.setChartType(type)
+        toggleMenu()
     }
 
     return (

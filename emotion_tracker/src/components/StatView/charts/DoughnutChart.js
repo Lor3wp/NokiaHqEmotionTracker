@@ -135,7 +135,7 @@ const DoughnutChart = (props) => {
     }
 
     // for (let i in json) {
-    //   emotionData[json[i].emotion_id - 1].count = json[i].count;
+    //   emotionData[json[i].emotion_id - 1].total = json[i].count;
     // }
     emotionData.map((emotion) => {
       data.labels.push(emotion.label);

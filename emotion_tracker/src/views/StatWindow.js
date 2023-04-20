@@ -16,7 +16,7 @@ import backendAddress from "../data/apiHooks";
 const StatWindow = ({ backButtonClicked }) => {
   // TODO: charts and general view data here
   //   TODO: that includes navigation states within this view
-  const [chartType, setChartType] = useState("lineChart");
+  const [chartType, setChartType] = useState("doughnutchart");
   const [hourRange, setHourRange] = useState(false);
   const [minHour, setMinHour] = useState(0);
   const [maxHour, setMaxHour] = useState(23);
@@ -123,7 +123,7 @@ const StatWindow = ({ backButtonClicked }) => {
         </button>
         <NavigationBar setChartType={setChartType} chartType={chartType} />
       </div>
-      <div ref={chartContainerDiv}id="ChartView">
+      <div ref={chartContainerDiv} id="ChartView">
         <AllCharts
             chartType={chartType}
             hourRange={hourRange}
@@ -170,4 +170,4 @@ export default StatWindow;
 
 
 // viimeksi korjasin ja paransin aikav'lin navigointinapit, sekä lähdin tekemään datan käsittelyä linecharttia varten
-// tänään jatkan datan käsittelyä, valmistelen esitelmää sekä osallistuin opettajapalaveriin 
+// tänään jatkan datan käsittelyä, valmistelen esitelmää sekä osallistuin opettajapalaveriin

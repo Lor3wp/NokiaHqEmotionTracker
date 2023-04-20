@@ -95,6 +95,8 @@ const AllCharts = (props) => {
           }}
         >
           <DoughnutChart
+            chartContainerDivHeight={props.chartContainerDiv.current?.offsetHeight}
+            chartContainerDivWidth={props.chartContainerDiv.current?.offsetWidth}
             chartType={props.chartType}
             hourRange={props.hourRange}
             minHour={props.minHour}
