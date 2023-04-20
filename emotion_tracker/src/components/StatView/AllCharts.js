@@ -5,6 +5,7 @@ import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
 import BarChart from "./charts/Barchart";
+import MountainChart from "./charts/Mountainchart";
 import {useEffect, useRef} from "react";
 
 const AllCharts = (props) => {
@@ -61,7 +62,7 @@ const AllCharts = (props) => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <LineChart 
+                    <LineChart
                     chartType={props.chartType}
                     hourRange={props.hourRange}
                     minHour={props.minHour}
