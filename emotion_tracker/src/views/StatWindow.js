@@ -150,3 +150,8 @@ const StatWindow = ({ backButtonClicked }) => {
 };
 
 export default StatWindow;
+
+
+
+// viimeksi korjasin ja paransin aikav'lin navigointinapit, sekä lähdin tekemään datan käsittelyä linecharttia varten
+// tänään jatkan datan käsittelyä, valmistelen esitelmää sekä osallistuin opettajapalaveriin 
