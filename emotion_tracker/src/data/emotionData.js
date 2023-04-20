@@ -5,7 +5,8 @@ const emotionData = [
     icon: "sentiment_satisfied",
     disabled: false,
     rgbColor: "rgb(206 255 195)",
-    count: 0,
+    count: [],
+    total: 0,
   },
   {
     label: "Angry",
@@ -13,7 +14,8 @@ const emotionData = [
     icon: "sentiment_extremely_dissatisfied",
     disabled: false,
     rgbColor: "rgb(255 190 190)",
-    count: 0,
+    count: [],
+    total: 0,
   },
   {
     label: "Scared",
@@ -21,7 +23,8 @@ const emotionData = [
     icon: "mood_bad",
     disabled: false,
     rgbColor: "rgb(243, 189, 255)",
-    count: 0,
+    count: [],
+    total: 0,
   },
 
   {
@@ -30,7 +33,8 @@ const emotionData = [
     icon: "sentiment_very_satisfied",
     disabled: false,
     rgbColor: "rgb(255, 239, 153)",
-    count: 0,
+    count: [],
+    total: 0,
   },
   {
     label: "Sad",
@@ -38,7 +42,8 @@ const emotionData = [
     icon: "sentiment_dissatisfied",
     disabled: false,
     rgbColor: "rgb(184, 204, 244)",
-    count: 0,
+    count: [],
+    total: 0,
   },
   {
     label: "Neutral",
@@ -46,7 +51,8 @@ const emotionData = [
     icon: "sentiment_neutral",
     disabled: false,
     rgbColor: "rgb(255, 227, 202)",
-    count: 0,
+    count: [],
+    total: 0,
   },
 ];
 
