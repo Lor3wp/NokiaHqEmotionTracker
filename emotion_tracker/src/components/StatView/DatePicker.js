@@ -27,6 +27,7 @@ import "../../css/DatePicker.css"
 const DatePicker = (props) => {
     const options = {weekStartsOn: 1};
 
+    // set the changed time to chartDate
     const setNewDate = (currentDay) => {
         const weekNumber = getWeek(currentDay, options);
 
@@ -40,6 +41,8 @@ const DatePicker = (props) => {
         )
         console.log(`${props.chartDate}`)
     }
+
+    // increase the time based on timeUnit
     const timeUp = () => {
         const currentDay = new Date(
             props.chartDate[3],
@@ -68,6 +71,7 @@ const DatePicker = (props) => {
         setNewDate(currentDay)
     };
 
+    // decrease the time based on timeUnit
     const timeDown = () => {
         const currentDay = new Date(
             props.chartDate[3],
@@ -95,7 +99,8 @@ const DatePicker = (props) => {
         }
         setNewDate(currentDay)
     };
-    // visible part
+
+    // set the visible part of UI based on timeUnit
     switch (props.timeUnit) {
         case "day":
             return (
@@ -150,7 +155,7 @@ const DatePicker = (props) => {
         default:
             return (
                 <div>
-                    <text>Somehow you are out of range.</text>
+                    <text>timeUnit is out of range</text>
                 </div>
             );
     }

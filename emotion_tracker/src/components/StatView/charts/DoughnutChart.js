@@ -141,7 +141,7 @@ const DoughnutChart = (props) => {
       data.labels.push(emotion.label);
       data.datasets[0].data.push(emotion.total);
       data.datasets[0].backgroundColor.push(emotion.rgbColor);
-      data.datasets[1].data.push(emotion.count);
+      data.datasets[1].data.push(emotion.total);
       data.datasets[1].backgroundColor.push(emotion.rgbColor);
     });
 
