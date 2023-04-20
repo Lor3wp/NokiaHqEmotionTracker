@@ -12,7 +12,7 @@ const options = {
     },
   },
   maintainAspectRatio: true,
-  cutout: 110,
+  cutout: "90%",
 };
 
 const options2 = {
@@ -22,11 +22,14 @@ const options2 = {
     },
   },
   maintainAspectRatio: true,
-  cutout: 80,
+  cutout: "90%",
 };
 
-const DoughnutChart = () => {
+const DoughnutChart = (props) => {
   // data template for population
+  // console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
+  const maxDivSize = props.chartContainerDivHeight > props.chartContainerDivWidth ? props.chartContainerDivWidth : props.chartContainerDivHeight;
+  // console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
     datasets: [
@@ -54,23 +57,25 @@ const DoughnutChart = () => {
 
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `http://localhost:3001/getstats/getemotions/`
-      );
-      const jsonData = await response.json();
-      // check if ammount of emotions is same as in emotionData.js
-      if (jsonData.length !== emotionData.length) {
-        console.error(
-          "emmount of emotions dose not match from database and emotionData.js"
-        );
-      }
+    // async function fetchData() {
+      // const response = await fetch(
+      //   `http://localhost:3001/getstats/getemotions/`
+      // );
+      // const jsonData = await response.json();
+      // // check if ammount of emotions is same as in emotionData.js
+      // if (jsonData.length !== emotionData.length) {
+      //   console.error(
+      //     "emmount of emotions dose not match from database and emotionData.js"
+      //   );
+      // }
 
-      processData(jsonData);
-      process2Data(jsonData)
+      if (props.data != null && props.data.length > 1) {
+        // console.log("stringi");
+        processData(props.data);
+        process2Data(props.data);
     }
-    fetchData();
-  }, []);
+    // fetchData();
+  }, [props.data, props.maxHour, props.minHour]);
 
   // process response json and populate data into doughnutData template
   const processData = (json) => {
@@ -78,7 +83,7 @@ const DoughnutChart = () => {
       labels: [],
       datasets: [
         {
-          label: "Total emotions in doughnutchart",
+          label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
           borderRadius: 0,
@@ -86,11 +91,55 @@ const DoughnutChart = () => {
         },
       ],
     };
-    for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+
+    switch (props.timeUnit) {
+      case "day":
+        for (let i in json) {
+          // console.log(json[i].created_at, props.minHour, props.maxHour)
+          const parsedTime = parseInt(json[i].created_at)
+          if (props.hourRange === false) {
+            console.log(typeof props.maxHour)
+            if (props.maxHour >= parsedTime && parseInt(props.minHour) <= parsedTime) {
+              emotionData[json[i].emotion_id - 1].count = json[i].count;
+            }
+          }
+        }
+        break;
+      case "week":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      case "month":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      case "year":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      case "years":
+        for (let i in json) {
+          emotionData[json[i].emotion_id - 1].count = json[i].count;
+        }
+        break;
+      default:
+
+        break;
     }
+
+    // for (let i in json) {
+    //   emotionData[json[i].emotion_id - 1].count = json[i].count;
+    // }
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
+      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    });
+
+    // console.log(emotionData);
     setDoughnutData(data);
   }
 
@@ -99,41 +148,47 @@ const DoughnutChart = () => {
       labels: [],
       datasets: [
         {
-          label: "Total emotions in doughnutchart",
-          data: [4, 2, 1, 2, 7, 2, 3, 2, 5, 2, 4, 2, 1, 2, 9, 2],
+          label: "Total emotions in piechart",
+          data: [],
           backgroundColor: [],
           borderRadius: 0,
           spacing: 0,
         },
       ],
     };
+
     for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+      emotionData[json[i].emotion_id - 1].count = json[i].count;
     }
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
+      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    });
+
+    // console.log(emotionData);
     setDoughnut2Data(data);
   }
-
+  // maxDivSize
   return (
-    <div style={{position: "relative", width: "290px", height: "290px", margin: "0px"}}>
-      <div>
-      <Doughnut
-      data={doughnutData}
-      options={options}
-      style={{width: "275px", height: "275px", position: "absolute"}}
-    />
+    <div style={{position: "relative", width: (maxDivSize/100*90), height: (maxDivSize/100*90), margin: "0px"}}>
+      <div style={{ }}>
+        <Doughnut
+          data={doughnutData}
+          options={options}
+          style={{width: "100%", height: "100%", position: "absolute", }}
+        />
+        <Doughnut
+            data={doughnut2Data}
+            options={options2}
+            style={{
+              width: (maxDivSize/100*80),
+              height: (maxDivSize/100*80),
+              position: "absolute",
+              padding: "5%"}}
+        />
+      </div>
     </div>
-    <div style={{top: "0px", left: "0px"}}>
-      <Doughnut
-      data={doughnut2Data}
-      options={options2}
-      style={{maxWidth: "220px", maxHeight: "220px", position: "absolute", top: "35px", left: "35px"}}
-      />
-    </div>
-    </div>
-    
-    
   );
 }
 
