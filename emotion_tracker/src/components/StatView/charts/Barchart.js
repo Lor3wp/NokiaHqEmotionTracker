@@ -45,7 +45,7 @@ const data ={
 const options = {
     plugins: {
         legend: {
-            display: false,
+            display: true,
         },
     },
     responsive: true,
