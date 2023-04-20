@@ -102,7 +102,7 @@ const DatePicker = (props) => {
                 <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
                     <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
                         <span style={{alignSelf: "flex-start"}} onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
-                            <text>{props.chartDate[0]}. {monthsNamed[props.chartDate[2]]} {props.chartDate[3]}</text>
+                            <p>{props.chartDate[0]}. {monthsNamed[props.chartDate[2]]} {props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
                 </div>
@@ -112,7 +112,7 @@ const DatePicker = (props) => {
                 <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
                     <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
-                            <text>Week {props.chartDate[1]}, {props.chartDate[3]}</text>
+                            <p>Week {props.chartDate[1]}, {props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ const DatePicker = (props) => {
                 <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
                     <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
-                            <text>{monthsNamed[props.chartDate[2]]} {props.chartDate[3]}</text>
+                            <p>{monthsNamed[props.chartDate[2]]} {props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ const DatePicker = (props) => {
                 <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
                     <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
-                            <text>{props.chartDate[3]}</text>
+                            <p>{props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ const DatePicker = (props) => {
                 <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
                     <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
-                            <text>{Math.floor(props.chartDate[3] / 10) * 10}'s</text>
+                            <p>{Math.floor(props.chartDate[3] / 10) * 10}'s</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ const DatePicker = (props) => {
         default:
             return (
                 <div>
-                    <text>Somehow you are out of range.</text>
+                    <p>Somehow you are out of range.</p>
                 </div>
             );
     }

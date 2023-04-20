@@ -24,6 +24,7 @@ const TimeNavigator = ({timeUnit, setTimeUnit}) => {
         {/* <div className="TimeViewButtonLine"></div> */}
         {timeNavigatorData.map((button) => (
           <TimeNavigatorButton
+            key={button.id}
             buttonLabel={button.label}
             buttonLabelLowerCase={button.label.toLowerCase()}
             buttonClass={
