@@ -9,7 +9,7 @@ const getButtonClassName = (label) => {
   return `${label}`;
 };
 
-const EmotionButton = ({ updateStats, setViewCondition, viewCondition }) => {
+const EmotionButton = ({ showMore, setShowMore }) => {
   const [statsData, setStatsData] = useState();
   const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
@@ -81,7 +81,6 @@ const EmotionButton = ({ updateStats, setViewCondition, viewCondition }) => {
   };
 
   // const [disable, setDisable] = useState(false)
-
   return (
     <div className="content">
       <div className="emotion-buttons">
