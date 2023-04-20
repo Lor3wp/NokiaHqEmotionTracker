@@ -20,7 +20,6 @@ const AllCharts = (props) => {
   useEffect(() => {
     // prepDataArray() creates empty arrays filled with 0 depending on timeunit and length of a month [0,0,0,0,0,0,0] this is for week
     prepDataArray();
-    console.log(new Date(props.chartDate[3], props.chartDate[2], 0).getDate());
     // check if json data from backend is empty or not
     if (props.data != null && props.data.length > 1) {
       // loop thru json data

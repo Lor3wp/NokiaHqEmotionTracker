@@ -96,37 +96,39 @@ const DoughnutChart = (props) => {
       case "day":
         for (let i in json) {
           // console.log(json[i].created_at, props.minHour, props.maxHour)
-          const parsedTime = parseInt(json[i].created_at)
+          const parsedTime = parseInt(json[i].created_at);
           if (props.hourRange === false) {
-            console.log(typeof props.maxHour)
-            if (props.maxHour >= parsedTime && parseInt(props.minHour) <= parsedTime) {
-              emotionData[json[i].emotion_id - 1].count = json[i].count;
+            console.log(typeof props.maxHour);
+            if (
+              props.maxHour >= parsedTime &&
+              parseInt(props.minHour) <= parsedTime
+            ) {
+              emotionData[json[i].emotion_id - 1].total = json[i].count;
             }
           }
         }
         break;
       case "week":
         for (let i in json) {
-          emotionData[json[i].emotion_id - 1].count = json[i].count;
+          emotionData[json[i].emotion_id - 1].total = json[i].count;
         }
         break;
       case "month":
         for (let i in json) {
-          emotionData[json[i].emotion_id - 1].count = json[i].count;
+          emotionData[json[i].emotion_id - 1].total = json[i].count;
         }
         break;
       case "year":
         for (let i in json) {
-          emotionData[json[i].emotion_id - 1].count = json[i].count;
+          emotionData[json[i].emotion_id - 1].total = json[i].count;
         }
         break;
       case "years":
         for (let i in json) {
-          emotionData[json[i].emotion_id - 1].count = json[i].count;
+          emotionData[json[i].emotion_id - 1].total = json[i].count;
         }
         break;
       default:
-
         break;
     }
 
@@ -135,13 +137,13 @@ const DoughnutChart = (props) => {
     // }
     emotionData.map((emotion) => {
       data.labels.push(emotion.label);
-      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].data.push(emotion.total);
       data.datasets[0].backgroundColor.push(emotion.rgbColor);
     });
 
     // console.log(emotionData);
     setDoughnutData(data);
-  }
+  };
 
   const process2Data = (json) => {
     const data = {
@@ -158,17 +160,17 @@ const DoughnutChart = (props) => {
     };
 
     for (let i in json) {
-      emotionData[json[i].emotion_id - 1].count = json[i].count;
+      emotionData[json[i].emotion_id - 1].total = json[i].count;
     }
     emotionData.map((emotion) => {
       data.labels.push(emotion.label);
-      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].data.push(emotion.total);
       data.datasets[0].backgroundColor.push(emotion.rgbColor);
     });
 
     // console.log(emotionData);
     setDoughnut2Data(data);
-  }
+  };
   // maxDivSize
   return (
     <div style={{position: "relative", width: (maxDivSize/100*90), height: (maxDivSize/100*90), margin: "0px"}}>
