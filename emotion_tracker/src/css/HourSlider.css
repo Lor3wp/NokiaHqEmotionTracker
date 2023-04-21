@@ -20,11 +20,11 @@
 @media only screen and (min-width: 1000px) {
   .margin-lg {
     min-width: 49vw !important;
-    max-width: 50vw !important;
+    max-width: 49vw !important;
   }
   .range-slider {
     min-width: 49vw !important;
-    max-width: 50vw !important;
+    max-width: 49vw !important;
   }
 }
 
