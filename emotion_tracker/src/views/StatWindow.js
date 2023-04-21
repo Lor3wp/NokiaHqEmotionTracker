@@ -16,7 +16,7 @@ import backendAddress from "../data/apiHooks";
 const StatWindow = ({ backButtonClicked }) => {
   // TODO: charts and general view data here
   //   TODO: that includes navigation states within this view
-  const [chartType, setChartType] = useState("lineChart");
+  const [chartType, setChartType] = useState("linechart");
   const [hourRange, setHourRange] = useState(false);
   const [minHour, setMinHour] = useState(0);
   const [maxHour, setMaxHour] = useState(23);

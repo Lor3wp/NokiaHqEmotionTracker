@@ -19,22 +19,53 @@ const AllCharts = (props) => {
 
   useEffect(() => {
     // prepDataArray() creates empty arrays filled with 0 depending on timeunit and length of a month [0,0,0,0,0,0,0] this is for week
+
     prepDataArray();
     // check if json data from backend is empty or not
     if (props.data != null && props.data.length > 1) {
       // loop thru json data
-      for (let i in props.data) {
-        // we check if the created_at value is zero, if not it means that we need to make it start from zero to fit in our prepeared array (example, our month has 30 indexes (0-29) and month dates are 1-30 this means we cant use date as index for this array, last one will be out of range and first one wont match with index)
-        if (props.data[0].created_at > 0) {
+      // we check if the created_at value is zero, if not it means that we need to make it start from zero to fit in our prepeared array (example, our month has 30 indexes (0-29) and month dates are 1-30 this means we cant use date as index for this array, last one will be out of range and first one wont match with index)
+      if (props.data[0].created_at > 0) {
+        for (let i in props.data) {
+          // console.log(emotionData[props.data[i].emotion_id - 1].label);
+          // console.log(emotionData[props.data[i].emotion_id - 1].count);
+          // emotionData.map((emotion) => {
+          //   console.log(emotion.count);
+          // });
+          // console.log(
+          //   (emotionData[props.data[i].emotion_id - 1].count[
+          //     props.data[i].created_at - props.data[0].created_at
+          //   ] += +props.data[i].count)
+          // );
+
+          emotionData.map((emotion) => {
+            if (emotion.id == props.data[i].emotion_id) {
+              console.log("nuuuuuuu");
+              emotion.count[
+                props.data[i].created_at - props.data[0].created_at
+              ] += +props.data[i].count;
+            }
+          });
+
           // insertin into emotiondata count values, emotiondata[here we pick emotion_id from json and match it to our emotiondata index to get right emotion].count[we get json created_at - json[first instance].created_at to get right index value (example, datase is 3,4,5,6,7 we do i-3 from all oh them to get 0,1,2,3,4 wich are index balues of our array)] += we make int from string and add it to value
-          emotionData[props.data[i].emotion_id - 1].count[
-            props.data[i].created_at - props.data[0].created_at
-          ] += parseInt(props.data[i].count);
-        } else {
+          // emotionData[props.data[i].emotion_id - 1].count[
+          //   props.data[i].created_at - props.data[0].created_at
+          // ] += parseInt(props.data[i].count);
+          // console.log(emotionData[props.data[i].emotion_id - 1].label);
+          // console.log(
+          //   emotionData[props.data[i].emotion_id - 1].count[
+          //     props.data[i].created_at - props.data[0].created_at
+          //   ]
+          // );
+        }
+      } else {
+        for (let i in props.data) {
           // if the created at starts with 0 dates will match with the index of array
-          emotionData[props.data[i].emotion_id - 1].count[
-            props.data[i].created_at
-          ] += parseInt(props.data[i].count);
+          // emotionData.map((emotion) => {
+          //   if (emotion.id == props.data[i].emotion_id) {
+          //     emotion.count[props.data[i].created_at] += +props.data[i].count;
+          //   }
+          // });
         }
       }
     } else {
@@ -45,7 +76,7 @@ const AllCharts = (props) => {
     console.log(emotionData);
   }, [props.timeUnit, props.data]);
 
-  const prepDataArray = () => {
+  const prepDataArray = async () => {
     // create Empty value to set new standart
     let values = [];
     // switch following timeUnit wich is set in TimeNavigator.js and created certain length array filled with 0 values
