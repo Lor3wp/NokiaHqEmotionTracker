@@ -87,6 +87,7 @@ const StatWindow = ({ backButtonClicked }) => {
 
                 break;
         }
+        console.log(data)
     }
     fetchData();
   }, [chartDate, timeUnit]);
