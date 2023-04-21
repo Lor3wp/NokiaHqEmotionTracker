@@ -46,6 +46,7 @@ const SubEmotionButtons = ({ showMore, setShowMore }) => {
   };
 
   useEffect(() => {
+    timerTick();
     let timer = setInterval(() => {
       timerTick();
     }, 1000);

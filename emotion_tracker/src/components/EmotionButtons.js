@@ -1,9 +1,12 @@
 import EmotionStats from "./EmotionStats";
 import EmotionStatsDay from "./EmotionStats";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import '../css/EmotionButtons.css';
 import emotionData from "../data/emotionData";
 import Loading from "../views/Loading";
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
 
 const getButtonClassName = (label) => {
   // Generate a unique class name based on the button's label
@@ -18,7 +21,22 @@ const EmotionButton = ({ showMore, setShowMore }) => {
   const [time, setTime] = useState(0);
   const timerTimeMs = 15000;
   const [clicked, setClicked] = useState(0);
-  
+  let userAgent = navigator.userAgent;
+  let browserName;
+
+  if(userAgent.match(/chrome|chromium|crios/i)){
+    browserName = "chrome";
+  }else if(userAgent.match(/firefox|fxios/i)){
+    browserName = "firefox";
+  }  else if(userAgent.match(/safari/i)){
+    browserName = "safari";
+  }else if(userAgent.match(/opr\//i)){
+    browserName = "opera";
+  } else if(userAgent.match(/edg/i)){
+    browserName = "edge";
+  }else{
+    browserName="No browser detection";
+  }
 
   // TIMER
   const timerStart = (e) => {
@@ -46,6 +64,7 @@ const EmotionButton = ({ showMore, setShowMore }) => {
   };
 
   useEffect(() => {
+    timerTick(); // call the function once before starting the interval
     let timer = setInterval(() => {
       timerTick();
     }, 1000);
@@ -78,11 +97,9 @@ const EmotionButton = ({ showMore, setShowMore }) => {
     addEmotion(id);
     setClicked(id);
     timerStart(e);
+    console.log(`browser in use is ${browserName}`)
   };
 
-  // const [disable, setDisable] = useState(false)
-
-  if (buttonActive !== null) {
     return (
     <div className="content">
       <div className="emotion-buttons">
@@ -119,17 +136,10 @@ const EmotionButton = ({ showMore, setShowMore }) => {
         </p>
       </div>
       <EmotionStats
-        // statsData={statsData}
-        // statsTodayData={statsTodayData}
         update={update}
       />
     </div>
     );
-  } else return (
-    <div className="emotion-buttons">
-      <Loading />
-    </div>
-  )
   
 }
 export default EmotionButton;

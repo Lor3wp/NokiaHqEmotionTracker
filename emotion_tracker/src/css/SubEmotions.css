@@ -69,6 +69,38 @@
     animation: fadeOut 1s forwards !important;
  }
 
+/*Happy*/
+ .Proud:hover, .Empowered:hover, .Confident:hover {
+   background-color: rgb(152, 190, 143) !important;
+
+ }
+
+ /*Angry*/
+ .Ashamed:hover, .Frustrated:hover, .Offended:hover
+ {
+   background-color: rgb(236, 135, 135) !important;
+
+ }
+ /*Scared*/
+ .Horrified:hover, .Embarrased:hover, .Anxious:hover {
+   background-color: rgb(195, 130, 212) !important;
+
+ }
+ /* Excited */
+ .Inspired:hover, .Focused:hover, .Energetic:hover {
+   background-color: rgb(251, 229, 104) !important;
+  }
+ /* Sad */
+ .Depressed:hover, .Lonely:hover, .Hurt:hover {
+   background-color: rgb(128, 143, 173) !important;
+
+ }
+ /* Neutral */
+ .Peaceful:hover, .Rested:hover, .Balanced:hover {
+   background-color: rgb(240, 189, 144) !important;
+
+ }
+
  .exit {
     align-self: flex-start;
     background-color: transparent;
