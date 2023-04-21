@@ -54,13 +54,22 @@ const LineChart = (props) => {
   useEffect(() => {
     let data = {
       labels: [],
-      datasets: new Array(emotionData.length).fill({
-        label: [],
-        data: [],
-        borderColor: "",
-        backgroundColor: "",
-      }),
+      datasets: []                              //new Array(emotionData.length).fill({
+        // label: [],
+        // data: [],
+        // borderColor: "",
+        // backgroundColor: "",
+      //}),
     };
+    for (let i in emotionData) {
+      data.datasets.push({
+        label: emotionData[i].label,
+        data: emotionData[i].count,
+        borderColor: emotionData[i].rgbColor,
+        backgroundColor: emotionData[i].rgbColor
+      })
+    }
+    console.log(data, "here here")
     switch (props.timeUnit) {
       case "year":
         data.labels = [
@@ -84,13 +93,13 @@ const LineChart = (props) => {
         break;
     }
 
-    emotionData.map((emotion) => {
-      data.datasets[emotion.id - 1].label = [emotion.label];
-      data.datasets[emotion.id - 1].data = emotion.count;
-      data.datasets[emotion.id - 1].borderColor = emotion.rgbColor;
-      data.datasets[emotion.id - 1].backgroundColor = emotion.rgbColor;
-      // console.log(data.datasets[emotion.id - 1]);
-    });
+    // emotionData.map((emotion) => {
+    //   data.datasets[emotion.id - 1].label = emotion.label;
+    //   data.datasets[emotion.id - 1].data = emotion.count;
+    //   data.datasets[emotion.id - 1].borderColor = emotion.rgbColor;
+    //   data.datasets[emotion.id - 1].backgroundColor = emotion.rgbColor;
+    //   // console.log(data.datasets[emotion.id - 1]);
+    // });
     // console.log(props.data);
     setLineData(data);
   }, [props.timeUnit, props.data]);
