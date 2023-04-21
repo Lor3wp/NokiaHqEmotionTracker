@@ -73,6 +73,29 @@ const AllCharts = (props) => {
                 
                 </div>
             )
+            case "mountainchart":
+            return (
+                <div style={{
+                    display: "flex",
+                    flexDirection:"column",
+                    flex: 1,
+                    // backgroundColor: "blue",
+                    width: "100%",
+                    height: "100%",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <MountainChart
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
+                
+                </div>
+            )
         case "piechart":
             return (
                 <div style={{

@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import {Chart, ArcElement} from 'chart.js'
 import { Line } from 'react-chartjs-2';
 import emotionData from "../../../data/emotionData";
 
 const options = {
-    type: 'line',
+    type: 'Line',
+    scales: {
+        y: {
+            stacked: true,
+            min: 0,
+            max: 100,
+        },
+    },
     options: {
       responsive: true,
       plugins: {
@@ -122,42 +128,42 @@ const options = {
                   datasets: [
                     {
                       label: 'Happy',
-                      data: [90,20,70,10,90,50],
+                      data: [90,20,70,10,90,50,10],
                       backgroundColor: '#88FF75',
                       borderColor: '#88FF75',
                       fill: true,
                     },
                     {
                       label: 'Angry',
-                      data: [80,30,60,20,80,50],
+                      data: [80,30,60,20,80,50,10],
                       backgroundColor: '#FF8989',
                       borderColor: '#FF8989',
                       fill: true,
                     },
                     {
                       label: 'Scared',
-                      data: [70,40,50,30,70,40],
+                      data: [70,40,50,30,70,40,10],
                       backgroundColor: '#FFBD65',
                       borderColor: '#FFBD65',
                       fill: true,
                     },
                     {
                         label: 'Sad',
-                        data: [60,50,40,40,60,30],
+                        data: [60,50,40,40,60,30,10],
                         backgroundColor: '#A3FFFF',
                         borderColor: '#A3FFFF',
                         fill: true,
                       },
                       {
                         label: 'Inspired',
-                        data: [50,60,30,50,50,20],
+                        data: [50,60,30,50,50,20,10],
                         backgroundColor: '#E2B3DB',
                         borderColor: '#E2B3DB',
                         fill: true,
                       },
                       {
                         label: 'Surprised',
-                        data: [40,70,20,60,40,10],
+                        data: [40,70,20,60,40,10,10],
                         backgroundColor: '#FFFA73',
                         borderColor: '#FFFA73',
                         fill: true,
