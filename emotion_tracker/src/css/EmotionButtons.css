@@ -10,46 +10,45 @@
 
  .Angry-disabled:disabled {
     cursor: not-allowed;
-    background-color: rgb(255 190 190);
+    background-color: rgba(255, 190, 190, 0);
     color: rgb(225, 85, 85);
-    animation: fadeOut 1s forwards !important;
+    
  }
 
   .Happy-disabled:disabled {
     cursor: not-allowed;
-    background-color: rgb(206 255 195);
+    background-color: rgba(206, 255, 195, 0);
     color: rgb(61 148 42);
-    animation: fadeOut 1s forwards !important;
+    
   }
   
   .Sad-disabled:disabled {
     cursor: not-allowed;
-    background-color: rgb(184, 204, 244);
+    background-color: rgba(184, 204, 244, 0);
     color: rgb(63 103 179);
-    animation: fadeOut 1s forwards !important;
+    
   }
   
   .Excited-disabled:disabled {
     cursor: not-allowed;
-    background-color: rgb(255, 239, 153);
+    background-color: rgba(255, 239, 153, 0);
     color: rgb(176, 148, 0);
-    animation: fadeOut 1s forwards !important;
+    
   }
   .Scared-disabled:disabled {
     cursor: not-allowed;
-    background-color: rgb(243, 189, 255);
+    background-color: rgba(243, 189, 255, 0);
     color: rgb(127 62 159);
-    animation: fadeOut 1s forwards !important;
+    
 
  }
   .Neutral-disabled:disabled {
     cursor: not-allowed;
-    background-color: rgb(255, 227, 202);
+    background-color: rgba(255, 227, 202, 0);
     color: rgb(255, 129, 13);
-    animation: fadeOut 1s forwards !important;
+    
 
 }
-
 
 
 .Angry:hover {

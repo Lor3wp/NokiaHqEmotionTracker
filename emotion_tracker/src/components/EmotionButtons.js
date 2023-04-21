@@ -3,6 +3,7 @@ import EmotionStatsDay from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import emotionData from "../data/emotionData";
+import Loading from "../views/Loading";
 
 const getButtonClassName = (label) => {
   // Generate a unique class name based on the button's label
@@ -13,12 +14,11 @@ const EmotionButton = ({ showMore, setShowMore }) => {
   const [statsData, setStatsData] = useState();
   const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
-  const [timerText, setTimerText] = useState("");
-  const [buttonActive, setButtonActive] = useState(true);
+  const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
   const timerTimeMs = 15000;
-  const [startAnimation, setStartAnimation] = useState(false);
   const [clicked, setClicked] = useState(0);
+  
 
   // TIMER
   const timerStart = (e) => {
@@ -81,7 +81,9 @@ const EmotionButton = ({ showMore, setShowMore }) => {
   };
 
   // const [disable, setDisable] = useState(false)
-  return (
+
+  if (buttonActive !== null) {
+    return (
     <div className="content">
       <div className="emotion-buttons">
         {emotionData.map((button) => (
@@ -89,6 +91,7 @@ const EmotionButton = ({ showMore, setShowMore }) => {
             style={{
               backgroundColor: button.rgbColor,
               color: button.textColor,
+              animation: buttonActive ? "fadeIn 1s forwards" : "none",
             }}
             key={button.label}
             className={
@@ -123,7 +126,13 @@ const EmotionButton = ({ showMore, setShowMore }) => {
         update={update}
       />
     </div>
-  );
+    );
+  } else return (
+    <div className="emotion-buttons">
+      <Loading />
+    </div>
+  )
+  
 }
 export default EmotionButton;
 // build test

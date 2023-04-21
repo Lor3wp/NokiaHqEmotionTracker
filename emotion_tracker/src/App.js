@@ -94,7 +94,9 @@ const App = () => {
     ></TooFarAway>
   ) : (
     // if we are waiting for user to give the permission and when loading the page
-    <Loading />
+    <div className="App-header">
+          <Loading />
+    </div>
   );
 };
 
