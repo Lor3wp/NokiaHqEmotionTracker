@@ -1,49 +1,7 @@
 import EmotionStats from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
-
-
-const buttonData = [
-  {
-    label: "Happy",
-    id: "1",
-    icon: "sentiment_satisfied",
-    disabled: false
-  },
-  {
-    label: "Angry",
-    id: "2",
-    icon: "sentiment_extremely_dissatisfied",
-    disabled: false
-  },
-  {
-    label: "Scared",
-    id: "3",
-    icon: "mood_bad",
-    disabled: false
-  },
-
-  {
-    label: "Excited",
-    id: "5",
-    icon: "sentiment_very_satisfied",
-    disabled: false
-  },
-  {
-    label: "Sad",
-    id: "4",
-    icon: "sentiment_dissatisfied",
-    disabled: false
-  },
-  {
-    label: "Neutral",
-    id: "6",
-    icon: "sentiment_neutral",
-    disabled: false
-  },
-];
-
-
+import emotionData from "../data/emotionData";
 
 
 const getButtonClassName = (label) => {
@@ -137,7 +95,7 @@ function TabletEmotionButton({ updateStats, setViewCondition, viewCondition }) {
   return (
     <div className="content">
       <div className="emotion-buttons">
-        {buttonData.map((button) => (
+        {emotionData.map((button) => (
           <button
             style={{animation: startAnimation ? "fadeIn 3s, forwards" : "none"}}
             key={button.label}
