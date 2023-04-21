@@ -96,7 +96,7 @@ const StatWindow = ({ backButtonClicked }) => {
     const today = new Date();
     let dateFormat = [];
     dateFormat.push(today.getDate());
-    dateFormat.push(getWeek(today.getDate(), options));
+    dateFormat.push(getWeek(today, options));
     dateFormat.push(today.getMonth() + 1);
     dateFormat.push(today.getFullYear());
     setCurrentDate(dateFormat);

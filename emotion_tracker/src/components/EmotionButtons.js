@@ -10,7 +10,7 @@ const getButtonClassName = (label) => {
   return `${label}`;
 };
 
-const EmotionButton = ({ updateStats, setViewCondition, viewCondition }) => {
+const EmotionButton = ({ showMore, setShowMore }) => {
   const [statsData, setStatsData] = useState();
   const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
@@ -89,6 +89,8 @@ const EmotionButton = ({ updateStats, setViewCondition, viewCondition }) => {
         {emotionData.map((button) => (
           <button
             style={{
+              backgroundColor: button.rgbColor,
+              color: button.textColor,
               animation: buttonActive ? "fadeIn 1s forwards" : "none",
             }}
             key={button.label}
