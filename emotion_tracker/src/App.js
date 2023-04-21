@@ -75,14 +75,16 @@ const App = () => {
           </Routes>
         </Router>
       </header>
-    </div>
+      </div>
     // if you are more than 1.5km away from Nokia
     ) : coords && calculateDistance(coords.latitude, coords.longitude) > 15 ? (
       <TooFarAway km = {calculateDistance(coords.latitude, coords.longitude).toFixed(2)}></TooFarAway>
     )
         // if we are waiting for user to give the permission and when loading the page
      : (
-    <Loading />
+      <div className="App-header">
+        <Loading />
+      </div>
     );
 };
 
