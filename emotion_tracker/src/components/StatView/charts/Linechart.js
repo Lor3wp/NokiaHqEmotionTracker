@@ -69,6 +69,24 @@ const LineChart = (props) => {
           "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
           "20", "21", "22", "23",
         ]
+        for (let j in emotionData) {
+          for (let i = 0; i <= 23; i++) {
+            emotionData[j].count.push(null)
+          }
+        }
+
+        // for (let i = 0; i <= 11; i++) {
+        for (let j in props.data) {
+          for (let k in emotionData) {
+            if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+              // if (i + 1 === parseInt(props.data[j].created_at)) {
+              //   emotionData[k].count[i] = parseInt(props.data[j].count)
+              // }
+              emotionData[k].count[parseInt(props.data[j].created_at)] = parseInt(props.data[j].count)
+            }
+          }
+        }
+        // }
         break;
       case "week":
         data.labels = [
@@ -90,6 +108,24 @@ const LineChart = (props) => {
               "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
               "30", "31",
             ]
+            for (let j in emotionData) {
+              for (let i = 0; i <= 30; i++) {
+                emotionData[j].count.push(null)
+              }
+            }
+
+            // for (let i = 0; i <= 11; i++) {
+            for (let j in props.data) {
+              for (let k in emotionData) {
+                if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+                  // if (i + 1 === parseInt(props.data[j].created_at)) {
+                  //   emotionData[k].count[i] = parseInt(props.data[j].count)
+                  // }
+                  emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
+                }
+              }
+            }
+            // }
             break;
           case 4:
           case 6:
@@ -101,6 +137,24 @@ const LineChart = (props) => {
               "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
               "30",
             ]
+            for (let j in emotionData) {
+              for (let i = 0; i <= 29; i++) {
+                emotionData[j].count.push(null)
+              }
+            }
+
+            // for (let i = 0; i <= 11; i++) {
+            for (let j in props.data) {
+              for (let k in emotionData) {
+                if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+                  // if (i + 1 === parseInt(props.data[j].created_at)) {
+                  //   emotionData[k].count[i] = parseInt(props.data[j].count)
+                  // }
+                  emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
+                }
+              }
+            }
+            // }
             break;
           case 2:
             if ((props.chartDate[3] % 400 === 0) && (props.chartDate[3] % 100 === 0)) {
@@ -109,18 +163,72 @@ const LineChart = (props) => {
                 "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
                 "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
               ]
+              for (let j in emotionData) {
+                for (let i = 0; i <= 28; i++) {
+                  emotionData[j].count.push(null)
+                }
+              }
+
+              // for (let i = 0; i <= 11; i++) {
+              for (let j in props.data) {
+                for (let k in emotionData) {
+                  if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+                    // if (i + 1 === parseInt(props.data[j].created_at)) {
+                    //   emotionData[k].count[i] = parseInt(props.data[j].count)
+                    // }
+                    emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
+                  }
+                }
+              }
+              // }
             } else if ((props.chartDate[3] % 4 === 0) && (props.chartDate[3] % 100 !== 0)) {
               data.labels = [
                 "0", "1", "2", "3", "5", "6", "7", "8", "9",
                 "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
                 "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
               ]
+              for (let j in emotionData) {
+                for (let i = 0; i <= 28; i++) {
+                  emotionData[j].count.push(null)
+                }
+              }
+
+              // for (let i = 0; i <= 11; i++) {
+              for (let j in props.data) {
+                for (let k in emotionData) {
+                  if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+                    // if (i + 1 === parseInt(props.data[j].created_at)) {
+                    //   emotionData[k].count[i] = parseInt(props.data[j].count)
+                    // }
+                    emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
+                  }
+                }
+              }
+              // }
             } else {
               data.labels = [
                 "0", "1", "2", "3", "5", "6", "7", "8", "9",
                 "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
                 "20", "21", "22", "23", "24", "25", "26", "27", "28",
               ]
+              for (let j in emotionData) {
+                for (let i = 0; i <= 27; i++) {
+                  emotionData[j].count.push(null)
+                }
+              }
+
+              // for (let i = 0; i <= 11; i++) {
+              for (let j in props.data) {
+                for (let k in emotionData) {
+                  if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+                    // if (i + 1 === parseInt(props.data[j].created_at)) {
+                    //   emotionData[k].count[i] = parseInt(props.data[j].count)
+                    // }
+                    emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
+                  }
+                }
+              }
+              // }
             }
             break;
           default:
@@ -168,6 +276,22 @@ const LineChart = (props) => {
             decadeYears.push(startingYear)
           }
           data.labels = decadeYears;
+        for (let j in emotionData) {
+          for (let i = 0; i <= 9; i++) {
+            emotionData[j].count.push(null)
+          }
+        }
+        for (let i in decadeYears) {
+          for (let j in props.data) {
+            for (let k in emotionData) {
+              if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+                if (decadeYears[i] === parseInt(props.data[j].created_at)) {
+                  emotionData[k].count[i] = parseInt(props.data[j].count)
+                }
+              }
+            }
+          }
+        }
         break;
       default:
         data.labels = new Array(emotionData[0].count.length).fill(0);
