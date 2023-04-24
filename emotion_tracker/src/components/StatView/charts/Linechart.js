@@ -303,8 +303,8 @@ const LineChart = (props) => {
         label: emotionData[i].label,
         data: emotionData[i].count,
         spanGaps: true,
-        borderColor: emotionData[i].rgbColor,
-        backgroundColor: emotionData[i].rgbColor
+        borderColor: emotionData[i].chartColor,
+        backgroundColor: emotionData[i].chartColor
       })
     }
     console.log(emotionData, "aasijanalle")

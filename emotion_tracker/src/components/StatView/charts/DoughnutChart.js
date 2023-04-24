@@ -288,14 +288,14 @@ const DoughnutChart = (props) => {
     emotionData.map((emotion) => {
       data.labels.push(emotion.label);
       data.datasets[0].data.push(emotion.total);
-      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+      data.datasets[0].backgroundColor.push(emotion.chartColor);
 
     });
     for (let i in emotionData) {
       emotionData[i].subEmotions.map((subEmotion) => {
         data.labels.push(subEmotion.label)
         data.datasets[1].data.push(subEmotion.count);
-        data.datasets[1].backgroundColor.push(subEmotion.rgbColor);
+        data.datasets[1].backgroundColor.push(subEmotion.chartColor);
       });
     }
 

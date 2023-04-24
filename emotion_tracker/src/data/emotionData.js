@@ -6,6 +6,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(206 255 195)",
     textColor: "rgb(61 148 42)",
+    chartColor: "rgb(61 148 42)",
     count: [],
     total: 0,
     subEmotions: [
@@ -14,6 +15,7 @@ const emotionData = [
         id: 2,
         rgbColor: "rgb(206 255 195)",
         textColor: "rgb(61 148 42)",
+        chartColor: "rgb(61 148 42)",
         count: 0
       },
       {
@@ -21,6 +23,7 @@ const emotionData = [
         id: 3,
         rgbColor: "rgb(206 255 195)",
         textColor: "rgb(61 148 42)",
+        chartColor: "rgb(61 148 42)",
         count: 0
       },
       {
@@ -28,6 +31,7 @@ const emotionData = [
         id: 4,
         rgbColor: "rgb(206 255 195)",
         textColor: "rgb(61 148 42)",
+        chartColor: "rgb(61 148 42)",
         count: 0
       },
     ],
@@ -39,6 +43,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(255 190 190)",
     textColor: "rgb(225, 85, 85)",
+    chartColor: "rgb(225 85 85)",
     count: [],
     total: 0,
     subEmotions: [
@@ -47,6 +52,7 @@ const emotionData = [
         id: 2,
         rgbColor: "rgb(255 190 190)",
         textColor: "rgb(225, 85, 85)",
+        chartColor: "rgb(225 85 85)",
         count: 0
       },
       {
@@ -54,6 +60,7 @@ const emotionData = [
         id: 3,
         rgbColor: "rgb(255 190 190)",
         textColor: "rgb(225, 85, 85)",
+        chartColor: "rgb(225 85 85)",
         count: 0
       },
       {
@@ -61,6 +68,7 @@ const emotionData = [
         id: 4,
         rgbColor: "rgb(255 190 190)",
         textColor: "rgb(225, 85, 85)",
+        chartColor: "rgb(225 85 85)",
         count: 0
       }
     ]
@@ -72,6 +80,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(243, 189, 255)",
     textColor: "rgb(127 62 159)",
+    chartColor: "rgb(127 62 159)",
     count: [],
     total: 0,
     subEmotions: [
@@ -80,6 +89,7 @@ const emotionData = [
         id: 2,
         rgbColor: "rgb(243, 189, 255)",
         textColor: "rgb(127 62 159)",
+        chartColor: "rgb(127 62 159)",
         count: 0
       },
       {
@@ -87,6 +97,7 @@ const emotionData = [
         id: 3,
         rgbColor: "rgb(243, 189, 255)",
         textColor: "rgb(127 62 159)",
+        chartColor: "rgb(127 62 159)",
         count: 0
       },
       {
@@ -94,6 +105,7 @@ const emotionData = [
         id: 4,
         rgbColor: "rgb(243, 189, 255)",
         textColor: "rgb(127 62 159)",
+        chartColor: "rgb(127 62 159)",
         count: 0
       }
     ]
@@ -106,6 +118,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(255, 239, 153)",
     textColor: "rgb(176, 148, 0)",
+    chartColor: "rgb(254 225 53)",
     count: [],
     total: 0,
     subEmotions: [
@@ -114,6 +127,7 @@ const emotionData = [
         id: 2,
         rgbColor: "rgb(255, 239, 153)",
         textColor: "rgb(176, 148, 0)",
+        chartColor: "rgb(254 225 53)",
         count: 0
       },
       {
@@ -121,6 +135,7 @@ const emotionData = [
         id: 3,
         rgbColor: "rgb(255, 239, 153)",
         textColor: "rgb(176, 148, 0)",
+        chartColor: "rgb(254 225 53)",
         count: 0
       },
       {
@@ -128,6 +143,7 @@ const emotionData = [
         id: 4,
         rgbColor: "rgb(255, 239, 153)",
         textColor: "rgb(176, 148, 0)",
+        chartColor: "rgb(254 225 53)",
         count: 0
       }
     ]
@@ -139,6 +155,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(184, 204, 244)",
     textColor: "rgb(63 103 179)",
+    chartColor: "rgb(63 103 179)",
     count: [],
     total: 0,
     subEmotions: [
@@ -147,6 +164,7 @@ const emotionData = [
         id: 2,
         rgbColor: "rgb(184, 204, 244)",
         textColor: "rgb(63 103 179)",
+        chartColor: "rgb(63 103 179)",
         count: 0
       },
       {
@@ -154,6 +172,7 @@ const emotionData = [
         id: 3,
         rgbColor: "rgb(184, 204, 244)",
         textColor: "rgb(63 103 179)",
+        chartColor: "rgb(63 103 179)",
         count: 0
       },
       {
@@ -161,6 +180,7 @@ const emotionData = [
         id: 4,
         rgbColor: "rgb(184, 204, 244)",
         textColor: "rgb(63 103 179)",
+        chartColor: "rgb(63 103 179)",
         count: 0
       }
     ]
@@ -172,6 +192,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(255, 227, 202)",
     textColor: "rgb(255, 129, 13)",
+    chartColor: "rgb(160 129 108)",
     count: [],
     total: 0,
     subEmotions: [
@@ -180,6 +201,7 @@ const emotionData = [
         id: 2,
         rgbColor: "rgb(255, 227, 202)",
         textColor: "rgb(255, 129, 13)",
+        chartColor: "rgb(160 129 108)",
         count: 0
       },
       {
@@ -187,6 +209,7 @@ const emotionData = [
         id: 3,
         rgbColor: "rgb(255, 227, 202)",
         textColor: "rgb(255, 129, 13)",
+        chartColor: "rgb(160 129 108)",
         count: 0
       },
       {
@@ -194,6 +217,7 @@ const emotionData = [
         id: 4,
         rgbColor: "rgb(255, 227, 202)",
         textColor: "rgb(255, 129, 13)",
+        chartColor: "rgb(160 129 108)",
         count: 0
       }
     ]
