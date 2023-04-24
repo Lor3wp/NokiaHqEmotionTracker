@@ -5,8 +5,32 @@ const emotionData = [
     icon: "sentiment_satisfied",
     disabled: false,
     rgbColor: "rgb(206 255 195)",
-    count: [],
+    textColor: "rgb(61 148 42)",
+    count: 0,
     total: 0,
+    subEmotions: [
+      {
+        label: "Proud",
+        id: 2,
+        rgbColor: "rgb(206 255 195)",
+        textColor: "rgb(61 148 42)",
+        count: 0
+      },
+      {
+        label: "Empowered",
+        id: 3,
+        rgbColor: "rgb(206 255 195)",
+        textColor: "rgb(61 148 42)",
+        count: 0
+      },
+      {
+        label: "Confident",
+        id: 4,
+        rgbColor: "rgb(206 255 195)",
+        textColor: "rgb(61 148 42)",
+        count: 0
+      },
+    ],
   },
   {
     label: "Angry",
@@ -14,8 +38,32 @@ const emotionData = [
     icon: "sentiment_extremely_dissatisfied",
     disabled: false,
     rgbColor: "rgb(255 190 190)",
-    count: [],
+    textColor: "rgb(225, 85, 85)",
+    count: 0,
     total: 0,
+    subEmotions: [
+      {
+        label: "Offended",
+        id: 2,
+        rgbColor: "rgb(255 190 190)",
+        textColor: "rgb(225, 85, 85)",
+        count: 0
+      },
+      {
+        label: "Ashamed",
+        id: 3,
+        rgbColor: "rgb(255 190 190)",
+        textColor: "rgb(225, 85, 85)",
+        count: 0
+      },
+      {
+        label: "Frustrated",
+        id: 4,
+        rgbColor: "rgb(255 190 190)",
+        textColor: "rgb(225, 85, 85)",
+        count: 0
+      }
+    ]
   },
   {
     label: "Scared",
@@ -23,8 +71,32 @@ const emotionData = [
     icon: "mood_bad",
     disabled: false,
     rgbColor: "rgb(243, 189, 255)",
-    count: [],
+    textColor: "rgb(127 62 159)",
+    count: 0,
     total: 0,
+    subEmotions: [
+      {
+        label: "Horrified",
+        id: 2,
+        rgbColor: "rgb(243, 189, 255)",
+        textColor: "rgb(127 62 159)",
+        count: 0
+      },
+      {
+        label: "Embarrased",
+        id: 3,
+        rgbColor: "rgb(243, 189, 255)",
+        textColor: "rgb(127 62 159)",
+        count: 0
+      },
+      {
+        label: "Anxious",
+        id: 4,
+        rgbColor: "rgb(243, 189, 255)",
+        textColor: "rgb(127 62 159)",
+        count: 0
+      }
+    ]
   },
 
   {
@@ -33,8 +105,32 @@ const emotionData = [
     icon: "sentiment_very_satisfied",
     disabled: false,
     rgbColor: "rgb(255, 239, 153)",
-    count: [],
+    textColor: "rgb(176, 148, 0)",
+    count: 0,
     total: 0,
+    subEmotions: [
+      {
+        label: "Inspired",
+        id: 2,
+        rgbColor: "rgb(255, 239, 153)",
+        textColor: "rgb(176, 148, 0)",
+        count: 0
+      },
+      {
+        label: "Focused",
+        id: 3,
+        rgbColor: "rgb(255, 239, 153)",
+        textColor: "rgb(176, 148, 0)",
+        count: 0
+      },
+      {
+        label: "Energetic",
+        id: 4,
+        rgbColor: "rgb(255, 239, 153)",
+        textColor: "rgb(176, 148, 0)",
+        count: 0
+      }
+    ]
   },
   {
     label: "Sad",
@@ -42,8 +138,32 @@ const emotionData = [
     icon: "sentiment_dissatisfied",
     disabled: false,
     rgbColor: "rgb(184, 204, 244)",
-    count: [],
+    textColor: "rgb(63 103 179)",
+    count: 0,
     total: 0,
+    subEmotions: [
+      {
+        label: "Depressed",
+        id: 2,
+        rgbColor: "rgb(184, 204, 244)",
+        textColor: "rgb(63 103 179)",
+        count: 0
+      },
+      {
+        label: "Lonely",
+        id: 3,
+        rgbColor: "rgb(184, 204, 244)",
+        textColor: "rgb(63 103 179)",
+        count: 0
+      },
+      {
+        label: "Hurt",
+        id: 4,
+        rgbColor: "rgb(184, 204, 244)",
+        textColor: "rgb(63 103 179)",
+        count: 0
+      }
+    ]
   },
   {
     label: "Neutral",
@@ -51,8 +171,32 @@ const emotionData = [
     icon: "sentiment_neutral",
     disabled: false,
     rgbColor: "rgb(255, 227, 202)",
-    count: [],
+    textColor: "rgb(255, 129, 13)",
+    count: 0,
     total: 0,
+    subEmotions: [
+      {
+        label: "Peaceful",
+        id: 2,
+        rgbColor: "rgb(255, 227, 202)",
+        textColor: "rgb(255, 129, 13)",
+        count: 0
+      },
+      {
+        label: "Rested",
+        id: 3,
+        rgbColor: "rgb(255, 227, 202)",
+        textColor: "rgb(255, 129, 13)",
+        count: 0
+      },
+      {
+        label: "Balanced",
+        id: 4,
+        rgbColor: "rgb(255, 227, 202)",
+        textColor: "rgb(255, 129, 13)",
+        count: 0
+      }
+    ]
   },
 ];
 

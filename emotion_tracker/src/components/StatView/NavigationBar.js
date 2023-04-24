@@ -1,4 +1,12 @@
-// tänne tulee back button ja burger menu
+/**
+ * This file contains the burger menu for chartType selection
+ *
+ * NavigationBar(props)
+ *     toggleMenu()
+ *     switchChart(type)
+ *     return()
+ *
+ * */
 import { useState } from "react";
 import "../../css/NavBar.css";
 import charts from "../../data/charts";
@@ -9,8 +17,8 @@ const NavigationBar = (props) => {
         setToggle(!toggle)
     }
     const switchChart = (type) => {
-        // console.log(type)
         props.setChartType(type)
+        toggleMenu()
     }
 
     return (

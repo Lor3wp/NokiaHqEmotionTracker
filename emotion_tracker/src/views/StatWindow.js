@@ -87,6 +87,7 @@ const StatWindow = ({ backButtonClicked }) => {
 
                 break;
         }
+        console.log(data)
     }
     fetchData();
   }, [chartDate, timeUnit]);
@@ -96,7 +97,7 @@ const StatWindow = ({ backButtonClicked }) => {
     const today = new Date();
     let dateFormat = [];
     dateFormat.push(today.getDate());
-    dateFormat.push(getWeek(today.getDate(), options));
+    dateFormat.push(getWeek(today, options));
     dateFormat.push(today.getMonth() + 1);
     dateFormat.push(today.getFullYear());
     setCurrentDate(dateFormat);
@@ -123,7 +124,7 @@ const StatWindow = ({ backButtonClicked }) => {
         </button>
         <NavigationBar setChartType={setChartType} chartType={chartType} />
       </div>
-      <div ref={chartContainerDiv}id="ChartView">
+      <div ref={chartContainerDiv} id="ChartView">
         <AllCharts
             chartType={chartType}
             hourRange={hourRange}
@@ -170,4 +171,4 @@ export default StatWindow;
 
 
 // viimeksi korjasin ja paransin aikav'lin navigointinapit, sekä lähdin tekemään datan käsittelyä linecharttia varten
-// tänään jatkan datan käsittelyä, valmistelen esitelmää sekä osallistuin opettajapalaveriin 
+// tänään jatkan datan käsittelyä, valmistelen esitelmää sekä osallistuin opettajapalaveriin

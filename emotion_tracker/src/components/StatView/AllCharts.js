@@ -1,6 +1,18 @@
 // 3. 4. ja 5.
-// tekee valinnan mikä chartti näkyy sekä mitä chartissa näkyy.
-// maxHour when hourRange == false
+/** Selects the chart based on timeUnit selection.
+ *
+ * AllCharts(props)
+ *     useEffect()
+ *     prepDataArray()
+ *     switch{
+ *         case "doughnutchart": return()
+ *         case "linechart": return()
+ *         case "barchart": return()
+ *         default: return()
+ *     }
+ *
+ *     export default AllCharts
+ * */
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
@@ -8,14 +20,6 @@ import emotionData from "../../data/emotionData";
 import { useEffect } from "react";
 
 const AllCharts = (props) => {
-  /** props
-   * chartType={chartType}
-   * hourRange={hourRange}
-   * minHour={minHour}
-   * maxHour={maxHour}
-   * chartDate={chartDate}
-   * timeUnit={timeUnit}
-   * */
 
   useEffect(() => {
     // prepDataArray() creates empty arrays filled with 0 depending on timeunit and length of a month [0,0,0,0,0,0,0] this is for week
@@ -79,9 +83,9 @@ const AllCharts = (props) => {
 
 
   const prepDataArray = () => {
-    // create Empty value to set new standart
+    // create Empty value to set new standard
     let values = [];
-    // switch following timeUnit wich is set in TimeNavigator.js and created certain length array filled with 0 values
+    // switch following timeUnit which is set in TimeNavigator.js and created certain length array filled with 0 values
     switch (props.timeUnit) {
       case "day":
         values = new Array(24).fill(0);
@@ -138,7 +142,6 @@ const AllCharts = (props) => {
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
@@ -146,6 +149,8 @@ const AllCharts = (props) => {
           }}
         >
           <DoughnutChart
+            chartContainerDivHeight={props.chartContainerDiv.current?.offsetHeight}
+            chartContainerDivWidth={props.chartContainerDiv.current?.offsetWidth}
             chartType={props.chartType}
             hourRange={props.hourRange}
             minHour={props.minHour}
@@ -163,7 +168,6 @@ const AllCharts = (props) => {
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
