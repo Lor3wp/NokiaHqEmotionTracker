@@ -2,50 +2,23 @@ import React, { useState, useEffect } from "react";
 import "../css/EmotionButtons.css";
 import "../css/SubEmotions.css";
 import emotionData from "../data/emotionData";
-import EmotionButtons from "./EmotionButtons";
 import SubEmotionButtons from "./SubEmotionButtons";
+import {timerStart, timerTick} from "./TimerFunctions";
 
 const SubEmotions = ({ showMore, setShowMore }) => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
   const timerTimeMs = 15000;
-  const [startAnimation, setStartAnimation] = useState(false);
   const [clicked, setClicked] = useState(0);
   const [subClicked, setSubClicked] = useState("");
 
-  // TIMER
-  const timerStart = (e) => {
-    console.log("timerStart ");
-    e.preventDefault();
-    setButtonActive(false);
-    const now = Date.now();
-    localStorage.setItem("timer", now);
-  };
 
-  const timerTick = () => {
-    // console.log("timerTick ~ ");
-    if (localStorage.getItem("timer")) {
-      let res = Date.now() - localStorage.getItem("timer");
-      setTime(timerTimeMs - res > 0 ? timerTimeMs - res : 0);
-      // console.log(res);
-
-      if (res > timerTimeMs) {
-        setButtonActive(true);
-        setClicked(0);
-      } else {
-        setButtonActive(false);
-      }
-    }
-  };
-  const subEmotionClicked = (subEmotion) => {
-    console.log(`sub emotion clicked ${subEmotion}`);
-  };
 
   useEffect(() => {
-    timerTick();
+    timerTick(setTime, timerTimeMs, setButtonActive, setClicked); // calling the timerTick once before setting the interval to avoid one second delay
     let timer = setInterval(() => {
-      timerTick();
+      timerTick(setTime, timerTimeMs, setButtonActive, setClicked);
     }, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -76,7 +49,7 @@ const SubEmotions = ({ showMore, setShowMore }) => {
     addEmotion(id, subEmotionId);
     setClicked(id);
     setSubClicked(subEmotionLabel);
-    timerStart(e);
+    timerStart(e, setButtonActive);
     console.log(`sub id ${subEmotionLabel}`);
     setTimeout(() => {
       setShowMore(!showMore);

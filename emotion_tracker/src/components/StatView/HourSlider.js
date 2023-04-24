@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../../css/HourSlider.css";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
@@ -14,7 +14,6 @@ const HourSlider = ({
   onChange,
   timeUnit,
 }) => {
-  //   const [useSingleThumb, setUseSingleThumb] = useState(false);
 
   const onHourChange = (values) => {
     setMinHour(values[0]);

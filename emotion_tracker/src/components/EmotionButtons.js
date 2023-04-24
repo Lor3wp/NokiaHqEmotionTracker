@@ -1,9 +1,6 @@
-import EmotionStats from "./EmotionStats";
-import EmotionStatsDay from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import emotionData from "../data/emotionData";
-import Loading from "../views/Loading";
 
 
 const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {

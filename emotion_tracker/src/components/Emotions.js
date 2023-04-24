@@ -1,55 +1,25 @@
 import EmotionStats from "./EmotionStats";
-import EmotionStatsDay from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
-import emotionData from "../data/emotionData";
-import Loading from "../views/Loading";
 import EmotionButtons from "./EmotionButtons";
+import {timerStart, timerTick} from "./TimerFunctions";
 
 
 const EmotionButton = ({ showMore, setShowMore }) => {
-  const [statsData, setStatsData] = useState();
-  const [statsTodayData, setStatsTodayData] = useState();
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
   const timerTimeMs = 15000;
   const [clicked, setClicked] = useState(0);
-
-  // TIMER
-  const timerStart = (e) => {
-    console.log("timerStart ");
-    e.preventDefault();
-    setButtonActive(false);
-    const now = Date.now();
-    localStorage.setItem("timer", now);
-  };
-
-  const timerTick = () => {
-    // console.log("timerTick ~ ");
-    if (localStorage.getItem('timer')){
-      let res = Date.now() - localStorage.getItem('timer');
-      setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
-      // console.log(res);
-
-      if (res > timerTimeMs) {
-        setButtonActive(true);
-        setClicked(0);
-      } else {
-        setButtonActive(false);
-      }
-    }
-  };
-
+  
   useEffect(() => {
-    timerTick(); // calling the timerTick once before setting the interval to avoid one second delay
+    timerTick(setTime, timerTimeMs, setButtonActive, setClicked); // calling the timerTick once before setting the interval to avoid one second delay
     let timer = setInterval(() => {
-      timerTick();
+      timerTick(setTime, timerTimeMs, setButtonActive, setClicked);
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
-  // END OF TIMER
 
   // post emotion to database
   const addEmotion = async (id) => {
@@ -74,7 +44,7 @@ const EmotionButton = ({ showMore, setShowMore }) => {
   const buttonClicked = async (id, e) => {
     addEmotion(id);
     setClicked(id);
-    timerStart(e);
+    timerStart(e, setButtonActive);
   };
 
     return (
