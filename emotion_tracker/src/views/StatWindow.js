@@ -42,6 +42,7 @@ const StatWindow = ({ backButtonClicked }) => {
     }
 
   }, [chartDate, timeUnit]);
+  
   const createCurrentDay = () => {
     const options = { weekStartsOn: 1 };
 
