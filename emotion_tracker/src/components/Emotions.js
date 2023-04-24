@@ -5,7 +5,7 @@ import EmotionButtons from "./EmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
 
 
-const EmotionButton = ({ showMore, setShowMore }) => {
+const EmotionButton = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
