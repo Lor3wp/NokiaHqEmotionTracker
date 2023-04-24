@@ -6,7 +6,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(206 255 195)",
     textColor: "rgb(61 148 42)",
-    count: 0,
+    count: [],
     total: 0,
     subEmotions: [
       {
@@ -39,7 +39,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(255 190 190)",
     textColor: "rgb(225, 85, 85)",
-    count: 0,
+    count: [],
     total: 0,
     subEmotions: [
       {
@@ -72,7 +72,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(243, 189, 255)",
     textColor: "rgb(127 62 159)",
-    count: 0,
+    count: [],
     total: 0,
     subEmotions: [
       {
@@ -106,7 +106,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(255, 239, 153)",
     textColor: "rgb(176, 148, 0)",
-    count: 0,
+    count: [],
     total: 0,
     subEmotions: [
       {
@@ -139,7 +139,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(184, 204, 244)",
     textColor: "rgb(63 103 179)",
-    count: 0,
+    count: [],
     total: 0,
     subEmotions: [
       {
@@ -172,7 +172,7 @@ const emotionData = [
     disabled: false,
     rgbColor: "rgb(255, 227, 202)",
     textColor: "rgb(255, 129, 13)",
-    count: 0,
+    count: [],
     total: 0,
     subEmotions: [
       {
