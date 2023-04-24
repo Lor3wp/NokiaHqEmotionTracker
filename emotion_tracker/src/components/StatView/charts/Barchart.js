@@ -28,32 +28,32 @@ const BarChart = (props) => {
       {
         label: 'Happy',
         data: [50,50,50,50,50,50],
-        backgroundColor: '#88FF75',
+        backgroundColor: "rgb(61, 148, 42)",
       },
       {
         label: 'Angry',
         data: [50,50,50,50,50,50],
-        backgroundColor: '#FF8989',
+        backgroundColor: "rgb(225, 85, 85)",
       },
       {
         label: 'Scared',
         data: [50,50,50,50,50,50],
-        backgroundColor: '#FFBD65',
+        backgroundColor: "rgb(127, 62, 159)",
       },
       {
+          label: 'Excited',
+          data: [50,50,50,50,50,50],
+          backgroundColor: "rgb(254, 225, 53)",
+        },
+        {
           label: 'Sad',
           data: [50,50,50,50,50,50],
-          backgroundColor: '#A3FFFF',
+          backgroundColor: "rgb(63, 103, 179)",
         },
         {
-          label: 'Inspired',
+          label: 'Neutral',
           data: [50,50,50,50,50,50],
-          backgroundColor: '#E2B3DB',
-        },
-        {
-          label: 'Surprised',
-          data: [50,50,50,50,50,50],
-          backgroundColor: '#FFFA73',
+          backgroundColor: "rgb(160, 129, 108)",
         },
     ]
   });
@@ -67,32 +67,32 @@ const BarChart = (props) => {
               {
                 label: 'Happy',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#88FF75',
+                backgroundColor: "rgb(61, 148, 42)",
               },
               {
                 label: 'Angry',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#FF8989',
+                backgroundColor: "rgb(225, 85, 85)",
               },
               {
                 label: 'Scared',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#FFBD65',
+                backgroundColor: "rgb(127, 62, 159)",
               },
               {
+                  label: 'Excited',
+                  data: [50,50,50,50,50,50],
+                  backgroundColor: "rgb(254, 225, 53)",
+                },
+                {
                   label: 'Sad',
                   data: [50,50,50,50,50,50],
-                  backgroundColor: '#A3FFFF',
+                  backgroundColor: "rgb(63, 103, 179)",
                 },
                 {
-                  label: 'Inspired',
+                  label: 'Neutral',
                   data: [50,50,50,50,50,50],
-                  backgroundColor: '#E2B3DB',
-                },
-                {
-                  label: 'Surprised',
-                  data: [50,50,50,50,50,50],
-                  backgroundColor: '#FFFA73',
+                  backgroundColor: "rgb(160, 129, 108)",
                 },
             ]
           })
@@ -104,32 +104,32 @@ const BarChart = (props) => {
             {
               label: 'Happy',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#88FF75',
+              backgroundColor: "rgb(61, 148, 42)",
             },
             {
               label: 'Angry',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FF8989',
+              backgroundColor: "rgb(225, 85, 85)",
             },
             {
               label: 'Scared',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FFBD65',
+              backgroundColor: "rgb(127, 62, 159)",
             },
             {
+                label: 'Excited',
+                data: [50,50,50,50,50,50],
+                backgroundColor: "rgb(254, 225, 53)",
+              },
+              {
                 label: 'Sad',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#A3FFFF',
+                backgroundColor: "rgb(63, 103, 179)",
               },
               {
-                label: 'Inspired',
+                label: 'Neutral',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#E2B3DB',
-              },
-              {
-                label: 'Surprised',
-                data: [50,50,50,50,50,50],
-                backgroundColor: '#FFFA73',
+                backgroundColor: "rgb(160, 129, 108)",
               },
           ]
         })
@@ -141,32 +141,32 @@ const BarChart = (props) => {
             {
               label: 'Happy',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#88FF75',
+              backgroundColor: "rgb(61, 148, 42)",
             },
             {
               label: 'Angry',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FF8989',
+              backgroundColor: "rgb(225, 85, 85)",
             },
             {
               label: 'Scared',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FFBD65',
+              backgroundColor: "rgb(127, 62, 159)",
             },
             {
+                label: 'Excited',
+                data: [50,50,50,50,50,50],
+                backgroundColor: "rgb(254, 225, 53)",
+              },
+              {
                 label: 'Sad',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#A3FFFF',
+                backgroundColor: "rgb(63, 103, 179)",
               },
               {
-                label: 'Inspired',
+                label: 'Neutral',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#E2B3DB',
-              },
-              {
-                label: 'Surprised',
-                data: [50,50,50,50,50,50],
-                backgroundColor: '#FFFA73',
+                backgroundColor: "rgb(160, 129, 108)",
               },
           ]
         })
@@ -178,32 +178,32 @@ const BarChart = (props) => {
             {
               label: 'Happy',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#88FF75',
+              backgroundColor: "rgb(61, 148, 42)",
             },
             {
               label: 'Angry',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FF8989',
+              backgroundColor: "rgb(225, 85, 85)",
             },
             {
               label: 'Scared',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FFBD65',
+              backgroundColor: "rgb(127, 62, 159)",
             },
             {
+                label: 'Excited',
+                data: [50,50,50,50,50,50],
+                backgroundColor: "rgb(254, 225, 53)",
+              },
+              {
                 label: 'Sad',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#A3FFFF',
+                backgroundColor: "rgb(63, 103, 179)",
               },
               {
-                label: 'Inspired',
+                label: 'Neutral',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#E2B3DB',
-              },
-              {
-                label: 'Surprised',
-                data: [50,50,50,50,50,50],
-                backgroundColor: '#FFFA73',
+                backgroundColor: "rgb(160, 129, 108)",
               },
           ]
         })
@@ -215,32 +215,32 @@ const BarChart = (props) => {
             {
               label: 'Happy',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#88FF75',
+              backgroundColor: "rgb(61, 148, 42)",
             },
             {
               label: 'Angry',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FF8989',
+              backgroundColor: "rgb(225, 85, 85)",
             },
             {
               label: 'Scared',
               data: [50,50,50,50,50,50],
-              backgroundColor: '#FFBD65',
+              backgroundColor: "rgb(127, 62, 159)",
             },
             {
+                label: 'Excited',
+                data: [50,50,50,50,50,50],
+                backgroundColor: "rgb(254, 225, 53)",
+              },
+              {
                 label: 'Sad',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#A3FFFF',
+                backgroundColor: "rgb(63, 103, 179)",
               },
               {
-                label: 'Inspired',
+                label: 'Neutral',
                 data: [50,50,50,50,50,50],
-                backgroundColor: '#E2B3DB',
-              },
-              {
-                label: 'Surprised',
-                data: [50,50,50,50,50,50],
-                backgroundColor: '#FFFA73',
+                backgroundColor: "rgb(160, 129, 108)",
               },
           ]
         })
