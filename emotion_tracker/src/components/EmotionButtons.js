@@ -1,147 +1,40 @@
 import EmotionStats from "./EmotionStats";
 import EmotionStatsDay from "./EmotionStats";
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import emotionData from "../data/emotionData";
 import Loading from "../views/Loading";
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
 
 
-const getButtonClassName = (label) => {
-  // Generate a unique class name based on the button's label
-  return `${label}`;
-};
-
-const EmotionButton = ({ showMore, setShowMore }) => {
-  const [statsData, setStatsData] = useState();
-  const [statsTodayData, setStatsTodayData] = useState();
-  const [update, setUpdate] = useState(false);
-  const [buttonActive, setButtonActive] = useState(null);
-  const [time, setTime] = useState(0);
-  const timerTimeMs = 15000;
-  const [clicked, setClicked] = useState(0);
-  let userAgent = navigator.userAgent;
-  let browserName;
-
-  if(userAgent.match(/chrome|chromium|crios/i)){
-    browserName = "chrome";
-  }else if(userAgent.match(/firefox|fxios/i)){
-    browserName = "firefox";
-  }  else if(userAgent.match(/safari/i)){
-    browserName = "safari";
-  }else if(userAgent.match(/opr\//i)){
-    browserName = "opera";
-  } else if(userAgent.match(/edg/i)){
-    browserName = "edge";
-  }else{
-    browserName="No browser detection";
-  }
-
-  // TIMER
-  const timerStart = (e) => {
-    console.log("timerStart ");
-    e.preventDefault();
-    setButtonActive(false);
-    const now = Date.now();
-    localStorage.setItem("timer", now);
-  };
-
-  const timerTick = () => {
-    // console.log("timerTick ~ ");
-    if (localStorage.getItem('timer')){
-      let res = Date.now() - localStorage.getItem('timer');
-      setTime((timerTimeMs-res) > 0 ? timerTimeMs-res : 0);
-      // console.log(res);
-
-      if (res > timerTimeMs) {
-        setButtonActive(true);
-        setClicked(0);
-      } else {
-        setButtonActive(false);
-      }
+const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
+    return(
+<div className="emotion-buttons">
+{emotionData.map((button) => (
+  <button
+    style={{
+      animation: buttonActive ? "fadeIn 3s, forwards" : "none"
+    }}
+    key={button.label}
+    className={
+      clicked !== button.id && !buttonActive
+        ? button.label + "-disabled"
+        : button.label
     }
-  };
-
-  useEffect(() => {
-    timerTick(); // call the function once before starting the interval
-    let timer = setInterval(() => {
-      timerTick();
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // END OF TIMER
-
-  // post emotion to database
-  const addEmotion = async (id) => {
-    try {
-      const response = await fetch("http://localhost:3001/add/addemotion", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emotion: id, subEmotion: 1 }),
-      });
-      if (!response.ok) {
-        throw new Error("Error adding emotion");
-      }
-      setUpdate(!update);
-    } catch (error) {
-      // handle error here
-      console.error(error);
+    id={
+      clicked === button.id
+        ? button.label + "-clicked"
+        : button.label
     }
-  };
-
-  const buttonClicked = async (id, e) => {
-    addEmotion(id);
-    setClicked(id);
-    timerStart(e);
-    console.log(`browser in use is ${browserName}`)
-  };
-
-    return (
-    <div className="content">
-      <div className="emotion-buttons">
-        {emotionData.map((button) => (
-          <button
-            style={{
-              animation: buttonActive ? "fadeIn 3s, forwards" : "none"
-            }}
-            key={button.label}
-            className={
-              clicked !== button.id && !buttonActive
-                ? getButtonClassName(button.label + "-disabled")
-                : getButtonClassName(button.label)
-            }
-            id={
-              clicked === button.id
-                ? getButtonClassName(button.label + "-clicked")
-                : getButtonClassName(button.label)
-            }
-            disabled={!buttonActive}
-            onClick={(e) => buttonClicked(button.id, e)}
-          >
-            <div className="EmotionButton-button-label">
-              <span className="material-symbols-outlined">{button.icon}</span>
-              {button.label}
-            </div>
-          </button>
-        ))}
-      </div>
-      <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
-        <p className="infoText">
-          Share your feelings again in {Math.floor(time / 1000 / 60)} mins,{" "}
-          {Math.floor((time / 1000) % 60)} secs
-        </p>
-      </div>
-      <EmotionStats
-        update={update}
-      />
+    disabled={!buttonActive}
+    onClick={(e) => buttonClicked(button.id, e)}
+  >
+    <div className="EmotionButton-button-label">
+      <span className="material-symbols-outlined">{button.icon}</span>
+      {button.label}
     </div>
+  </button>
+))}
+</div>
     );
-  
 }
-export default EmotionButton;
-// build test
-
+export default EmotionButtons;
