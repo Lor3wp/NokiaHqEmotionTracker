@@ -27,6 +27,7 @@ const options = {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
@@ -41,22 +42,13 @@ const options = {
 const LineChart = (props) => {
   const [lineData, setLineData] = useState({
     labels: [],
-    datasets: [
-      // {
-      //   label: [],
-      //   data: [],
-      //   borderColor: "",
-      //   backgroundColor: "",
-      //   spanGaps: true
-      // },
-    ],
+    datasets: [],
   });
 
   useEffect(() => {
     let data = {
       labels: [],
-      datasets: []                              //new Array(emotionData.length).fill({
-
+      datasets: []
     };
     for (let i in emotionData) {
       emotionData[i].count = []
@@ -75,18 +67,13 @@ const LineChart = (props) => {
           }
         }
 
-        // for (let i = 0; i <= 11; i++) {
         for (let j in props.data) {
           for (let k in emotionData) {
             if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-              // if (i + 1 === parseInt(props.data[j].created_at)) {
-              //   emotionData[k].count[i] = parseInt(props.data[j].count)
-              // }
               emotionData[k].count[parseInt(props.data[j].created_at)] = parseInt(props.data[j].count)
             }
           }
         }
-        // }
         break;
       case "week":
         data.labels = [
@@ -114,18 +101,13 @@ const LineChart = (props) => {
               }
             }
 
-            // for (let i = 0; i <= 11; i++) {
             for (let j in props.data) {
               for (let k in emotionData) {
                 if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                  // if (i + 1 === parseInt(props.data[j].created_at)) {
-                  //   emotionData[k].count[i] = parseInt(props.data[j].count)
-                  // }
                   emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
                 }
               }
             }
-            // }
             break;
           case 4:
           case 6:
@@ -143,18 +125,13 @@ const LineChart = (props) => {
               }
             }
 
-            // for (let i = 0; i <= 11; i++) {
             for (let j in props.data) {
               for (let k in emotionData) {
                 if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                  // if (i + 1 === parseInt(props.data[j].created_at)) {
-                  //   emotionData[k].count[i] = parseInt(props.data[j].count)
-                  // }
                   emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
                 }
               }
             }
-            // }
             break;
           case 2:
             if ((props.chartDate[3] % 400 === 0) && (props.chartDate[3] % 100 === 0)) {
@@ -169,18 +146,13 @@ const LineChart = (props) => {
                 }
               }
 
-              // for (let i = 0; i <= 11; i++) {
               for (let j in props.data) {
                 for (let k in emotionData) {
                   if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                    // if (i + 1 === parseInt(props.data[j].created_at)) {
-                    //   emotionData[k].count[i] = parseInt(props.data[j].count)
-                    // }
                     emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
                   }
                 }
               }
-              // }
             } else if ((props.chartDate[3] % 4 === 0) && (props.chartDate[3] % 100 !== 0)) {
               data.labels = [
                 "0", "1", "2", "3", "5", "6", "7", "8", "9",
@@ -193,18 +165,13 @@ const LineChart = (props) => {
                 }
               }
 
-              // for (let i = 0; i <= 11; i++) {
               for (let j in props.data) {
                 for (let k in emotionData) {
                   if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                    // if (i + 1 === parseInt(props.data[j].created_at)) {
-                    //   emotionData[k].count[i] = parseInt(props.data[j].count)
-                    // }
                     emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
                   }
                 }
               }
-              // }
             } else {
               data.labels = [
                 "0", "1", "2", "3", "5", "6", "7", "8", "9",
@@ -217,18 +184,13 @@ const LineChart = (props) => {
                 }
               }
 
-              // for (let i = 0; i <= 11; i++) {
               for (let j in props.data) {
                 for (let k in emotionData) {
                   if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                    // if (i + 1 === parseInt(props.data[j].created_at)) {
-                    //   emotionData[k].count[i] = parseInt(props.data[j].count)
-                    // }
                     emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
                   }
                 }
               }
-              // }
             }
             break;
           default:
@@ -255,18 +217,13 @@ const LineChart = (props) => {
             }
           }
 
-        // for (let i = 0; i <= 11; i++) {
           for (let j in props.data) {
             for (let k in emotionData) {
               if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                // if (i + 1 === parseInt(props.data[j].created_at)) {
-                //   emotionData[k].count[i] = parseInt(props.data[j].count)
-                // }
                 emotionData[k].count[parseInt(props.data[j].created_at) - 1] = parseInt(props.data[j].count)
               }
             }
           }
-        // }
         break;
       case "years":
         let startingYear = Math.floor(props.chartDate[3] / 10) * 10
@@ -307,11 +264,10 @@ const LineChart = (props) => {
         backgroundColor: emotionData[i].chartColor
       })
     }
-    console.log(emotionData, "aasijanalle")
     setLineData(data);
   }, [props.timeUnit, props.data, props.chartDate]);
 
-  return <Line data={lineData} options={options} />;
+  return <Line data={lineData} options={options}/>;
 };
 
 export default LineChart;
