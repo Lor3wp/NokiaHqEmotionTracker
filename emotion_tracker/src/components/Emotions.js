@@ -2,7 +2,7 @@ import EmotionStats from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import EmotionButtons from "./EmotionButtons";
-import {timerStart, timerTick} from "./TimerFunctions";
+import {timerStart, timerTick} from "../utils/TimerFunctions";
 
 
 const EmotionButton = ({ showMore, setShowMore }) => {

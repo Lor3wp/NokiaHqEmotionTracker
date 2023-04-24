@@ -3,7 +3,7 @@ import "../css/EmotionButtons.css";
 import "../css/SubEmotions.css";
 import emotionData from "../data/emotionData";
 import SubEmotionButtons from "./SubEmotionButtons";
-import {timerStart, timerTick} from "./TimerFunctions";
+import {timerStart, timerTick} from "../utils/TimerFunctions";
 
 const SubEmotions = ({ showMore, setShowMore }) => {
   const [update, setUpdate] = useState(false);

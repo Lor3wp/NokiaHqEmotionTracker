@@ -1,9 +1,8 @@
 import EmotionStats from "./EmotionStats";
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
-import {timerStart, timerTick} from "./TimerFunctions";
+import {timerStart, timerTick} from "../utils/TimerFunctions";
 import EmotionButtons from "./EmotionButtons";
-
 
 
 function TabletEmotionButton() {
@@ -19,8 +18,6 @@ function TabletEmotionButton() {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
-// END OF TIMER
 
 
   const addEmotion = async (id) => {
