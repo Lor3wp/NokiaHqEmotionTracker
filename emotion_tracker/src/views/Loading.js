@@ -10,7 +10,7 @@ const override: CSSProperties = {
 
 const Loading = () => {
     return (
-        <header className="App-header">
+        <div className="Loading">
         <ScaleLoader	
         color="white"
         cssOverride={override}
@@ -18,9 +18,8 @@ const Loading = () => {
         aria-label="Loading Spinner"
         data-testid="loader"
         speedMultiplier={0.4}
-
-      />
-        </header>
+        />
+        </div>
     );
 }
 export default Loading;

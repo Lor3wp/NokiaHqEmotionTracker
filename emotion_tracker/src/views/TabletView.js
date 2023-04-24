@@ -1,18 +1,29 @@
 import TabletEmotionButton from "../components/TabletEmotionButtons";
 import "../css/EmotionButtonView.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const TabletView = ({ setStatsData }) => {
+  const [isPassword, setIsPassword] = useState("false")
   const [password, setPassword] = useState('')
   const [update, setUpdate] = useState(false);
+  const correctPassword = "kissakoira"
+
 
   const handleClick = () => {
-    localStorage.setItem('passu', password)
     setUpdate(!update)
   }
 
-  if(localStorage.getItem("passu") === "Kissakoira"){
+  useEffect(() => {
+      localStorage.setItem('password', isPassword)
+      if(password === correctPassword) {
+        setIsPassword("true");
+      } else {
+        setIsPassword("false");
+      }
+    },[isPassword, password]);
+
+  if(localStorage.getItem("password") === "true"){
     return (
       <div className="emotionButtonView">
         <div
@@ -41,7 +52,6 @@ const TabletView = ({ setStatsData }) => {
             label="Gimme Password"
         />
         <button className="howOthersFeltButton" onClick={() =>  handleClick()}>
-
             Submit
         </button>
     </div>
