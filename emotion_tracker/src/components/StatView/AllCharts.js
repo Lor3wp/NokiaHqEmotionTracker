@@ -4,6 +4,8 @@
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
+import BarChart from "./charts/Barchart";
+import MountainChart from "./charts/Mountainchart";
 import {useEffect, useRef} from "react";
 
 const AllCharts = (props) => {
@@ -60,7 +62,30 @@ const AllCharts = (props) => {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <LineChart 
+                    <LineChart
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
+                
+                </div>
+            )
+            case "mountainchart":
+            return (
+                <div style={{
+                    display: "flex",
+                    flexDirection:"column",
+                    flex: 1,
+                    // backgroundColor: "blue",
+                    width: "100%",
+                    height: "100%",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <MountainChart
                     chartType={props.chartType}
                     hourRange={props.hourRange}
                     minHour={props.minHour}
@@ -103,9 +128,18 @@ const AllCharts = (props) => {
                         // backgroundColor: "blue",
                         width: "100%",
                         height: "100%",
+                        justifyContent: "center",
+                        alignItems: "center"
                     }}
                 >
-
+                    <BarChart
+                    chartType={props.chartType}
+                    hourRange={props.hourRange}
+                    minHour={props.minHour}
+                    maxHour={props.maxHour}
+                    chartDate={props.chartDate}
+                    timeUnit={props.timeUnit}
+                    data={props.data}/>
                 </div>
             )
         default:

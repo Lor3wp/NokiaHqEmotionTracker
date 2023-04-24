@@ -6,6 +6,12 @@
     min-height: 100vh;
     min-width: 100vw;
 }
+@media only screen and (min-width: 1000px) {
+    .StatWindow {
+    min-width: 49vw;
+      max-width: 50vw;
+    }
+  }
 
 .Stats-header {
     display: flex;

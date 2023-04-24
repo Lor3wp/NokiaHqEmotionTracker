@@ -17,6 +17,12 @@ const charts = [
         icon: "show_chart",
         chart_type: "linechart"
     },
+    {
+        type: "mountain",
+        label: "mountain chart button",
+        icon: "area_chart",
+        chart_type: "mountainchart"
+    },
 ];
 
 export default charts;
