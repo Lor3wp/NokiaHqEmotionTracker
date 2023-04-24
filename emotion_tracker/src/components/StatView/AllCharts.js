@@ -26,7 +26,46 @@ const AllCharts = (props) => {
     fetchData();
 
   }, [props.chartDate, props.timeUnit, props.chartType]);
+  useEffect(() => {
+    let data = {
+      labels: [],
+      datasets: [], //new Array(emotionData.length).fill({
+    };
+    for (let i in emotionData) {
+      emotionData[i].count = [];
+    }
 
+    for (let j in emotionData) {
+      for (let i = 0; i <= 11; i++) {
+        emotionData[j].count.push(null);
+      }
+    }
+
+    // for (let i = 0; i <= 11; i++) {
+    for (let j in props.data) {
+      for (let k in emotionData) {
+        if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+          // if (i + 1 === parseInt(props.data[j].created_at)) {
+          //   emotionData[k].count[i] = parseInt(props.data[j].count)
+          // }
+          emotionData[k].count[parseInt(props.data[j].created_at) - 1] =
+            parseInt(props.data[j].count);
+        }
+      }
+    }
+    // }
+
+    for (let i in emotionData) {
+      data.datasets.push({
+        label: emotionData[i].label,
+        data: emotionData[i].count,
+        spanGaps: true,
+        borderColor: emotionData[i].rgbColor,
+        backgroundColor: emotionData[i].rgbColor,
+      });
+    }
+    console.log(emotionData, "aasijanalle");
+  }, [props.timeUnit, props.data, props.chartDate]);
   async function fetchData() {
     switch (props.chartType) {
       case "doughnutchart":
