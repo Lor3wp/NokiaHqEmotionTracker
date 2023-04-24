@@ -39,57 +39,8 @@ const StatWindow = ({ backButtonClicked }) => {
   useEffect(() => {
     if (currentDate == null) {
       createCurrentDay();
-
     }
-    async function fetchData() {
-        switch (timeUnit) {
-            case "day":
-                const responseDay = await fetch(backendAddress + `emotions/getday/${chartDate[3]}/${chartDate[2]}/${chartDate[0]}`);
-                const jsonDataDay = await responseDay.json();
-                setData(jsonDataDay);
-                setLoading(false);
-                break;
-            case "week":
-                const date = new Date(chartDate[3], chartDate[2] - 1, chartDate[0]);
-                const dayOfWeek = date.getDay();
-                const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-                const monday = new Date(date.setDate(diff));
-                const date1 = new Date(chartDate[3], chartDate[2] - 1, chartDate[0]); // April 22, 2022
-                const firstDayOfWeek = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() - date1.getDay() + 1);
-                const lastDayOfWeek = new Date(firstDayOfWeek);
-                lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-                // console.log(monday.getDate(), lastDayOfWeek.getDate())
 
-                const responseWeek = await fetch(backendAddress + `emotions/getweek/${chartDate[3]}-${chartDate[2]}-${monday.getDate()}/${chartDate[3]}-${chartDate[2]}-${lastDayOfWeek.getDate()}`);
-                const jsonDataWeek = await responseWeek.json();
-                setData(jsonDataWeek);
-                setLoading(false);
-                break;
-            case "month":
-                const responseMonth = await fetch(backendAddress + `emotions/getmonth/${chartDate[3]}/${chartDate[2]}`);
-                const jsonDataMonth = await responseMonth.json();
-                setData(jsonDataMonth);
-                setLoading(false);
-                break;
-            case "year":
-                const responseYear = await fetch(backendAddress + `emotions/getyear/${chartDate[3]}`);
-                const jsonDataYear = await responseYear.json();
-                setData(jsonDataYear);
-                setLoading(false);
-                break;
-            case "years":
-                const responseYears = await fetch(backendAddress + `emotions/getyears/${Math.floor(chartDate[3]/10)*10}/${Math.floor(chartDate[3]/10)*10+9}`);
-                const jsonDataYears = await responseYears.json();
-                setData(jsonDataYears);
-                setLoading(false);
-                break;
-            default:
-
-                break;
-        }
-        console.log(data)
-    }
-    fetchData();
   }, [chartDate, timeUnit]);
   const createCurrentDay = () => {
     const options = { weekStartsOn: 1 };
@@ -133,6 +84,8 @@ const StatWindow = ({ backButtonClicked }) => {
             chartDate={chartDate}
             timeUnit={timeUnit}
             data={data}
+            setData={setData}
+            setLoading={setLoading}
             chartContainerDiv={chartContainerDiv}
         />
         {/*  TODO: chart view here */}
