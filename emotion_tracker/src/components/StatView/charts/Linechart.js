@@ -12,14 +12,8 @@ const options = {
       ticks: {
         color: "#FFFFFF",
       },
-      grid: {
-        color: "#FFFFFF",
-      },
     },
     y: {
-      grid: {
-        color: "#FFFFFF",
-      },
       ticks: {
         color: "#FFFFFF",
       },

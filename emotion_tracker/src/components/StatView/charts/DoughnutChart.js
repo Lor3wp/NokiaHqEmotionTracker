@@ -15,16 +15,6 @@ const options = {
   cutout: "50%",
 };
 
-const options2 = {
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  maintainAspectRatio: true,
-  cutout: "70%",
-};
-
 const DoughnutChart = (props) => {
   // data template for population
   // console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
@@ -49,24 +39,11 @@ const DoughnutChart = (props) => {
       },
     ],
   });
-  const [doughnut2Data, setDoughnut2Data] = useState({
-    labels: [],
-    datasets: [
-      {
-        label: "Total emotions in DoughnutChart",
-        data: [],
-        backgroundColor: [],
-        borderRadius: 0,
-        spacing: 0,
-      },
-    ],
-  });
 
   useEffect(() => {
       if (props.data != null && props.data.length > 1) {
         // console.log("stringi");
         processData(props.data);
-        process2Data(props.data);
     }
   }, [props.data, props.maxHour, props.minHour, props.hourRange]);
 
@@ -303,29 +280,6 @@ const DoughnutChart = (props) => {
     setDoughnutData(data);
   };
 
-  const process2Data = (json) => {
-    const data = {
-      labels: [],
-      datasets: [
-        {
-          label: "Total emotions in piechart",
-          data: [],
-          backgroundColor: [],
-          borderRadius: 0,
-          spacing: 0,
-        },
-      ],
-    };
-
-    emotionData.map((emotion) => {
-      data.labels.push(emotion.label);
-      data.datasets[0].data.push(emotion.total);
-      data.datasets[0].backgroundColor.push(emotion.rgbColor);
-    });
-
-    // console.log(emotionData);
-    setDoughnut2Data(data);
-  };
   // maxDivSize
   return (
     <div style={{position: "relative", width: (maxDivSize/100*75), height: (maxDivSize/100*75), margin: "0px"}}>
