@@ -18,9 +18,9 @@ import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
 import BarChart from "./charts/Barchart";
 import MountainChart from "./charts/Mountainchart";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import emotionData from "../../data/emotionData";
-import { useEffect, useState } from "react";
+
 import backendAddress from "../../data/apiHooks";
 
 const AllCharts = (props) => {
