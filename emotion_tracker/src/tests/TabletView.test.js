@@ -1,11 +1,20 @@
-//Test: 
-const wrapper = shallow();
+import React from "react"; 
+import {render, fireEvent, cleanup} from "@testing-library/react"; 
+import TabletView from "../views/TabletView";
 
-//Test that the initial state of isPassword is false 
-expect(wrapper.state('isPassword')).toEqual(false);
+afterEach(cleanup);
 
-//Test that entering 'correctPassword' into the input field updates isPassword to true 
-wrapper.find('#passwordInput').simulate('input', { target: { value: 'correctPassword' } }); expect(wrapper.state('isPassword')).toEqual(true);
+describe('TabletView component', () => {
 
-//Test that the TabletEmotionButton component is rendered when isPassword is true 
-expect(wrapper.find('TabletEmotionButton').exists()).toBe(true);
+it('it renders correctly', () => { const {getByText, getByLabelText} = render(); 
+expect(getByText('How are you feeling?')).toBeInTheDocument(); 
+expect(getByLabelText('Gimme Password')).toBeInTheDocument(); 
+expect(getByText('Submit')).toBeInTheDocument(); });
+
+it('it updates state correctly', () => { 
+    const {getByText, getByLabelText} = render(); 
+    expect(getByText('Submit')).toBeInTheDocument(); 
+    fireEvent.change(getByLabelText('Gimme Password'), {target: {value: 'kissakoira'}}); 
+    expect(getByText('Submit')).toBeInTheDocument(); });
+
+})
