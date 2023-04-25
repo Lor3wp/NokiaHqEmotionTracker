@@ -17,155 +17,263 @@ import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
 import emotionData from "../../data/emotionData";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import backendAddress from "../../data/apiHooks";
 
 const AllCharts = (props) => {
-
+  const [dataFetched, setDataFetched] = useState(false);
   useEffect(() => {
+    // props.setLoading(true);
     fetchData();
-
   }, [props.chartDate, props.timeUnit, props.chartType]);
   useEffect(() => {
     let data = {
       labels: [],
       datasets: [], //new Array(emotionData.length).fill({
     };
-    for (let i in emotionData) {
-      emotionData[i].count = [];
-    }
-
-    for (let j in emotionData) {
-      for (let i = 0; i <= 11; i++) {
-        emotionData[j].count.push(null);
+    let values = [];
+    if (props.data != null && props.data.length > 0) {
+      switch (props.timeUnit) {
+        case "day":
+          for (let j in emotionData) {
+            emotionData[j].count = new Array(24).fill(null);
+          }
+          props.data.map((json) => {
+            for (let k in emotionData) {
+              if (parseInt(json.emotion_id) === emotionData[k].id) {
+                emotionData[k].count[parseInt(json.created_at)] = parseInt(
+                  json.count
+                );
+              }
+            }
+          });
+          break;
+        case "week":
+          for (let j in emotionData) {
+            emotionData[j].count = new Array(7).fill(null);
+          }
+          break;
+        case "month":
+          for (let j in emotionData) {
+            emotionData[j].count = new Array(
+              new Date(props.chartDate[3], props.chartDate[2], 0).getDate()
+            ).fill(null);
+          }
+          props.data.map((json) => {
+            for (let k in emotionData) {
+              if (parseInt(json.emotion_id) === emotionData[k].id) {
+                emotionData[k].count[
+                  parseInt(json.created_at) - parseInt(props.data[0].created_at)
+                ] = parseInt(json.count);
+              }
+            }
+          });
+          break;
+        case "year":
+          for (let j in emotionData) {
+            emotionData[j].count = new Array(12).fill(null);
+          }
+          props.data.map((json) => {
+            for (let k in emotionData) {
+              if (parseInt(json.emotion_id) === emotionData[k].id) {
+                emotionData[k].count[
+                  parseInt(json.created_at) - parseInt(props.data[0].created_at)
+                ] = parseInt(json.count);
+              }
+            }
+          });
+          break;
+        case "years":
+          for (let j in emotionData) {
+            emotionData[j].count = new Array(10).fill(null);
+          }
+          props.data.map((json) => {
+            for (let k in emotionData) {
+              if (parseInt(json.emotion_id) === emotionData[k].id) {
+                emotionData[k].count[
+                  parseInt(json.created_at) - parseInt(props.data[0].created_at)
+                ] = parseInt(json.count);
+              }
+            }
+          });
+          break;
+        default:
+          break;
       }
-    }
-
-    // for (let i = 0; i <= 11; i++) {
-    for (let j in props.data) {
-      for (let k in emotionData) {
-        if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-          // if (i + 1 === parseInt(props.data[j].created_at)) {
-          //   emotionData[k].count[i] = parseInt(props.data[j].count)
-          // }
-          emotionData[k].count[parseInt(props.data[j].created_at) - 1] =
-            parseInt(props.data[j].count);
-        }
-      }
-    }
-    // }
-
-    for (let i in emotionData) {
-      data.datasets.push({
-        label: emotionData[i].label,
-        data: emotionData[i].count,
-        spanGaps: true,
-        borderColor: emotionData[i].rgbColor,
-        backgroundColor: emotionData[i].rgbColor,
+    } else {
+      emotionData.map((emotion) => {
+        emotion.count = [];
+        return emotion;
       });
     }
+    console.log(props.data);
     console.log(emotionData, "aasijanalle");
-  }, [props.timeUnit, props.data, props.chartDate]);
+    setDataFetched(!dataFetched)
+  }, [props.data, props.loading]);
+
   async function fetchData() {
     switch (props.chartType) {
       case "doughnutchart":
         switch (props.timeUnit) {
           case "day":
-            const responseDay = await fetch(backendAddress + `emotions/getday/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`);
+            const responseDay = await fetch(
+              backendAddress +
+                `emotions/getday/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`
+            );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "week":
-            const date = new Date(props.chartDate[3], props.chartDate[2] - 1, props.chartDate[0]);
+            const date = new Date(
+              props.chartDate[3],
+              props.chartDate[2] - 1,
+              props.chartDate[0]
+            );
             const dayOfWeek = date.getDay();
-            const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+            const diff =
+              date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
             const monday = new Date(date.setDate(diff));
-            const date1 = new Date(props.chartDate[3], props.chartDate[2] - 1, props.chartDate[0]); // April 22, 2022
-            const firstDayOfWeek = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() - date1.getDay() + 1);
+            const date1 = new Date(
+              props.chartDate[3],
+              props.chartDate[2] - 1,
+              props.chartDate[0]
+            ); // April 22, 2022
+            const firstDayOfWeek = new Date(
+              date1.getFullYear(),
+              date1.getMonth(),
+              date1.getDate() - date1.getDay() + 1
+            );
             const lastDayOfWeek = new Date(firstDayOfWeek);
             lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
             // console.log(monday.getDate(), lastDayOfWeek.getDate())
 
-            const responseWeek = await fetch(backendAddress + `emotions/getweek/${props.chartDate[3]}-${props.chartDate[2]}-${monday.getDate()}/${props.chartDate[3]}-${props.chartDate[2]}-${lastDayOfWeek.getDate()}`);
+            const responseWeek = await fetch(
+              backendAddress +
+                `emotions/getweek/${props.chartDate[3]}-${
+                  props.chartDate[2]
+                }-${monday.getDate()}/${props.chartDate[3]}-${
+                  props.chartDate[2]
+                }-${lastDayOfWeek.getDate()}`
+            );
             const jsonDataWeek = await responseWeek.json();
             props.setData(jsonDataWeek);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "month":
-            const responseMonth = await fetch(backendAddress + `emotions/getmonth/${props.chartDate[3]}/${props.chartDate[2]}`);
+            const responseMonth = await fetch(
+              backendAddress +
+                `emotions/getmonth/${props.chartDate[3]}/${props.chartDate[2]}`
+            );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "year":
-            const responseYear = await fetch(backendAddress + `emotions/getyear/${props.chartDate[3]}`);
+            const responseYear = await fetch(
+              backendAddress + `emotions/getyear/${props.chartDate[3]}`
+            );
             const jsonDataYear = await responseYear.json();
             props.setData(jsonDataYear);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "years":
-            const responseYears = await fetch(backendAddress + `emotions/getyears/${Math.floor(props.chartDate[3]/10)*10}/${Math.floor(props.chartDate[3]/10)*10+9}`);
+            const responseYears = await fetch(
+              backendAddress +
+                `emotions/getyears/${
+                  Math.floor(props.chartDate[3] / 10) * 10
+                }/${Math.floor(props.chartDate[3] / 10) * 10 + 9}`
+            );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           default:
-
             break;
         }
-        console.log(props.data)
+        console.log(props.data);
         break;
       default:
         switch (props.timeUnit) {
           case "day":
-            const responseDay = await fetch(backendAddress + `emotions/getday/primary/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`);
+            const responseDay = await fetch(
+              backendAddress +
+                `emotions/getday/primary/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`
+            );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "week":
-            const date = new Date(props.chartDate[3], props.chartDate[2] - 1, props.chartDate[0]);
+            const date = new Date(
+              props.chartDate[3],
+              props.chartDate[2] - 1,
+              props.chartDate[0]
+            );
             const dayOfWeek = date.getDay();
-            const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+            const diff =
+              date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
             const monday = new Date(date.setDate(diff));
-            const date1 = new Date(props.chartDate[3], props.chartDate[2] - 1, props.chartDate[0]); // April 22, 2022
-            const firstDayOfWeek = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate() - date1.getDay() + 1);
+            const date1 = new Date(
+              props.chartDate[3],
+              props.chartDate[2] - 1,
+              props.chartDate[0]
+            ); // April 22, 2022
+            const firstDayOfWeek = new Date(
+              date1.getFullYear(),
+              date1.getMonth(),
+              date1.getDate() - date1.getDay() + 1
+            );
             const lastDayOfWeek = new Date(firstDayOfWeek);
             lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
             // console.log(monday.getDate(), lastDayOfWeek.getDate())
 
-            const responseWeek = await fetch(backendAddress + `emotions/getweek/primary/${props.chartDate[3]}-${props.chartDate[2]}-${monday.getDate()}/${props.chartDate[3]}-${props.chartDate[2]}-${lastDayOfWeek.getDate()}`);
+            const responseWeek = await fetch(
+              backendAddress +
+                `emotions/getweek/primary/${props.chartDate[3]}-${
+                  props.chartDate[2]
+                }-${monday.getDate()}/${props.chartDate[3]}-${
+                  props.chartDate[2]
+                }-${lastDayOfWeek.getDate()}`
+            );
             const jsonDataWeek = await responseWeek.json();
             props.setData(jsonDataWeek);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "month":
-            const responseMonth = await fetch(backendAddress + `emotions/getmonth/primary/${props.chartDate[3]}/${props.chartDate[2]}`);
+            const responseMonth = await fetch(
+              backendAddress +
+                `emotions/getmonth/primary/${props.chartDate[3]}/${props.chartDate[2]}`
+            );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "year":
-            const responseYear = await fetch(backendAddress + `emotions/getyear/primary/${props.chartDate[3]}`);
+            const responseYear = await fetch(
+              backendAddress + `emotions/getyear/primary/${props.chartDate[3]}`
+            );
             const jsonDataYear = await responseYear.json();
             props.setData(jsonDataYear);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           case "years":
-            const responseYears = await fetch(backendAddress + `emotions/getyears/primary/${Math.floor(props.chartDate[3]/10)*10}/${Math.floor(props.chartDate[3]/10)*10+9}`);
+            const responseYears = await fetch(
+              backendAddress +
+                `emotions/getyears/primary/${
+                  Math.floor(props.chartDate[3] / 10) * 10
+                }/${Math.floor(props.chartDate[3] / 10) * 10 + 9}`
+            );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
-            props.setLoading(false);
+            props.setLoading(!props.loading);
             break;
           default:
-
             break;
         }
-        console.log(props.data)
+
         break;
     }
-
   }
 
   switch (props.chartType) {
@@ -183,8 +291,12 @@ const AllCharts = (props) => {
           }}
         >
           <DoughnutChart
-            chartContainerDivHeight={props.chartContainerDiv.current?.offsetHeight}
-            chartContainerDivWidth={props.chartContainerDiv.current?.offsetWidth}
+            chartContainerDivHeight={
+              props.chartContainerDiv.current?.offsetHeight
+            }
+            chartContainerDivWidth={
+              props.chartContainerDiv.current?.offsetWidth
+            }
             chartType={props.chartType}
             hourRange={props.hourRange}
             minHour={props.minHour}
@@ -216,6 +328,8 @@ const AllCharts = (props) => {
             chartDate={props.chartDate}
             timeUnit={props.timeUnit}
             data={props.data}
+            loading={props.loading}
+            dataFetched={dataFetched}
           />
         </div>
       );
