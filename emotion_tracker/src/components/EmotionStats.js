@@ -11,7 +11,7 @@ const EmotionStats = ({ update }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/getall/getallemotions`
+        `http://localhost:3001/emotions/getallemotions`
       );
       const jsonData = await response.json();
       setData(jsonData);
@@ -23,7 +23,7 @@ const EmotionStats = ({ update }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/getall/gettodayemotions`
+        `http://localhost:3001/emotions/gettodayemotions`
       );
       const jsonData = await response.json();
       setDayData(jsonData);
