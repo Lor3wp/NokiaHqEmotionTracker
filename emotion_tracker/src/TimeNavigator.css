@@ -1,0 +1,66 @@
+.TimeView {
+    display: flex; 
+    flex-direction: row;
+    z-index: 1;
+}
+
+.TimeViewButtonGroup{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.SelectedTimeViewButtonGroup{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.TimeViewButtonText{
+    display: flex;
+    flex: 0.5;
+    margin: 0;
+    align-self: center;
+    font-size: 2vh;
+}
+.TimeButton {
+    display: flex;
+    margin: 1.8vh;
+    width: 3.5vh;
+    height: 3.5vh;
+    border-radius: 50%;
+    border-style: none;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+}
+
+.SelectedTimeButton {
+    display: flex;
+    margin: 1.8vh;
+    width: 3.5vh;
+    height: 3.5vh;
+    border-radius: 50%;
+    border-radius: 50%;
+    outline-style: solid;
+    outline-width: 0.5vh;
+    border-style: none;
+    outline-color: rgb(255, 255, 255);
+    outline-offset: 0.5vh;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+}
+
+.TimeViewButtonLine{
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    height: 7.5vh;
+    flex-wrap: wrap;
+    width: 12vw;
+    offset-position: 10vh;
+    z-index: 2;
+    border-style: none;
+    overflow: visible;
+    display: block;
+    background-color: white;
+    height: 30vh;
+    width: 20vh;
+    z-index: 4;
+}

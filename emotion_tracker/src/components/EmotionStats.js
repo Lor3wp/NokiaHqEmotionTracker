@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import EmotionButtons from './EmotionButtons.css';
 
 
-function EmotionStats({ update }) {
+const EmotionStats = ({ update }) => {
   const [data, setData] = useState(null);
   const [dayData, setDayData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,7 +11,7 @@ function EmotionStats({ update }) {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/getall/getallemotions`
+        `http://localhost:3001/emotions/getallemotions`
       );
       const jsonData = await response.json();
       setData(jsonData);
@@ -20,10 +19,11 @@ function EmotionStats({ update }) {
     }
     fetchData();
   }, [update]);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/getall/gettodayemotions`
+        `http://localhost:3001/emotions/gettodayemotions`
       );
       const jsonData = await response.json();
       setDayData(jsonData);

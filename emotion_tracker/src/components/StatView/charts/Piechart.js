@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Chart, ArcElement} from 'chart.js'
 import { Doughnut } from 'react-chartjs-2';
-import emotionData from "./data/emotionData";
+import emotionData from "../../../data/emotionData";
 
 Chart.register(ArcElement);
 // options for piechart
@@ -11,11 +11,11 @@ const options = {
       display: false,
     },
   },
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
   cutout: 110,
 };
 
-function Piechart() {
+const Piechart = (props) => {
   // data template for population
   const [pieData, setPieData] = useState({
     labels: [],
@@ -24,7 +24,7 @@ function Piechart() {
         label: "Total emotions in DoughnutChart",
         data: [],
         backgroundColor: [],
-        borderRadius: 15,
+        borderRadius: 10,
         spacing: 20,
       },
     ],
@@ -32,25 +32,29 @@ function Piechart() {
 
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
-    async function fetchData() {
+    /*    async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/getstats/getemotions/`
+          `http://localhost:3001/getstats/getemotions/`
       );
       const jsonData = await response.json();
       // check if ammount of emotions is same as in emotionData.js
       if (jsonData.length !== emotionData.length) {
         console.error(
-          "emmount of emotions dose not match from database and emotionData.js"
+            "emmount of emotions dose not match from database and emotionData.js"
         );
       }
 
-      processData(jsonData);
+    }*/
+    // console.log("moi", props.data[2].emotion_id);
+    if (props.data != null && props.data.length > 1) {
+      // console.log("stringi");
+      // processData(props.data);
     }
-    fetchData();
-  }, []);
+    // fetchData();
+  }, [props.data]);
 
   // process response json and populate data into pieData template
-  function processData(json) {
+  const processData = (json) => {
     const data = {
       labels: [],
       datasets: [
@@ -63,20 +67,28 @@ function Piechart() {
         },
       ],
     };
+
     for (let i in json) {
-      data.labels.push(emotionData[i].label);
-      data.datasets[0].data.push(json[i].count);
-      data.datasets[0].backgroundColor.push(emotionData[i].rgbColor);
+      emotionData[json[i].emotion_id - 1].count = json[i].count;
     }
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
+      data.datasets[0].data.push(emotion.count);
+      data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    });
+
+    console.log(emotionData);
     setPieData(data);
-  }
+  };
 
   return (
-    <Doughnut
-      data={pieData}
-      options={options}
-      style={{ width: "275px", height: "275px" }}
-    />
+    <div>
+      <Doughnut
+        data={pieData}
+        options={options}
+        style={{ width: "275px", height: "275px" }}
+      />
+    </div>
   );
 }
 

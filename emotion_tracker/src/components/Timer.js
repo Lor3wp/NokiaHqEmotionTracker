@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EmotionButton from './EmotionButtons';
+import EmotionButton from './Emotions';
 
 const Timer = () => {
   const [buttonActive, setBA] = useState(true);
