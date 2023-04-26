@@ -120,9 +120,6 @@ const StatWindow = ({ backButtonClicked }) => {
       <div id="TimeUnitSelectorView">
         <TimeNavigator timeUnit={timeUnit} setTimeUnit={setTimeUnit} />
       </div>
-      <div id="VilisVelvetyElementView">
-        <p style={{ fontSize: "11px" }}>#SamettisetElementit</p>
-      </div>
     </div>
   );
 };

@@ -63,7 +63,7 @@
 #TimeUnitSelectorView {
     display: flex;
     flex: 0.7;
-    margin: 8px;
+    margin: 8px 8px 16px 8px; 
     padding: 2px;
     align-items: center;
     justify-content: space-around;
