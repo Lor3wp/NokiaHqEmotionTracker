@@ -271,6 +271,11 @@ const AllCharts = (props) => {
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
+            jsonDataWeek.map ((dayData) => {
+              const dayDataDate = new Date(dayData.full_date)
+              dayData.created_at = (((dayDataDate.getDay() - 1) % 7 + 7 ) % 7)
+                });
+            console.log("koikkeli", jsonDataWeek)
             props.setData(jsonDataWeek);
             props.setLoading(!props.loading);
             break;
@@ -351,6 +356,11 @@ const AllCharts = (props) => {
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
+            jsonDataWeek.map ((dayData) => {
+              const dayDataDate = new Date(dayData.full_date)
+              dayData.created_at = (((dayDataDate.getDay() - 1) % 7 + 7 ) % 7)
+            });
+            console.log("koikkeli", jsonDataWeek)
             props.setData(jsonDataWeek);
             props.setLoading(!props.loading);
             break;
