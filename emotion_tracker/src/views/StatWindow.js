@@ -33,16 +33,17 @@ const StatWindow = ({ backButtonClicked }) => {
   }
 
   function handleHourChange(values) {
-    console.log(values); // replace with your code to send the values to the database
+    // console.log(minHour);
+    // console.log(maxHour);
+    // console.log(values); // replace with your code to send the values to the database
   }
 
   useEffect(() => {
     if (currentDate == null) {
       createCurrentDay();
     }
-
   }, [chartDate, timeUnit]);
-  
+
   const createCurrentDay = () => {
     const options = { weekStartsOn: 1 };
 
@@ -106,6 +107,7 @@ const StatWindow = ({ backButtonClicked }) => {
           hourRange={hourRange}
           setHourRange={setHourRange}
           timeUnit={timeUnit}
+          chartType={chartType}
         ></HourSlider>
       </div>
       <div id="ChosenTimeUnitNavView">

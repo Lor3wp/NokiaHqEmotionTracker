@@ -13,8 +13,8 @@ const HourSlider = ({
   setHourRange,
   onChange,
   timeUnit,
+  chartType,
 }) => {
-
   const onHourChange = (values) => {
     setMinHour(values[0]);
     setMaxHour(values[1]);
@@ -27,12 +27,14 @@ const HourSlider = ({
 
   const onSingleThumbChange = (newValue) => {
     setValue(newValue);
-    setMaxHour(newValue);
+
+    setMaxHour(newValue[1]);
+    setMinHour(newValue[1]);
     if (onChange) {
       onChange(newValue);
     }
   };
-  if (timeUnit === "day") {
+  if (timeUnit === "day" && chartType === "doughnutchart") {
     return (
       <div className="hourRange-Slider">
         <div className="range-hour">
@@ -57,17 +59,15 @@ const HourSlider = ({
             />
           </div>
         ) : (
-          (
-            <div className="margin-lg">
-              <RangeSlider
-                min={0}
-                max={23}
-                step={1}
-                value={[minHour, maxHour]}
-                onInput={onHourChange}
-              />
-            </div>
-          )
+          <div className="margin-lg">
+            <RangeSlider
+              min={0}
+              max={23}
+              step={1}
+              value={[minHour, maxHour]}
+              onInput={onHourChange}
+            />
+          </div>
         )}
       </div>
     );

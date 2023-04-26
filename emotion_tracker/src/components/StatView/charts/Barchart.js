@@ -22,266 +22,80 @@ const options = {
 
 const BarChart = (props) => {
 
-  const [barData, setBarData] =useState ({
+  const [barData, setBarData] = useState({
     labels: [],
     datasets: [
-      {
-        label: 'Happy',
-        data: [50,50,50,50,50,50],
-        backgroundColor: "rgb(61, 148, 42)",
-      },
-      {
-        label: 'Angry',
-        data: [50,50,50,50,50,50],
-        backgroundColor: "rgb(225, 85, 85)",
-      },
-      {
-        label: 'Scared',
-        data: [50,50,50,50,50,50],
-        backgroundColor: "rgb(127, 62, 159)",
-      },
-      {
-          label: 'Excited',
-          data: [50,50,50,50,50,50],
-          backgroundColor: "rgb(254, 225, 53)",
-        },
-        {
-          label: 'Sad',
-          data: [50,50,50,50,50,50],
-          backgroundColor: "rgb(63, 103, 179)",
-        },
-        {
-          label: 'Neutral',
-          data: [50,50,50,50,50,50],
-          backgroundColor: "rgb(160, 129, 108)",
-        },
-    ]
+      // {
+      //   label: 'Happy',
+      //   data: [50,50,50,50,50,50],
+      //   backgroundColor: "rgb(61, 148, 42)",
+      // }
+    ],
   });
 
   useEffect(() => {
+    let data = {
+      labels: [],
+      datasets: [], //new Array(emotionData.length).fill({
+    };
     switch (props.timeUnit) {
       case "day":
-          setBarData({
-            labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
-            datasets: [
-              {
-                label: 'Happy',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(61, 148, 42)",
-              },
-              {
-                label: 'Angry',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(225, 85, 85)",
-              },
-              {
-                label: 'Scared',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(127, 62, 159)",
-              },
-              {
-                  label: 'Excited',
-                  data: [50,50,50,50,50,50],
-                  backgroundColor: "rgb(254, 225, 53)",
-                },
-                {
-                  label: 'Sad',
-                  data: [50,50,50,50,50,50],
-                  backgroundColor: "rgb(63, 103, 179)",
-                },
-                {
-                  label: 'Neutral',
-                  data: [50,50,50,50,50,50],
-                  backgroundColor: "rgb(160, 129, 108)",
-                },
-            ]
-          })
-      break;
+        data.labels = [...Array(emotionData[0].count.length).keys()];
+        break;
       case "week":
-        setBarData({
-          labels: [1,2,3,4,5,6,7],
-          datasets: [
-            {
-              label: 'Happy',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(61, 148, 42)",
-            },
-            {
-              label: 'Angry',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(225, 85, 85)",
-            },
-            {
-              label: 'Scared',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(127, 62, 159)",
-            },
-            {
-                label: 'Excited',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(254, 225, 53)",
-              },
-              {
-                label: 'Sad',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(63, 103, 179)",
-              },
-              {
-                label: 'Neutral',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(160, 129, 108)",
-              },
-          ]
-        })
-      break;
+        data.labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+        break;
       case "month":
-        setBarData({
-          labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
-          datasets: [
-            {
-              label: 'Happy',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(61, 148, 42)",
-            },
-            {
-              label: 'Angry',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(225, 85, 85)",
-            },
-            {
-              label: 'Scared',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(127, 62, 159)",
-            },
-            {
-                label: 'Excited',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(254, 225, 53)",
-              },
-              {
-                label: 'Sad',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(63, 103, 179)",
-              },
-              {
-                label: 'Neutral',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(160, 129, 108)",
-              },
-          ]
-        })
-      break;
+        data.labels = [...Array(emotionData[0].count.length).keys()].map(
+          (i) => i + 1
+        );
+        break;
       case "year":
-        setBarData({
-          labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-          datasets: [
-            {
-              label: 'Happy',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(61, 148, 42)",
-            },
-            {
-              label: 'Angry',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(225, 85, 85)",
-            },
-            {
-              label: 'Scared',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(127, 62, 159)",
-            },
-            {
-                label: 'Excited',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(254, 225, 53)",
-              },
-              {
-                label: 'Sad',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(63, 103, 179)",
-              },
-              {
-                label: 'Neutral',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(160, 129, 108)",
-              },
-          ]
-        })
-      break;
+        data.labels = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        break;
       case "years":
-        setBarData({
-          labels: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
-          datasets: [
-            {
-              label: 'Happy',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(61, 148, 42)",
-            },
-            {
-              label: 'Angry',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(225, 85, 85)",
-            },
-            {
-              label: 'Scared',
-              data: [50,50,50,50,50,50],
-              backgroundColor: "rgb(127, 62, 159)",
-            },
-            {
-                label: 'Excited',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(254, 225, 53)",
-              },
-              {
-                label: 'Sad',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(63, 103, 179)",
-              },
-              {
-                label: 'Neutral',
-                data: [50,50,50,50,50,50],
-                backgroundColor: "rgb(160, 129, 108)",
-              },
-          ]
-        })
-      break;
+        let startingYear = Math.floor(props.chartDate[3] / 10) * 10;
+        let decadeYears = [startingYear];
+        for (let i = 0; i <= 8; i++) {
+          startingYear += 1;
+          decadeYears.push(startingYear);
+        }
+        data.labels = decadeYears;
+
+        break;
+
       default:
+        data.labels = new Array(emotionData[0].count.length).fill(0);
 
-      break;
+        break;
     }
-  }, [props.timeUnit]);
-
-  useEffect(() => {
-    if(props.data != null && props.data.lenght > 1) {
-    processData(props.data);
-    }
-
-  }, [props.data]);
-
-  // process response json and populate data into BarData template
-  const processData = (json) => {
-    const data = {
-      labels: [],
-      datasets: [
-        {
-          label: "Total emotions in doughnutchart",
-          data: [],
-          backgroundColor: [],
-        },
-      ],
-    };
-
-    for (let i in json) {
-        emotionData[json[i].emotion_id - 1].count = json[i].count;
-      }
-      emotionData.map((emotion) => {
-        data.labels.push(emotion.label);
-        data.datasets[0].data.push(emotion.count);
-        data.datasets[0].backgroundColor.push(emotion.rgbColor);
+    emotionData.map((emotion) => {
+      data.datasets.push({
+        label: emotion.label,
+        data: emotion.count,
+        spanGaps: true,
+        borderColor: emotion.chartColor,
+        backgroundColor: emotion.chartColor,
       });
+    });
+    setBarData(data);
+  }, [props.dataFetched]);
 
-      setBarData(data);
-    };
+
+
 
     return (<Bar data={barData} options={options} />);
   }
