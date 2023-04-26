@@ -13,18 +13,7 @@ const options = {
   },
   maintainAspectRatio: true,
   cutout: "50%",
-  tooltips: {
-    callbacks: {
-        label: (tooltipItem, data) => {
-            let dataset = data.datasets[tooltipItem.datasetIndex];
-            let index = tooltipItem.index;
-            return dataset.labels[index] + ': ' + dataset.data[index];
-        }
-    }
-  },
-  
 };
-
 
 const DoughnutChart = (props) => {
   // data template for population
@@ -32,19 +21,17 @@ const DoughnutChart = (props) => {
   const maxDivSize = props.chartContainerDivHeight > props.chartContainerDivWidth ? props.chartContainerDivWidth : props.chartContainerDivHeight;
   // console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
-    //labels: [],
+    labels: [],
     datasets: [
       {
-        //label: "Total emotions in DoughnutChart",
-        labels: [],
+        label: "Total emotions in DoughnutChart",
         data: [],
         backgroundColor: [],
         borderRadius: 0,
         spacing: 0,
       },
       {
-        //label: "Total subemotions in DoughnutChart",
-        labels: [],
+        label: "Total emotions in DoughnutChart",
         data: [],
         backgroundColor: [],
         borderRadius: 0,
@@ -57,33 +44,29 @@ const DoughnutChart = (props) => {
       if (props.data != null && props.data.length > 1) {
         // console.log("stringi");
         processData(props.data);
-        
     }
   }, [props.data, props.maxHour, props.minHour, props.hourRange]);
 
   // process response json and populate data into doughnutData template
   const processData = (json) => {
     const data = {
-      //labels: [],
+      labels: [],
       datasets: [
         {
-          //label: "Total emotions in chart",
-          labels: [],
+          label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
           borderRadius: 0,
           spacing: 0,
         },
         {
-          //label: "Total subemotions in chart",
-          labels: [],
+          label: "Total emotions in piechart",
           data: [],
           backgroundColor: [],
           borderRadius: 0,
           spacing: 0,
         },
       ],
-      
     };
 
     switch (props.timeUnit) {
@@ -279,25 +262,24 @@ const DoughnutChart = (props) => {
     // for (let i in json) {
     //   emotionData[json[i].emotion_id - 1].total = json[i].count;
     // }
-    emotionData.forEach((emotion) => {
-      data.datasets[0].labels.push(emotion.label);
+    emotionData.map((emotion) => {
+      data.labels.push(emotion.label);
       data.datasets[0].data.push(emotion.total);
       data.datasets[0].backgroundColor.push(emotion.chartColor);
 
     });
-    emotionData.forEach((emotion) => {
-      emotion.subEmotions.forEach((subEmotion) => {
-        data.datasets[1].labels.push(subEmotion.label)
+    for (let i in emotionData) {
+      emotionData[i].subEmotions.map((subEmotion) => {
+        data.labels.push(subEmotion.label)
         data.datasets[1].data.push(subEmotion.count);
         data.datasets[1].backgroundColor.push(subEmotion.chartColor);
       });
-    })
+    }
 
     // console.log(emotionData);
     setDoughnutData(data);
   };
 
-  
   // maxDivSize
   return (
     <div style={{position: "relative", width: (maxDivSize/100*75), height: (maxDivSize/100*75), margin: "0px"}}>
