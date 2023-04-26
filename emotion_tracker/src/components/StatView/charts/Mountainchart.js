@@ -3,360 +3,117 @@ import { Line } from 'react-chartjs-2';
 import emotionData from "../../../data/emotionData";
 
 const options = {
-    type: 'Line',
-    scales: {
-        y: {
-            stacked: true,
-            min: 0,
-            max: 100,
-        },
+  type: "Line",
+  plugins: {
+    legend: {
+      display: false,
     },
-    options: {
-      responsive: true,
-      plugins: {
-        title: {
-          display: true,
-        },
+  },
+  scales: {
+    y: {
+      stacked: true,
+      min: 0,
+      max: 100,
+    },
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
       },
-      
+    },
+  },
+};
+
+const MountainChart = (props) => {
+  const [mountainData, setMountainData] = useState({
+    labels: [],
+    datasets: [
+      // {
+      //   label: "Happy",
+      //   data: [90, 20, 70, 10, 90, 50],
+      //   borderColor: "rgb(61, 148, 42)",
+      //   backgroundColor: "rgb(61, 148, 42)",
+      //   fill: true,
+      // },
+    ],
+  });
+  useEffect(() => {
+    let data = {
+      labels: [],
+      datasets: [], //new Array(emotionData.length).fill({
+    };
+    switch (props.timeUnit) {
+      case "day":
+        data.labels = [...Array(emotionData[0].count.length).keys()];
+        break;
+      case "week":
+        data.labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+        break;
+      case "month":
+        data.labels = [...Array(emotionData[0].count.length).keys()].map(
+          (i) => i + 1
+        );
+        break;
+      case "year":
+        data.labels = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        break;
+      case "years":
+        let startingYear = Math.floor(props.chartDate[3] / 10) * 10;
+        let decadeYears = [startingYear];
+        for (let i = 0; i <= 8; i++) {
+          startingYear += 1;
+          decadeYears.push(startingYear);
+        }
+        data.labels = decadeYears;
+
+        break;
+
+      default:
+        data.labels = new Array(emotionData[0].count.length).fill(0);
+
+        break;
     }
-  };
+    let avg = [...Array(emotionData[0].count.length).fill(0)];
+    // console.log(avg);
+    emotionData.map((emotion) => {
+      for (let i in emotion.count) {
+        avg[i] += emotion.count[i] ? emotion.count[i] : 0;
+      }
+      // console.log(emotion.count);
+    });
+    // console.log(avg);
+    emotionData.map((emotion) => {
+      let values = [];
+      for (let i in emotion.count) {
+        values[i] = (emotion.count[i] / avg[i]) * 100;
+      }
+      data.datasets.push({
+        label: emotion.label,
+        data: values,
+        borderColor: emotion.chartColor,
+        backgroundColor: emotion.chartColor,
+        fill: true,
+      });
+    });
+    setMountainData(data);
+  }, [props.dataFetched]);
 
-  const MountainChart = (props) => {
-    const [mountainData, setMountainData] = useState({
-        labels: [],
-        datasets: [
-          {
-            label: 'Happy',
-            data: [90,20,70,10,90,50],
-            borderColor: "rgb(61, 148, 42)",
-            backgroundColor: "rgb(61, 148, 42)",
-            fill: true,
-          },
-          {
-            label: 'Angry',
-            data: [80,30,60,20,80,50],
-            borderColor: "rgb(225, 85, 85)",
-            backgroundColor: "rgb(225, 85, 85)",
-            fill: true,
-          },
-          {
-            label: 'Scared',
-            data: [70,40,50,30,70,40],
-            borderColor: "rgb(127, 62, 159)",
-            backgroundColor: "rgb(127, 62, 159)",
-            fill: true,
-          },
-          {
-              label: 'Excited',
-              data: [60,50,40,40,60,30],
-              borderColor: "rgb(254, 225, 53)",
-              backgroundColor: "rgb(254, 225, 53)",
-              fill: true,
-            },
-            {
-              label: 'Sad',
-              data: [50,60,30,50,50,20],
-              borderColor: "rgb(63, 103, 179)",
-              backgroundColor: "rgb(63, 103, 179)",
-              fill: true,
-            },
-            {
-              label: 'Neutral',
-              data: [40,70,20,60,40,10],
-              borderColor: "rgb(160, 129, 108)",
-              backgroundColor: "rgb(160, 129, 108)",
-              fill: true,
-            },
-        ]
-          });
-
-          useEffect(() => {
-            switch (props.timeUnit) {
-              case "day":
-                  setMountainData({
-                    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
-                    datasets: [
-                        {
-                        label: 'Happy',
-                        data: [90,20,70,10,90,50],
-                        borderColor: "rgb(61, 148, 42)",
-                        backgroundColor: "rgb(61, 148, 42)",
-                        fill: true,
-                      },
-                      {
-                        label: 'Angry',
-                        data: [80,30,60,20,80,50],
-                        borderColor: "rgb(225, 85, 85)",
-                        backgroundColor: "rgb(225, 85, 85)",
-                        fill: true,
-                      },
-                      {
-                        label: 'Scared',
-                        data: [70,40,50,30,70,40],
-                        borderColor: "rgb(127, 62, 159)",
-                        backgroundColor: "rgb(127, 62, 159)",
-                        fill: true,
-                      },
-                      {
-                          label: 'Excited',
-                          data: [60,50,40,40,60,30],
-                          borderColor: "rgb(254, 225, 53)",
-                          backgroundColor: "rgb(254, 225, 53)",
-                          fill: true,
-                        },
-                        {
-                          label: 'Sad',
-                          data: [50,60,30,50,50,20],
-                          borderColor: "rgb(63, 103, 179)",
-                          backgroundColor: "rgb(63, 103, 179)",
-                          fill: true,
-                        },
-                        {
-                          label: 'Neutral',
-                          data: [40,70,20,60,40,10],
-                          borderColor: "rgb(160, 129, 108)",
-                          backgroundColor: "rgb(160, 129, 108)",
-                          fill: true,
-                        },
-                      ]
-                  })
-              break;
-              case "week":
-                setMountainData({
-                  labels: [1,2,3,4,5,6,7],
-                  datasets: [
-                    {
-                    label: 'Happy',
-                    data: [90,20,70,10,90,50],
-                    borderColor: "rgb(61, 148, 42)",
-                    backgroundColor: "rgb(61, 148, 42)",
-                    fill: true,
-                  },
-                  {
-                    label: 'Angry',
-                    data: [80,30,60,20,80,50],
-                    borderColor: "rgb(225, 85, 85)",
-                    backgroundColor: "rgb(225, 85, 85)",
-                    fill: true,
-                  },
-                  {
-                    label: 'Scared',
-                    data: [70,40,50,30,70,40],
-                    borderColor: "rgb(127, 62, 159)",
-                    backgroundColor: "rgb(127, 62, 159)",
-                    fill: true,
-                  },
-                  {
-                      label: 'Excited',
-                      data: [60,50,40,40,60,30],
-                      borderColor: "rgb(254, 225, 53)",
-                      backgroundColor: "rgb(254, 225, 53)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Sad',
-                      data: [50,60,30,50,50,20],
-                      borderColor: "rgb(63, 103, 179)",
-                      backgroundColor: "rgb(63, 103, 179)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Neutral',
-                      data: [40,70,20,60,40,10],
-                      borderColor: "rgb(160, 129, 108)",
-                      backgroundColor: "rgb(160, 129, 108)",
-                      fill: true,
-                    },
-                  ]
-                })
-              break;
-              case "month":
-                setMountainData({
-                  labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
-                  datasets: [
-                    {
-                    label: 'Happy',
-                    data: [90,20,70,10,90,50],
-                    borderColor: "rgb(61, 148, 42)",
-                    backgroundColor: "rgb(61, 148, 42)",
-                    fill: true,
-                  },
-                  {
-                    label: 'Angry',
-                    data: [80,30,60,20,80,50],
-                    borderColor: "rgb(225, 85, 85)",
-                    backgroundColor: "rgb(225, 85, 85)",
-                    fill: true,
-                  },
-                  {
-                    label: 'Scared',
-                    data: [70,40,50,30,70,40],
-                    borderColor: "rgb(127, 62, 159)",
-                    backgroundColor: "rgb(127, 62, 159)",
-                    fill: true,
-                  },
-                  {
-                      label: 'Excited',
-                      data: [60,50,40,40,60,30],
-                      borderColor: "rgb(254, 225, 53)",
-                      backgroundColor: "rgb(254, 225, 53)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Sad',
-                      data: [50,60,30,50,50,20],
-                      borderColor: "rgb(63, 103, 179)",
-                      backgroundColor: "rgb(63, 103, 179)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Neutral',
-                      data: [40,70,20,60,40,10],
-                      borderColor: "rgb(160, 129, 108)",
-                      backgroundColor: "rgb(160, 129, 108)",
-                      fill: true,
-                    },
-                  ]
-                })
-              break;
-              case "year":
-                setMountainData({
-                  labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-                  datasets: [
-                    {
-                    label: 'Happy',
-                    data: [90,20,70,10,90,50],
-                    borderColor: "rgb(61, 148, 42)",
-                    backgroundColor: "rgb(61, 148, 42)",
-                    fill: true,
-                    },
-                    {
-                      label: 'Angry',
-                      data: [80,30,60,20,80,50],
-                      borderColor: "rgb(225, 85, 85)",
-                      backgroundColor: "rgb(225, 85, 85)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Scared',
-                      data: [70,40,50,30,70,40],
-                      borderColor: "rgb(127, 62, 159)",
-                      backgroundColor: "rgb(127, 62, 159)",
-                      fill: true,
-                    },
-                    {
-                        label: 'Excited',
-                        data: [60,50,40,40,60,30],
-                        borderColor: "rgb(254, 225, 53)",
-                        backgroundColor: "rgb(254, 225, 53)",
-                        fill: true,
-                      },
-                      {
-                        label: 'Sad',
-                        data: [50,60,30,50,50,20],
-                        borderColor: "rgb(63, 103, 179)",
-                        backgroundColor: "rgb(63, 103, 179)",
-                        fill: true,
-                      },
-                      {
-                        label: 'Neutral',
-                        data: [40,70,20,60,40,10],
-                        borderColor: "rgb(160, 129, 108)",
-                        backgroundColor: "rgb(160, 129, 108)",
-                        fill: true,
-                      },
-                  ]
-                })
-              break;
-              case "years":
-                setMountainData({
-                  labels: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
-                  datasets: [
-                    {
-                      label: 'Happy',
-                      data: [90,20,70,10,90,50],
-                      borderColor: "rgb(61, 148, 42)",
-                      backgroundColor: "rgb(61, 148, 42)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Angry',
-                      data: [80,30,60,20,80,50],
-                      borderColor: "rgb(225, 85, 85)",
-                      backgroundColor: "rgb(225, 85, 85)",
-                      fill: true,
-                    },
-                    {
-                      label: 'Scared',
-                      data: [70,40,50,30,70,40],
-                      borderColor: "rgb(127, 62, 159)",
-                      backgroundColor: "rgb(127, 62, 159)",
-                      fill: true,
-                    },
-                    {
-                        label: 'Excited',
-                        data: [60,50,40,40,60,30],
-                        borderColor: "rgb(254, 225, 53)",
-                        backgroundColor: "rgb(254, 225, 53)",
-                        fill: true,
-                      },
-                      {
-                        label: 'Sad',
-                        data: [50,60,30,50,50,20],
-                        borderColor: "rgb(63, 103, 179)",
-                        backgroundColor: "rgb(63, 103, 179)",
-                        fill: true,
-                      },
-                      {
-                        label: 'Neutral',
-                        data: [40,70,20,60,40,10],
-                        borderColor: "rgb(160, 129, 108)",
-                        backgroundColor: "rgb(160, 129, 108)",
-                        fill: true,
-                      },
-                  ]
-                })
-              break;
-              default:
-        
-              break;
-            }
-          }, [props.timeUnit]);
-        
-          useEffect(() => {
-            if(props.data != null && props.data.lenght > 1) {
-            processData(props.data);
-            }
-        
-          }, [props.data]);
-        
-          // process response json and populate data into BarData template
-          const processData = (json) => {
-            const data = {
-              labels: [],
-              datasets: [
-                {
-                  label: "Total emotions in doughnutchart",
-                  data: [],
-                  backgroundColor: [],
-                },
-              ],
-            };
-        
-            for (let i in json) {
-                emotionData[json[i].emotion_id - 1].count = json[i].count;
-              }
-              emotionData.map((emotion) => {
-                data.labels.push(emotion.label);
-                data.datasets[0].data.push(emotion.count);
-                data.datasets[0].backgroundColor.push(emotion.rgbColor);
-              });
-        
-              setMountainData(data);
-            };
-    
-    return <Line data={mountainData} options={options} />;
-  }
+  return <Line data={mountainData} options={options} />;
+};
 
   export default MountainChart;
