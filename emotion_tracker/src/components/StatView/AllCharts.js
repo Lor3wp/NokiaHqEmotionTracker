@@ -125,9 +125,7 @@ const AllCharts = (props) => {
         return emotion;
       });
     }
-    console.log(props.data, "moi");
 
-    console.log(emotionData, "aasijanalle");
     setDataFetched(!dataFetched);
   }, [props.data]);
 
@@ -203,11 +201,10 @@ const AllCharts = (props) => {
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
-            jsonDataWeek.map ((dayData) => {
-              const dayDataDate = new Date(dayData.full_date)
-              dayData.created_at = (((dayDataDate.getDay() - 1) % 7 + 7 ) % 7)
-                });
-            console.log("koikkeli", jsonDataWeek)
+            jsonDataWeek.map((dayData) => {
+              const dayDataDate = new Date(dayData.full_date);
+              dayData.created_at = (((dayDataDate.getDay() - 1) % 7) + 7) % 7;
+            });
             props.setData(jsonDataWeek);
             props.setLoading(!props.loading);
             break;
@@ -288,11 +285,10 @@ const AllCharts = (props) => {
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
-            jsonDataWeek.map ((dayData) => {
-              const dayDataDate = new Date(dayData.full_date)
-              dayData.created_at = (((dayDataDate.getDay() - 1) % 7 + 7 ) % 7)
+            jsonDataWeek.map((dayData) => {
+              const dayDataDate = new Date(dayData.full_date);
+              dayData.created_at = (((dayDataDate.getDay() - 1) % 7) + 7) % 7;
             });
-            console.log("koikkeli", jsonDataWeek)
             props.setData(jsonDataWeek);
             props.setLoading(!props.loading);
             break;
@@ -334,6 +330,11 @@ const AllCharts = (props) => {
 
   switch (props.chartType) {
     case "doughnutchart":
+      if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else 
       return (
         <div
           style={{
@@ -365,6 +366,11 @@ const AllCharts = (props) => {
         </div>
       );
     case "linechart":
+      if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else 
       return (
         <div
           style={{
@@ -391,6 +397,11 @@ const AllCharts = (props) => {
         </div>
       );
     case "mountainchart":
+      if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else 
       return (
         <div
           style={{
@@ -417,6 +428,11 @@ const AllCharts = (props) => {
         </div>
       );
     case "piechart":
+      if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else 
       return (
         <div
           style={{
@@ -442,6 +458,11 @@ const AllCharts = (props) => {
         </div>
       );
     case "barchart":
+      if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else 
       return (
         <div
           style={{
@@ -468,7 +489,7 @@ const AllCharts = (props) => {
         </div>
       );
     default:
-      return <text>chartType not found</text>;
+      return <p>chartType not found</p>;
   }
 };
 
