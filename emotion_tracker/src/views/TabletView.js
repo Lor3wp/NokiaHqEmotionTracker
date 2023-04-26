@@ -24,42 +24,19 @@ const TabletView = ({ setStatsData }) => {
       }
     },[isPassword, password]);
 
-  if(localStorage.getItem("password") === "true"){
     return (
       <div className="emotionButtonView">
         <div
           className="titleAndOthers"
-          style={{ display: "flex", flexDirection: "column" }}>
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           <h1 label="Title">How are you feeling?</h1>
         </div>
         <div className="emotions">
-        <TabletEmotionButton
-        updateStats={() => setStatsData(null)}
-         />
+          <TabletEmotionButton updateStats={() => setStatsData(null)} />
         </div>
       </div>
     );
-} else {
-    return (
-    <div id="passwordScreen">
-      <label style={{fontSize: 0, color: "transparent"}}>
-        Password
-        <input
-            role={"textbox"}
-            className="howOthersFeltButton"
-            id="passwordInput"
-            type="password"
-            onInput={e => setPassword(e.target.value)}
-            value={password}
-            placeholder="Password"
-        />
-      </label>
-        
-        <button role={"button"} className="howOthersFeltButton" onClick={() =>  handleClick()}>
-            Submit
-        </button>
-    </div>
-    )
-  }
+
 }
 export default TabletView;
