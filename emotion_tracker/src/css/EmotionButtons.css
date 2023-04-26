@@ -29,8 +29,8 @@
     animation: fadeIn 1s forwards !important;
  }
   .Neutral {
-    background-color: rgb(255, 227, 202);
-    color: rgb(255, 129, 13);
+    background-color: rgb(215, 215, 215);
+    color: rgb(59,71,97);
     animation: fadeIn 1s forwards !important;
 }
 
@@ -83,7 +83,7 @@
   .Neutral-disabled:disabled {
     cursor: not-allowed;
     background-color: rgba(255, 227, 202, 0);
-    color: rgb(255, 129, 13);
+    color: rgb(59,71,97);
     
 
 }
@@ -140,7 +140,7 @@
     background-color: rgb(195, 130, 212);
   }
   .Neutral:hover {
-    background-color: rgb(240, 189, 144);
+    background-color: rgb(132, 132, 132);
   }
 
 .emotion-buttons {
