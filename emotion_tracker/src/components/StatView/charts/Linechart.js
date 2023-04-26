@@ -47,7 +47,7 @@ const LineChart = (props) => {
   });
 
   useEffect(() => {
-    console.log("lineChart");
+    // console.log("lineChart");
     let data = {
       labels: [],
       datasets: [], //new Array(emotionData.length).fill({
@@ -111,8 +111,8 @@ const LineChart = (props) => {
 
         break;
     }
-    console.log(data.labels.length);
-    console.log(emotionData, "ei ajadf");
+    // console.log(data.labels.length);
+    // console.log(emotionData, "ei ajadf");
     // for (let i in emotionData) {
     //   data.datasets.push({
     //     label: emotionData[i].label,
