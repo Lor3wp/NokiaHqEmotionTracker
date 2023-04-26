@@ -87,6 +87,27 @@ const AllCharts = (props) => {
 
             }
           }
+          props.data.map((json) => {
+            for (let k in emotionData) {
+              if (parseInt(json.emotion_id) === emotionData[k].id) {
+                for (let i in emotionData[k].subEmotions) {
+                  if (
+                      parseInt(json.sub_emotion_id) ===
+                      emotionData[k].subEmotions[i].id
+                  ) {
+                    emotionData[k].subEmotions[i].count += parseInt(json.count);
+                  }
+                }
+                if (parseInt(json.sub_emotion_id) === 1) {
+                  emotionData[k].total_sub += parseInt(json.count);
+                }
+                emotionData[k].count[parseInt(json.created_at)] += parseInt(
+                    json.count
+                );
+                emotionData[k].total += parseInt(json.count);
+              }
+            }
+          });
           break;
         case "month":
           for (let j in emotionData) {
