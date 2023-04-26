@@ -5,7 +5,7 @@ import EmotionButtons from "./EmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
 
 
-const EmotionButton = () => {
+const Emotions = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
@@ -63,6 +63,6 @@ const EmotionButton = () => {
     );
 
 }
-export default EmotionButton;
+export default Emotions;
 // build test
 

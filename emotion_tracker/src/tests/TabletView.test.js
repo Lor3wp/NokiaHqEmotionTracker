@@ -1,11 +1,35 @@
-//Test: 
-const wrapper = shallow();
+import React from "react"; 
+import {render, fireEvent, cleanup, waitFor} from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom'; 
+import TabletView from "../views/TabletView";
+import fetchMock from 'jest-fetch-mock';
 
-//Test that the initial state of isPassword is false 
-expect(wrapper.state('isPassword')).toEqual(false);
+afterEach(cleanup);
 
-//Test that entering 'correctPassword' into the input field updates isPassword to true 
-wrapper.find('#passwordInput').simulate('input', { target: { value: 'correctPassword' } }); expect(wrapper.state('isPassword')).toEqual(true);
+describe('TabletView', () => {
+    beforeAll(() => {
+        fetchMock.enableMocks();
+    });
 
-//Test that the TabletEmotionButton component is rendered when isPassword is true 
-expect(wrapper.find('TabletEmotionButton').exists()).toBe(true);
+    afterAll(() => {
+        fetchMock.disableMocks();
+    });
+
+    it('it renders correctly', () => { 
+        const {getByRole} = render(<TabletView />);
+        expect(getByRole('button', {name: "Submit"})).toBeInTheDocument();
+        expect(getByRole('textbox', {name: "Password"})).toBeInTheDocument(); 
+    });
+
+    it('it updates state correctly', async () => { 
+        const { getByRole } = render(<TabletView />);
+        const passInput = getByRole("textbox", {name: "Password"});
+        
+        expect(getByRole('button', { name: "Submit" })).toBeInTheDocument(); 
+        fireEvent.change(getByRole('textbox', { name: "Password" }), { target: { value: 'kissakoira' }});
+        fireEvent.click(getByRole('button', { name: "Submit"}));
+        await waitFor(() => expect(getByRole('textbox', { name: "Password" })).toHaveValue('kissakoira'), { timeout: 2000 });        
+        expect(getByRole('button', { name: "Submit" })).toBeInTheDocument(); 
+      });
+});

@@ -48,7 +48,11 @@ const App = () => {
               path="/NokiaHqEmotionTracker"
               Component={EmotionButtonView}
             />
-            <Route exact path="/TabletView" Component={TabletView} />
+            <Route 
+              exact 
+              path="/1f1244Gopd5004JKiu03Vili" 
+              Component={TabletView} 
+            />
           </Routes>
         </Router>
       </header>
