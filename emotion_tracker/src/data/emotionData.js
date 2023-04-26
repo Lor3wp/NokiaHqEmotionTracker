@@ -93,7 +93,7 @@ const emotionData = [
         count: 0
       },
       {
-        label: "Embarrased",
+        label: "Embarrassed",
         id: 3,
         rgbColor: "rgb(243, 189, 255)",
         textColor: "rgb(127 62 159)",

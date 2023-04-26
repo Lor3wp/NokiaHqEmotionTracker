@@ -1,3 +1,20 @@
 .timeUnit-arrow .material-symbols-outlined {
     width: 18px;
 }
+
+.datePickerMainDiv {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1;
+    height: inherit;
+    justify-content: center;
+}
+
+.timeUnit-arrow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+

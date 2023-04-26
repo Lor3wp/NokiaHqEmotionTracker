@@ -104,9 +104,9 @@ const DatePicker = (props) => {
     switch (props.timeUnit) {
         case "day":
             return (
-                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
-                    <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
-                        <span style={{alignSelf: "flex-start"}} onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
+                <div className="datePickerMainDiv">
+                    <div className="timeUnit-arrow">
+                        <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
                             <p>{props.chartDate[0]}. {monthsNamed[props.chartDate[2]]} {props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
                     </div>
@@ -114,8 +114,8 @@ const DatePicker = (props) => {
             );
         case "week":
             return (
-                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
-                    <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
+                <div className="datePickerMainDiv">
+                    <div className="timeUnit-arrow">
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
                             <p>Week {props.chartDate[1]}, {props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
@@ -124,8 +124,8 @@ const DatePicker = (props) => {
             );
         case "month":
             return (
-                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
-                    <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
+                <div className="datePickerMainDiv">
+                    <div className="timeUnit-arrow">
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
                             <p>{monthsNamed[props.chartDate[2]]} {props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
@@ -134,8 +134,8 @@ const DatePicker = (props) => {
             );
         case "year":
             return (
-                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
-                    <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
+                <div className="datePickerMainDiv">
+                    <div className="timeUnit-arrow">
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
                             <p>{props.chartDate[3]}</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>
@@ -144,8 +144,8 @@ const DatePicker = (props) => {
             );
         case "years":
             return (
-                <div style={{display: "flex", flexWrap: "wrap", flexDirection: "column", flex: 1, height: "inherit", justifyContent: "center"}}>
-                    <div className="timeUnit-arrow" style={{display: "flex", flexDirection: "row" ,width: "100%", justifyContent: "space-between"}}>
+                <div className="datePickerMainDiv">
+                    <div className="timeUnit-arrow">
                         <span onClick={timeDown} className="material-symbols-outlined">arrow_back_ios</span>
                             <p>{Math.floor(props.chartDate[3] / 10) * 10}'s</p>
                         <span onClick={timeUp} className="material-symbols-outlined">arrow_forward_ios</span>

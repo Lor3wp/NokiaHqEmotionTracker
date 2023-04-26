@@ -42,6 +42,7 @@ const StatWindow = ({ backButtonClicked }) => {
     }
 
   }, [chartDate, timeUnit]);
+  
   const createCurrentDay = () => {
     const options = { weekStartsOn: 1 };
 
@@ -51,6 +52,7 @@ const StatWindow = ({ backButtonClicked }) => {
     dateFormat.push(getWeek(today, options));
     dateFormat.push(today.getMonth() + 1);
     dateFormat.push(today.getFullYear());
+
     setCurrentDate(dateFormat);
     setChartDate(dateFormat);
   };
@@ -69,7 +71,10 @@ const StatWindow = ({ backButtonClicked }) => {
           }}
           onClick={backButtonClicked}
         >
-          <span className="material-symbols-outlined" style={{ color: "white" }}>
+          <span
+            className="material-symbols-outlined"
+            style={{ color: "white" }}
+          >
             arrow_back
           </span>
         </button>
@@ -77,16 +82,17 @@ const StatWindow = ({ backButtonClicked }) => {
       </div>
       <div ref={chartContainerDiv} id="ChartView">
         <AllCharts
-            chartType={chartType}
-            hourRange={hourRange}
-            minHour={minHour}
-            maxHour={maxHour}
-            chartDate={chartDate}
-            timeUnit={timeUnit}
-            data={data}
-            setData={setData}
-            setLoading={setLoading}
-            chartContainerDiv={chartContainerDiv}
+          chartType={chartType}
+          hourRange={hourRange}
+          minHour={minHour}
+          maxHour={maxHour}
+          chartDate={chartDate}
+          timeUnit={timeUnit}
+          data={data}
+          setData={setData}
+          setLoading={setLoading}
+          loading={loading}
+          chartContainerDiv={chartContainerDiv}
         />
         {/*  TODO: chart view here */}
       </div>

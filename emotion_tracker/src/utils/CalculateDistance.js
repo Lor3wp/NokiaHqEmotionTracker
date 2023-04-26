@@ -35,3 +35,5 @@ const calculateDistance = (lat, lon) => {
     return deg * (Math.PI / 180);
   }
   export default calculateDistance;
+
+  // tested

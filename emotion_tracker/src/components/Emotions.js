@@ -11,7 +11,7 @@ const EmotionButton = () => {
   const [time, setTime] = useState(0);
   const timerTimeMs = 15000;
   const [clicked, setClicked] = useState(0);
-  
+
   useEffect(() => {
     timerTick(setTime, timerTimeMs, setButtonActive, setClicked); // calling the timerTick once before setting the interval to avoid one second delay
     let timer = setInterval(() => {
@@ -24,7 +24,7 @@ const EmotionButton = () => {
   // post emotion to database
   const addEmotion = async (id) => {
     try {
-      const response = await fetch("http://localhost:3001/add/addemotion", {
+      const response = await fetch("http://localhost:3001/emotions/addemotion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const EmotionButton = () => {
       />
     </div>
     );
-  
+
 }
 export default EmotionButton;
 // build test
