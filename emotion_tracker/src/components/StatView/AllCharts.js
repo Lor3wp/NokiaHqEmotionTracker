@@ -44,11 +44,12 @@ const AllCharts = (props) => {
         case "day":
           for (let j in emotionData) {
             emotionData[j].total = 0;
-            emotionData[j].total_sub = 0;
+            emotionData[j].total_sub = new Array(24).fill(null);
 
             emotionData[j].count = new Array(24).fill(null);
             for (let i in emotionData[j].subEmotions) {
-              emotionData[j].subEmotions[i].count = 0;
+              emotionData[j].subEmotions[i].count = new Array(24).fill(null);
+              emotionData[j].subEmotions[i].total = 0;
             }
           }
           props.data.map((json) => {
@@ -59,11 +60,13 @@ const AllCharts = (props) => {
                     parseInt(json.sub_emotion_id) ===
                     emotionData[k].subEmotions[i].id
                   ) {
-                    emotionData[k].subEmotions[i].count += parseInt(json.count);
+                    emotionData[k].subEmotions[i].total += parseInt(json.count);
+                    emotionData[k].subEmotions[i].count[parseInt(json.created_at)] += parseInt(json.count);
+
                   }
                 }
                 if (parseInt(json.sub_emotion_id) === 1) {
-                  emotionData[k].total_sub += parseInt(json.count);
+                  emotionData[k].total_sub[parseInt(json.created_at)] += parseInt(json.count);
                 }
                 emotionData[k].count[parseInt(json.created_at)] += parseInt(
                   json.count
@@ -77,20 +80,28 @@ const AllCharts = (props) => {
           // TODO handle data from json for week
           for (let j in emotionData) {
             emotionData[j].count = new Array(7).fill(null);
+            emotionData[j].total_sub = new Array(7).fill(null)
             for (let i in emotionData[j].subEmotions) {
-              emotionData[j].subEmotions[i].count = 0;
+              emotionData[j].subEmotions[i].total = 0;
+              emotionData[j].subEmotions[i].count = new Array(7).fill(null);
+
             }
           }
           break;
         case "month":
           for (let j in emotionData) {
             emotionData[j].total = 0;
-            emotionData[j].total_sub = 0;
+            emotionData[j].total_sub = new Array(
+              new Date(props.chartDate[3], props.chartDate[2], 0).getDate()
+            ).fill(null);
             emotionData[j].count = new Array(
               new Date(props.chartDate[3], props.chartDate[2], 0).getDate()
             ).fill(null);
             for (let i in emotionData[j].subEmotions) {
-              emotionData[j].subEmotions[i].count = 0;
+              emotionData[j].subEmotions[i].count = new Array(
+                new Date(props.chartDate[3], props.chartDate[2], 0).getDate()
+              ).fill(null);
+              emotionData[j].subEmotions[i].total = 0;
             }
           }
           props.data.map((json) => {
@@ -101,11 +112,15 @@ const AllCharts = (props) => {
                     parseInt(json.sub_emotion_id) ===
                     emotionData[k].subEmotions[i].id
                   ) {
-                    emotionData[k].subEmotions[i].count += parseInt(json.count);
+                    emotionData[k].subEmotions[i].total += parseInt(json.count);
+                    emotionData[k].subEmotions[i].count[
+                      parseInt(json.created_at) - 1
+                    ] += parseInt(json.count);
                   }
                 }
                 if (parseInt(json.sub_emotion_id) === 1) {
-                  emotionData[k].total_sub += parseInt(json.count);
+                  emotionData[k].total_sub[parseInt(json.created_at) - 1] +=
+                    parseInt(json.count);
                 }
                 emotionData[k].count[parseInt(json.created_at) - 1] += parseInt(
                   json.count
@@ -118,11 +133,12 @@ const AllCharts = (props) => {
         case "year":
           for (let j in emotionData) {
             emotionData[j].total = 0;
-            emotionData[j].total_sub = 0;
+            emotionData[j].total_sub = new Array(12).fill(null);
 
             emotionData[j].count = new Array(12).fill(null);
             for (let i in emotionData[j].subEmotions) {
-              emotionData[j].subEmotions[i].count = 0;
+              emotionData[j].subEmotions[i].count= new Array(12).fill(null);
+              emotionData[j].subEmotions[i].total = 0;
             }
           }
           props.data.map((json) => {
@@ -133,11 +149,15 @@ const AllCharts = (props) => {
                     parseInt(json.sub_emotion_id) ===
                     emotionData[k].subEmotions[i].id
                   ) {
-                    emotionData[k].subEmotions[i].count += parseInt(json.count);
+                    emotionData[k].subEmotions[i].total += parseInt(json.count);
+                    emotionData[k].subEmotions[i].count[parseInt(json.created_at) - 1] += parseInt(
+                      json.count
+                    );
                   }
                 }
                 if (parseInt(json.sub_emotion_id) === 1) {
-                  emotionData[k].total_sub += parseInt(json.count);
+                  emotionData[k].total_sub[parseInt(json.created_at) -1] +=
+                    parseInt(json.count);
                 }
                 emotionData[k].count[parseInt(json.created_at) - 1] += parseInt(
                   json.count
@@ -150,9 +170,11 @@ const AllCharts = (props) => {
         case "years":
           emotionData.map((emotion) => {
             emotion.count = new Array(10).fill(null);
+            emotion.total_sub = new Array(10).fill(null);
             emotion.total = 0;
             for (let i in emotion.subEmotions) {
-              emotion.subEmotions[i].count = 0;
+              emotion.subEmotions[i].count = new Array(10).fill(null);
+              emotion.subEmotions[i].total = 0;
             }
           });
           const firstYear = Math.floor(props.chartDate[3] / 10) * 10;
@@ -164,11 +186,16 @@ const AllCharts = (props) => {
                     parseInt(json.sub_emotion_id) ===
                     emotionData[k].subEmotions[i].id
                   ) {
-                    emotionData[k].subEmotions[i].count += parseInt(json.count);
+                    emotionData[k].subEmotions[i].total += parseInt(json.count);
+                    emotionData[k].subEmotions[i].count[
+                      parseInt(json.created_at) - firstYear
+                    ] += parseInt(json.count);
                   }
                 }
                 if (parseInt(json.sub_emotion_id) === 1) {
-                  emotionData[k].total_sub += parseInt(json.count);
+                  emotionData[k].total_sub[
+                    parseInt(json.created_at) - firstYear
+                  ] += parseInt(json.count);
                 }
                 emotionData[k].count[parseInt(json.created_at) - firstYear] +=
                   parseInt(json.count);
@@ -183,6 +210,12 @@ const AllCharts = (props) => {
     } else {
       emotionData.map((emotion) => {
         emotion.count = [];
+        emotion.total = 0;
+        emotion.total_sub = []
+        for (let i in emotion.subEmotions) {
+          emotion.subEmotions[i].total = 0
+          emotion.subEmotions[i].count = []
+        }
         return emotion;
       });
     }
