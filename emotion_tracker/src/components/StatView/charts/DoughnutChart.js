@@ -53,10 +53,8 @@ const DoughnutChart = (props) => {
   });
 
   useEffect(() => {
-    if (props.data != null && props.data.length > 1) {
-      // console.log("stringi");
-      processData();
-    }
+    // console.log("stringi");
+    processData();
   }, [props.dataFetched, props.maxHour, props.minHour, props.hourRange]);
 
   const processData = () => {
@@ -79,39 +77,48 @@ const DoughnutChart = (props) => {
         },
       ],
     };
-    // console.log(emotionData, "aasijanalle");
 
     switch (props.timeUnit) {
       case "day":
-        // TODO make the hour slider work hint: create array and loop thru each count array and only add the ones within index of minmax and then put it into data
         emotionData.map((emotion) => {
-          data.labels.push("Total Of " + emotion.label);
-
-          for (let i in emotion.count) {
-            if (i >= props.minHour && i <= props.maxHour) {
-              console.log(i, props.minHour, props.maxHour);
-              data.datasets[1].data.push(emotion.total);
-              data.datasets[1].backgroundColor.push(emotion.chartColor);
-              data.datasets[0].data.push(0);
-              data.datasets[0].backgroundColor.push(0);
+          // [0,1,2,0]
+          let collected = 0;
+          for (let k in emotion.count) {
+            if (k >= props.minHour && k <= props.maxHour) {
+              collected += emotion.count[k];
             }
           }
+
+          data.labels.push("Total Of " + emotion.label);
+          data.datasets[1].data.push(collected);
+          data.datasets[1].backgroundColor.push(emotion.chartColor);
+          data.datasets[0].data.push(0);
+          data.datasets[0].backgroundColor.push(0);
         });
         for (let i in emotionData) {
+          // TODO make the sub emotions into array
+          let collected_sub = 0;
           for (let k in emotionData[i].count) {
             if (k >= props.minHour && k <= props.maxHour) {
-              data.labels.push(emotionData[i].label);
-              data.datasets[0].data.push(emotionData[i].total_sub);
-              data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
-
-              emotionData[i].subEmotions.map((subEmotion) => {
-                data.labels.push(subEmotion.label);
-                data.datasets[0].data.push(subEmotion.count);
-                data.datasets[0].backgroundColor.push(subEmotion.chartColor);
-                // console.log(subEmotion.count);
-              });
+              collected_sub += emotionData[i].total_sub[k];
             }
           }
+          data.labels.push(emotionData[i].label);
+          data.datasets[0].data.push(collected_sub);
+          data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
+
+          emotionData[i].subEmotions.map((subEmotion) => {
+            let collected_sub_sub = 0;
+            for (let k in subEmotion.count) {
+              if (k >= props.minHour && k <= props.maxHour) {
+                collected_sub_sub += subEmotion.count[k];
+              }
+            }
+            data.labels.push(subEmotion.label);
+            data.datasets[0].data.push(collected_sub_sub);
+            data.datasets[0].backgroundColor.push(subEmotion.chartColor);
+            // console.log(subEmotion.count);
+          });
         }
         break;
 
@@ -126,12 +133,14 @@ const DoughnutChart = (props) => {
         });
         for (let i in emotionData) {
           data.labels.push(emotionData[i].label);
-          data.datasets[0].data.push(emotionData[i].total_sub);
+          data.datasets[0].data.push(
+            emotionData[i].total_sub.reduce((acc, val) => acc + (val || 0), 0)
+          );
           data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
 
           emotionData[i].subEmotions.map((subEmotion) => {
             data.labels.push(subEmotion.label);
-            data.datasets[0].data.push(subEmotion.count);
+            data.datasets[0].data.push(subEmotion.total);
             data.datasets[0].backgroundColor.push(subEmotion.chartColor);
             // console.log(subEmotion.count);
           });
@@ -144,7 +153,9 @@ const DoughnutChart = (props) => {
     // console.log(data);
     setDoughnutData(data);
   };
-
+  function add(accumulator, a) {
+    return accumulator + a;
+  }
   // maxDivSize
   return (
     <div
