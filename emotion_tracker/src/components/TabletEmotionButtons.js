@@ -13,6 +13,7 @@ function TabletEmotionButton() {
   const [clicked, setClicked] = useState(0)
 
   useEffect(() => {
+    localStorage.setItem("timer", 0);
     let timer = setInterval(() => {
       timerTick(setTime, timerTimeMs, setButtonActive, setClicked);
     }, 1000);

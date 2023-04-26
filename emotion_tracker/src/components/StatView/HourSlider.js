@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "../../css/HourSlider.css";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
@@ -47,25 +47,35 @@ const HourSlider = ({
         </div>
         {hourRange ? (
           <div className="margin-lg">
+          <label style={{fontSize: "0em", color: "transparent"}}>
+          SingleHour
             <RangeSlider
               className="single-thumb"
+              alt="single-thumb"
               value={value}
               max={23}
               onInput={onSingleThumbChange}
               thumbsDisabled={[true, false]}
               rangeSlideDisabled={true}
             />
+            </label>
           </div>
         ) : (
           (
             <div className="margin-lg">
+            <label style={{fontSize: "0em", color: "transparent"}}>
+            HourRange
               <RangeSlider
+              className="double-thumb"
+                alt="double-thumb"
+                data-testid="range-slider"
                 min={0}
                 max={23}
                 step={1}
                 value={[minHour, maxHour]}
                 onInput={onHourChange}
               />
+              </label>
             </div>
           )
         )}
