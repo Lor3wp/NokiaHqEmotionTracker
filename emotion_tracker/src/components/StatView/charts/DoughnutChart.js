@@ -81,27 +81,63 @@ const DoughnutChart = (props) => {
     };
     // console.log(emotionData, "aasijanalle");
 
-    emotionData.map((emotion) => {
-      data.labels.push("Total Of "+emotion.label);
-      for (let i in emotion.count) {
-        data.datasets[1].data.push(emotion.total);
-        data.datasets[1].backgroundColor.push(emotion.chartColor);
-        data.datasets[0].data.push(0);
-        data.datasets[0].backgroundColor.push(0);
-      }
+    switch (props.timeUnit) {
+      case "day":
+        // TODO make the hour slider work hint: create array and loop thru each count array and only add the ones within index of minmax and then put it into data
+        emotionData.map((emotion) => {
+          data.labels.push("Total Of " + emotion.label);
 
-    });
-    for (let i in emotionData) {
-      data.labels.push(emotionData[i].label)
-      data.datasets[0].data.push(emotionData[i].total_sub);
-      data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
+          for (let i in emotion.count) {
+            if (i >= props.minHour && i <= props.maxHour) {
+              console.log(i, props.minHour, props.maxHour);
+              data.datasets[1].data.push(emotion.total);
+              data.datasets[1].backgroundColor.push(emotion.chartColor);
+              data.datasets[0].data.push(0);
+              data.datasets[0].backgroundColor.push(0);
+            }
+          }
+        });
+        for (let i in emotionData) {
+          for (let k in emotionData[i].count) {
+            if (k >= props.minHour && k <= props.maxHour) {
+              data.labels.push(emotionData[i].label);
+              data.datasets[0].data.push(emotionData[i].total_sub);
+              data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
 
-      emotionData[i].subEmotions.map((subEmotion) => {
-        data.labels.push(subEmotion.label);
-        data.datasets[0].data.push(subEmotion.count);
-        data.datasets[0].backgroundColor.push(subEmotion.chartColor);
-        // console.log(subEmotion.count);
-      });
+              emotionData[i].subEmotions.map((subEmotion) => {
+                data.labels.push(subEmotion.label);
+                data.datasets[0].data.push(subEmotion.count);
+                data.datasets[0].backgroundColor.push(subEmotion.chartColor);
+                // console.log(subEmotion.count);
+              });
+            }
+          }
+        }
+        break;
+
+      default:
+        emotionData.map((emotion) => {
+          data.labels.push("Total Of " + emotion.label);
+
+          data.datasets[1].data.push(emotion.total);
+          data.datasets[1].backgroundColor.push(emotion.chartColor);
+          data.datasets[0].data.push(0);
+          data.datasets[0].backgroundColor.push(0);
+        });
+        for (let i in emotionData) {
+          data.labels.push(emotionData[i].label);
+          data.datasets[0].data.push(emotionData[i].total_sub);
+          data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
+
+          emotionData[i].subEmotions.map((subEmotion) => {
+            data.labels.push(subEmotion.label);
+            data.datasets[0].data.push(subEmotion.count);
+            data.datasets[0].backgroundColor.push(subEmotion.chartColor);
+            // console.log(subEmotion.count);
+          });
+        }
+
+        break;
     }
 
     // console.log(props.data);

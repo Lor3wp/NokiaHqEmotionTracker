@@ -107,7 +107,7 @@ const MountainChart = (props) => {
         data: values,
         borderColor: emotion.chartColor,
         backgroundColor: emotion.chartColor,
-        fill: true,
+        // fill: true,
       });
     });
     setMountainData(data);
