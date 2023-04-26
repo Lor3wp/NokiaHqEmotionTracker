@@ -1,13 +1,14 @@
+import React from "react";
 import TabletEmotionButton from "../components/TabletEmotionButtons";
 import "../css/EmotionButtonView.css";
 import { useEffect, useState } from "react";
 
 
 const TabletView = ({ setStatsData }) => {
-  const [isPassword, setIsPassword] = useState("false")
-  const [password, setPassword] = useState('')
+  const [isPassword, setIsPassword] = useState("false");
+  const [password, setPassword] = useState('');
   const [update, setUpdate] = useState(false);
-  const correctPassword = "kissakoira"
+  const correctPassword = "kissakoira";
 
 
   const handleClick = () => {
@@ -28,9 +29,8 @@ const TabletView = ({ setStatsData }) => {
       <div className="emotionButtonView">
         <div
           className="titleAndOthers"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <h1>How are you feeling?</h1>
+          style={{ display: "flex", flexDirection: "column" }}>
+          <h1 label="Title">How are you feeling?</h1>
         </div>
         <div className="emotions">
         <TabletEmotionButton
@@ -42,20 +42,24 @@ const TabletView = ({ setStatsData }) => {
 } else {
     return (
     <div id="passwordScreen">
+      <label style={{fontSize: 0, color: "transparent"}}>
+        Password
         <input
+            role={"textbox"}
             className="howOthersFeltButton"
             id="passwordInput"
             type="password"
-            value={password}
             onInput={e => setPassword(e.target.value)}
+            value={password}
             placeholder="Password"
-            label="Gimme Password"
         />
-        <button className="howOthersFeltButton" onClick={() =>  handleClick()}>
+      </label>
+        
+        <button role={"button"} className="howOthersFeltButton" onClick={() =>  handleClick()}>
             Submit
         </button>
     </div>
     )
-}
   }
+}
 export default TabletView;
