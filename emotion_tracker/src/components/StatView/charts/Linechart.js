@@ -54,13 +54,9 @@ const LineChart = (props) => {
     };
     switch (props.timeUnit) {
       case "day":
-        data.labels = [...Array(emotionData[0].count.length).keys()].map(
-          (i) => i + 1
-        );
+        data.labels = [...Array(emotionData[0].count.length).keys()];
         break;
       case "week":
-        // TODO handle data for a week
-
         data.labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
         break;
       case "month":
@@ -92,22 +88,22 @@ const LineChart = (props) => {
           decadeYears.push(startingYear);
         }
         data.labels = decadeYears;
-        for (let j in emotionData) {
-          for (let i = 0; i <= 9; i++) {
-            emotionData[j].count.push(null);
-          }
-        }
-        for (let i in decadeYears) {
-          for (let j in props.data) {
-            for (let k in emotionData) {
-              if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-                if (decadeYears[i] === parseInt(props.data[j].created_at)) {
-                  emotionData[k].count[i] = parseInt(props.data[j].count);
-                }
-              }
-            }
-          }
-        }
+        // for (let j in emotionData) {
+        //   for (let i = 0; i <= 9; i++) {
+        //     emotionData[j].count.push(null);
+        //   }
+        // }
+        // for (let i in decadeYears) {
+        //   for (let j in props.data) {
+        //     for (let k in emotionData) {
+        //       if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
+        //         if (decadeYears[i] === parseInt(props.data[j].created_at)) {
+        //           emotionData[k].count[i] = parseInt(props.data[j].count);
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
         break;
 
       default:
@@ -117,15 +113,24 @@ const LineChart = (props) => {
     }
     console.log(data.labels.length);
     console.log(emotionData, "ei ajadf");
-    for (let i in emotionData) {
+    // for (let i in emotionData) {
+    //   data.datasets.push({
+    //     label: emotionData[i].label,
+    //     data: emotionData[i].count,
+    //     spanGaps: true,
+    //     borderColor: emotionData[i].chartColor,
+    //     backgroundColor: emotionData[i].chartColor,
+    //   });
+    // }
+    emotionData.map((emotion) => {
       data.datasets.push({
-        label: emotionData[i].label,
-        data: emotionData[i].count,
+        label: emotion.label,
+        data: emotion.count,
         spanGaps: true,
-        borderColor: emotionData[i].chartColor,
-        backgroundColor: emotionData[i].chartColor,
+        borderColor: emotion.chartColor,
+        backgroundColor: emotion.chartColor,
       });
-    }
+    });
     setLineData(data);
   }, [props.dataFetched]);
 

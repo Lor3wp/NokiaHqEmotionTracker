@@ -23,7 +23,7 @@ function TabletEmotionButton() {
   const addEmotion = async (id) => {
 
     try {
-      const response = await fetch("http://localhost:3001/add/addemotion", {
+      const response = await fetch("http://localhost:3001/emotions/addemotion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

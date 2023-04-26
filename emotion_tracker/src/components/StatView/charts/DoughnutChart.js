@@ -4,7 +4,16 @@ import { Doughnut } from 'react-chartjs-2';
 import emotionData from "../../../data/emotionData";
 
 Chart.register(ArcElement);
+// Chart.overrides["doughnutpie"].plugins.legend;
 // options for Doughnut
+// Chart.plugins.register({
+//   beforeDraw: function (c) {
+//     var legends = c.legend.legendItems;
+//     legends.forEach(function (e) {
+//       e.fillStyle = "#07C";
+//     });
+//   },
+// });
 const options = {
   plugins: {
     legend: {
@@ -14,11 +23,14 @@ const options = {
   maintainAspectRatio: true,
   cutout: "50%",
 };
-
+// TODO to the damn hour slider again....
 const DoughnutChart = (props) => {
   // data template for population
   // console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
-  const maxDivSize = props.chartContainerDivHeight > props.chartContainerDivWidth ? props.chartContainerDivWidth : props.chartContainerDivHeight;
+  const maxDivSize =
+    props.chartContainerDivHeight > props.chartContainerDivWidth
+      ? props.chartContainerDivWidth
+      : props.chartContainerDivHeight;
   // console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
@@ -41,14 +53,11 @@ const DoughnutChart = (props) => {
   });
 
   useEffect(() => {
-      if (props.data != null && props.data.length > 1) {
-        // console.log("stringi");
-        processData(props.data);
-    }
-  }, [props.data, props.maxHour, props.minHour, props.hourRange]);
+    // console.log("stringi");
+    processData();
+  }, [props.dataFetched, props.maxHour, props.minHour, props.hourRange]);
 
-  // process response json and populate data into doughnutData template
-  const processData = (json) => {
+  const processData = () => {
     const data = {
       labels: [],
       datasets: [
@@ -71,226 +80,99 @@ const DoughnutChart = (props) => {
 
     switch (props.timeUnit) {
       case "day":
-        switch (props.hourRange) {
-          case false:
-          for (let i in emotionData) {
-            emotionData[i].total = 0
-          }
-          for (let i in json) {
-            const parsedTime = parseInt(json[i].created_at);
-            for (let j in emotionData) {
-              if (emotionData[j].id === parseInt(json[i].emotion_id)) {
-                if (
-                    props.maxHour >= parsedTime &&
-                    props.minHour <= parsedTime
-                ) {
-                  emotionData[j].total += parseInt(json[i].count)
-                }
-              }
+        emotionData.map((emotion) => {
+          // [0,1,2,0]
+          let collected = 0;
+          for (let k in emotion.count) {
+            if (k >= props.minHour && k <= props.maxHour) {
+              collected += emotion.count[k];
             }
           }
-            for (let i in emotionData) {
-              for (let j in emotionData[i].subEmotions) {
-                emotionData[i].subEmotions[j].count = 0
-              }
-            }
-            for (let i in json) {
-              const parsedTime = parseInt(json[i].created_at);
-              for (let j in emotionData) {
-                for (let k in emotionData[j].subEmotions) {
-                  if (emotionData[j].subEmotions[k].id === parseInt(json[i].sub_emotion_id)) {
-                    if (
-                        props.maxHour >= parsedTime &&
-                        props.minHour <= parsedTime
-                    ) {
-                      emotionData[j].subEmotions[k].count += parseInt(json[i].count)
-                    }
-                  }
-                }
-              }
-            }
-          break;
-          case true:
-          for (let i in emotionData) {
-            emotionData[i].total = 0
-          }
-          for (let i in json) {
-            const parsedTime = parseInt(json[i].created_at);
-            for (let j in emotionData) {
-              if (emotionData[j].id === parseInt(json[i].emotion_id)) {
-                if (parseInt(props.maxHour) === parsedTime) {
-                  emotionData[j].total += parseInt(json[i].count)
-                }
-              }
-            }
-          }
-            for (let i in emotionData) {
-              for (let j in emotionData[i].subEmotions) {
-                emotionData[i].subEmotions[j].count = 0
-              }
-            }
-            for (let i in json) {
-              const parsedTime = parseInt(json[i].created_at);
-              for (let j in emotionData) {
-                for (let k in emotionData[j].subEmotions) {
-                  if (emotionData[j].subEmotions[k].id === parseInt(json[i].sub_emotion_id)) {
-                    if (parseInt(props.maxHour) === parsedTime) {
-                      emotionData[j].subEmotions[k].count += parseInt(json[i].count)
-                    }
-                  }
-                }
-              }
-            }
-          break;
-          default:
 
-        }
+          data.labels.push("Total Of " + emotion.label);
+          data.datasets[1].data.push(collected);
+          data.datasets[1].backgroundColor.push(emotion.chartColor);
+          data.datasets[0].data.push(0);
+          data.datasets[0].backgroundColor.push(0);
+        });
+        for (let i in emotionData) {
+          // TODO make the sub emotions into array
+          let collected_sub = 0;
+          for (let k in emotionData[i].count) {
+            if (k >= props.minHour && k <= props.maxHour) {
+              collected_sub += emotionData[i].total_sub[k];
+            }
+          }
+          data.labels.push(emotionData[i].label);
+          data.datasets[0].data.push(collected_sub);
+          data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
 
-        break;
-      case "week":
-        for (let i in emotionData) {
-          emotionData[i].total = 0
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            if (emotionData[j].id === parseInt(json[i].emotion_id)) {
-              emotionData[j].total += parseInt(json[i].count)
-            }
-          }
-        }
-        for (let i in emotionData) {
-          for (let j in emotionData[i].subEmotions) {
-            emotionData[i].subEmotions[j].count = 0
-          }
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            for (let k in emotionData[j].subEmotions) {
-              if (emotionData[j].subEmotions[k].id === parseInt(json[i].sub_emotion_id)) {
-                emotionData[j].subEmotions[k].count += parseInt(json[i].count)
+          emotionData[i].subEmotions.map((subEmotion) => {
+            let collected_sub_sub = 0;
+            for (let k in subEmotion.count) {
+              if (k >= props.minHour && k <= props.maxHour) {
+                collected_sub_sub += subEmotion.count[k];
               }
             }
-          }
+            data.labels.push(subEmotion.label);
+            data.datasets[0].data.push(collected_sub_sub);
+            data.datasets[0].backgroundColor.push(subEmotion.chartColor);
+            // console.log(subEmotion.count);
+          });
         }
         break;
-      case "month":
-        for (let i in emotionData) {
-          emotionData[i].total = 0
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            if (emotionData[j].id === parseInt(json[i].emotion_id)) {
-              emotionData[j].total += parseInt(json[i].count)
-            }
-          }
-        }
-        for (let i in emotionData) {
-          for (let j in emotionData[i].subEmotions) {
-            emotionData[i].subEmotions[j].count = 0
-          }
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            for (let k in emotionData[j].subEmotions) {
-              if (emotionData[j].subEmotions[k].id === parseInt(json[i].sub_emotion_id)) {
-                emotionData[j].subEmotions[k].count += parseInt(json[i].count)
-              }
-            }
-          }
-        }
-        break;
-      case "year":
-        for (let i in emotionData) {
-          emotionData[i].total = 0
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            if (emotionData[j].id === parseInt(json[i].emotion_id)) {
-              emotionData[j].total += parseInt(json[i].count)
-            }
-          }
-        }
-        for (let i in emotionData) {
-          for (let j in emotionData[i].subEmotions) {
-            emotionData[i].subEmotions[j].count = 0
-          }
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            for (let k in emotionData[j].subEmotions) {
-              if (emotionData[j].subEmotions[k].id === parseInt(json[i].sub_emotion_id)) {
-                emotionData[j].subEmotions[k].count += parseInt(json[i].count)
-              }
-            }
-          }
-        }
-        break;
-      case "years":
-        for (let i in emotionData) {
-          emotionData[i].total = 0
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            if (emotionData[j].id === parseInt(json[i].emotion_id)) {
-              emotionData[j].total += parseInt(json[i].count)
-            }
-          }
-        }
-        for (let i in emotionData) {
-          for (let j in emotionData[i].subEmotions) {
-            emotionData[i].subEmotions[j].count = 0
-          }
-        }
-        for (let i in json) {
-          for (let j in emotionData) {
-            for (let k in emotionData[j].subEmotions) {
-              if (emotionData[j].subEmotions[k].id === parseInt(json[i].sub_emotion_id)) {
-                emotionData[j].subEmotions[k].count += parseInt(json[i].count)
-              }
-            }
-          }
-        }
-        break;
+
       default:
+        emotionData.map((emotion) => {
+          data.labels.push("Total Of " + emotion.label);
+
+          data.datasets[1].data.push(emotion.total);
+          data.datasets[1].backgroundColor.push(emotion.chartColor);
+          data.datasets[0].data.push(0);
+          data.datasets[0].backgroundColor.push(0);
+        });
+        for (let i in emotionData) {
+          data.labels.push(emotionData[i].label);
+          data.datasets[0].data.push(
+            emotionData[i].total_sub.reduce((acc, val) => acc + (val || 0), 0)
+          );
+          data.datasets[0].backgroundColor.push(emotionData[i].chartColor);
+
+          emotionData[i].subEmotions.map((subEmotion) => {
+            data.labels.push(subEmotion.label);
+            data.datasets[0].data.push(subEmotion.total);
+            data.datasets[0].backgroundColor.push(subEmotion.chartColor);
+            // console.log(subEmotion.count);
+          });
+        }
+
         break;
     }
 
-    console.log(json)
-    for (let i in emotionData) {
-      console.log(emotionData[i], "hi")
-    }
-    // for (let i in json) {
-    //   emotionData[json[i].emotion_id - 1].total = json[i].count;
-    // }
-    emotionData.map((emotion) => {
-      data.labels.push(emotion.label);
-      data.datasets[0].data.push(emotion.total);
-      data.datasets[0].backgroundColor.push(emotion.chartColor);
-
-    });
-    for (let i in emotionData) {
-      emotionData[i].subEmotions.map((subEmotion) => {
-        data.labels.push(subEmotion.label)
-        data.datasets[1].data.push(subEmotion.count);
-        data.datasets[1].backgroundColor.push(subEmotion.chartColor);
-      });
-    }
-
-    // console.log(emotionData);
+    // console.log(props.data);
+    // console.log(data);
     setDoughnutData(data);
   };
-
+  function add(accumulator, a) {
+    return accumulator + a;
+  }
   // maxDivSize
   return (
-    <div style={{position: "relative", width: (maxDivSize/100*75), height: (maxDivSize/100*75), margin: "0px"}}>
-        <Doughnut
-          data={doughnutData}
-          options={options}
-          style={{width: "100%", height: "100%", position: "absolute", }}
-        />
-
+    <div
+      style={{
+        position: "relative",
+        width: (maxDivSize / 100) * 75,
+        height: (maxDivSize / 100) * 75,
+        margin: "0px",
+      }}
+    >
+      <Doughnut
+        data={doughnutData}
+        options={options}
+        style={{ width: "100%", height: "100%", position: "absolute" }}
+      />
     </div>
   );
-}
+};
 
 export default DoughnutChart;

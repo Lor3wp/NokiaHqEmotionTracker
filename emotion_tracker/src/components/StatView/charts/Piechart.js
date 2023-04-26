@@ -48,7 +48,7 @@ const Piechart = (props) => {
     // console.log("moi", props.data[2].emotion_id);
     if (props.data != null && props.data.length > 1) {
       // console.log("stringi");
-      processData(props.data);
+      // processData(props.data);
     }
     // fetchData();
   }, [props.data]);
