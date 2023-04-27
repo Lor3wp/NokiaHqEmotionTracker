@@ -1,18 +1,3 @@
-// 3. 4. ja 5.
-/** Selects the chart based on timeUnit selection.
- *
- * AllCharts(props)
- *     useEffect()
- *     prepDataArray()
- *     switch{
- *         case "doughnutchart": return()
- *         case "linechart": return()
- *         case "barchart": return()
- *         default: return()
- *     }
- *
- *     export default AllCharts
- * */
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
