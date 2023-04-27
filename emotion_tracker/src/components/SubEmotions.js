@@ -46,6 +46,7 @@ const SubEmotions = ({ showMore, setShowMore }) => {
   };
 
   const buttonClicked = async (id, subEmotionId, subEmotionLabel, e) => {
+    console.log(id, subEmotionId);
     addEmotion(id, subEmotionId);
     setClicked(id);
     setSubClicked(subEmotionLabel);
@@ -83,7 +84,7 @@ const SubEmotions = ({ showMore, setShowMore }) => {
                   : button.label
               }
               disabled={!buttonActive}
-              onClick={(e) => buttonClicked(button.id, e)}
+              onClick={(e) => buttonClicked(button.id, 1, button.label, e)}
             >
               <div className="EmotionButton-button-label">
                 <span className="material-symbols-outlined">{button.icon}</span>

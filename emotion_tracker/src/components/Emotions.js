@@ -13,7 +13,9 @@ const Emotions = () => {
   const [clicked, setClicked] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem("timer", 0);
+    if (localStorage.getItem("timer") == null) {
+      localStorage.setItem("timer", 0);
+    }
     timerTick(setTime, timerTimeMs, setButtonActive, setClicked); // calling the timerTick once before setting the interval to avoid one second delay
     let timer = setInterval(() => {
       timerTick(setTime, timerTimeMs, setButtonActive, setClicked);

@@ -1,11 +1,11 @@
 
 const timerStart = (e, setButtonActive) => {
-    console.log("timerStart ");
-    e.preventDefault();
-    setButtonActive(false);
-    const now = Date.now();
-    localStorage.setItem("timer", now);
-  };
+  console.log("timerStart ");
+  e.preventDefault();
+  setButtonActive(false);
+  const now = Date.now();
+  localStorage.setItem("timer", now);
+};
 
   const timerTick = (setTime, timerTimeMs, setButtonActive, setClicked) => {
     // console.log("timerTick ~ ");
