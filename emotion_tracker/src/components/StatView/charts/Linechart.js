@@ -129,6 +129,8 @@ const LineChart = (props) => {
         spanGaps: true,
         borderColor: emotion.chartColor,
         backgroundColor: emotion.chartColor,
+        tension: 0,
+        pointRadius: 1.5,
       });
     });
     setLineData(data);
