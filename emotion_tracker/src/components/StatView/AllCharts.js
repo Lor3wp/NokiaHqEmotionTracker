@@ -330,11 +330,6 @@ const AllCharts = (props) => {
 
   switch (props.chartType) {
     case "doughnutchart":
-      if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
-        )
-      } else 
       return (
         <div
           style={{
@@ -366,11 +361,6 @@ const AllCharts = (props) => {
         </div>
       );
     case "linechart":
-      if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
-        )
-      } else 
       return (
         <div
           style={{
@@ -397,11 +387,6 @@ const AllCharts = (props) => {
         </div>
       );
     case "mountainchart":
-      if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
-        )
-      } else 
       return (
         <div
           style={{
@@ -428,11 +413,6 @@ const AllCharts = (props) => {
         </div>
       );
     case "piechart":
-      if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
-        )
-      } else 
       return (
         <div
           style={{
@@ -458,11 +438,6 @@ const AllCharts = (props) => {
         </div>
       );
     case "barchart":
-      if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
-        )
-      } else 
       return (
         <div
           style={{
