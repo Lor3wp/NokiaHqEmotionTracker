@@ -111,13 +111,15 @@ const AllCharts = (props) => {
         return emotion;
       });
     }
+    console.log(props.loading)
     props.setLoading(false);
     setDataFetched(!dataFetched);
-    console.log(props.data)
+    console.log(props.data, emotionData)
   }, [props.data]);
 
   function processData(subtract) {
     props.data.map((json) => {
+      console.log(json)
       for (let k in emotionData) {
         if (parseInt(json.emotion_id) === emotionData[k].id) {
           for (let i in emotionData[k].subEmotions) {
