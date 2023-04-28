@@ -114,12 +114,11 @@ const AllCharts = (props) => {
     console.log(props.loading)
     props.setLoading(false);
     setDataFetched(!dataFetched);
-    console.log(props.data, emotionData)
+    console.log(props.data)
   }, [props.data]);
 
   function processData(subtract) {
     props.data.map((json) => {
-      console.log(json)
       for (let k in emotionData) {
         if (parseInt(json.emotion_id) === emotionData[k].id) {
           for (let i in emotionData[k].subEmotions) {
@@ -319,13 +318,9 @@ const AllCharts = (props) => {
 
   switch (props.chartType) {
     case "doughnutchart":
-      if (props.data == null){
+      if (props.loading){
         return (
           <Loading />
-        )
-      } else if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
         )
       } else
       return (
@@ -338,8 +333,13 @@ const AllCharts = (props) => {
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <DoughnutChart
             chartContainerDivHeight={
               props.chartContainerDiv.current?.offsetHeight
@@ -361,10 +361,6 @@ const AllCharts = (props) => {
     case "linechart":
       if (props.loading){
         <Loading />
-      } else if (props.data == null || props.data.length <= 0){
-        return (
-          <h4>No data</h4>
-        )
       } else
       return (
         <div
@@ -376,8 +372,13 @@ const AllCharts = (props) => {
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <LineChart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -392,13 +393,9 @@ const AllCharts = (props) => {
         </div>
       );
     case "mountainchart":
-      if (props.data == null){
+      if (props.loading){
         return (
           <Loading />
-        )
-      } else if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
         )
       } else
       return (
@@ -407,13 +404,17 @@ const AllCharts = (props) => {
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <MountainChart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -427,13 +428,9 @@ const AllCharts = (props) => {
         </div>
       );
     case "piechart":
-      if (props.data == null){
+      if (props.loading){
         return (
           <Loading />
-        )
-      } else if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
         )
       } else
       return (
@@ -442,13 +439,17 @@ const AllCharts = (props) => {
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <Piechart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -461,13 +462,9 @@ const AllCharts = (props) => {
         </div>
       );
     case "barchart":
-      if (props.data == null){
+      if (props.loading){
         return (
           <Loading />
-        )
-      } else if (props.data.length <= 0){
-        return (
-          <h4>No data</h4>
         )
       } else
       return (
@@ -476,13 +473,17 @@ const AllCharts = (props) => {
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <BarChart
             chartType={props.chartType}
             hourRange={props.hourRange}
