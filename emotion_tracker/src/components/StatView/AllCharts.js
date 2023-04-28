@@ -18,7 +18,7 @@ const AllCharts = (props) => {
   useEffect(() => {
     let data = {
       labels: [],
-      datasets: [], //new Array(emotionData.length).fill({
+      datasets: [],
     };
     let values = [];
     emotionData.map((emotion) => {
@@ -111,6 +111,7 @@ const AllCharts = (props) => {
       });
     }
     props.setLoading(false);
+    console.log(props.data);
     setDataFetched(!dataFetched);
   }, [props.data]);
 
