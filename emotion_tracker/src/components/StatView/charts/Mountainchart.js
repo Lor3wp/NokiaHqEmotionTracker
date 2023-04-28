@@ -6,7 +6,10 @@ const options = {
   type: "Line",
   plugins: {
     legend: {
-      display: false,
+      display: true,
+      labels: {
+        usePointStyle: true,
+      },
     },
   },
   scales: {
