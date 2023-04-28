@@ -4,21 +4,24 @@ import { Bar } from 'react-chartjs-2';
 import emotionData from '../../../data/emotionData';
 
 const options = {
-    plugins: {
-        legend: {
-            display: true,
-        },
-    },
-    responsive: true,
-    scales: {
-      x: {
-        stacked: true,
-      },
-      y: {
-        stacked: true,
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        usePointStyle: true,
       },
     },
-  };
+  },
+  responsive: true,
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+    },
+  },
+};
 
 const BarChart = (props) => {
 

@@ -6,6 +6,14 @@ import emotionData from "../../../data/emotionData";
 Chart.defaults.color = "#FFFFFF";
 
 const options = {
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        usePointStyle: true,
+      },
+    },
+  },
   type: "line",
   scales: {
     x: {

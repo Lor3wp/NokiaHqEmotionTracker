@@ -13,7 +13,7 @@ import Loading from "../../views/Loading";
 const AllCharts = (props) => {
   const [dataFetched, setDataFetched] = useState(false);
   useEffect(() => {
-    // props.setLoading(true);
+    props.setLoading(true);
     fetchData();
   }, [props.chartDate, props.timeUnit, props.chartType]);
   useEffect(() => {
@@ -111,7 +111,7 @@ const AllCharts = (props) => {
         return emotion;
       });
     }
-
+    props.setLoading(false);
     setDataFetched(!dataFetched);
     console.log(props.data)
   }, [props.data]);
@@ -153,7 +153,7 @@ const AllCharts = (props) => {
             );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "week":
             const date = new Date(
@@ -193,7 +193,7 @@ const AllCharts = (props) => {
               dayData.created_at = (((dayDataDate.getDay() - 1) % 7) + 7) % 7;
             });
             props.setData(jsonDataWeek);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "month":
             const responseMonth = await fetch(
@@ -202,7 +202,7 @@ const AllCharts = (props) => {
             );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "year":
             const responseYear = await fetch(
@@ -210,7 +210,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYear = await responseYear.json();
             props.setData(jsonDataYear);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "years":
             const responseYears = await fetch(
@@ -221,7 +221,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           default:
             break;
@@ -237,7 +237,7 @@ const AllCharts = (props) => {
             );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "week":
             const date = new Date(
@@ -277,7 +277,7 @@ const AllCharts = (props) => {
               dayData.created_at = (((dayDataDate.getDay() - 1) % 7) + 7) % 7;
             });
             props.setData(jsonDataWeek);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "month":
             const responseMonth = await fetch(
@@ -286,7 +286,7 @@ const AllCharts = (props) => {
             );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "year":
             const responseYear = await fetch(
@@ -294,7 +294,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYear = await responseYear.json();
             props.setData(jsonDataYear);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "years":
             const responseYears = await fetch(
@@ -305,7 +305,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           default:
             break;
