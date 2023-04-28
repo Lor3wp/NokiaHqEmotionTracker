@@ -8,6 +8,7 @@ import emotionData from "../../data/emotionData";
 
 import backendAddress from "../../data/apiHooks";
 import { __esModule } from "react-range-slider-input";
+import Loading from "../../views/Loading";
 
 const AllCharts = (props) => {
   const [dataFetched, setDataFetched] = useState(false);
@@ -112,6 +113,7 @@ const AllCharts = (props) => {
     }
 
     setDataFetched(!dataFetched);
+    console.log(props.data)
   }, [props.data]);
 
   function processData(subtract) {
@@ -315,6 +317,15 @@ const AllCharts = (props) => {
 
   switch (props.chartType) {
     case "doughnutchart":
+      if (props.data == null){
+        return (
+          <Loading />
+        )
+      } else if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else
       return (
         <div
           style={{
@@ -346,6 +357,13 @@ const AllCharts = (props) => {
         </div>
       );
     case "linechart":
+      if (props.loading){
+        <Loading />
+      } else if (props.data == null || props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else
       return (
         <div
           style={{
@@ -372,6 +390,15 @@ const AllCharts = (props) => {
         </div>
       );
     case "mountainchart":
+      if (props.data == null){
+        return (
+          <Loading />
+        )
+      } else if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else
       return (
         <div
           style={{
@@ -398,6 +425,15 @@ const AllCharts = (props) => {
         </div>
       );
     case "piechart":
+      if (props.data == null){
+        return (
+          <Loading />
+        )
+      } else if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else
       return (
         <div
           style={{
@@ -423,6 +459,15 @@ const AllCharts = (props) => {
         </div>
       );
     case "barchart":
+      if (props.data == null){
+        return (
+          <Loading />
+        )
+      } else if (props.data.length <= 0){
+        return (
+          <h4>No data</h4>
+        )
+      } else
       return (
         <div
           style={{
@@ -449,7 +494,7 @@ const AllCharts = (props) => {
         </div>
       );
     default:
-      return <text>chartType not found</text>;
+      return <p>chartType not found</p>;
   }
 };
 
