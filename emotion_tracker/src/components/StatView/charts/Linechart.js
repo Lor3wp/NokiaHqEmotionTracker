@@ -6,6 +6,14 @@ import emotionData from "../../../data/emotionData";
 Chart.defaults.color = "#FFFFFF";
 
 const options = {
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        usePointStyle: true,
+      },
+    },
+  },
   type: "line",
   scales: {
     x: {
@@ -129,6 +137,8 @@ const LineChart = (props) => {
         spanGaps: true,
         borderColor: emotion.chartColor,
         backgroundColor: emotion.chartColor,
+        tension: 0,
+        pointRadius: 1.5,
       });
     });
     setLineData(data);
