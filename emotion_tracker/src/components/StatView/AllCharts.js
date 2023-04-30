@@ -1,18 +1,3 @@
-// 3. 4. ja 5.
-/** Selects the chart based on timeUnit selection.
- *
- * AllCharts(props)
- *     useEffect()
- *     prepDataArray()
- *     switch{
- *         case "doughnutchart": return()
- *         case "linechart": return()
- *         case "barchart": return()
- *         default: return()
- *     }
- *
- *     export default AllCharts
- * */
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
@@ -20,20 +5,23 @@ import BarChart from "./charts/Barchart";
 import MountainChart from "./charts/Mountainchart";
 import { useEffect, useRef, useState } from "react";
 import emotionData from "../../data/emotionData";
+import add from "date-fns/add"
 
 import backendAddress from "../../data/apiHooks";
 import { __esModule } from "react-range-slider-input";
+import Loading from "../../views/Loading";
+import {addDays, endOfWeek, startOfWeek} from "date-fns";
 
 const AllCharts = (props) => {
   const [dataFetched, setDataFetched] = useState(false);
   useEffect(() => {
-    // props.setLoading(true);
+    props.setLoading(true);
     fetchData();
   }, [props.chartDate, props.timeUnit, props.chartType]);
   useEffect(() => {
     let data = {
       labels: [],
-      datasets: [], //new Array(emotionData.length).fill({
+      datasets: [],
     };
     let values = [];
     emotionData.map((emotion) => {
@@ -62,6 +50,7 @@ const AllCharts = (props) => {
             for (let i in emotionData[j].subEmotions) {
               emotionData[j].subEmotions[i].total = 0;
               emotionData[j].subEmotions[i].count = new Array(7).fill(null);
+
             }
           }
           processData(0);
@@ -125,8 +114,11 @@ const AllCharts = (props) => {
         return emotion;
       });
     }
-
+    console.log(props.loading)
+    props.setLoading(false);
+    console.log(props.data);
     setDataFetched(!dataFetched);
+    console.log(props.data)
   }, [props.data]);
 
   function processData(subtract) {
@@ -166,47 +158,32 @@ const AllCharts = (props) => {
             );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "week":
             const date = new Date(
-              props.chartDate[3],
-              props.chartDate[2] - 1,
-              props.chartDate[0]
+                props.chartDate[3],
+                props.chartDate[2] - 1,
+                props.chartDate[0]
             );
-            const dayOfWeek = date.getDay();
-            const diff =
-              date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-            const monday = new Date(date.setDate(diff));
-            const date1 = new Date(
-              props.chartDate[3],
-              props.chartDate[2] - 1,
-              props.chartDate[0]
-            ); // April 22, 2022
-            const firstDayOfWeek = new Date(
-              date1.getFullYear(),
-              date1.getMonth(),
-              date1.getDate() - date1.getDay() + 1
-            );
-            const lastDayOfWeek = new Date(firstDayOfWeek);
-            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-            // console.log(monday.getDate(), lastDayOfWeek.getDate())
+            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
+            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
 
             const responseWeek = await fetch(
-              backendAddress +
-                `emotions/getweek/${props.chartDate[3]}-${
-                  props.chartDate[2]
-                }-${monday.getDate()}/${props.chartDate[3]}-${
-                  props.chartDate[2]
+                backendAddress +
+                `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${
+                    (firstDayOfWeek.getMonth() + 1)
+                }-${firstDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}-${
+                    (lastDayOfWeek.getMonth() + 1)
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
               const dayDataDate = new Date(dayData.full_date);
-              dayData.created_at = (((dayDataDate.getDay() - 1) % 7) + 7) % 7;
+              dayData.created_at = ((((dayDataDate.getDay() - 1) % 7) + 7) % 7).toString();
             });
             props.setData(jsonDataWeek);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "month":
             const responseMonth = await fetch(
@@ -215,7 +192,7 @@ const AllCharts = (props) => {
             );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "year":
             const responseYear = await fetch(
@@ -223,7 +200,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYear = await responseYear.json();
             props.setData(jsonDataYear);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "years":
             const responseYears = await fetch(
@@ -234,7 +211,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           default:
             break;
@@ -250,7 +227,7 @@ const AllCharts = (props) => {
             );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "week":
             const date = new Date(
@@ -258,39 +235,25 @@ const AllCharts = (props) => {
               props.chartDate[2] - 1,
               props.chartDate[0]
             );
-            const dayOfWeek = date.getDay();
-            const diff =
-              date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-            const monday = new Date(date.setDate(diff));
-            const date1 = new Date(
-              props.chartDate[3],
-              props.chartDate[2] - 1,
-              props.chartDate[0]
-            ); // April 22, 2022
-            const firstDayOfWeek = new Date(
-              date1.getFullYear(),
-              date1.getMonth(),
-              date1.getDate() - date1.getDay() + 1
-            );
-            const lastDayOfWeek = new Date(firstDayOfWeek);
-            lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
-            // console.log(monday.getDate(), lastDayOfWeek.getDate())
+            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
+            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
 
             const responseWeek = await fetch(
               backendAddress +
-                `emotions/getweek/primary/${props.chartDate[3]}-${
-                  props.chartDate[2]
-                }-${monday.getDate()}/${props.chartDate[3]}-${
-                  props.chartDate[2]
+                `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${
+                    (firstDayOfWeek.getMonth() + 1)
+                }-${firstDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}-${
+                  (lastDayOfWeek.getMonth() + 1)
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
-            jsonDataWeek.map((dayData) => {
-              const dayDataDate = new Date(dayData.full_date);
-              dayData.created_at = (((dayDataDate.getDay() - 1) % 7) + 7) % 7;
+            jsonDataWeek.map ((dayData) => {
+              const dayDataDate = new Date(dayData.full_date)
+              dayData.created_at = (((dayDataDate.getDay() - 1) % 7 + 7 ) % 7).toString()
             });
+            console.log("koikkeli", jsonDataWeek)
             props.setData(jsonDataWeek);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "month":
             const responseMonth = await fetch(
@@ -299,7 +262,7 @@ const AllCharts = (props) => {
             );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "year":
             const responseYear = await fetch(
@@ -307,7 +270,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYear = await responseYear.json();
             props.setData(jsonDataYear);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           case "years":
             const responseYears = await fetch(
@@ -318,7 +281,7 @@ const AllCharts = (props) => {
             );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
-            props.setLoading(!props.loading);
+            // props.setLoading(!props.loading);
             break;
           default:
             break;
@@ -330,6 +293,11 @@ const AllCharts = (props) => {
 
   switch (props.chartType) {
     case "doughnutchart":
+      if (props.loading){
+        return (
+          <Loading />
+        )
+      } else
       return (
         <div
           style={{
@@ -340,8 +308,13 @@ const AllCharts = (props) => {
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <DoughnutChart
             chartContainerDivHeight={
               props.chartContainerDiv.current?.offsetHeight
@@ -361,6 +334,9 @@ const AllCharts = (props) => {
         </div>
       );
     case "linechart":
+      if (props.loading){
+        <Loading />
+      } else
       return (
         <div
           style={{
@@ -371,8 +347,13 @@ const AllCharts = (props) => {
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <LineChart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -387,19 +368,28 @@ const AllCharts = (props) => {
         </div>
       );
     case "mountainchart":
+      if (props.loading){
+        return (
+          <Loading />
+        )
+      } else
       return (
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <MountainChart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -413,19 +403,28 @@ const AllCharts = (props) => {
         </div>
       );
     case "piechart":
+      if (props.loading){
+        return (
+          <Loading />
+        )
+      } else
       return (
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <Piechart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -438,19 +437,28 @@ const AllCharts = (props) => {
         </div>
       );
     case "barchart":
+      if (props.loading){
+        return (
+          <Loading />
+        )
+      } else
       return (
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            // backgroundColor: "blue",
             width: "100%",
             height: "100%",
             justifyContent: "center",
             alignItems: "center",
+            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
           }}
         >
+          <h4 className="nodata" style={{
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            zIndex: 2, display: "block", position: "absolute",
+          }}>No data</h4>
           <BarChart
             chartType={props.chartType}
             hourRange={props.hourRange}
@@ -464,7 +472,7 @@ const AllCharts = (props) => {
         </div>
       );
     default:
-      return <text>chartType not found</text>;
+      return <p>chartType not found</p>;
   }
 };
 

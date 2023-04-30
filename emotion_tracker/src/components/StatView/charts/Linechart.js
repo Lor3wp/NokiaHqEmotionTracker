@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
@@ -6,6 +6,20 @@ import emotionData from "../../../data/emotionData";
 Chart.defaults.color = "#FFFFFF";
 
 const options = {
+  plugins: {
+    legend: {
+      display: true,
+      // align: "start",
+      position: "right",
+      maxWidth: 120,
+      textDirection: "ltr",
+      labels: {
+        // textAlign: "right",
+        usePointStyle: true,
+        // poinStyleWidth: 200,
+      },
+    },
+  },
   type: "line",
   scales: {
     x: {
@@ -122,15 +136,38 @@ const LineChart = (props) => {
     //     backgroundColor: emotionData[i].chartColor,
     //   });
     // }
+    let longestLabel = 0;
     emotionData.map((emotion) => {
-      data.datasets.push({
-        label: emotion.label,
-        data: emotion.count,
-        spanGaps: true,
-        borderColor: emotion.chartColor,
-        backgroundColor: emotion.chartColor,
-      });
+      if (emotion.label.length > longestLabel) {
+        longestLabel = emotion.label.length;
+      }
     });
+    emotionData.map((emotion) => {
+      if (emotion.label.length < longestLabel) {
+        data.datasets.push({
+          label:
+            emotion.label + " ".repeat(longestLabel - emotion.label.length),
+          data: emotion.count,
+          spanGaps: true,
+          borderColor: emotion.chartColor,
+          backgroundColor: emotion.chartColor,
+        });
+        // console.log(
+        //   (emotion.label + " ".repeat(longestLabel - emotion.label.length))
+        //     .length
+        // );
+      } else {
+        data.datasets.push({
+          label: emotion.label,
+          data: emotion.count,
+          spanGaps: true,
+          borderColor: emotion.chartColor,
+          backgroundColor: emotion.chartColor,
+        });
+        // console.log(emotion.label.length);
+      }
+    });
+
     setLineData(data);
   }, [props.dataFetched]);
 
