@@ -50,7 +50,6 @@ const AllCharts = (props) => {
             for (let i in emotionData[j].subEmotions) {
               emotionData[j].subEmotions[i].total = 0;
               emotionData[j].subEmotions[i].count = new Array(7).fill(null);
-
             }
           }
           processData(0);
@@ -114,11 +113,10 @@ const AllCharts = (props) => {
         return emotion;
       });
     }
-    console.log(props.loading)
     props.setLoading(false);
     console.log(props.data);
     setDataFetched(!dataFetched);
-    console.log(props.data)
+    console.log(props.data);
   }, [props.data]);
 
   function processData(subtract) {
@@ -162,25 +160,28 @@ const AllCharts = (props) => {
             break;
           case "week":
             const date = new Date(
-                props.chartDate[3],
-                props.chartDate[2] - 1,
-                props.chartDate[0]
+              props.chartDate[3],
+              props.chartDate[2] - 1,
+              props.chartDate[0]
             );
-            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
-            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
+            const firstDayOfWeek = startOfWeek(date, { weekStartsOn: 1 });
+            const lastDayOfWeek = endOfWeek(date, { weekStartsOn: 1 });
 
             const responseWeek = await fetch(
-                backendAddress +
+              backendAddress +
                 `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${
-                    (firstDayOfWeek.getMonth() + 1)
+                  firstDayOfWeek.getMonth() + 1
                 }-${firstDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}-${
-                    (lastDayOfWeek.getMonth() + 1)
+                  lastDayOfWeek.getMonth() + 1
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
               const dayDataDate = new Date(dayData.full_date);
-              dayData.created_at = ((((dayDataDate.getDay() - 1) % 7) + 7) % 7).toString();
+              dayData.created_at = (
+                (((dayDataDate.getDay() - 1) % 7) + 7) %
+                7
+              ).toString();
             });
             props.setData(jsonDataWeek);
             // props.setLoading(!props.loading);
@@ -235,23 +236,26 @@ const AllCharts = (props) => {
               props.chartDate[2] - 1,
               props.chartDate[0]
             );
-            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
-            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
+            const firstDayOfWeek = startOfWeek(date, { weekStartsOn: 1 });
+            const lastDayOfWeek = endOfWeek(date, { weekStartsOn: 1 });
 
             const responseWeek = await fetch(
               backendAddress +
                 `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${
-                    (firstDayOfWeek.getMonth() + 1)
+                  firstDayOfWeek.getMonth() + 1
                 }-${firstDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}-${
-                  (lastDayOfWeek.getMonth() + 1)
+                  lastDayOfWeek.getMonth() + 1
                 }-${lastDayOfWeek.getDate()}`
             );
             const jsonDataWeek = await responseWeek.json();
-            jsonDataWeek.map ((dayData) => {
-              const dayDataDate = new Date(dayData.full_date)
-              dayData.created_at = (((dayDataDate.getDay() - 1) % 7 + 7 ) % 7).toString()
+            jsonDataWeek.map((dayData) => {
+              const dayDataDate = new Date(dayData.full_date);
+              dayData.created_at = (
+                (((dayDataDate.getDay() - 1) % 7) + 7) %
+                7
+              ).toString();
             });
-            console.log("koikkeli", jsonDataWeek)
+            console.log("koikkeli", jsonDataWeek);
             props.setData(jsonDataWeek);
             // props.setLoading(!props.loading);
             break;
@@ -293,184 +297,226 @@ const AllCharts = (props) => {
 
   switch (props.chartType) {
     case "doughnutchart":
-      if (props.loading){
-        return (
-          <Loading />
-        )
+      if (props.loading) {
+        return <Loading />;
       } else
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
-          }}
-        >
-          <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
-            zIndex: 2, display: "block", position: "absolute",
-          }}>No data</h4>
-          <DoughnutChart
-            chartContainerDivHeight={
-              props.chartContainerDiv.current?.offsetHeight
-            }
-            chartContainerDivWidth={
-              props.chartContainerDiv.current?.offsetWidth
-            }
-            chartType={props.chartType}
-            hourRange={props.hourRange}
-            minHour={props.minHour}
-            maxHour={props.maxHour}
-            chartDate={props.chartDate}
-            timeUnit={props.timeUnit}
-            data={props.data}
-            dataFetched={dataFetched}
-          />
-        </div>
-      );
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
+          >
+            <h4
+              className="nodata"
+              style={{
+                visibility:
+                  props.data == null || props.data.length <= 0
+                    ? "visible"
+                    : "hidden",
+                zIndex: 2,
+                display: "block",
+                position: "absolute",
+              }}
+            >
+              No data
+            </h4>
+            <DoughnutChart
+              chartContainerDivHeight={
+                props.chartContainerDiv.current?.offsetHeight
+              }
+              chartContainerDivWidth={
+                props.chartContainerDiv.current?.offsetWidth
+              }
+              chartType={props.chartType}
+              hourRange={props.hourRange}
+              minHour={props.minHour}
+              maxHour={props.maxHour}
+              chartDate={props.chartDate}
+              timeUnit={props.timeUnit}
+              data={props.data}
+              dataFetched={dataFetched}
+            />
+          </div>
+        );
     case "linechart":
-      if (props.loading){
-        <Loading />
+      if (props.loading) {
+        <Loading />;
       } else
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
-          }}
-        >
-          <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
-            zIndex: 2, display: "block", position: "absolute",
-          }}>No data</h4>
-          <LineChart
-            chartType={props.chartType}
-            hourRange={props.hourRange}
-            minHour={props.minHour}
-            maxHour={props.maxHour}
-            chartDate={props.chartDate}
-            timeUnit={props.timeUnit}
-            data={props.data}
-            loading={props.loading}
-            dataFetched={dataFetched}
-          />
-        </div>
-      );
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              width: "100vw",
+              height: "130vh",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
+          >
+            <h4
+              className="nodata"
+              style={{
+                visibility:
+                  props.data == null || props.data.length <= 0
+                    ? "visible"
+                    : "hidden",
+                zIndex: 2,
+                display: "block",
+                position: "absolute",
+              }}
+            >
+              No data
+            </h4>
+            <LineChart
+              chartType={props.chartType}
+              hourRange={props.hourRange}
+              minHour={props.minHour}
+              maxHour={props.maxHour}
+              chartDate={props.chartDate}
+              timeUnit={props.timeUnit}
+              data={props.data}
+              loading={props.loading}
+              dataFetched={dataFetched}
+            />
+          </div>
+        );
     case "mountainchart":
-      if (props.loading){
-        return (
-          <Loading />
-        )
+      if (props.loading) {
+        return <Loading />;
       } else
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
-          }}
-        >
-          <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
-            zIndex: 2, display: "block", position: "absolute",
-          }}>No data</h4>
-          <MountainChart
-            chartType={props.chartType}
-            hourRange={props.hourRange}
-            minHour={props.minHour}
-            maxHour={props.maxHour}
-            chartDate={props.chartDate}
-            timeUnit={props.timeUnit}
-            data={props.data}
-            dataFetched={dataFetched}
-          />
-        </div>
-      );
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
+          >
+            <h4
+              className="nodata"
+              style={{
+                visibility:
+                  props.data == null || props.data.length <= 0
+                    ? "visible"
+                    : "hidden",
+                zIndex: 2,
+                display: "block",
+                position: "absolute",
+              }}
+            >
+              No data
+            </h4>
+            <MountainChart
+              chartType={props.chartType}
+              hourRange={props.hourRange}
+              minHour={props.minHour}
+              maxHour={props.maxHour}
+              chartDate={props.chartDate}
+              timeUnit={props.timeUnit}
+              data={props.data}
+              dataFetched={dataFetched}
+            />
+          </div>
+        );
     case "piechart":
-      if (props.loading){
-        return (
-          <Loading />
-        )
+      if (props.loading) {
+        return <Loading />;
       } else
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
-          }}
-        >
-          <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
-            zIndex: 2, display: "block", position: "absolute",
-          }}>No data</h4>
-          <Piechart
-            chartType={props.chartType}
-            hourRange={props.hourRange}
-            minHour={props.minHour}
-            maxHour={props.maxHour}
-            chartDate={props.chartDate}
-            timeUnit={props.timeUnit}
-            data={props.data}
-          />
-        </div>
-      );
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
+          >
+            <h4
+              className="nodata"
+              style={{
+                visibility:
+                  props.data == null || props.data.length <= 0
+                    ? "visible"
+                    : "hidden",
+                zIndex: 2,
+                display: "block",
+                position: "absolute",
+              }}
+            >
+              No data
+            </h4>
+            <Piechart
+              chartType={props.chartType}
+              hourRange={props.hourRange}
+              minHour={props.minHour}
+              maxHour={props.maxHour}
+              chartDate={props.chartDate}
+              timeUnit={props.timeUnit}
+              data={props.data}
+            />
+          </div>
+        );
     case "barchart":
-      if (props.loading){
-        return (
-          <Loading />
-        )
+      if (props.loading) {
+        return <Loading />;
       } else
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            opacity: (props.data == null || props.data.length <= 0) ? 0.5 : 1,
-          }}
-        >
-          <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
-            zIndex: 2, display: "block", position: "absolute",
-          }}>No data</h4>
-          <BarChart
-            chartType={props.chartType}
-            hourRange={props.hourRange}
-            minHour={props.minHour}
-            maxHour={props.maxHour}
-            chartDate={props.chartDate}
-            timeUnit={props.timeUnit}
-            data={props.data}
-            dataFetched={dataFetched}
-          />
-        </div>
-      );
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
+          >
+            <h4
+              className="nodata"
+              style={{
+                visibility:
+                  props.data == null || props.data.length <= 0
+                    ? "visible"
+                    : "hidden",
+                zIndex: 2,
+                display: "block",
+                position: "absolute",
+              }}
+            >
+              No data
+            </h4>
+            <BarChart
+              chartType={props.chartType}
+              hourRange={props.hourRange}
+              minHour={props.minHour}
+              maxHour={props.maxHour}
+              chartDate={props.chartDate}
+              timeUnit={props.timeUnit}
+              data={props.data}
+              dataFetched={dataFetched}
+            />
+          </div>
+        );
     default:
       return <p>chartType not found</p>;
   }
