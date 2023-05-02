@@ -45,6 +45,7 @@ const AllCharts = (props) => {
         case "week":
           // TODO handle data from json for week
           for (let j in emotionData) {
+            emotionData[j].total = 0;
             emotionData[j].count = new Array(7).fill(null);
             emotionData[j].total_sub = new Array(7).fill(null);
             for (let i in emotionData[j].subEmotions) {
@@ -168,14 +169,37 @@ const AllCharts = (props) => {
             );
             const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
             const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
-
+            let leadingStartMonth = "01"
+            let leadingStartDay = "01"
+            if ((firstDayOfWeek.getMonth() + 1).toString().length <= 1) {
+              leadingStartMonth = "0" + (firstDayOfWeek.getMonth() + 1).toString()
+            } else {
+              leadingStartMonth = (firstDayOfWeek.getMonth() + 1).toString()
+            }
+            if (firstDayOfWeek.getDate().toString().length <= 1) {
+              leadingStartDay = "0" + firstDayOfWeek.getDate().toString()
+            } else {
+              leadingStartDay = firstDayOfWeek.getDate().toString()
+            }
+            let leadingEndMonth = "01"
+            let leadingEndDay = "01"
+            if ((lastDayOfWeek.getMonth() + 1).toString().length <= 1) {
+              leadingEndMonth = "0" + (lastDayOfWeek.getMonth() + 1).toString()
+            } else {
+              leadingEndMonth = (lastDayOfWeek.getMonth() + 1).toString()
+            }
+            if (lastDayOfWeek.getDate().toString().length <= 1) {
+              leadingEndDay = "0" + lastDayOfWeek.getDate().toString()
+            } else {
+              leadingEndDay = lastDayOfWeek.getDate().toString()
+            }
             const responseWeek = await fetch(
                 backendAddress +
-                `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${
-                    (firstDayOfWeek.getMonth() + 1)
-                }-${firstDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}-${
-                    (lastDayOfWeek.getMonth() + 1)
-                }-${lastDayOfWeek.getDate()}`
+                `emotions/getweek/${firstDayOfWeek.getFullYear()}-${
+                    leadingStartMonth
+                }-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${
+                    leadingEndMonth
+                }-${leadingEndDay}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -237,14 +261,37 @@ const AllCharts = (props) => {
             );
             const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
             const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
-
+            let leadingStartMonth = "01"
+            let leadingStartDay = "01"
+            if ((firstDayOfWeek.getMonth() + 1).toString().length <= 1) {
+              leadingStartMonth = "0" + (firstDayOfWeek.getMonth() + 1).toString()
+            } else {
+              leadingStartMonth = (firstDayOfWeek.getMonth() + 1).toString()
+            }
+            if (firstDayOfWeek.getDate().toString().length <= 1) {
+              leadingStartDay = "0" + firstDayOfWeek.getDate().toString()
+            } else {
+              leadingStartDay = firstDayOfWeek.getDate().toString()
+            }
+            let leadingEndMonth = "01"
+            let leadingEndDay = "01"
+            if ((lastDayOfWeek.getMonth() + 1).toString().length <= 1) {
+              leadingEndMonth = "0" + (lastDayOfWeek.getMonth() + 1).toString()
+            } else {
+              leadingEndMonth = (lastDayOfWeek.getMonth() + 1).toString()
+            }
+            if (lastDayOfWeek.getDate().toString().length <= 1) {
+              leadingEndDay = "0" + lastDayOfWeek.getDate().toString()
+            } else {
+              leadingEndDay = lastDayOfWeek.getDate().toString()
+            }
             const responseWeek = await fetch(
               backendAddress +
                 `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${
-                    (firstDayOfWeek.getMonth() + 1)
-                }-${firstDayOfWeek.getDate()}/${lastDayOfWeek.getFullYear()}-${
-                  (lastDayOfWeek.getMonth() + 1)
-                }-${lastDayOfWeek.getDate()}`
+                    leadingStartMonth
+                }-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${
+                    leadingEndMonth
+                }-${leadingEndDay}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map ((dayData) => {
@@ -312,7 +359,7 @@ const AllCharts = (props) => {
           }}
         >
           <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden",
             zIndex: 2, display: "block", position: "absolute",
           }}>No data</h4>
           <DoughnutChart
@@ -351,7 +398,7 @@ const AllCharts = (props) => {
           }}
         >
           <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden",
             zIndex: 2, display: "block", position: "absolute",
           }}>No data</h4>
           <LineChart
@@ -387,7 +434,7 @@ const AllCharts = (props) => {
           }}
         >
           <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden",
             zIndex: 2, display: "block", position: "absolute",
           }}>No data</h4>
           <MountainChart
@@ -422,7 +469,7 @@ const AllCharts = (props) => {
           }}
         >
           <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden",
             zIndex: 2, display: "block", position: "absolute",
           }}>No data</h4>
           <Piechart
@@ -456,7 +503,7 @@ const AllCharts = (props) => {
           }}
         >
           <h4 className="nodata" style={{
-            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden", 
+            visibility: (props.data == null || props.data.length <= 0) ? "visible" : "hidden",
             zIndex: 2, display: "block", position: "absolute",
           }}>No data</h4>
           <BarChart
