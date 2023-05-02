@@ -1,17 +1,16 @@
 import ScaleLoader from "react-spinners/ScaleLoader";
-import {CSSProperties} from 'react'; 
+import {CSSProperties} from 'react';
 
 const override: CSSProperties = {
     display: "block",
     // margin: "0 auto",
     borderColor: "white",
-    
   };
 
 const Loading = () => {
     return (
         <div className="Loading">
-        <ScaleLoader	
+        <ScaleLoader
         color="white"
         cssOverride={override}
         size={150}

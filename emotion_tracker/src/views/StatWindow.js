@@ -1,4 +1,3 @@
-import HourRange from "../components/StatView/HourRange";
 import HourSlider from "../components/StatView/HourSlider";
 import "../css/App.css";
 import "../css/StatWindow.css"
@@ -8,14 +7,10 @@ import NavigationBar from '../components/StatView/NavigationBar';
 import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
 import { getWeek } from "date-fns";
-
 import AllCharts from "../components/StatView/AllCharts";
-import backendAddress from "../data/apiHooks";
-// import {viewCondition, setViewCondition} from "./EmotionButtonView";
 
 const StatWindow = ({ backButtonClicked }) => {
-  // TODO: charts and general view data here
-  //   TODO: that includes navigation states within this view
+
   const [chartType, setChartType] = useState("linechart");
   const [hourRange, setHourRange] = useState(false);
   const [minHour, setMinHour] = useState(0);
@@ -23,20 +18,9 @@ const StatWindow = ({ backButtonClicked }) => {
   const [chartDate, setChartDate] = useState(null);
   const [timeUnit, setTimeUnit] = useState("month");
   const [currentDate, setCurrentDate] = useState(null);
-  // values for data fetching
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const chartContainerDiv = useRef(null);
-
-  function handleToggleSwitch() {
-    console.log(`hourRange muutos ${hourRange}`);
-  }
-
-  function handleHourChange(values) {
-    // console.log(minHour);
-    // console.log(maxHour);
-    // console.log(values); // replace with your code to send the values to the database
-  }
 
   useEffect(() => {
     if (currentDate == null) {
@@ -127,8 +111,3 @@ const StatWindow = ({ backButtonClicked }) => {
 };
 
 export default StatWindow;
-
-
-
-// viimeksi korjasin ja paransin aikav'lin navigointinapit, sekä lähdin tekemään datan käsittelyä linecharttia varten
-// tänään jatkan datan käsittelyä, valmistelen esitelmää sekä osallistuin opettajapalaveriin
