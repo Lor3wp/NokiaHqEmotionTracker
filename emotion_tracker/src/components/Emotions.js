@@ -1,5 +1,5 @@
 import EmotionStats from "./EmotionStats";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import '../css/EmotionButtons.css';
 import EmotionButtons from "./EmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
@@ -9,8 +9,9 @@ const Emotions = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 15000;
+  const timerTimeMs = 1000;
   const [clicked, setClicked] = useState(0);
+  const [selectedButton, setSelectedButton] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("timer") == null) {
@@ -32,7 +33,7 @@ const Emotions = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ emotion: id, subEmotion: 1 }),
+        body: JSON.stringify({emotion: id, subEmotion: 1}),
       });
       if (!response.ok) {
         throw new Error("Error adding emotion");
@@ -44,16 +45,17 @@ const Emotions = () => {
     }
   };
 
-   const buttonClicked = async (id, e) => {
+  const buttonClicked = async (id, e, label) => {
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
+    setSelectedButton(label);
   };
 
-    return (
+  return (
     <div className="content">
-    <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked}></EmotionButtons>
-      <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
+      <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked} selectedButton={selectedButton} setSelectedButton={setSelectedButton}></EmotionButtons>
+      <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
         <p className="infoText">
           Share your feelings again in {Math.floor(time / 1000 / 60)} mins,{" "}
           {Math.floor((time / 1000) % 60)} secs
@@ -63,7 +65,7 @@ const Emotions = () => {
         update={update}
       />
     </div>
-    );
+  );
 
 }
 export default Emotions;

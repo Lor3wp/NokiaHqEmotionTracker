@@ -9,7 +9,7 @@ const SubEmotions = ({ showMore, setShowMore }) => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 15000;
+  const timerTimeMs = 1000;
   const [clicked, setClicked] = useState(0);
   const [subClicked, setSubClicked] = useState("");
 
@@ -73,14 +73,13 @@ const SubEmotions = ({ showMore, setShowMore }) => {
         {emotionData.map((button) => (
           <div key={button.label}>
             <button
+            style = {{
+              backgroundColor: button.rgbColor,
+              color: button.textColor,
+            }}
               className={
                 subClicked !== button.label && !buttonActive
                   ? button.label + "-disabled"
-                  : button.label
-              }
-              id={
-                subClicked === button.label
-                  ? button.label + "-clicked"
                   : button.label
               }
               disabled={!buttonActive}

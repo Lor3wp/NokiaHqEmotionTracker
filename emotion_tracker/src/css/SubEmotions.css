@@ -7,7 +7,7 @@
 }
 .SubEmotionButton-container button {
     height: 40px !important;
-    animation: fadeIn 1s forwards !important;
+    /* animation: fadeIn 1s forwards !important; */
 }
 @keyframes fadeOut {
     0% {opacity: 1;}
@@ -21,8 +21,7 @@
 
  .transparent button {
     background-color: transparent;
-    animation: fadeIn 1s forwards !important;
-
+    /* animation: fadeIn 1s forwards !important; */
   }
 
 
@@ -41,7 +40,7 @@
     color: rgb(225, 85, 85);
     animation: fadeOut 1s forwards !important;
  }
- .Horrified-disabled:disabled, .Embarrased-disabled:disabled, .Anxious-disabled:disabled {
+ .Horrified-disabled:disabled, .Embarrassed-disabled:disabled, .Anxious-disabled:disabled {
     cursor: not-allowed;
     background-color: rgb(243, 189, 255);
     color: rgb(127 62 159);
@@ -82,7 +81,7 @@
 
  }
  /*Scared*/
- .Horrified:hover, .Embarrased:hover, .Anxious:hover {
+ .Horrified:hover, .Embarrassed:hover, .Anxious:hover {
    background-color: rgb(195, 130, 212) !important;
 
  }

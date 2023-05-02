@@ -50,7 +50,7 @@ const App = () => {
             />
             <Route 
               exact 
-              path="/1f1244Gopd5004JKiu03Vili" 
+              path="/1f1244Gopd5004JKiu03" 
               Component={TabletView} 
             />
           </Routes>
