@@ -24,13 +24,16 @@ function TabletEmotionButton() {
   const addEmotion = async (id) => {
 
     try {
-      const response = await fetch("http://localhost:3001/emotions/addemotion", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emotion: id, subEmotion: 1 }),
-      });
+      const response = await fetch(
+        "http://localhost:3001/emotions/addemotion/tablet",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emotion: id, subEmotion: 1 }),
+        }
+      );
       if (!response.ok) {
         throw new Error("Error adding emotion");
       }

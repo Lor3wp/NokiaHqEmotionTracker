@@ -4,8 +4,12 @@ import { Bar } from 'react-chartjs-2';
 import emotionData from '../../../data/emotionData';
 
 const options = {
+  responsive: true,
+
   plugins: {
     legend: {
+      position: "right",
+
       display: true,
       labels: {
         usePointStyle: true,

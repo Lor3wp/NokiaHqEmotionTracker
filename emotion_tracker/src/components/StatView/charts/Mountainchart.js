@@ -6,6 +6,8 @@ const options = {
   type: "Line",
   plugins: {
     legend: {
+      position: "right",
+
       display: true,
       labels: {
         usePointStyle: true,
