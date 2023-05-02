@@ -20,7 +20,7 @@ const StatWindow = ({ backButtonClicked }) => {
   const [hourRange, setHourRange] = useState(false);
   const [minHour, setMinHour] = useState(0);
   const [maxHour, setMaxHour] = useState(23);
-  const [chartDate, setChartDate] = useState([31, 52, 12, 2023]);
+  const [chartDate, setChartDate] = useState(null);
   const [timeUnit, setTimeUnit] = useState("month");
   const [currentDate, setCurrentDate] = useState(null);
   // values for data fetching
@@ -59,69 +59,71 @@ const StatWindow = ({ backButtonClicked }) => {
   };
 
   // []: this is somethid
-  return (
-    // TODO: redo the stats view layout
-    <div className="StatWindow">
-      {/*    TODO: Header back button and burger menu*/}
-      <div className="Stats-header">
-        <button
-          style={{
-            borderStyle: "none",
-            backgroundColor: "transparent",
-            alignSelf: "start",
-          }}
-          onClick={backButtonClicked}
-        >
-          <span
-            className="material-symbols-outlined"
-            style={{ color: "white" }}
+  if (chartDate != null) {
+    return (
+      // TODO: redo the stats view layout
+      <div className="StatWindow">
+        {/*    TODO: Header back button and burger menu*/}
+        <div className="Stats-header">
+          <button
+            style={{
+              borderStyle: "none",
+              backgroundColor: "transparent",
+              alignSelf: "start",
+            }}
+            onClick={backButtonClicked}
           >
-            arrow_back
-          </span>
-        </button>
-        <NavigationBar setChartType={setChartType} chartType={chartType} />
+            <span
+              className="material-symbols-outlined"
+              style={{ color: "white" }}
+            >
+              arrow_back
+            </span>
+          </button>
+          <NavigationBar setChartType={setChartType} chartType={chartType} />
+        </div>
+        <div ref={chartContainerDiv} id="ChartView">
+          <AllCharts
+            chartType={chartType}
+            hourRange={hourRange}
+            minHour={minHour}
+            maxHour={maxHour}
+            chartDate={chartDate}
+            timeUnit={timeUnit}
+            data={data}
+            setData={setData}
+            setLoading={setLoading}
+            loading={loading}
+            chartContainerDiv={chartContainerDiv}
+          />
+          {/*  TODO: chart view here */}
+        </div>
+        <div id="SliderHourView">
+          <HourSlider
+            minHour={minHour}
+            maxHour={maxHour}
+            setMaxHour={setMaxHour}
+            setMinHour={setMinHour}
+            onChange={handleHourChange}
+            hourRange={hourRange}
+            setHourRange={setHourRange}
+            timeUnit={timeUnit}
+            chartType={chartType}
+          ></HourSlider>
+        </div>
+        <div id="ChosenTimeUnitNavView">
+          <DatePicker
+            timeUnit={timeUnit}
+            chartDate={chartDate}
+            setChartDate={setChartDate}
+          />
+        </div>
+        <div id="TimeUnitSelectorView">
+          <TimeNavigator timeUnit={timeUnit} setTimeUnit={setTimeUnit} />
+        </div>
       </div>
-      <div ref={chartContainerDiv} id="ChartView">
-        <AllCharts
-          chartType={chartType}
-          hourRange={hourRange}
-          minHour={minHour}
-          maxHour={maxHour}
-          chartDate={chartDate}
-          timeUnit={timeUnit}
-          data={data}
-          setData={setData}
-          setLoading={setLoading}
-          loading={loading}
-          chartContainerDiv={chartContainerDiv}
-        />
-        {/*  TODO: chart view here */}
-      </div>
-      <div id="SliderHourView">
-        <HourSlider
-          minHour={minHour}
-          maxHour={maxHour}
-          setMaxHour={setMaxHour}
-          setMinHour={setMinHour}
-          onChange={handleHourChange}
-          hourRange={hourRange}
-          setHourRange={setHourRange}
-          timeUnit={timeUnit}
-          chartType={chartType}
-        ></HourSlider>
-      </div>
-      <div id="ChosenTimeUnitNavView">
-        <DatePicker
-          timeUnit={timeUnit}
-          chartDate={chartDate}
-          setChartDate={setChartDate}
-        />
-      </div>
-      <div id="TimeUnitSelectorView">
-        <TimeNavigator timeUnit={timeUnit} setTimeUnit={setTimeUnit} />
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default StatWindow;
