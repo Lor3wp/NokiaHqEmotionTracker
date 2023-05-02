@@ -88,7 +88,6 @@ const StatWindow = ({ backButtonClicked }) => {
             maxHour={maxHour}
             setMaxHour={setMaxHour}
             setMinHour={setMinHour}
-            onChange={handleHourChange}
             hourRange={hourRange}
             setHourRange={setHourRange}
             timeUnit={timeUnit}
