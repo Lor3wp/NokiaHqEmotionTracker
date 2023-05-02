@@ -9,7 +9,7 @@ import SubEmotions from "../components/SubEmotions"
 
 const clickHandler = (viewCondition, setViewCondition) => {
   setViewCondition(!viewCondition);
-  console.log("clicked how others feel");
+  // console.log("clicked how others feel");
 };
 
 const EmotionButtonView = ({ setStatsData }) => {

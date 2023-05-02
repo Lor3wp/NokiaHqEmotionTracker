@@ -23,6 +23,7 @@
 import { getWeek } from "date-fns";
 import monthsNamed from "../../data/monthsNamed";
 import "../../css/DatePicker.css";
+import { useEffect } from "react";
 
 const DatePicker = (props) => {
   const options = { weekStartsOn: 1 };
