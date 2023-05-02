@@ -14,6 +14,7 @@ const EmotionStats = ({ update }) => {
         `http://localhost:3001/emotions/getallemotions`
       );
       const jsonData = await response.json();
+      console.log(jsonData)
       setData(jsonData);
       setLoading(false);
     }
@@ -40,7 +41,7 @@ const EmotionStats = ({ update }) => {
   return (
     <div>
       <div className="infoText">
-        Feelings were shared {dayData.count} times today and {data.count} times
+        Feelings were shared {dayData[0].count} times today and {data[0].count} times
         in total.
       </div>
     </div>
