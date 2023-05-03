@@ -10,7 +10,7 @@ const options = {
       display: false,
     },
   },
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
   cutout: "50%",
 };
 const DoughnutChart = (props) => {
@@ -127,6 +127,12 @@ const DoughnutChart = (props) => {
 
         break;
     }
+    let totalEmotions = 0;
+    for (let dataset of data.datasets) {
+      let total = dataset.data.reduce(add, 0);
+      totalEmotions += total;
+    }
+    setTotal(totalEmotions);
     setDoughnutData(data);
   };
   function add(accumulator, a) {
@@ -135,7 +141,8 @@ const DoughnutChart = (props) => {
   // maxDivSize
   return (
     <>
-      <Doughnut data={doughnutData} options={options}/>
+    <p>Total amount {total}</p>
+      <Doughnut data={doughnutData} options={options} />
     </>
   );
 };

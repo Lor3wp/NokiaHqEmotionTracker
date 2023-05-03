@@ -27,6 +27,8 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
+import '../../../css/AllCharts.css'
+
 
 Chart.defaults.color = "#FFFFFF";
 // options for how the bar chart is drawn
@@ -86,7 +88,7 @@ const LineChart = (props) => {
       // },
     ],
   });
-
+    const [total, setTotal] = useState(0);
   useEffect(() => {
     let data = {
       labels: [],
@@ -137,6 +139,7 @@ const LineChart = (props) => {
     }
     // set the data that gets drawn and calculate the length of longest label
     let longestLabel = 0;
+    let totalAmount = 0;
     emotionData.map((emotion) => {
       if (emotion.label.length > longestLabel) {
         longestLabel = emotion.label.length;
@@ -161,12 +164,21 @@ const LineChart = (props) => {
           backgroundColor: emotion.chartColor,
         });
       }
+      totalAmount += emotion.total;
     });
+    setTotal(totalAmount);
 
     setLineData(data);
   }, [props.dataFetched]);
   // return the visible part of the chart
-  return <Line data={lineData} options={options} />;
+  return (
+    <>
+  <p>Total amount {total}</p>
+  <hr />
+  <Line data={lineData} options={options} />
+  <hr />
+  </>
+  );
 };
 
 export default LineChart;

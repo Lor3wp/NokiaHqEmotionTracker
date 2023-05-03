@@ -8,7 +8,7 @@
 }
 
 .SubEmotionButton-container button {
-   height: 40px !important;
+   height: 48px !important;
 }
 
 @keyframes fadeOut {
@@ -54,6 +54,7 @@
    color: rgb(225, 85, 85);
    animation: fadeOut 1s forwards !important;
 }
+
 /*SCARED sub-emotions disabled*/
 .Horrified-disabled:disabled,
 .Embarrassed-disabled:disabled,
@@ -63,6 +64,7 @@
    color: rgb(127 62 159);
    animation: fadeOut 1s forwards !important;
 }
+
 /*EXCITED sub-emotions disabled*/
 .Inspired-disabled:disabled,
 .Focused-disabled:disabled,
@@ -72,6 +74,7 @@
    color: rgb(176, 148, 0);
    animation: fadeOut 1s forwards !important;
 }
+
 /*SAD sub-emotions disabled*/
 .Depressed-disabled:disabled,
 .Lonely-disabled:disabled,
@@ -81,6 +84,7 @@
    color: rgb(63 103 179);
    animation: fadeOut 1s forwards !important;
 }
+
 /*NEUTRAL sub-emotions disabled*/
 .Peaceful-disabled:disabled,
 .Rested-disabled:disabled,
@@ -156,7 +160,9 @@
    align-content: space-between;
 }
 
-nav {
+.content nav {
    display: flex;
    justify-content: flex-start;
+   position: absolute;
+   margin-top: 16px;
 }

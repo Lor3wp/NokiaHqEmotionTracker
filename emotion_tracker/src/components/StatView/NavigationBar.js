@@ -22,6 +22,7 @@ const NavigationBar = (props) => {
     }
 
     return (
+        <>
         <nav>
             <ul id="burger-menu">
                 <li>
@@ -37,9 +38,10 @@ const NavigationBar = (props) => {
                         </button>
                     </li>
                 ))}
-
             </ul>
         </nav>
+  
+</>
     )
 }
 export default NavigationBar;

@@ -29,7 +29,6 @@ const Piechart = (props) => {
       },
     ],
   });
-
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
     if (props.data != null && props.data.length > 1) {
@@ -50,7 +49,6 @@ const Piechart = (props) => {
         },
       ],
     };
-
     for (let i in json) {
       emotionData[json[i].emotion_id - 1].count = json[i].count;
     }

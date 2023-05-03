@@ -136,7 +136,9 @@ const BarChart = (props) => {
   return (
   <>
   <p>Total amount {total.toString()}</p>
+  <hr />
   <Bar data={barData} options={options} />
+  <hr /> 
   </>);
 }
 
