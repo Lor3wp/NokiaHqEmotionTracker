@@ -69,7 +69,7 @@
 .decor {
   height: 1em;
   position: absolute;
-  animation: fade 3s forwards;
+  animation: fade 2s forwards;
 }
 #deco2 {
   top: 0;
