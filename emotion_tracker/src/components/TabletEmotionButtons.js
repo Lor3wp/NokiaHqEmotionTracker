@@ -1,17 +1,16 @@
 import EmotionStats from "./EmotionStats";
-import React, {useState, useEffect} from "react";
-import '../css/EmotionButtons.css';
-import {timerStart, timerTick} from "../utils/TimerFunctions";
+import React, { useState, useEffect } from "react";
+import "../css/EmotionButtons.css";
+import { timerStart, timerTick } from "../utils/TimerFunctions";
 import EmotionButtons from "./EmotionButtons";
 import backendAddress from "../data/apiHooks";
-
 
 function TabletEmotionButton() {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
   const timerTimeMs = 1000;
-  const [clicked, setClicked] = useState(0)
+  const [clicked, setClicked] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("timer", 0);
@@ -21,9 +20,7 @@ function TabletEmotionButton() {
     return () => clearInterval(timer);
   }, []);
 
-
   const addEmotion = async (id) => {
-
     try {
       const response = await fetch(
         `${backendAddress}emotions/addemotion/tablet`,
@@ -32,15 +29,17 @@ function TabletEmotionButton() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({emotion: id, subEmotion: 1}),
+          body: JSON.stringify({ emotion: id, subEmotion: 1 }),
         }
       );
       if (!response.ok) {
         throw new Error("Error adding emotion");
       }
-      setUpdate(!update)
+      // handle success response here
+      setUpdate(!update);
     } catch (error) {
-      console.error(`${error} error addEmotion`)
+      console.log(`${error} error addEmotion`);
+      // handle error here
     }
   };
 
@@ -49,21 +48,21 @@ function TabletEmotionButton() {
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
-  }
+  };
 
   return (
     <div className="content">
-      <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked}></EmotionButtons>
-      <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
-        <p className="infoText">
-        </p>
+      <EmotionButtons
+        buttonActive={buttonActive}
+        clicked={clicked}
+        buttonClicked={buttonClicked}
+      ></EmotionButtons>
+      <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
+        <p className="infoText"></p>
       </div>
-      <EmotionStats
-        update={update}
-      />
+      <EmotionStats update={update} />
     </div>
   );
 }
 export default TabletEmotionButton;
 // build test
-
