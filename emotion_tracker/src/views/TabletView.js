@@ -15,14 +15,14 @@ const TabletView = ({setStatsData}) => {
     setUpdate(!update)
   }
 
-  useEffect(() => {
-    localStorage.setItem('password', isPassword)
-    if (password === correctPassword) {
-      setIsPassword("true");
-    } else {
-      setIsPassword("false");
-    }
-  }, [isPassword, password]);
+  // useEffect(() => {
+  //   localStorage.setItem('password', isPassword)
+  //   if (password === correctPassword) {
+  //     setIsPassword("true");
+  //   } else {
+  //     setIsPassword("false");
+  //   }
+  // }, [isPassword, password]);
 
   return (
     <div className="emotionButtonView">
