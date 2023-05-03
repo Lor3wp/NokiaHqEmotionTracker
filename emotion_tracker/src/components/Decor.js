@@ -1,30 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import backendAddress from '../data/apiHooks';
-import emotionData from '../data/emotionData';
+import '../css/App.css'
 
-const Decor = () => {
+const doDecor = (color) => {
     const amount = 10;
-    let thisDay = null;
     
-    const createCurrentDay = () => {
-        const options = { weekStartsOn: 1 };
-    
-        const today = new Date();
-        let dateFormat = [];
-        dateFormat.push(today.getDate());
-        dateFormat.push(getWeek(today, options));
-        dateFormat.push(today.getMonth() + 1);
-        dateFormat.push(today.getFullYear());
-    
-        thisDay = dateFormat;
-    };
-    const fetchData = async () => {
-        createCurrentDay();
-        const response = await fetch(
-            backendAddress +
-              `emotions/getday/${thisDay[3]}/${thisDay[2]}/${thisDay[0]}`
-        );
-        const jsonData = await response.json();
-    };
+    for (let i = 0; i < amount; i++){
+        let elem = document.createElement('div');
+        let rand = Math.floor(Math.random()*100);
+        elem.className = "deco";
+        elem.style.left = rand+"%";
+        elem.style.top = Math.floor(Math.random()*-100) +"px"
+        elem.style.backgroundColor = color ? color : "white";
+        document.body.appendChild(elem);
+        setTimeout(() => {document.body.removeChild(elem)}, 2000);
+    }
     
 };
+const doDecorAlt = (color) => {
+    let elem = document.createElement('div');
+    let elem2 = document.createElement('div');
+    elem.className = "decor";
+    elem2.className = "decor";
+    elem.id = "deco2";
+    elem2.id = "deco3";
+    elem.style.backgroundColor = color ? color : "white";
+    elem2.style.backgroundColor = color ? color : "white";
+    document.body.appendChild(elem);
+    document.body.appendChild(elem2);
+    setTimeout(() => {document.body.removeChild(elem); 
+        document.body.removeChild(elem2)}, 3000);
+    
+};
+export {doDecor, doDecorAlt};

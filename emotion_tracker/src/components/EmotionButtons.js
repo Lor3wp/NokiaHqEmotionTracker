@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import emotionData from "../data/emotionData";
+import {doDecor, doDecorAlt} from "./Decor";
 
 
 const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
@@ -23,7 +24,7 @@ const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
         : button.label
     }
     disabled={!buttonActive}
-    onClick={(e) => buttonClicked(button.id, e)}
+    onClick={(e) => {buttonClicked(button.id, e); doDecorAlt(button.rgbColor)}}
   >
     <div className="EmotionButton-button-label">
       <span className="material-symbols-outlined">{button.icon}</span>
