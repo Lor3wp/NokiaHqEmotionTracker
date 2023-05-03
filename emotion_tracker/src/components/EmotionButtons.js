@@ -5,21 +5,20 @@ import emotionData from "../data/emotionData";
 
 const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
     return(
-<div className="emotion-buttons">
+<div
+    className="emotion-buttons"
+    >
 {emotionData.map((button) => (
   <button
     style={{
-      animation: buttonActive ? "fadeIn 3s, forwards" : "none"
-    }}
+          backgroundColor: button.rgbColor,
+          color: button.textColor,
+          // animation: buttonActive ? "fadeIn 3s, forwards" : "none"
+           }}
     key={button.label}
     className={
       clicked !== button.id && !buttonActive
         ? button.label + "-disabled"
-        : button.label
-    }
-    id={
-      clicked === button.id
-        ? button.label + "-clicked"
         : button.label
     }
     disabled={!buttonActive}
