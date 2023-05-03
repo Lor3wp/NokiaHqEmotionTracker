@@ -10,17 +10,13 @@ const options = {
       display: false,
     },
   },
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   cutout: "50%",
 };
 const DoughnutChart = (props) => {
   const [total, setTotal] = useState(0);
 
   // data template for population
-  const maxDivSize =
-    props.chartContainerDivHeight > props.chartContainerDivWidth
-      ? props.chartContainerDivWidth
-      : props.chartContainerDivHeight;
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
     datasets: [
@@ -138,20 +134,9 @@ const DoughnutChart = (props) => {
   }
   // maxDivSize
   return (
-    <div
-      style={{
-        position: "relative",
-        width: (maxDivSize / 100) * 75,
-        height: (maxDivSize / 100) * 75,
-        margin: "0px",
-      }}
-    >
-      <Doughnut
-        data={doughnutData}
-        options={options}
-        style={{width: "100%", height: "100%", position: "absolute"}}
-      />
-    </div>
+    <>
+      <Doughnut data={doughnutData} options={options}/>
+    </>
   );
 };
 

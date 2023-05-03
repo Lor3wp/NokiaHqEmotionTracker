@@ -1,8 +1,7 @@
 import HourSlider from "../components/StatView/HourSlider";
 import "../css/App.css";
 import "../css/StatWindow.css"
-import React, {useEffect, useRef} from "react";
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import NavigationBar from '../components/StatView/NavigationBar';
 import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
@@ -20,7 +19,6 @@ const StatWindow = ({backButtonClicked}) => {
   const [currentDate, setCurrentDate] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const chartContainerDiv = useRef(null);
 
   useEffect(() => {
     if (currentDate == null) {
@@ -63,7 +61,7 @@ const StatWindow = ({backButtonClicked}) => {
           </button>
           <NavigationBar setChartType={setChartType} chartType={chartType} />
         </div>
-        <div ref={chartContainerDiv} id="ChartView">
+        <div id="ChartView">
           <AllCharts
             chartType={chartType}
             hourRange={hourRange}
@@ -75,7 +73,6 @@ const StatWindow = ({backButtonClicked}) => {
             setData={setData}
             setLoading={setLoading}
             loading={loading}
-            chartContainerDiv={chartContainerDiv}
           />
         </div>
         <div id="SliderHourView">

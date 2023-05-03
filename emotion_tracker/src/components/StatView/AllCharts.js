@@ -13,7 +13,6 @@
  *     [data, setData]
  *     [dataFetched]
  *     [loading, setLoading]
- *     [chartContainerDiv]
  *
  * AllCharts()
  *     [dataFetched, setDataFetched]
@@ -356,12 +355,6 @@ const AllCharts = (props) => {
               No data
             </h4>
             <DoughnutChart
-              chartContainerDivHeight={
-                props.chartContainerDiv.current?.offsetHeight
-              }
-              chartContainerDivWidth={
-                props.chartContainerDiv.current?.offsetWidth
-              }
               chartType={props.chartType}
               hourRange={props.hourRange}
               minHour={props.minHour}
