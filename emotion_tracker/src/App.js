@@ -8,8 +8,9 @@ import "material-symbols";
 import Loading from "./views/Loading";
 import TooFarAway from "./views/TooFarAwayView";
 import TabletView from "./views/TabletView";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import calculateDistance from "./utils/CalculateDistance";
+
 
 const App = () => {
   const [showDisabledView, setShowDisabledView] = useState(false);
@@ -30,7 +31,6 @@ const App = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [isGeolocationEnabled]);
-
   // if geolocation is not available show not supported text
   return !isGeolocationAvailable ? (
     <div>Your browser does not support Geolocation</div>
@@ -41,13 +41,17 @@ const App = () => {
   coords && calculateDistance(coords.latitude, coords.longitude) <= 15 ? (
     <div className="App">
       <header className="App-header">
-        <Router basename="/">
+        <Router>
           <Routes>
-            <Route exact path="/" element={<EmotionButtonView />} />
             <Route
               exact
-              path="/1f1244Gopd5004JKiu03Vili"
-              element={<TabletView />}
+              path="/NokiaHqEmotionTracker"
+              Component={EmotionButtonView}
+            />
+            <Route 
+              exact 
+              path="/1f1244Gopd5004JKiu03Vili" 
+              Component={TabletView} 
             />
           </Routes>
         </Router>
@@ -61,9 +65,12 @@ const App = () => {
   ) : (
     // if we are waiting for user to give the permission and when loading the page
     <div className="App-header">
-      <Loading />
+          <Loading />
     </div>
   );
 };
 
 export default App;
+// testattu
+
+
