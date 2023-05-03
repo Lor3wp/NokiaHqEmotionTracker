@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import EmotionButtons from "./EmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
-
+import backendAddress from "../data/apiHooks";
 
 const Emotions = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 15000;
+  const timerTimeMs = 0;
   const [clicked, setClicked] = useState(0);
 
   useEffect(() => {
@@ -23,11 +23,10 @@ const Emotions = () => {
     return () => clearInterval(timer);
   }, []);
 
-
   // post emotion to database
   const addEmotion = async (id) => {
     try {
-      const response = await fetch("http://localhost:3001/emotions/addemotion", {
+      const response = await fetch(backendAddress + "emotions/addemotion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,28 +43,29 @@ const Emotions = () => {
     }
   };
 
-   const buttonClicked = async (id, e) => {
+  const buttonClicked = async (id, e) => {
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
   };
 
-    return (
+  return (
     <div className="content">
-    <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked}></EmotionButtons>
+      <EmotionButtons
+        buttonActive={buttonActive}
+        clicked={clicked}
+        buttonClicked={buttonClicked}
+      ></EmotionButtons>
       <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
         <p className="infoText">
           Share your feelings again in {Math.floor(time / 1000 / 60)} mins,{" "}
           {Math.floor((time / 1000) % 60)} secs
         </p>
       </div>
-      <EmotionStats
-        update={update}
-      />
+      <EmotionStats update={update} />
     </div>
-    );
-
-}
+  );
+};
 export default Emotions;
 // build test
 
