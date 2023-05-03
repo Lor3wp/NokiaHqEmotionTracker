@@ -32,7 +32,7 @@ const NavigationBar = (props) => {
                 </li>
                 {charts.map((elem) => (
                     <li className="toggleable" key={elem.type}
-                        style={{visibility: toggle ? "visible" : "hidden"}}>
+                        style={{display: toggle ? "block" : "none"}}>
                         <button aria-label={elem.label} >
                             <span onClick={() => switchChart(elem.chart_type)} className="material-symbols-outlined">{elem.icon}</span>
                         </button>
