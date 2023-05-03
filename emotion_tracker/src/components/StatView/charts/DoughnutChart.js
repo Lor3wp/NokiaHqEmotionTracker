@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {Chart, ArcElement} from 'chart.js'
-import { Doughnut } from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 import emotionData from "../../../data/emotionData";
 
 Chart.register(ArcElement);
-// Chart.overrides["doughnutpie"].plugins.legend;
-// options for Doughnut
-// Chart.plugins.register({
-//   beforeDraw: function (c) {
-//     var legends = c.legend.legendItems;
-//     legends.forEach(function (e) {
-//       e.fillStyle = "#07C";
-//     });
-//   },
-// });
 const options = {
   plugins: {
     legend: {
@@ -23,15 +13,14 @@ const options = {
   maintainAspectRatio: true,
   cutout: "50%",
 };
-// TODO to the damn hour slider again....
 const DoughnutChart = (props) => {
+  const [total, setTotal] = useState(0);
+
   // data template for population
-  // console.log("did it go?", props.chartContainerDivHeight, props.chartContainerDivWidth)
   const maxDivSize =
     props.chartContainerDivHeight > props.chartContainerDivWidth
       ? props.chartContainerDivWidth
       : props.chartContainerDivHeight;
-  // console.log("90%", maxDivSize/100*90)
   const [doughnutData, setDoughnutData] = useState({
     labels: [],
     datasets: [
@@ -51,9 +40,7 @@ const DoughnutChart = (props) => {
       },
     ],
   });
-
   useEffect(() => {
-    // console.log("stringi");
     processData();
   }, [props.dataFetched, props.maxHour, props.minHour, props.hourRange]);
 
@@ -81,7 +68,6 @@ const DoughnutChart = (props) => {
     switch (props.timeUnit) {
       case "day":
         emotionData.map((emotion) => {
-          // [0,1,2,0]
           let collected = 0;
           for (let k in emotion.count) {
             if (k >= props.minHour && k <= props.maxHour) {
@@ -96,7 +82,6 @@ const DoughnutChart = (props) => {
           data.datasets[0].backgroundColor.push(0);
         });
         for (let i in emotionData) {
-          // TODO make the sub emotions into array
           let collected_sub = 0;
           for (let k in emotionData[i].count) {
             if (k >= props.minHour && k <= props.maxHour) {
@@ -117,7 +102,6 @@ const DoughnutChart = (props) => {
             data.labels.push(subEmotion.label);
             data.datasets[0].data.push(collected_sub_sub);
             data.datasets[0].backgroundColor.push(subEmotion.chartColor);
-            // console.log(subEmotion.count);
           });
         }
         break;
@@ -142,15 +126,11 @@ const DoughnutChart = (props) => {
             data.labels.push(subEmotion.label);
             data.datasets[0].data.push(subEmotion.total);
             data.datasets[0].backgroundColor.push(subEmotion.chartColor);
-            // console.log(subEmotion.count);
           });
         }
 
         break;
     }
-
-    // console.log(props.data);
-    // console.log(data);
     setDoughnutData(data);
   };
   function add(accumulator, a) {
@@ -169,7 +149,7 @@ const DoughnutChart = (props) => {
       <Doughnut
         data={doughnutData}
         options={options}
-        style={{ width: "100%", height: "100%", position: "absolute" }}
+        style={{width: "100%", height: "100%", position: "absolute"}}
       />
     </div>
   );

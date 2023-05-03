@@ -2,21 +2,21 @@ import HourSlider from "../components/StatView/HourSlider";
 import "../css/App.css";
 import "../css/StatWindow.css"
 import React, {useEffect, useRef} from "react";
-import { useState } from "react";
+import {useState} from "react";
 import NavigationBar from '../components/StatView/NavigationBar';
 import DatePicker from "../components/StatView/DatePicker";
 import TimeNavigator from "../components/StatView/ TimeNavigator";
-import { getWeek } from "date-fns";
+import {getWeek} from "date-fns";
 import AllCharts from "../components/StatView/AllCharts";
 
-const StatWindow = ({ backButtonClicked }) => {
+const StatWindow = ({backButtonClicked}) => {
 
   const [chartType, setChartType] = useState("linechart");
   const [hourRange, setHourRange] = useState(false);
   const [minHour, setMinHour] = useState(0);
   const [maxHour, setMaxHour] = useState(23);
   const [chartDate, setChartDate] = useState(null);
-  const [timeUnit, setTimeUnit] = useState("month");
+  const [timeUnit, setTimeUnit] = useState("day");
   const [currentDate, setCurrentDate] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ const StatWindow = ({ backButtonClicked }) => {
   }, [chartDate, timeUnit]);
 
   const createCurrentDay = () => {
-    const options = { weekStartsOn: 1 };
+    const options = {weekStartsOn: 1};
 
     const today = new Date();
     let dateFormat = [];
@@ -42,12 +42,9 @@ const StatWindow = ({ backButtonClicked }) => {
     setChartDate(dateFormat);
   };
 
-  // []: this is somethid
   if (chartDate != null) {
     return (
-      // TODO: redo the stats view layout
       <div className="StatWindow">
-        {/*    TODO: Header back button and burger menu*/}
         <div className="Stats-header">
           <button
             style={{
@@ -59,7 +56,7 @@ const StatWindow = ({ backButtonClicked }) => {
           >
             <span
               className="material-symbols-outlined"
-              style={{ color: "white" }}
+              style={{color: "white"}}
             >
               arrow_back
             </span>
@@ -80,7 +77,6 @@ const StatWindow = ({ backButtonClicked }) => {
             loading={loading}
             chartContainerDiv={chartContainerDiv}
           />
-          {/*  TODO: chart view here */}
         </div>
         <div id="SliderHourView">
           <HourSlider

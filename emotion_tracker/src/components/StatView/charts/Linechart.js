@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Line } from "react-chartjs-2";
+import React, {useState, useEffect} from "react";
+import {Line} from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
 
@@ -50,6 +50,7 @@ const LineChart = (props) => {
   const [lineData, setLineData] = useState({
     labels: [],
     datasets: [
+      // EXAMPLE DATA
       // {
       //   label: [],
       //   data: [],
@@ -61,7 +62,6 @@ const LineChart = (props) => {
   });
 
   useEffect(() => {
-    // console.log("lineChart");
     let data = {
       labels: [],
       datasets: [], //new Array(emotionData.length).fill({
@@ -102,22 +102,6 @@ const LineChart = (props) => {
           decadeYears.push(startingYear);
         }
         data.labels = decadeYears;
-        // for (let j in emotionData) {
-        //   for (let i = 0; i <= 9; i++) {
-        //     emotionData[j].count.push(null);
-        //   }
-        // }
-        // for (let i in decadeYears) {
-        //   for (let j in props.data) {
-        //     for (let k in emotionData) {
-        //       if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-        //         if (decadeYears[i] === parseInt(props.data[j].created_at)) {
-        //           emotionData[k].count[i] = parseInt(props.data[j].count);
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
         break;
 
       default:
@@ -125,17 +109,7 @@ const LineChart = (props) => {
 
         break;
     }
-    // console.log(data.labels.length);
-    // console.log(emotionData, "ei ajadf");
-    // for (let i in emotionData) {
-    //   data.datasets.push({
-    //     label: emotionData[i].label,
-    //     data: emotionData[i].count,
-    //     spanGaps: true,
-    //     borderColor: emotionData[i].chartColor,
-    //     backgroundColor: emotionData[i].chartColor,
-    //   });
-    // }
+
     let longestLabel = 0;
     emotionData.map((emotion) => {
       if (emotion.label.length > longestLabel) {
@@ -152,10 +126,7 @@ const LineChart = (props) => {
           borderColor: emotion.chartColor,
           backgroundColor: emotion.chartColor,
         });
-        // console.log(
-        //   (emotion.label + " ".repeat(longestLabel - emotion.label.length))
-        //     .length
-        // );
+
       } else {
         data.datasets.push({
           label: emotion.label,
@@ -164,7 +135,6 @@ const LineChart = (props) => {
           borderColor: emotion.chartColor,
           backgroundColor: emotion.chartColor,
         });
-        // console.log(emotion.label.length);
       }
     });
 

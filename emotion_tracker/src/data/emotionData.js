@@ -1,4 +1,4 @@
-
+// Data for creating emotion buttons. 
 const emotionData = [
   {
     label: "Happy",
@@ -20,7 +20,7 @@ const emotionData = [
         chartColor: "rgb(46, 114, 31)",
         total: 0,
         count: [],
-            },
+      },
       {
         label: "Empowered",
         id: 3,
@@ -38,7 +38,7 @@ const emotionData = [
         chartColor: "rgb(29, 71, 19)",
         total: 0,
         count: [],
-            },
+      },
     ],
   },
   {
@@ -60,7 +60,8 @@ const emotionData = [
         textColor: "rgb(225, 85, 85)",
         chartColor: "rgb(176, 56, 56)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Ashamed",
         id: 3,
@@ -68,7 +69,8 @@ const emotionData = [
         textColor: "rgb(225, 85, 85)",
         chartColor: "rgb(143, 43, 43)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Frustrated",
         id: 4,
@@ -76,7 +78,8 @@ const emotionData = [
         textColor: "rgb(225, 85, 85)",
         chartColor: "rgb(107, 30, 30)",
         total: 0,
-        count: [],      }
+        count: [],
+      }
     ]
   },
   {
@@ -98,7 +101,8 @@ const emotionData = [
         textColor: "rgb(127 62 159)",
         chartColor: "rgb(116, 55, 147)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Embarrassed",
         id: 3,
@@ -107,7 +111,7 @@ const emotionData = [
         chartColor: "rgb(85, 40, 108)",
         total: 0,
         count: [],
-            },
+      },
       {
         label: "Anxious",
         id: 4,
@@ -115,7 +119,8 @@ const emotionData = [
         textColor: "rgb(127 62 159)",
         chartColor: "rgb(65, 29, 83)",
         total: 0,
-        count: [],      }
+        count: [],
+      }
     ]
   },
 
@@ -138,7 +143,8 @@ const emotionData = [
         textColor: "rgb(176, 148, 0)",
         chartColor: "rgb(228, 179, 4)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Focused",
         id: 3,
@@ -146,7 +152,8 @@ const emotionData = [
         textColor: "rgb(176, 148, 0)",
         chartColor: "rgb(191, 150, 1)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Energetic",
         id: 4,
@@ -154,7 +161,8 @@ const emotionData = [
         textColor: "rgb(176, 148, 0)",
         chartColor: "rgb(170, 136, 0)",
         total: 0,
-        count: [],      }
+        count: [],
+      }
     ]
   },
   {
@@ -177,7 +185,7 @@ const emotionData = [
         chartColor: "rgb(45, 76, 135)",
         total: 0,
         count: [],
-            },
+      },
       {
         label: "Lonely",
         id: 3,
@@ -186,7 +194,7 @@ const emotionData = [
         chartColor: "rgb(33, 57, 102)",
         total: 0,
         count: [],
-            },
+      },
       {
         label: "Hurt",
         id: 4,
@@ -195,7 +203,7 @@ const emotionData = [
         chartColor: "rgb(25, 45, 83)",
         total: 0,
         count: [],
-            }
+      }
     ]
   },
   {
@@ -217,7 +225,8 @@ const emotionData = [
         textColor: "rgb(59, 71, 97)",
         chartColor: "rgb(166, 162, 162)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Rested",
         id: 3,
@@ -225,7 +234,8 @@ const emotionData = [
         textColor: "rgb(59, 71, 97)",
         chartColor: "rgb(131, 131, 131)",
         total: 0,
-        count: [],      },
+        count: [],
+      },
       {
         label: "Balanced",
         id: 4,
@@ -233,8 +243,8 @@ const emotionData = [
         textColor: "rgb(59, 71, 97)",
         chartColor: "rgb(81, 80, 80)",
         total: 0,
-        count: [],  
-          }
+        count: [],
+      }
     ]
   },
 ];

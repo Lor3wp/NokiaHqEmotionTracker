@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import Chart from 'chart.js/auto'
-import { Bar } from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import emotionData from '../../../data/emotionData';
-
+import '../../../css/Charts.css'
 const options = {
   responsive: true,
 
   plugins: {
     legend: {
       position: "right",
-
+      maintainAspectRatio: false,
       display: true,
       labels: {
         usePointStyle: true,
@@ -29,9 +28,11 @@ const options = {
 
 const BarChart = (props) => {
 
+  const [total, setTotal] = useState(0);
   const [barData, setBarData] = useState({
     labels: [],
     datasets: [
+      // EXAMPLE DATA
       // {
       //   label: 'Happy',
       //   data: [50,50,50,50,50,50],
@@ -89,6 +90,7 @@ const BarChart = (props) => {
 
         break;
     }
+    let totalAmount = 0;
     emotionData.map((emotion) => {
       data.datasets.push({
         label: emotion.label,
@@ -97,14 +99,17 @@ const BarChart = (props) => {
         borderColor: emotion.chartColor,
         backgroundColor: emotion.chartColor,
       });
+      totalAmount += emotion.total;
     });
+    setTotal(totalAmount);
     setBarData(data);
   }, [props.dataFetched]);
 
+  return (
+  <>
+  <p>Total amount {total.toString()}</p>
+  <Bar data={barData} options={options} />
+  </>);
+}
 
-
-
-    return (<Bar data={barData} options={options} />);
-  }
-  
-  export default BarChart;
+export default BarChart;
