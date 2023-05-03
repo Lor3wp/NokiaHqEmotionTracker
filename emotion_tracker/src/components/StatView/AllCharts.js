@@ -1,3 +1,35 @@
+/**
+ * This file contains the view to contain chart views.
+ * The file fetches data from the backend and processes
+ * that data based on given timeUnit
+ *
+ * uses states:
+ *     [chartType]
+ *     [hourRange]
+ *     [minHour]
+ *     [maxHour]
+ *     [chartDate]
+ *     [timeUnit]
+ *     [data, setData]
+ *     [dataFetched]
+ *     [loading, setLoading]
+ *
+ * AllCharts()
+ *     [dataFetched, setDataFetched]
+ *     useEffect(), [chartDate, timeUnit, chartType]
+ *     useEffect(), [data]
+ *     processData()
+ *     async fetchData()
+ *     switch {
+ *          case "doughnutchart": return()
+ *          case "linechart": return()
+ *          case "mountainchart": return()
+ *          case "barchart": return()
+ *          default: return()
+ *      }
+ * export default AllCharts;
+ *
+ * */
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
@@ -10,7 +42,7 @@ import { __esModule } from "react-range-slider-input";
 import Loading from "../../views/Loading";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { dayData, data } from "../EmotionStats";
-import "../../css/Charts.css";
+import "../../css/AllCharts.css";
 
 const AllCharts = (props) => {
   const [dataFetched, setDataFetched] = useState(false);
@@ -144,7 +176,7 @@ const AllCharts = (props) => {
       }
     });
   }
-
+  // data is fetched here based on chartType and timeUnit
   async function fetchData() {
     switch (props.chartType) {
       case "doughnutchart":
@@ -168,7 +200,12 @@ const AllCharts = (props) => {
 
             const responseWeek = await fetch(
               backendAddress +
-                `emotions/getweek/${firstDayOfWeek.getFullYear()}-${leadingStartMonth}-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth}-${leadingEndDay}`
+                `emotions/getweek/${[firstDayOfWeek.getFullYear(),
+                  String(firstDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(firstDayOfWeek.getDate()).padStart(2, '0')].join("-")
+              }/${[lastDayOfWeek.getFullYear(),
+                  String(lastDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(lastDayOfWeek.getDate()).padStart(2, '0')].join("-")}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -225,36 +262,19 @@ const AllCharts = (props) => {
               props.chartDate[2] - 1,
               props.chartDate[0]
             );
-            const firstDayOfWeek = startOfWeek(date, { weekStartsOn: 1 });
-            const lastDayOfWeek = endOfWeek(date, { weekStartsOn: 1 });
-            let leadingStartMonth = "01";
-            let leadingStartDay = "01";
-            if ((firstDayOfWeek.getMonth() + 1).toString().length <= 1) {
-              leadingStartMonth =
-                "0" + (firstDayOfWeek.getMonth() + 1).toString();
-            } else {
-              leadingStartMonth = (firstDayOfWeek.getMonth() + 1).toString();
-            }
-            if (firstDayOfWeek.getDate().toString().length <= 1) {
-              leadingStartDay = "0" + firstDayOfWeek.getDate().toString();
-            } else {
-              leadingStartDay = firstDayOfWeek.getDate().toString();
-            }
-            let leadingEndMonth = "01";
-            let leadingEndDay = "01";
-            if ((lastDayOfWeek.getMonth() + 1).toString().length <= 1) {
-              leadingEndMonth = "0" + (lastDayOfWeek.getMonth() + 1).toString();
-            } else {
-              leadingEndMonth = (lastDayOfWeek.getMonth() + 1).toString();
-            }
-            if (lastDayOfWeek.getDate().toString().length <= 1) {
-              leadingEndDay = "0" + lastDayOfWeek.getDate().toString();
-            } else {
-              leadingEndDay = lastDayOfWeek.getDate().toString();
-            }
+            // sqlite gets date with leading zeroes
+            // therefore the dates are formatted to have leading zeroes
+            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
+            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
+
             const responseWeek = await fetch(
-              backendAddress +
-                `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${leadingStartMonth}-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth}-${leadingEndDay}`
+                backendAddress +
+                `emotions/getweek/${[firstDayOfWeek.getFullYear(),
+                  String(firstDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(firstDayOfWeek.getDate()).padStart(2, '0')].join("-")
+                }/${[lastDayOfWeek.getFullYear(),
+                  String(lastDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(lastDayOfWeek.getDate()).padStart(2, '0')].join("-")}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -298,23 +318,15 @@ const AllCharts = (props) => {
     }
   }
 
+  // this chooses what chart gets drawn based on chartType
   switch (props.chartType) {
     case "doughnutchart":
       if (props.loading) {
         return <Loading />;
       } else
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
-            }}
+          <div className="doughnutchart"
+            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
           >
             <h4
               className="nodata"
@@ -324,19 +336,11 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
             </h4>
             <DoughnutChart
-              chartContainerDivHeight={
-                props.chartContainerDiv.current?.offsetHeight
-              }
-              chartContainerDivWidth={
-                props.chartContainerDiv.current?.offsetWidth
-              }
               chartType={props.chartType}
               hourRange={props.hourRange}
               minHour={props.minHour}
@@ -353,18 +357,8 @@ const AllCharts = (props) => {
         <Loading />;
       } else
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              width: "100vw",
-              maxWidth: "600px",
-              height: "130vh",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
-            }}
+          <div className="linechart"
+            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
           >
             <h4
               className="nodata"
@@ -374,8 +368,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
@@ -398,18 +390,8 @@ const AllCharts = (props) => {
         return <Loading />;
       } else
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              width: "100%",
-              maxWidth: "600px",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
-            }}
+          <div className="mountainchart"
+            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
           >
             <h4
               className="nodata"
@@ -419,8 +401,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
@@ -465,8 +445,6 @@ const AllCharts = (props) => {
     //                 ? "visible"
     //                 : "hidden",
     //             zIndex: 2,
-    //             display: "block",
-    //             position: "absolute",
     //           }}
     //         >
     //           No data
@@ -502,8 +480,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
