@@ -8,7 +8,7 @@ import "material-symbols";
 import Loading from "./views/Loading";
 import TooFarAway from "./views/TooFarAwayView";
 import TabletView from "./views/TabletView";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import calculateDistance from "./utils/CalculateDistance";
 
 const App = () => {
@@ -39,24 +39,12 @@ const App = () => {
     <DisabledLocationView />
   ) : // if geolocation is available and enabled and we have coordinates, show main screen
   coords && calculateDistance(coords.latitude, coords.longitude) <= 15 ? (
-    <div className="App">
-      <header className="App-header">
-        <Router>
-          <Routes>
-            <Route
-              exact
-              path="/NokiaHqEmotionTracker"
-              element={<EmotionButtonView />}
-            />
-            <Route
-              exact
-              path="/1f1244Gopd5004JKiu03Vili"
-              element={<TabletView />}
-            />
-          </Routes>
-        </Router>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<EmotionButtonView />} />
+        <Route path="/1f1244Gopd5004JKiu03Vili" element={<TabletView />} />
+      </Routes>
+    </Router>
   ) : // if you are more than 1.5km away from Nokia
   coords && calculateDistance(coords.latitude, coords.longitude) > 15 ? (
     <TooFarAway
@@ -71,4 +59,3 @@ const App = () => {
 };
 
 export default App;
-// testattu
