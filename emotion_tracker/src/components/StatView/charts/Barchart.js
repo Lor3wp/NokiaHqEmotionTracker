@@ -1,10 +1,37 @@
+/**
+ * This file contains the view for drawing a barchart.
+ * The file takes the data from props and spits it to
+ * their respective emotions, which in turn is passed
+ * on to the actual chart for drawing.
+ *
+ * uses states:
+ *     [chartType]
+ *     [hourRange]
+ *     [minHour]
+ *     [maxHour]
+ *     [chartDate]
+ *     [timeUnit]
+ *     [data]
+ *     [dataFetched]
+ *
+ * options {}
+ * BarChart()
+ *     [total, setTotal]
+ *     [barData, setBarData]
+ *     useEffect()
+ *     return()
+ *
+ * export default Barchart;
+ *
+ * */
 import React, {useEffect, useState} from 'react';
 import {Bar} from 'react-chartjs-2';
 import emotionData from '../../../data/emotionData';
 import '../../../css/Charts.css'
+
+// options for how the bar chart is drawn
 const options = {
   responsive: true,
-
   plugins: {
     legend: {
       position: "right",
@@ -15,7 +42,6 @@ const options = {
       },
     },
   },
-  responsive: true,
   scales: {
     x: {
       stacked: true,
@@ -44,8 +70,9 @@ const BarChart = (props) => {
   useEffect(() => {
     let data = {
       labels: [],
-      datasets: [], //new Array(emotionData.length).fill({
+      datasets: [],
     };
+    // set the bottom labels based on timeUnit
     switch (props.timeUnit) {
       case "day":
         data.labels = [...Array(emotionData[0].count.length).keys()];
@@ -90,6 +117,7 @@ const BarChart = (props) => {
 
         break;
     }
+    // set the data that gets drawn and calculate the total entries
     let totalAmount = 0;
     emotionData.map((emotion) => {
       data.datasets.push({
@@ -104,7 +132,7 @@ const BarChart = (props) => {
     setTotal(totalAmount);
     setBarData(data);
   }, [props.dataFetched]);
-
+  // return the visible part of the chart
   return (
   <>
   <p>Total amount {total.toString()}</p>

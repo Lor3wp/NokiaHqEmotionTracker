@@ -1,3 +1,36 @@
+/**
+ * This file contains the view to contain chart views.
+ * The file fetches data from the backend and processes
+ * that data based on given timeUnit
+ *
+ * uses states:
+ *     [chartType]
+ *     [hourRange]
+ *     [minHour]
+ *     [maxHour]
+ *     [chartDate]
+ *     [timeUnit]
+ *     [data, setData]
+ *     [dataFetched]
+ *     [loading, setLoading]
+ *     [chartContainerDiv]
+ *
+ * AllCharts()
+ *     [dataFetched, setDataFetched]
+ *     useEffect(), [chartDate, timeUnit, chartType]
+ *     useEffect(), [data]
+ *     processData()
+ *     async fetchData()
+ *     switch {
+ *          case "doughnutchart": return()
+ *          case "linechart": return()
+ *          case "mountainchart": return()
+ *          case "barchart": return()
+ *          default: return()
+ *      }
+ * export default AllCharts;
+ *
+ * */
 import Piechart from "./charts/Piechart";
 import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
@@ -144,7 +177,7 @@ const AllCharts = (props) => {
       }
     });
   }
-
+  // data is fetched here based on chartType and timeUnit
   async function fetchData() {
     switch (props.chartType) {
       case "doughnutchart":
@@ -226,6 +259,8 @@ const AllCharts = (props) => {
               props.chartDate[2] - 1,
               props.chartDate[0]
             );
+            // sqlite gets date with leading zeroes
+            // therefore the dates are formatted to have leading zeroes
             const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
             const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
             let leadingStartMonth = "01"
@@ -299,6 +334,7 @@ const AllCharts = (props) => {
     }
   }
 
+  // this chooses what chart gets drawn based on chartType
   switch (props.chartType) {
     case "doughnutchart":
       if (props.loading) {

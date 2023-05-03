@@ -1,10 +1,35 @@
+/**
+ * This file contains the view for drawing a linechart.
+ * The file takes the data from props and spits it to
+ * their respective emotions, which in turn is passed
+ * on to the actual chart for drawing.
+ *
+ * uses states:
+ *     [chartType]
+ *     [hourRange]
+ *     [minHour]
+ *     [maxHour]
+ *     [chartDate]
+ *     [timeUnit]
+ *     [data]
+ *     [dataFetched]
+ *
+ * options {}
+ * LineChart()
+ *     [lineData, setLineData]
+ *     useEffect()
+ *     return()
+ *
+ * export default LineChart;
+ *
+ * */
 import React, {useState, useEffect} from "react";
 import {Line} from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
 
 Chart.defaults.color = "#FFFFFF";
-
+// options for how the bar chart is drawn
 const options = {
   plugins: {
     legend: {
@@ -66,6 +91,7 @@ const LineChart = (props) => {
       labels: [],
       datasets: [], //new Array(emotionData.length).fill({
     };
+    // set the bottom labels based on timeUnit
     switch (props.timeUnit) {
       case "day":
         data.labels = [...Array(emotionData[0].count.length).keys()];
@@ -109,7 +135,7 @@ const LineChart = (props) => {
 
         break;
     }
-
+    // set the data that gets drawn and calculate the length of longest label
     let longestLabel = 0;
     emotionData.map((emotion) => {
       if (emotion.label.length > longestLabel) {
@@ -140,7 +166,7 @@ const LineChart = (props) => {
 
     setLineData(data);
   }, [props.dataFetched]);
-
+  // return the visible part of the chart
   return <Line data={lineData} options={options} />;
 };
 

@@ -17,7 +17,7 @@
  *         case "years": return()
  *         default: return()
  *     }
- * default export DatePicker;
+ * export default DatePicker;
  *
  * */
 import {getWeek} from "date-fns";
