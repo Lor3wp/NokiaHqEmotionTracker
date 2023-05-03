@@ -3,13 +3,13 @@ import DoughnutChart from "./charts/DoughnutChart";
 import LineChart from "./charts/Linechart";
 import BarChart from "./charts/Barchart";
 import MountainChart from "./charts/Mountainchart";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import emotionData from "../../data/emotionData";
 import backendAddress from "../../data/apiHooks";
-import {__esModule} from "react-range-slider-input";
+import { __esModule } from "react-range-slider-input";
 import Loading from "../../views/Loading";
-import {endOfWeek, startOfWeek} from "date-fns";
-import {dayData, data} from "../EmotionStats";
+import { endOfWeek, startOfWeek } from "date-fns";
+import { dayData, data } from "../EmotionStats";
 import "../../css/Charts.css";
 
 const AllCharts = (props) => {
@@ -152,7 +152,7 @@ const AllCharts = (props) => {
           case "day":
             const responseDay = await fetch(
               backendAddress +
-              `emotions/getday/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`
+                `emotions/getday/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`
             );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
@@ -163,14 +163,12 @@ const AllCharts = (props) => {
               props.chartDate[2] - 1,
               props.chartDate[0]
             );
-            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
-            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
+            const firstDayOfWeek = startOfWeek(date, { weekStartsOn: 1 });
+            const lastDayOfWeek = endOfWeek(date, { weekStartsOn: 1 });
 
             const responseWeek = await fetch(
               backendAddress +
-              `emotions/getweek/${firstDayOfWeek.getFullYear()}-${leadingStartMonth
-              }-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth
-              }-${leadingEndDay}`
+                `emotions/getweek/${firstDayOfWeek.getFullYear()}-${leadingStartMonth}-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth}-${leadingEndDay}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -185,7 +183,7 @@ const AllCharts = (props) => {
           case "month":
             const responseMonth = await fetch(
               backendAddress +
-              `emotions/getmonth/${props.chartDate[3]}/${props.chartDate[2]}`
+                `emotions/getmonth/${props.chartDate[3]}/${props.chartDate[2]}`
             );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
@@ -200,8 +198,9 @@ const AllCharts = (props) => {
           case "years":
             const responseYears = await fetch(
               backendAddress +
-              `emotions/getyears/${Math.floor(props.chartDate[3] / 10) * 10
-              }/${Math.floor(props.chartDate[3] / 10) * 10 + 9}`
+                `emotions/getyears/${
+                  Math.floor(props.chartDate[3] / 10) * 10
+                }/${Math.floor(props.chartDate[3] / 10) * 10 + 9}`
             );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
@@ -215,7 +214,7 @@ const AllCharts = (props) => {
           case "day":
             const responseDay = await fetch(
               backendAddress +
-              `emotions/getday/primary/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`
+                `emotions/getday/primary/${props.chartDate[3]}/${props.chartDate[2]}/${props.chartDate[0]}`
             );
             const jsonDataDay = await responseDay.json();
             props.setData(jsonDataDay);
@@ -226,37 +225,36 @@ const AllCharts = (props) => {
               props.chartDate[2] - 1,
               props.chartDate[0]
             );
-            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
-            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
-            let leadingStartMonth = "01"
-            let leadingStartDay = "01"
+            const firstDayOfWeek = startOfWeek(date, { weekStartsOn: 1 });
+            const lastDayOfWeek = endOfWeek(date, { weekStartsOn: 1 });
+            let leadingStartMonth = "01";
+            let leadingStartDay = "01";
             if ((firstDayOfWeek.getMonth() + 1).toString().length <= 1) {
-              leadingStartMonth = "0" + (firstDayOfWeek.getMonth() + 1).toString()
+              leadingStartMonth =
+                "0" + (firstDayOfWeek.getMonth() + 1).toString();
             } else {
-              leadingStartMonth = (firstDayOfWeek.getMonth() + 1).toString()
+              leadingStartMonth = (firstDayOfWeek.getMonth() + 1).toString();
             }
             if (firstDayOfWeek.getDate().toString().length <= 1) {
-              leadingStartDay = "0" + firstDayOfWeek.getDate().toString()
+              leadingStartDay = "0" + firstDayOfWeek.getDate().toString();
             } else {
-              leadingStartDay = firstDayOfWeek.getDate().toString()
+              leadingStartDay = firstDayOfWeek.getDate().toString();
             }
-            let leadingEndMonth = "01"
-            let leadingEndDay = "01"
+            let leadingEndMonth = "01";
+            let leadingEndDay = "01";
             if ((lastDayOfWeek.getMonth() + 1).toString().length <= 1) {
-              leadingEndMonth = "0" + (lastDayOfWeek.getMonth() + 1).toString()
+              leadingEndMonth = "0" + (lastDayOfWeek.getMonth() + 1).toString();
             } else {
-              leadingEndMonth = (lastDayOfWeek.getMonth() + 1).toString()
+              leadingEndMonth = (lastDayOfWeek.getMonth() + 1).toString();
             }
             if (lastDayOfWeek.getDate().toString().length <= 1) {
-              leadingEndDay = "0" + lastDayOfWeek.getDate().toString()
+              leadingEndDay = "0" + lastDayOfWeek.getDate().toString();
             } else {
-              leadingEndDay = lastDayOfWeek.getDate().toString()
+              leadingEndDay = lastDayOfWeek.getDate().toString();
             }
             const responseWeek = await fetch(
               backendAddress +
-              `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${leadingStartMonth
-              }-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth
-              }-${leadingEndDay}`
+                `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${leadingStartMonth}-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth}-${leadingEndDay}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -271,7 +269,7 @@ const AllCharts = (props) => {
           case "month":
             const responseMonth = await fetch(
               backendAddress +
-              `emotions/getmonth/primary/${props.chartDate[3]}/${props.chartDate[2]}`
+                `emotions/getmonth/primary/${props.chartDate[3]}/${props.chartDate[2]}`
             );
             const jsonDataMonth = await responseMonth.json();
             props.setData(jsonDataMonth);
@@ -286,8 +284,9 @@ const AllCharts = (props) => {
           case "years":
             const responseYears = await fetch(
               backendAddress +
-              `emotions/getyears/primary/${Math.floor(props.chartDate[3] / 10) * 10
-              }/${Math.floor(props.chartDate[3] / 10) * 10 + 9}`
+                `emotions/getyears/primary/${
+                  Math.floor(props.chartDate[3] / 10) * 10
+                }/${Math.floor(props.chartDate[3] / 10) * 10 + 9}`
             );
             const jsonDataYears = await responseYears.json();
             props.setData(jsonDataYears);
@@ -354,44 +353,45 @@ const AllCharts = (props) => {
         <Loading />;
       } else
         return (
-            <div
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              width: "100vw",
+              maxWidth: "600px",
+              height: "130vh",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
+          >
+            <h4
+              className="nodata"
               style={{
-                display: "flex",
-                flexDirection: "column",
-                flex: 1,
-                width: "100vw",
-                height: "130vh",
-                justifyContent: "center",
-                alignItems: "center",
-                opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+                visibility:
+                  props.data == null || props.data.length <= 0
+                    ? "visible"
+                    : "hidden",
+                zIndex: 2,
+                display: "block",
+                position: "absolute",
               }}
             >
-              <h4
-                className="nodata"
-                style={{
-                  visibility:
-                    props.data == null || props.data.length <= 0
-                      ? "visible"
-                      : "hidden",
-                  zIndex: 2,
-                  display: "block",
-                  position: "absolute",
-                }}
-              >
-                No data
-              </h4>
-              <LineChart
-                chartType={props.chartType}
-                hourRange={props.hourRange}
-                minHour={props.minHour}
-                maxHour={props.maxHour}
-                chartDate={props.chartDate}
-                timeUnit={props.timeUnit}
-                data={props.data}
-                loading={props.loading}
-                dataFetched={dataFetched}
-              />
-            </div>
+              No data
+            </h4>
+            <LineChart
+              chartType={props.chartType}
+              hourRange={props.hourRange}
+              minHour={props.minHour}
+              maxHour={props.maxHour}
+              chartDate={props.chartDate}
+              timeUnit={props.timeUnit}
+              data={props.data}
+              loading={props.loading}
+              dataFetched={dataFetched}
+            />
+          </div>
         );
     case "mountainchart":
       if (props.loading) {
@@ -404,6 +404,7 @@ const AllCharts = (props) => {
               flexDirection: "column",
               flex: 1,
               width: "100%",
+              maxWidth: "600px",
               height: "100%",
               justifyContent: "center",
               alignItems: "center",
@@ -436,7 +437,7 @@ const AllCharts = (props) => {
             />
           </div>
         );
-        // IF NEEDED HERE IS A PIE CHART
+    // IF NEEDED HERE IS A PIE CHART
     // case "piechart":
     //   if (props.loading) {
     //     return <Loading />;
@@ -488,7 +489,7 @@ const AllCharts = (props) => {
       } else
         return (
           <div
-          className="barchart"
+            className="barchart"
             style={{
               opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
             }}
