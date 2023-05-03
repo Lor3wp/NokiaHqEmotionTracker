@@ -2,12 +2,11 @@ import React from "react";
 import "../css/EmotionButtons.css";
 import "../css/SubEmotions.css";
 
-const SubEmotionButtons = ({ subClicked, button, buttonActive, buttonClicked }) => {
-return (<div
-    className={`SubEmotionButton-container ${
-      subClicked === button.label ? "transparent" : ""
-    }`}
-    >
+const SubEmotionButtons = ({subClicked, button, buttonActive, buttonClicked}) => {
+  return (<div
+    className={`SubEmotionButton-container ${subClicked === button.label ? "transparent" : ""
+      }`}
+  >
     {button.subEmotions.map((subEmotion) => (
       <button
         style={{
@@ -28,6 +27,6 @@ return (<div
         {subEmotion.label}
       </button>
     ))}
-    </div>);
+  </div>);
 };
 export default SubEmotionButtons;

@@ -1,8 +1,9 @@
 import EmotionStats from "./EmotionStats";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import '../css/EmotionButtons.css';
 import {timerStart, timerTick} from "../utils/TimerFunctions";
 import EmotionButtons from "./EmotionButtons";
+import backendAddress from "../data/apiHooks";
 
 
 function TabletEmotionButton() {
@@ -25,42 +26,38 @@ function TabletEmotionButton() {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/emotions/addemotion/tablet",
+        `${backendAddress}emotions/addemotion/tablet`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ emotion: id, subEmotion: 1 }),
+          body: JSON.stringify({emotion: id, subEmotion: 1}),
         }
       );
       if (!response.ok) {
         throw new Error("Error adding emotion");
       }
-      // handle success response here
       setUpdate(!update)
     } catch (error) {
-      console.log(`${error} error addEmotion`)
-      // handle error here
+      console.error(`${error} error addEmotion`)
     }
   };
-
 
   const buttonClicked = async (id, e) => {
     console.log("button clicked " + id);
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
-      }
-
+  }
 
   return (
     <div className="content">
-    <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked}></EmotionButtons>
-            <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
-          <p className="infoText">
-          </p>
-          </div>
+      <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked}></EmotionButtons>
+      <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
+        <p className="infoText">
+        </p>
+      </div>
       <EmotionStats
         update={update}
       />

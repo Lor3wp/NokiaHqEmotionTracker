@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import '../css/EmotionButtons.css';
 import EmotionButtons from "./EmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
+import backendAddress from "../data/apiHooks";
 
 
 const Emotions = () => {
@@ -28,7 +29,7 @@ const Emotions = () => {
   // post emotion to database
   const addEmotion = async (id) => {
     try {
-      const response = await fetch("http://localhost:3001/emotions/addemotion", {
+      const response = await fetch(backendAddress + "emotions/addemotion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,5 +70,4 @@ const Emotions = () => {
 
 }
 export default Emotions;
-// build test
 
