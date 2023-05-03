@@ -9,7 +9,7 @@ const SubEmotions = ({showMore, setShowMore}) => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 1000;
+  const timerTimeMs = 15000;
   const [clicked, setClicked] = useState(0);
   const [subClicked, setSubClicked] = useState("");
 

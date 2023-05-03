@@ -10,7 +10,7 @@ const Emotions = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 0;
+  const timerTimeMs = 15000;
   const [clicked, setClicked] = useState(0);
   const [selectedButton, setSelectedButton] = useState("");
 
