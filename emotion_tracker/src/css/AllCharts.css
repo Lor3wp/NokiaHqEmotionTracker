@@ -54,8 +54,3 @@ hr {
     width: 92vw;
     max-width: 600px;
 }
-#ChartView p {
-    background-color: rgb(59 65 76);
-    padding: 18px;
-    width: 100%;
-}
