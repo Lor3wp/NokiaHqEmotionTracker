@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 import '../css/EmotionButtons.css';
 import {timerStart, timerTick} from "../utils/TimerFunctions";
 import EmotionButtons from "./EmotionButtons";
-
+import backendAddress from "../data/apiHooks";
 
 function TabletEmotionButton() {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
   const timerTimeMs = 1000;
-  const [clicked, setClicked] = useState(0)
+  const [clicked, setClicked] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("timer", 0);
@@ -20,12 +20,10 @@ function TabletEmotionButton() {
     return () => clearInterval(timer);
   }, []);
 
-
   const addEmotion = async (id) => {
-
     try {
       const response = await fetch(
-        "http://localhost:3001/emotions/addemotion/tablet",
+        backendAddress + "emotions/addtabletemotion",
         {
           method: "POST",
           headers: {
@@ -38,32 +36,31 @@ function TabletEmotionButton() {
         throw new Error("Error adding emotion");
       }
       // handle success response here
-      setUpdate(!update)
+      setUpdate(!update);
     } catch (error) {
-      console.log(`${error} error addEmotion`)
+      console.log(`${error} error addEmotion`);
       // handle error here
     }
   };
-
 
   const buttonClicked = async (id, e) => {
     console.log("button clicked " + id);
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
-      }
-
+  };
 
   return (
     <div className="content">
-    <EmotionButtons buttonActive={buttonActive} clicked={clicked} buttonClicked={buttonClicked}></EmotionButtons>
-            <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
-          <p className="infoText">
-          </p>
-          </div>
-      <EmotionStats
-        update={update}
-      />
+      <EmotionButtons
+        buttonActive={buttonActive}
+        clicked={clicked}
+        buttonClicked={buttonClicked}
+      ></EmotionButtons>
+      <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
+        <p className="infoText"></p>
+      </div>
+      <EmotionStats update={update} />
     </div>
   );
 }
