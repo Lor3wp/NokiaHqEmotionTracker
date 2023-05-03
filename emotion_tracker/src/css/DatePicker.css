@@ -1,7 +1,11 @@
 .timeUnit-arrow .material-symbols-outlined {
     width: 18px;
 }
-
+/* .timeUnit-arrow p {
+    background-color: rgb(59 65 76);
+    padding: 8px;
+    border-radius: 8px;
+} */
 .datePickerMainDiv {
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +13,7 @@
     flex: 1;
     height: inherit;
     justify-content: center;
-}
+    margin: 0px 16px 0px 16px;}
 
 .timeUnit-arrow {
     display: flex;
@@ -18,4 +22,3 @@
     justify-content: space-between;
     align-items: center;
 }
-

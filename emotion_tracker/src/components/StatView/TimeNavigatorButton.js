@@ -6,7 +6,6 @@ const TimeNavigatorButton = ({
   buttonClass,
   groupClass,
   setTimeUnit,
-  lineFactor,
 }) => {
   return (
     <div className={groupClass}>

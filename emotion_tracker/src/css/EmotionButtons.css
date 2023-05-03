@@ -1,100 +1,117 @@
- .Angry-disabled:disabled {
+  .Angry-disabled:disabled {
     cursor: not-allowed;
     background-color: transparent !important;
     color: rgb(225, 85, 85);
     animation: fadeOut 1s forwards !important;
- }
+  }
 
   .Happy-disabled:disabled {
     cursor: not-allowed;
     background-color: transparent !important;
     color: rgb(61 148 42);
     animation: fadeOut 1s forwards !important;
-    
+
   }
-  
+
   .Sad-disabled:disabled {
     cursor: not-allowed;
     background-color: transparent !important;
     color: rgb(63 103 179);
     animation: fadeOut 1s forwards !important;
-    
+
   }
-  
+
   .Excited-disabled:disabled {
     cursor: not-allowed;
     background-color: transparent !important;
     color: rgb(176, 148, 0);
     animation: fadeOut 1s forwards;
-    
+
   }
+
   .Scared-disabled:disabled {
     cursor: not-allowed;
     background-color: transparent !important;
     color: rgb(127 62 159);
     animation: fadeOut 1s forwards !important;
-    
 
- }
+
+  }
+
   .Neutral-disabled:disabled {
     cursor: not-allowed;
     background-color: transparent !important;
-    color: rgb(59,71,97);
+    color: rgb(59, 71, 97);
     animation: fadeOut 1s forwards !important;
-}
-@keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {background-color: transparent;} 
-}
+  }
 
-@keyframes fadeIn {
-  100% {background-color: background-color;}
-  0% {background-color: transparent;} 
-}
-.Angry:hover {
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  @keyframes fadeIn {
+    100% {
+      background-color: background-color;
+    }
+
+    0% {
+      background-color: transparent;
+    }
+  }
+
+  .Angry:hover {
     background-color: rgb(236, 135, 135) !important;
-    
+
   }
 
   .Happy:hover {
     background-color: rgb(152, 190, 143) !important;
   }
-  
+
   .Sad:hover {
     background-color: rgb(128, 143, 173) !important;
   }
-  
+
   .Excited:hover {
     background-color: rgb(251, 229, 104) !important;
   }
+
   .Scared:hover {
     background-color: rgb(195, 130, 212) !important;
   }
+
   .Neutral:hover {
     background-color: rgb(132, 132, 132) !important;
   }
 
-.emotion-buttons {
+  .emotion-buttons {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-}
-.emotion-buttons button {
-    padding: 8px; 
+  }
+
+  .emotion-buttons button {
+    padding: 8px;
     margin: 8px;
     border-radius: 8px;
     width: 90px;
     height: 80px;
     animation: fadeIn 1s forwards;
-}
+  }
 
-.emotion-buttons button:not([disabled]):active {
+  .emotion-buttons button:not([disabled]):active {
     width: 95px;
     height: 85px;
-}
+  }
 
-.EmotionButton-button {
+  .EmotionButton-button {
     padding: 8px;
     margin: 8px;
     border-style: none;
@@ -106,16 +123,18 @@
     justify-content: center;
     align-items: center;
   }
+
   .EmotionButton-button-label {
     display: flex;
     flex-direction: column;
   }
-.content {
+
+  .content {
     display: flex;
     flex-direction: column;
-}
+  }
 
-.infoText {
+  .infoText {
     font-size: 0.6em;
-    color:rgb(128, 143, 173)
-}
+    color: rgb(128, 143, 173);
+  }

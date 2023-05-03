@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import backendAddress from "../data/apiHooks";
 
-const EmotionStats = ({ update }) => {
+
+const EmotionStats = ({update}) => {
   const [data, setData] = useState(null);
   const [dayData, setDayData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,9 +11,10 @@ const EmotionStats = ({ update }) => {
   // fetching todays emotions and all time emotinos from database
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(backendAddress + `emotions/getallemotions`);
+      const response = await fetch(
+        `${backendAddress}emotions/getallemotions`
+      );
       const jsonData = await response.json();
-      console.log(jsonData);
       setData(jsonData);
       setLoading(false);
     }
@@ -22,7 +24,7 @@ const EmotionStats = ({ update }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        backendAddress + `emotions/gettodayemotions`
+        `${backendAddress}emotions/gettodayemotions`
       );
       const jsonData = await response.json();
       setDayData(jsonData);

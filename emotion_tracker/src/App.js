@@ -8,9 +8,8 @@ import "material-symbols";
 import Loading from "./views/Loading";
 import TooFarAway from "./views/TooFarAwayView";
 import TabletView from "./views/TabletView";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import calculateDistance from "./utils/CalculateDistance";
-
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [showDisabledView, setShowDisabledView] = useState(false);

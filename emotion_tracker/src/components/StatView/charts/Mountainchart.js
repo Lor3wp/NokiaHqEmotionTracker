@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Line } from 'react-chartjs-2';
+import React, {useState, useEffect} from "react";
+import {Line} from 'react-chartjs-2';
 import emotionData from "../../../data/emotionData";
+import '../../../css/AllCharts.css'
+
 
 const options = {
   type: "Line",
@@ -35,6 +37,7 @@ const MountainChart = (props) => {
   const [mountainData, setMountainData] = useState({
     labels: [],
     datasets: [
+      // EXAMPLE DATA
       // {
       //   label: "Happy",
       //   data: [90, 20, 70, 10, 90, 50],
@@ -44,6 +47,7 @@ const MountainChart = (props) => {
       // },
     ],
   });
+  const [total, setTotal] = useState(0);
   useEffect(() => {
     let data = {
       labels: [],
@@ -94,14 +98,12 @@ const MountainChart = (props) => {
         break;
     }
     let avg = [...Array(emotionData[0].count.length).fill(0)];
-    // console.log(avg);
+    let totalAmount = 0;
     emotionData.map((emotion) => {
       for (let i in emotion.count) {
         avg[i] += emotion.count[i] ? emotion.count[i] : 0;
       }
-      // console.log(emotion.count);
     });
-    // console.log(avg);
     emotionData.map((emotion) => {
       let values = [];
       for (let i in emotion.count) {
@@ -116,11 +118,20 @@ const MountainChart = (props) => {
         pointRadius: 0,
         tension: 0.1,
       });
+      totalAmount += emotion.total;
     });
+    setTotal(totalAmount);
     setMountainData(data);
   }, [props.dataFetched]);
 
-  return <Line data={mountainData} options={options} />;
+  return (
+    <>
+  <p>Total amount {total}</p>
+  <hr />
+  <Line data={mountainData} options={options} />
+  <hr />
+  </>
+  );
 };
 
-  export default MountainChart;
+export default MountainChart;

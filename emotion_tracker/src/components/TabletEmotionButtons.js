@@ -1,7 +1,7 @@
 import EmotionStats from "./EmotionStats";
 import React, { useState, useEffect } from "react";
-import '../css/EmotionButtons.css';
-import {timerStart, timerTick} from "../utils/TimerFunctions";
+import "../css/EmotionButtons.css";
+import { timerStart, timerTick } from "../utils/TimerFunctions";
 import EmotionButtons from "./EmotionButtons";
 import backendAddress from "../data/apiHooks";
 
@@ -23,7 +23,7 @@ function TabletEmotionButton() {
   const addEmotion = async (id) => {
     try {
       const response = await fetch(
-        backendAddress + "emotions/addtabletemotion",
+        `${backendAddress}emotions/addemotion/tablet`,
         {
           method: "POST",
           headers: {
@@ -66,4 +66,3 @@ function TabletEmotionButton() {
 }
 export default TabletEmotionButton;
 // build test
-
