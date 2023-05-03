@@ -27,7 +27,7 @@
 import React, {useEffect, useState} from 'react';
 import {Bar} from 'react-chartjs-2';
 import emotionData from '../../../data/emotionData';
-import '../../../css/Charts.css'
+import '../../../css/AllCharts.css'
 
 // options for how the bar chart is drawn
 const options = {

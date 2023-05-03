@@ -43,7 +43,7 @@ import { __esModule } from "react-range-slider-input";
 import Loading from "../../views/Loading";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { dayData, data } from "../EmotionStats";
-import "../../css/Charts.css";
+import "../../css/AllCharts.css";
 
 const AllCharts = (props) => {
   const [dataFetched, setDataFetched] = useState(false);
@@ -340,17 +340,8 @@ const AllCharts = (props) => {
         return <Loading />;
       } else
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
-            }}
+          <div className="doughnutchart"
+            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
           >
             <h4
               className="nodata"
@@ -360,8 +351,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
@@ -389,18 +378,8 @@ const AllCharts = (props) => {
         <Loading />;
       } else
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              width: "100vw",
-              maxWidth: "600px",
-              height: "130vh",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
-            }}
+          <div className="linechart"
+            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
           >
             <h4
               className="nodata"
@@ -410,8 +389,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
@@ -434,18 +411,8 @@ const AllCharts = (props) => {
         return <Loading />;
       } else
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              width: "100%",
-              maxWidth: "600px",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
-            }}
+          <div className="mountainchart"
+            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
           >
             <h4
               className="nodata"
@@ -455,8 +422,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
@@ -501,8 +466,6 @@ const AllCharts = (props) => {
     //                 ? "visible"
     //                 : "hidden",
     //             zIndex: 2,
-    //             display: "block",
-    //             position: "absolute",
     //           }}
     //         >
     //           No data
@@ -538,8 +501,6 @@ const AllCharts = (props) => {
                     ? "visible"
                     : "hidden",
                 zIndex: 2,
-                display: "block",
-                position: "absolute",
               }}
             >
               No data
