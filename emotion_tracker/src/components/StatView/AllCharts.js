@@ -200,7 +200,12 @@ const AllCharts = (props) => {
 
             const responseWeek = await fetch(
               backendAddress +
-                `emotions/getweek/${firstDayOfWeek.getFullYear()}-${leadingStartMonth}-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth}-${leadingEndDay}`
+                `emotions/getweek/${[firstDayOfWeek.getFullYear(),
+                  String(firstDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(firstDayOfWeek.getDate()).padStart(2, '0')].join("-")
+              }/${[lastDayOfWeek.getFullYear(),
+                  String(lastDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(lastDayOfWeek.getDate()).padStart(2, '0')].join("-")}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -261,34 +266,15 @@ const AllCharts = (props) => {
             // therefore the dates are formatted to have leading zeroes
             const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
             const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
-            let leadingStartMonth = "01"
-            let leadingStartDay = "01"
-            if ((firstDayOfWeek.getMonth() + 1).toString().length <= 1) {
-              leadingStartMonth =
-                "0" + (firstDayOfWeek.getMonth() + 1).toString();
-            } else {
-              leadingStartMonth = (firstDayOfWeek.getMonth() + 1).toString();
-            }
-            if (firstDayOfWeek.getDate().toString().length <= 1) {
-              leadingStartDay = "0" + firstDayOfWeek.getDate().toString();
-            } else {
-              leadingStartDay = firstDayOfWeek.getDate().toString();
-            }
-            let leadingEndMonth = "01";
-            let leadingEndDay = "01";
-            if ((lastDayOfWeek.getMonth() + 1).toString().length <= 1) {
-              leadingEndMonth = "0" + (lastDayOfWeek.getMonth() + 1).toString();
-            } else {
-              leadingEndMonth = (lastDayOfWeek.getMonth() + 1).toString();
-            }
-            if (lastDayOfWeek.getDate().toString().length <= 1) {
-              leadingEndDay = "0" + lastDayOfWeek.getDate().toString();
-            } else {
-              leadingEndDay = lastDayOfWeek.getDate().toString();
-            }
+
             const responseWeek = await fetch(
-              backendAddress +
-                `emotions/getweek/primary/${firstDayOfWeek.getFullYear()}-${leadingStartMonth}-${leadingStartDay}/${lastDayOfWeek.getFullYear()}-${leadingEndMonth}-${leadingEndDay}`
+                backendAddress +
+                `emotions/getweek/${[firstDayOfWeek.getFullYear(),
+                  String(firstDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(firstDayOfWeek.getDate()).padStart(2, '0')].join("-")
+                }/${[lastDayOfWeek.getFullYear(),
+                  String(lastDayOfWeek.getMonth() + 1).padStart(2, '0'),
+                  String(lastDayOfWeek.getDate()).padStart(2, '0')].join("-")}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
