@@ -11,6 +11,7 @@ import TabletView from "./views/TabletView";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import calculateDistance from "./utils/CalculateDistance";
 
+
 const App = () => {
   const [showDisabledView, setShowDisabledView] = useState(false);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
@@ -30,7 +31,6 @@ const App = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [isGeolocationEnabled]);
-
   // if geolocation is not available show not supported text
   return !isGeolocationAvailable ? (
     <div>Your browser does not support Geolocation</div>
@@ -39,12 +39,24 @@ const App = () => {
     <DisabledLocationView />
   ) : // if geolocation is available and enabled and we have coordinates, show main screen
   coords && calculateDistance(coords.latitude, coords.longitude) <= 15 ? (
-    <Router>
-      <Routes>
-        <Route path="/" element={<EmotionButtonView />} />
-        <Route path="/1f1244Gopd5004JKiu03Vili" element={<TabletView />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <header className="App-header">
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/NokiaHqEmotionTracker"
+              Component={EmotionButtonView}
+            />
+            <Route 
+              exact 
+              path="/1f1244Gopd5004JKiu03Vili" 
+              Component={TabletView} 
+            />
+          </Routes>
+        </Router>
+      </header>
+    </div>
   ) : // if you are more than 1.5km away from Nokia
   coords && calculateDistance(coords.latitude, coords.longitude) > 15 ? (
     <TooFarAway
@@ -53,9 +65,12 @@ const App = () => {
   ) : (
     // if we are waiting for user to give the permission and when loading the page
     <div className="App-header">
-      <Loading />
+          <Loading />
     </div>
   );
 };
 
 export default App;
+// testattu
+
+
