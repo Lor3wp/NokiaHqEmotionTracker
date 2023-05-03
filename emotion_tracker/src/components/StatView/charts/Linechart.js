@@ -23,8 +23,8 @@
  * export default LineChart;
  *
  * */
-import React, {useState, useEffect} from "react";
-import {Line} from "react-chartjs-2";
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
 
@@ -60,6 +60,7 @@ const options = {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         display: true,
@@ -91,7 +92,6 @@ const LineChart = (props) => {
       labels: [],
       datasets: [], //new Array(emotionData.length).fill({
     };
-    // set the bottom labels based on timeUnit
     switch (props.timeUnit) {
       case "day":
         data.labels = [...Array(emotionData[0].count.length).keys()];
@@ -152,7 +152,6 @@ const LineChart = (props) => {
           borderColor: emotion.chartColor,
           backgroundColor: emotion.chartColor,
         });
-
       } else {
         data.datasets.push({
           label: emotion.label,
