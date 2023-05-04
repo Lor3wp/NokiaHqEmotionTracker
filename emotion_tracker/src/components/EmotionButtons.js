@@ -1,13 +1,11 @@
 import React from "react";
-import '../css/EmotionButtons.css';
+import "../css/EmotionButtons.css";
 import emotionData from "../data/emotionData";
+import { doDecor, doDecorAlt } from "./Decor";
 
-
-const EmotionButtons = ({buttonActive, clicked, buttonClicked}) => {
+const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
   return (
-    <div
-      className="emotion-buttons"
-    >
+    <div className="emotion-buttons">
       {emotionData.map((button) => (
         <button
           style={{
@@ -21,7 +19,10 @@ const EmotionButtons = ({buttonActive, clicked, buttonClicked}) => {
               : button.label
           }
           disabled={!buttonActive}
-          onClick={(e) => buttonClicked(button.id, e)}
+          onClick={(e) => {
+            buttonClicked(button.id, e);
+            doDecor(button.rgbColor);
+          }}
         >
           <div className="EmotionButton-button-label">
             <span className="material-symbols-outlined">{button.icon}</span>
@@ -31,5 +32,5 @@ const EmotionButtons = ({buttonActive, clicked, buttonClicked}) => {
       ))}
     </div>
   );
-}
+};
 export default EmotionButtons;

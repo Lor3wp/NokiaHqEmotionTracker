@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
-import backendAddress from "../data/apiHooks";
+import React, { useState, useEffect } from "react";
+//import backendAddress from "../data/apiHooks";
+const backendAddress = "http://localhost:3001/";
 
-
-const EmotionStats = ({update}) => {
+const EmotionStats = ({ update }) => {
   const [data, setData] = useState(null);
   const [dayData, setDayData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,9 +11,7 @@ const EmotionStats = ({update}) => {
   // fetching todays emotions and all time emotinos from database
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        `${backendAddress}emotions/getallemotions`
-      );
+      const response = await fetch(`${backendAddress}emotions/getallemotions`);
       const jsonData = await response.json();
       setData(jsonData);
       setLoading(false);

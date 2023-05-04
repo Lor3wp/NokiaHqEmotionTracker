@@ -33,3 +33,66 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes FadeFall {
+  from {
+    top: 0;
+    
+  }
+  to {
+    top: 33vh;
+    opacity: 0;
+  }
+}
+@keyframes FadeClimb {
+  from {
+    bottom: 0;
+    
+  }
+  to {
+    bottom: 33vh;
+    opacity: 0;
+  }
+}
+.deco, .moredeco {
+  border-radius: 50%;
+  width: 1em; height: 1em;
+  position: absolute; 
+}
+.deco {
+  top: 0;
+  animation: FadeFall 2s forwards;
+}
+.moredeco {
+  bottom: 0;
+  animation: FadeClimb 2s forwards;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+    width: 0;
+    left: 0;
+  }
+  50% {
+    opacity: 1;
+    width: 120vw;
+    
+  }
+  100% {
+    opacity: 0;
+    width: 0;
+    right: 0;
+  }
+}
+.decor {
+  margin: 10px 0;
+  height: 1em;
+  position: absolute;
+  animation: fade 2s forwards;
+}
+#deco2 {
+  top: 0;
+}
+#deco3 {
+  bottom: 0;
+}

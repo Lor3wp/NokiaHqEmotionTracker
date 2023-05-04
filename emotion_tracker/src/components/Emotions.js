@@ -1,16 +1,16 @@
 import EmotionStats from "./EmotionStats";
-import React, {useState, useEffect} from "react";
-import '../css/EmotionButtons.css';
+import React, { useState, useEffect } from "react";
+import "../css/EmotionButtons.css";
 import EmotionButtons from "./EmotionButtons";
-import {timerStart, timerTick} from "../utils/TimerFunctions";
-import backendAddress from "../data/apiHooks";
-
+import { timerStart, timerTick } from "../utils/TimerFunctions";
+//import backendAddress from "../data/apiHooks";
+const backendAddress = "http://localhost:3001/";
 
 const Emotions = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 15000;
+  const timerTimeMs = 2000;
   const [clicked, setClicked] = useState(0);
   const [selectedButton, setSelectedButton] = useState("");
 
@@ -49,7 +49,7 @@ const Emotions = () => {
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
-    setSelectedButton(label);
+    //setSelectedButton(label);
   };
 
   return (
@@ -68,6 +68,5 @@ const Emotions = () => {
       <EmotionStats update={update} />
     </div>
   );
-}
+};
 export default Emotions;
-
