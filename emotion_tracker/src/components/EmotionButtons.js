@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../css/EmotionButtons.css";
 import emotionData from "../data/emotionData";
 import { doDecor, doDecorAlt } from "./Decor";
@@ -9,7 +9,8 @@ const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
       {emotionData.map((button) => (
         <button
           style={{
-            animation: buttonActive ? "fadeIn 3s, forwards" : "none",
+            backgroundColor: button.rgbColor,
+            color: button.textColor,
           }}
           key={button.label}
           className={
@@ -17,7 +18,6 @@ const EmotionButtons = ({ buttonActive, clicked, buttonClicked }) => {
               ? button.label + "-disabled"
               : button.label
           }
-          id={clicked === button.id ? button.label + "-clicked" : button.label}
           disabled={!buttonActive}
           onClick={(e) => {
             buttonClicked(button.id, e);

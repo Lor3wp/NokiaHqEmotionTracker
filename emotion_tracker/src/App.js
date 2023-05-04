@@ -11,7 +11,6 @@ import TabletView from "./views/TabletView";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import calculateDistance from "./utils/CalculateDistance";
 
-
 const App = () => {
   const [showDisabledView, setShowDisabledView] = useState(false);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
@@ -43,15 +42,11 @@ const App = () => {
       <header className="App-header">
         <Router>
           <Routes>
+            <Route exact path="/*" Component={EmotionButtonView} />
             <Route
               exact
-              path="/NokiaHqEmotionTracker"
-              Component={EmotionButtonView}
-            />
-            <Route 
-              exact 
-              path="/1f1244Gopd5004JKiu03Vili" 
-              Component={TabletView} 
+              path="/1f1244Gopd5004JKiu03Vili"
+              Component={TabletView}
             />
           </Routes>
         </Router>
@@ -65,7 +60,7 @@ const App = () => {
   ) : (
     // if we are waiting for user to give the permission and when loading the page
     <div className="App-header">
-          <Loading />
+      <Loading />
     </div>
   );
 };

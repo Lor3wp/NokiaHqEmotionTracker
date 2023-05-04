@@ -3,13 +3,16 @@ import React, { useState, useEffect } from "react";
 import "../css/EmotionButtons.css";
 import EmotionButtons from "./EmotionButtons";
 import { timerStart, timerTick } from "../utils/TimerFunctions";
+//import backendAddress from "../data/apiHooks";
+const backendAddress = "http://localhost:3001/";
 
 const Emotions = () => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(null);
   const [time, setTime] = useState(0);
-  const timerTimeMs = 0;
+  const timerTimeMs = 1000;
   const [clicked, setClicked] = useState(0);
+  const [selectedButton, setSelectedButton] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("timer") == null) {
@@ -25,16 +28,13 @@ const Emotions = () => {
   // post emotion to database
   const addEmotion = async (id) => {
     try {
-      const response = await fetch(
-        "http://localhost:3001/emotions/addemotion",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ emotion: id, subEmotion: 1 }),
-        }
-      );
+      const response = await fetch(backendAddress + "emotions/addemotion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emotion: id, subEmotion: 1 }),
+      });
       if (!response.ok) {
         throw new Error("Error adding emotion");
       }
@@ -49,6 +49,7 @@ const Emotions = () => {
     addEmotion(id);
     setClicked(id);
     timerStart(e, setButtonActive);
+    //setSelectedButton(label);
   };
 
   return (
@@ -69,4 +70,3 @@ const Emotions = () => {
   );
 };
 export default Emotions;
-// build test

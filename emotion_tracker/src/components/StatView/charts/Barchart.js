@@ -1,22 +1,47 @@
+/**
+ * This file contains the view for drawing a barchart.
+ * The file takes the data from props and spits it to
+ * their respective emotions, which in turn is passed
+ * on to the actual chart for drawing.
+ *
+ * uses states:
+ *     [chartType]
+ *     [hourRange]
+ *     [minHour]
+ *     [maxHour]
+ *     [chartDate]
+ *     [timeUnit]
+ *     [data]
+ *     [dataFetched]
+ *
+ * options {}
+ * BarChart()
+ *     [total, setTotal]
+ *     [barData, setBarData]
+ *     useEffect()
+ *     return()
+ *
+ * export default Barchart;
+ *
+ * */
 import React, {useEffect, useState} from 'react';
-import Chart from 'chart.js/auto'
-import { Bar } from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import emotionData from '../../../data/emotionData';
+import '../../../css/AllCharts.css'
 
+// options for how the bar chart is drawn
 const options = {
   responsive: true,
-
   plugins: {
     legend: {
       position: "right",
-
+      maintainAspectRatio: false,
       display: true,
       labels: {
         usePointStyle: true,
       },
     },
   },
-  responsive: true,
   scales: {
     x: {
       stacked: true,
@@ -29,9 +54,11 @@ const options = {
 
 const BarChart = (props) => {
 
+  const [total, setTotal] = useState(0);
   const [barData, setBarData] = useState({
     labels: [],
     datasets: [
+      // EXAMPLE DATA
       // {
       //   label: 'Happy',
       //   data: [50,50,50,50,50,50],
@@ -43,8 +70,9 @@ const BarChart = (props) => {
   useEffect(() => {
     let data = {
       labels: [],
-      datasets: [], //new Array(emotionData.length).fill({
+      datasets: [],
     };
+    // set the bottom labels based on timeUnit
     switch (props.timeUnit) {
       case "day":
         data.labels = [...Array(emotionData[0].count.length).keys()];
@@ -89,6 +117,8 @@ const BarChart = (props) => {
 
         break;
     }
+    // set the data that gets drawn and calculate the total entries
+    let totalAmount = 0;
     emotionData.map((emotion) => {
       data.datasets.push({
         label: emotion.label,
@@ -97,14 +127,19 @@ const BarChart = (props) => {
         borderColor: emotion.chartColor,
         backgroundColor: emotion.chartColor,
       });
+      totalAmount += emotion.total;
     });
+    setTotal(totalAmount);
     setBarData(data);
   }, [props.dataFetched]);
+  // return the visible part of the chart
+  return (
+  <>
+  <p>Total amount {total.toString()}</p>
+  <hr />
+  <Bar data={barData} options={options} />
+  <hr /> 
+  </>);
+}
 
-
-
-
-    return (<Bar data={barData} options={options} />);
-  }
-  
-  export default BarChart;
+export default BarChart;

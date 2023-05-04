@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import EmotionButton from './Emotions';
 
 const Timer = () => {
   const [buttonActive, setBA] = useState(true);
   const [time, setTime] = useState(0);
   const timerTimeMs = 3600000;
-
-  /*const timerStart = (e) => {
-    console.log("timerStart ");
-    e.preventDefault();
-      setBA(false);
-      const dateNow = Date.now()
-      localStorage.setItem('timer', dateNow);
-  };*/
 
   const timerStart = (e) => {
      e.preventDefault();
