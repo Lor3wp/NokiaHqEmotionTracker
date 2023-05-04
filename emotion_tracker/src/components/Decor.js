@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "../css/App.css";
 
 const doDecor = (color) => {
