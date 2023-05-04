@@ -23,7 +23,7 @@ function TabletEmotionButton() {
   const addEmotion = async (id) => {
     try {
       const response = await fetch(
-        `${backendAddress}emotions/addemotion/tablet`,
+        `${backendAddress}emotions/addtabletemotion`,
         {
           method: "POST",
           headers: {

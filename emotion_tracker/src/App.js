@@ -42,12 +42,8 @@ const App = () => {
       <header className="App-header">
         <Router>
           <Routes>
-            <Route exact path="/*" Component={EmotionButtonView} />
-            <Route
-              exact
-              path="/1f1244Gopd5004JKiu03Vili"
-              Component={TabletView}
-            />
+            <Route path="/" element={<EmotionButtonView />} />
+            <Route path="/1f1244Gopd5004JKiu03Vili" element={<TabletView />} />
           </Routes>
         </Router>
       </header>
@@ -66,4 +62,3 @@ const App = () => {
 };
 
 export default App;
-// testattu
