@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/NokiaHqEmotionTracker/static/css/main.3a25d708.css",
-    "main.js": "/NokiaHqEmotionTracker/static/js/main.a2ab61f2.js",
+    "main.js": "/NokiaHqEmotionTracker/static/js/main.b9782ca8.js",
     "static/js/787.f156acb1.chunk.js": "/NokiaHqEmotionTracker/static/js/787.f156acb1.chunk.js",
     "static/media/material-symbols-rounded.woff2": "/NokiaHqEmotionTracker/static/media/material-symbols-rounded.0d6e3b98940e36861c2c.woff2",
     "static/media/material-symbols-outlined.woff2": "/NokiaHqEmotionTracker/static/media/material-symbols-outlined.b2385d31d58ea15caa6b.woff2",
     "static/media/material-symbols-sharp.woff2": "/NokiaHqEmotionTracker/static/media/material-symbols-sharp.2372bcc6f5d039904009.woff2",
     "index.html": "/NokiaHqEmotionTracker/index.html",
     "main.3a25d708.css.map": "/NokiaHqEmotionTracker/static/css/main.3a25d708.css.map",
-    "main.a2ab61f2.js.map": "/NokiaHqEmotionTracker/static/js/main.a2ab61f2.js.map",
+    "main.b9782ca8.js.map": "/NokiaHqEmotionTracker/static/js/main.b9782ca8.js.map",
     "787.f156acb1.chunk.js.map": "/NokiaHqEmotionTracker/static/js/787.f156acb1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3a25d708.css",
-    "static/js/main.a2ab61f2.js"
+    "static/js/main.b9782ca8.js"
   ]
 }
