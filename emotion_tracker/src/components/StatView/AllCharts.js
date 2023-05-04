@@ -37,7 +37,8 @@ import BarChart from "./charts/Barchart";
 import MountainChart from "./charts/Mountainchart";
 import { useEffect, useState } from "react";
 import emotionData from "../../data/emotionData";
-import backendAddress from "../../data/apiHooks";
+//import backendAddress from "../../data/apiHooks";
+const backendAddress = "http://localhost:3001/";
 import { __esModule } from "react-range-slider-input";
 import Loading from "../../views/Loading";
 import { endOfWeek, startOfWeek } from "date-fns";
@@ -200,12 +201,15 @@ const AllCharts = (props) => {
 
             const responseWeek = await fetch(
               backendAddress +
-                `emotions/getweek/${[firstDayOfWeek.getFullYear(),
-                  String(firstDayOfWeek.getMonth() + 1).padStart(2, '0'),
-                  String(firstDayOfWeek.getDate()).padStart(2, '0')].join("-")
-              }/${[lastDayOfWeek.getFullYear(),
-                  String(lastDayOfWeek.getMonth() + 1).padStart(2, '0'),
-                  String(lastDayOfWeek.getDate()).padStart(2, '0')].join("-")}`
+                `emotions/getweek/${[
+                  firstDayOfWeek.getFullYear(),
+                  String(firstDayOfWeek.getMonth() + 1).padStart(2, "0"),
+                  String(firstDayOfWeek.getDate()).padStart(2, "0"),
+                ].join("-")}/${[
+                  lastDayOfWeek.getFullYear(),
+                  String(lastDayOfWeek.getMonth() + 1).padStart(2, "0"),
+                  String(lastDayOfWeek.getDate()).padStart(2, "0"),
+                ].join("-")}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -264,17 +268,20 @@ const AllCharts = (props) => {
             );
             // sqlite gets date with leading zeroes
             // therefore the dates are formatted to have leading zeroes
-            const firstDayOfWeek = startOfWeek(date, {weekStartsOn: 1})
-            const lastDayOfWeek = endOfWeek(date, {weekStartsOn: 1})
+            const firstDayOfWeek = startOfWeek(date, { weekStartsOn: 1 });
+            const lastDayOfWeek = endOfWeek(date, { weekStartsOn: 1 });
 
             const responseWeek = await fetch(
-                backendAddress +
-                `emotions/getweek/${[firstDayOfWeek.getFullYear(),
-                  String(firstDayOfWeek.getMonth() + 1).padStart(2, '0'),
-                  String(firstDayOfWeek.getDate()).padStart(2, '0')].join("-")
-                }/${[lastDayOfWeek.getFullYear(),
-                  String(lastDayOfWeek.getMonth() + 1).padStart(2, '0'),
-                  String(lastDayOfWeek.getDate()).padStart(2, '0')].join("-")}`
+              backendAddress +
+                `emotions/getweek/${[
+                  firstDayOfWeek.getFullYear(),
+                  String(firstDayOfWeek.getMonth() + 1).padStart(2, "0"),
+                  String(firstDayOfWeek.getDate()).padStart(2, "0"),
+                ].join("-")}/${[
+                  lastDayOfWeek.getFullYear(),
+                  String(lastDayOfWeek.getMonth() + 1).padStart(2, "0"),
+                  String(lastDayOfWeek.getDate()).padStart(2, "0"),
+                ].join("-")}`
             );
             const jsonDataWeek = await responseWeek.json();
             jsonDataWeek.map((dayData) => {
@@ -325,8 +332,11 @@ const AllCharts = (props) => {
         return <Loading />;
       } else
         return (
-          <div className="doughnutchart"
-            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
+          <div
+            className="doughnutchart"
+            style={{
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
           >
             <h4
               className="nodata"
@@ -357,8 +367,11 @@ const AllCharts = (props) => {
         <Loading />;
       } else
         return (
-          <div className="linechart"
-            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
+          <div
+            className="linechart"
+            style={{
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
           >
             <h4
               className="nodata"
@@ -390,8 +403,11 @@ const AllCharts = (props) => {
         return <Loading />;
       } else
         return (
-          <div className="mountainchart"
-            style={{opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,}}
+          <div
+            className="mountainchart"
+            style={{
+              opacity: props.data == null || props.data.length <= 0 ? 0.5 : 1,
+            }}
           >
             <h4
               className="nodata"
