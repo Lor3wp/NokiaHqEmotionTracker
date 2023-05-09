@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import backendAddress from "../data/apiHooks";
-const backendAddress = "http://localhost:3001/";
+import backendAddress from "../data/apiHooks";
 
 const EmotionStats = ({ update }) => {
   const [data, setData] = useState(null);

@@ -8,7 +8,7 @@ import "material-symbols";
 import Loading from "./views/Loading";
 import TooFarAway from "./views/TooFarAwayView";
 import TabletView from "./views/TabletView";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import calculateDistance from "./utils/CalculateDistance";
 
 const App = () => {
@@ -42,8 +42,12 @@ const App = () => {
       <header className="App-header">
         <Router>
           <Routes>
-            <Route path="/" element={<EmotionButtonView />} />
-            <Route path="/1f1244Gopd5004JKiu03Vili" element={<TabletView />} />
+            <Route exact path="/*" element={<EmotionButtonView />} />
+            <Route
+              exact
+              path="/1f1244Gopd5004JKiu03Vili"
+              element={<TabletView />}
+            />
           </Routes>
         </Router>
       </header>
@@ -62,3 +66,4 @@ const App = () => {
 };
 
 export default App;
+// testattu
