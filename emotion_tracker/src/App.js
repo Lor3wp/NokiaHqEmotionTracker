@@ -45,7 +45,7 @@ const App = () => {
             <Route exact path="/*" element={<EmotionButtonView />} />
             <Route
               exact
-              path="/1f1244Gopd5004JKiu03Vili"
+              path="/fr45678okjhyu654rdfghui890o"
               element={<TabletView />}
             />
           </Routes>
