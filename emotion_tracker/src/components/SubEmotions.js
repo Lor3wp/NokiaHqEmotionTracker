@@ -4,6 +4,7 @@ import "../css/SubEmotions.css";
 import emotionData from "../data/emotionData";
 import SubEmotionButtons from "./SubEmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
+import backendAddress from "../data/apiHooks";
 
 const SubEmotions = ({showMore, setShowMore}) => {
   const [update, setUpdate] = useState(false);
@@ -26,7 +27,7 @@ const SubEmotions = ({showMore, setShowMore}) => {
   // post emotion to database
   const addEmotion = async (id, subEmotionId) => {
     try {
-      const response = await fetch("http://localhost:3001/emotions/addemotion", {
+      const response = await fetch(`${backendAddress}/emotions/addemotion`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

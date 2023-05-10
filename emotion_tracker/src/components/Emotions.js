@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../css/EmotionButtons.css";
 import EmotionButtons from "./EmotionButtons";
 import { timerStart, timerTick } from "../utils/TimerFunctions";
-//import backendAddress from "../data/apiHooks";
-const backendAddress = "http://localhost:3001/";
+import backendAddress from "../data/apiHooks";
 
 const Emotions = () => {
   const [update, setUpdate] = useState(false);
