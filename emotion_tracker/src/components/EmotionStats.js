@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import backendAddress from "../data/apiHooks";
 
 const EmotionStats = ({ update }) => {
   const [data, setData] = useState(null);
@@ -10,9 +10,7 @@ const EmotionStats = ({ update }) => {
   // fetching todays emotions and all time emotinos from database
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        `http://localhost:3001/emotions/getallemotions`
-      );
+      const response = await fetch(`${backendAddress}emotions/getallemotions`);
       const jsonData = await response.json();
       setData(jsonData);
       setLoading(false);
@@ -23,7 +21,7 @@ const EmotionStats = ({ update }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:3001/emotions/gettodayemotions`
+        `${backendAddress}emotions/gettodayemotions`
       );
       const jsonData = await response.json();
       setDayData(jsonData);
@@ -40,11 +38,11 @@ const EmotionStats = ({ update }) => {
   return (
     <div>
       <div className="infoText">
-        Feelings were shared {dayData.count} times today and {data.count} times
-        in total.
+        Feelings were shared {dayData[0].count} times today and {data[0].count}{" "}
+        times in total.
       </div>
     </div>
   );
-}
+};
 
 export default EmotionStats;

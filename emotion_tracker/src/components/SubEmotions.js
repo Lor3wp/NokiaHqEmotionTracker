@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import "../css/EmotionButtons.css";
 import "../css/SubEmotions.css";
 import emotionData from "../data/emotionData";
 import SubEmotionButtons from "./SubEmotionButtons";
 import {timerStart, timerTick} from "../utils/TimerFunctions";
 
-const SubEmotions = ({ showMore, setShowMore }) => {
+const SubEmotions = ({showMore, setShowMore}) => {
   const [update, setUpdate] = useState(false);
   const [buttonActive, setButtonActive] = useState(true);
   const [time, setTime] = useState(0);
@@ -23,8 +23,6 @@ const SubEmotions = ({ showMore, setShowMore }) => {
     return () => clearInterval(timer);
   }, []);
 
-  // END OF TIMER
-
   // post emotion to database
   const addEmotion = async (id, subEmotionId) => {
     try {
@@ -33,7 +31,7 @@ const SubEmotions = ({ showMore, setShowMore }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ emotion: id, subEmotion: subEmotionId }),
+        body: JSON.stringify({emotion: id, subEmotion: subEmotionId}),
       });
       if (!response.ok) {
         throw new Error("Error adding emotion");
@@ -50,7 +48,6 @@ const SubEmotions = ({ showMore, setShowMore }) => {
     setClicked(id);
     setSubClicked(subEmotionLabel);
     timerStart(e, setButtonActive);
-    console.log(`sub id ${subEmotionLabel}`);
     setTimeout(() => {
       setShowMore(!showMore);
     }, 15000);
@@ -72,18 +69,17 @@ const SubEmotions = ({ showMore, setShowMore }) => {
         {emotionData.map((button) => (
           <div key={button.label}>
             <button
+              style={{
+                backgroundColor: button.rgbColor,
+                color: button.textColor,
+              }}
               className={
                 subClicked !== button.label && !buttonActive
                   ? button.label + "-disabled"
                   : button.label
               }
-              id={
-                subClicked === button.label
-                  ? button.label + "-clicked"
-                  : button.label
-              }
               disabled={!buttonActive}
-              onClick={(e) => buttonClicked(button.id, e)}
+              onClick={(e) => buttonClicked(button.id, 1, button.label, e)}
             >
               <div className="EmotionButton-button-label">
                 <span className="material-symbols-outlined">{button.icon}</span>
@@ -99,7 +95,7 @@ const SubEmotions = ({ showMore, setShowMore }) => {
           </div>
         ))}
       </div>
-      <div style={{ visibility: buttonActive ? "hidden" : "visible" }}>
+      <div style={{visibility: buttonActive ? "hidden" : "visible"}}>
         <p className="infoText">
           Share your feelings again in {Math.floor(time / 1000 / 60)} mins,{" "}
           {Math.floor((time / 1000) % 60)} secs

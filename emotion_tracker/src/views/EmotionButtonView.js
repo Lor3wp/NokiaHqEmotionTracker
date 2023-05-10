@@ -1,26 +1,23 @@
 import Emotions from "../components/Emotions";
 import "../css/EmotionButtonView.css";
-import TestView from "../TestView";
 import StatWindow from "./StatWindow";
-import { useState } from "react";
-import Timer from "../components/Timer";
+import {useState} from "react";
 import ShowMoreButton from "../components/ShowMoreButton";
 import SubEmotions from "../components/SubEmotions"
 
 const clickHandler = (viewCondition, setViewCondition) => {
   setViewCondition(!viewCondition);
-  console.log("clicked how others feel");
 };
 
-const EmotionButtonView = ({ setStatsData }) => {
+const EmotionButtonView = ({setStatsData}) => {
   const [viewCondition, setViewCondition] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   const backButtonClicked = () => {
     setViewCondition(!viewCondition);
   };
-  if(showMore) {
-    return(
+  if (showMore) {
+    return (
       <SubEmotions showMore={showMore} setShowMore={setShowMore}></SubEmotions>
     );
   }
@@ -29,7 +26,7 @@ const EmotionButtonView = ({ setStatsData }) => {
       <div className="emotionButtonView">
         <div
           className="titleAndOthers"
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{display: "flex", flexDirection: "column"}}
         >
           <h1>How are you feeling?</h1>
           <button

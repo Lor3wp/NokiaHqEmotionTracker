@@ -6,12 +6,13 @@
     min-height: 100vh;
     min-width: 100vw;
 }
+
 @media only screen and (min-width: 1000px) {
     .StatWindow {
-    min-width: 49vw;
-      max-width: 50vw;
+        min-width: 49vw;
+        max-width: 50vw;
     }
-  }
+}
 
 .Stats-header {
     display: flex;
@@ -19,11 +20,12 @@
     top: 5px;
     z-index: 5;
     height: 3.3em;
-    margin: 8px;
+    margin: 16px 8px 8px 8px;
     justify-content: space-between;
     align-content: center;
     align-items: center;
 }
+
 .Stats-header button {
     width: 4em;
     height: 4em;
@@ -54,7 +56,7 @@
     display: flex;
     flex-direction: column;
     flex: 0.5;
-    margin: 8px;
+    /* margin: 8px; */
     padding: 2px;
     align-items: stretch;
     width: inherit;
@@ -63,23 +65,17 @@
 #TimeUnitSelectorView {
     display: flex;
     flex: 0.7;
-    margin: 8px 8px 16px 8px; 
+    margin: 8px 8px 16px 8px;
     padding: 2px;
     align-items: center;
     justify-content: space-around;
 }
 
-#VilisVelvetyElementView {
-    display: flex;
-    border: 1px;
-    margin: 2px;
-    padding: 2px;
-    max-height: 3vh;
-    align-items: center;
-    justify-content: center;
-}
 #SliderHourView {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+}
+canvas {
+    margin: 0px 16px 0px 16px; 
 }

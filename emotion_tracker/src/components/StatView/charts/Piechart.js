@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {Chart, ArcElement} from 'chart.js'
-import { Doughnut } from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 import emotionData from "../../../data/emotionData";
 
 Chart.register(ArcElement);
@@ -29,28 +29,10 @@ const Piechart = (props) => {
       },
     ],
   });
-
   // fetching all emotions from backend response type [ {"emotion_id: "1", count:"14""}, ...]
   useEffect(() => {
-    /*    async function fetchData() {
-      const response = await fetch(
-          `http://localhost:3001/getstats/getemotions/`
-      );
-      const jsonData = await response.json();
-      // check if ammount of emotions is same as in emotionData.js
-      if (jsonData.length !== emotionData.length) {
-        console.error(
-            "emmount of emotions dose not match from database and emotionData.js"
-        );
-      }
-
-    }*/
-    // console.log("moi", props.data[2].emotion_id);
     if (props.data != null && props.data.length > 1) {
-      // console.log("stringi");
-      // processData(props.data);
     }
-    // fetchData();
   }, [props.data]);
 
   // process response json and populate data into pieData template
@@ -67,7 +49,6 @@ const Piechart = (props) => {
         },
       ],
     };
-
     for (let i in json) {
       emotionData[json[i].emotion_id - 1].count = json[i].count;
     }
@@ -86,7 +67,7 @@ const Piechart = (props) => {
       <Doughnut
         data={pieData}
         options={options}
-        style={{ width: "275px", height: "275px" }}
+        style={{width: "275px", height: "275px"}}
       />
     </div>
   );

@@ -9,13 +9,14 @@
     flex: 1;
     height: inherit;
     justify-content: center;
-}
+    margin: 0px 16px 0px 16px;}
 
 .timeUnit-arrow {
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    background-color: #ffffff0a;
+    border-radius: 8px;
 }
-

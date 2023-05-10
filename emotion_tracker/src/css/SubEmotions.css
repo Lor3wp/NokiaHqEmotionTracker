@@ -1,123 +1,168 @@
 .show-more .howOthersFeltButton {
-    margin-top: 24px;
+   margin-top: 24px;
 }
+
 .SubEmotionButton-container {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
+
 .SubEmotionButton-container button {
-    height: 40px !important;
-    animation: fadeIn 1s forwards !important;
+   height: 48px !important;
 }
+
 @keyframes fadeOut {
-    0% {opacity: 1;}
-    100% {background-color: transparent;} 
- }
+   0% {
+      opacity: 1;
+   }
 
- @keyframes fadeIn {
-    100% {background-color: background-color;}
-    0% {background-color: transparent;} 
- }
+   100% {
+      background-color: transparent;
+   }
+}
 
- .transparent button {
-    background-color: transparent;
-    animation: fadeIn 1s forwards !important;
+@keyframes fadeIn {
+   100% {
+      background-color: background-color;
+   }
 
-  }
+   0% {
+      background-color: transparent;
+   }
+}
 
+.transparent button {
+   background-color: transparent;
+}
 
- .Proud-disabled:disabled, .Empowered-disabled:disabled, .Confident-disabled:disabled {
-    cursor: not-allowed;
-    background-color: rgb(206 255 195);
-    color: rgb(61 148 42);
-    animation: fadeOut 1s forwards !important;
-  }
- 
- 
- .Ashamed-disabled:disabled, .Frustrated-disabled:disabled, .Offended-disabled:disabled
- {
-    cursor: not-allowed;
-    background-color: rgb(255 190 190);
-    color: rgb(225, 85, 85);
-    animation: fadeOut 1s forwards !important;
- }
- .Horrified-disabled:disabled, .Embarrased-disabled:disabled, .Anxious-disabled:disabled {
-    cursor: not-allowed;
-    background-color: rgb(243, 189, 255);
-    color: rgb(127 62 159);
-    animation: fadeOut 1s forwards !important;
- }
- 
- .Inspired-disabled:disabled, .Focused-disabled:disabled, .Energetic-disabled:disabled {
-    cursor: not-allowed;
-    background-color: rgb(255, 239, 153);
-    color: rgb(176, 148, 0);
-    animation: fadeOut 1s forwards !important;
-  }
- 
- .Depressed-disabled:disabled, .Lonely-disabled:disabled, .Hurt-disabled:disabled {
-    cursor: not-allowed;
-    background-color: rgb(184, 204, 244);
-    color: rgb(63 103 179);
-    animation: fadeOut 1s forwards !important;
- }
- 
- .Peaceful-disabled:disabled, .Rested-disabled:disabled, .Balanced-disabled:disabled {
-    cursor: not-allowed;
-    background-color: rgb(255, 227, 202);
-    color: rgb(255, 129, 13);
-    animation: fadeOut 1s forwards !important;
- }
+/*HAPPY sub emotions disabled*/
+.Proud-disabled:disabled,
+.Empowered-disabled:disabled,
+.Confident-disabled:disabled {
+   cursor: not-allowed;
+   background-color: rgb(206 255 195);
+   color: rgb(61 148 42);
+   animation: fadeOut 1s forwards !important;
+}
 
-/*Happy*/
- .Proud:hover, .Empowered:hover, .Confident:hover {
+/*ANGRY sub-emotions disabled*/
+.Ashamed-disabled:disabled,
+.Frustrated-disabled:disabled,
+.Offended-disabled:disabled {
+   cursor: not-allowed;
+   background-color: rgb(255 190 190);
+   color: rgb(225, 85, 85);
+   animation: fadeOut 1s forwards !important;
+}
+
+/*SCARED sub-emotions disabled*/
+.Horrified-disabled:disabled,
+.Worried-disabled:disabled,
+.Anxious-disabled:disabled {
+   cursor: not-allowed;
+   background-color: rgb(243, 189, 255);
+   color: rgb(127 62 159);
+   animation: fadeOut 1s forwards !important;
+}
+
+/*EXCITED sub-emotions disabled*/
+.Inspired-disabled:disabled,
+.Focused-disabled:disabled,
+.Energetic-disabled:disabled {
+   cursor: not-allowed;
+   background-color: rgb(255, 239, 153);
+   color: rgb(176, 148, 0);
+   animation: fadeOut 1s forwards !important;
+}
+
+/*SAD sub-emotions disabled*/
+.Depressed-disabled:disabled,
+.Lonely-disabled:disabled,
+.Hurt-disabled:disabled {
+   cursor: not-allowed;
+   background-color: rgb(184, 204, 244);
+   color: rgb(63 103 179);
+   animation: fadeOut 1s forwards !important;
+}
+
+/*NEUTRAL sub-emotions disabled*/
+.Peaceful-disabled:disabled,
+.Rested-disabled:disabled,
+.Balanced-disabled:disabled {
+   cursor: not-allowed;
+   background-color: rgb(255, 227, 202);
+   color: rgb(255, 129, 13);
+   animation: fadeOut 1s forwards !important;
+}
+
+/*HAPPY sub-emotions hover*/
+.Proud:hover,
+.Empowered:hover,
+.Confident:hover {
    background-color: rgb(152, 190, 143) !important;
 
- }
+}
 
- /*Angry*/
- .Ashamed:hover, .Frustrated:hover, .Offended:hover
- {
+/*ANGRY sub-emotions hover*/
+.Ashamed:hover,
+.Frustrated:hover,
+.Offended:hover {
    background-color: rgb(236, 135, 135) !important;
 
- }
- /*Scared*/
- .Horrified:hover, .Embarrased:hover, .Anxious:hover {
+}
+
+/*SCARED sub-emotions hover*/
+.Horrified:hover,
+.Worried:hover,
+.Anxious:hover {
    background-color: rgb(195, 130, 212) !important;
 
- }
- /* Excited */
- .Inspired:hover, .Focused:hover, .Energetic:hover {
+}
+
+/* EXCITED sub-emotions hover */
+.Inspired:hover,
+.Focused:hover,
+.Energetic:hover {
    background-color: rgb(251, 229, 104) !important;
-  }
- /* Sad */
- .Depressed:hover, .Lonely:hover, .Hurt:hover {
+}
+
+/* SAD sub-emotions hover */
+.Depressed:hover,
+.Lonely:hover,
+.Hurt:hover {
    background-color: rgb(128, 143, 173) !important;
 
- }
- /* Neutral */
- .Peaceful:hover, .Rested:hover, .Balanced:hover {
+}
+
+/* NEUTRAL sub-emotions hover */
+.Peaceful:hover,
+.Rested:hover,
+.Balanced:hover {
    background-color: rgb(132, 132, 132) !important;
 
- }
+}
 
- .exit {
-    align-self: flex-start;
-    background-color: transparent;
-    color: rgb(255,255,255);
-    border-style: none;
-    margin-left: 8px;
- }
+.exit {
+   align-self: flex-start;
+   background-color: transparent;
+   color: rgb(255, 255, 255);
+   border-style: none;
+   margin-left: 8px;
+}
 
- .title {
-    margin-top: 0;
- }
- .exit-title {
-    display: flex;
-    flex-direction: row;
-    align-content:space-between;
- }
- nav {
-    display: flex;
-    justify-content: flex-start;
- }
+.title {
+   margin-top: 48px;
+}
+
+.exit-title {
+   display: flex;
+   flex-direction: row;
+   align-content: space-between;
+}
+
+.content nav {
+   display: flex;
+   justify-content: flex-start;
+   position: absolute;
+   margin-top: 16px;
+}

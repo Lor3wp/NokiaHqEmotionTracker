@@ -1,11 +1,52 @@
-import React, {useState, useEffect} from "react";
+/**
+ * This file contains the view for drawing a linechart.
+ * The file takes the data from props and spits it to
+ * their respective emotions, which in turn is passed
+ * on to the actual chart for drawing.
+ *
+ * uses states:
+ *     [chartType]
+ *     [hourRange]
+ *     [minHour]
+ *     [maxHour]
+ *     [chartDate]
+ *     [timeUnit]
+ *     [data]
+ *     [dataFetched]
+ *
+ * options {}
+ * LineChart()
+ *     [lineData, setLineData]
+ *     useEffect()
+ *     return()
+ *
+ * export default LineChart;
+ *
+ * */
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import emotionData from "../../../data/emotionData";
+import '../../../css/AllCharts.css'
+
 
 Chart.defaults.color = "#FFFFFF";
-
+// options for how the bar chart is drawn
 const options = {
+  plugins: {
+    legend: {
+      display: true,
+      // align: "start",
+      position: "right",
+      maxWidth: 120,
+      textDirection: "ltr",
+      labels: {
+        // textAlign: "right",
+        usePointStyle: true,
+        // poinStyleWidth: 200,
+      },
+    },
+  },
   type: "line",
   scales: {
     x: {
@@ -21,6 +62,7 @@ const options = {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         display: true,
@@ -36,6 +78,7 @@ const LineChart = (props) => {
   const [lineData, setLineData] = useState({
     labels: [],
     datasets: [
+      // EXAMPLE DATA
       // {
       //   label: [],
       //   data: [],
@@ -45,9 +88,8 @@ const LineChart = (props) => {
       // },
     ],
   });
-
+    const [total, setTotal] = useState(0);
   useEffect(() => {
-    console.log("lineChart");
     let data = {
       labels: [],
       datasets: [], //new Array(emotionData.length).fill({
@@ -88,22 +130,6 @@ const LineChart = (props) => {
           decadeYears.push(startingYear);
         }
         data.labels = decadeYears;
-        // for (let j in emotionData) {
-        //   for (let i = 0; i <= 9; i++) {
-        //     emotionData[j].count.push(null);
-        //   }
-        // }
-        // for (let i in decadeYears) {
-        //   for (let j in props.data) {
-        //     for (let k in emotionData) {
-        //       if (parseInt(props.data[j].emotion_id) === emotionData[k].id) {
-        //         if (decadeYears[i] === parseInt(props.data[j].created_at)) {
-        //           emotionData[k].count[i] = parseInt(props.data[j].count);
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
         break;
 
       default:
@@ -111,30 +137,48 @@ const LineChart = (props) => {
 
         break;
     }
-    console.log(data.labels.length);
-    console.log(emotionData, "ei ajadf");
-    // for (let i in emotionData) {
-    //   data.datasets.push({
-    //     label: emotionData[i].label,
-    //     data: emotionData[i].count,
-    //     spanGaps: true,
-    //     borderColor: emotionData[i].chartColor,
-    //     backgroundColor: emotionData[i].chartColor,
-    //   });
-    // }
+    // set the data that gets drawn and calculate the length of longest label
+    let longestLabel = 0;
+    let totalAmount = 0;
     emotionData.map((emotion) => {
-      data.datasets.push({
-        label: emotion.label,
-        data: emotion.count,
-        spanGaps: true,
-        borderColor: emotion.chartColor,
-        backgroundColor: emotion.chartColor,
-      });
+      if (emotion.label.length > longestLabel) {
+        longestLabel = emotion.label.length;
+      }
     });
+    emotionData.map((emotion) => {
+      if (emotion.label.length < longestLabel) {
+        data.datasets.push({
+          label:
+            emotion.label + " ".repeat(longestLabel - emotion.label.length),
+          data: emotion.count,
+          spanGaps: true,
+          borderColor: emotion.chartColor,
+          backgroundColor: emotion.chartColor,
+        });
+      } else {
+        data.datasets.push({
+          label: emotion.label,
+          data: emotion.count,
+          spanGaps: true,
+          borderColor: emotion.chartColor,
+          backgroundColor: emotion.chartColor,
+        });
+      }
+      totalAmount += emotion.total;
+    });
+    setTotal(totalAmount);
+
     setLineData(data);
   }, [props.dataFetched]);
-
-  return <Line data={lineData} options={options} />;
+  // return the visible part of the chart
+  return (
+    <>
+  <p>Total amount {total}</p>
+  <hr />
+  <Line data={lineData} options={options} />
+  <hr />
+  </>
+  );
 };
 
 export default LineChart;
