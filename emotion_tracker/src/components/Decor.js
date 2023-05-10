@@ -8,6 +8,7 @@ const doDecor = (color) => {
     let rand = Math.floor(Math.random() * 100);
     elem.className = "deco";
     elem.style.opacity = Math.random();
+    elem.style.rotate = Math.random() * 360 + "deg";
     elem.style.left = rand + "%";
     elem.style.margin = Math.floor(Math.random() * -100) + "px";
     elem.style.backgroundColor = color ? color : "white";
@@ -16,11 +17,12 @@ const doDecor = (color) => {
       document.body.removeChild(elem);
     }, 2000);
   }
-  for (let i = 0; i < amount; i++) {
+  /*for (let i = 0; i < amount; i++) {
     let elem = document.createElement("div");
     let rand = Math.floor(Math.random() * 100);
     elem.className = "moredeco";
     elem.style.opacity = Math.random();
+    elem.style.rotate = Math.random() * 360 + "deg";
     elem.style.right = rand + "%";
     elem.style.margin = Math.floor(Math.random() * 100) + "px";
     elem.style.backgroundColor = color ? color : "white";
@@ -28,7 +30,7 @@ const doDecor = (color) => {
     setTimeout(() => {
       document.body.removeChild(elem);
     }, 2000);
-  }
+  }*/
 };
 const doDecorAlt = (color) => {
   let elem = document.createElement("div");
