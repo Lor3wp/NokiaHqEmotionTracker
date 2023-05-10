@@ -55,9 +55,10 @@
   }
 }
 .deco, .moredeco {
-  border-radius: 50%;
-  width: 1em; height: 1em;
+  border-radius: 0%;
+  width: 2em; height: 2em;
   position: absolute; 
+  clip-path: polygon(0 0, 55% 16%, 82% 44%, 100% 100%, 44% 85%, 16% 56%);
 }
 .deco {
   top: 0;
