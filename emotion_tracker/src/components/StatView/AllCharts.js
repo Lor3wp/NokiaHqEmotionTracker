@@ -38,7 +38,6 @@ import MountainChart from "./charts/Mountainchart";
 import { useEffect, useState } from "react";
 import emotionData from "../../data/emotionData";
 import backendAddress from "../../data/apiHooks";
-// const backendAddress = "http://localhost:3001/";
 import { __esModule } from "react-range-slider-input";
 import Loading from "../../views/Loading";
 import { endOfWeek, startOfWeek } from "date-fns";
